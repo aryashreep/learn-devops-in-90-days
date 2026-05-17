@@ -38,21 +38,27 @@ This will become your:
 
 # 2️⃣ Start with a DevOps Roadmap
 
-📺 Recommended Learning Resources:
+📺 Recommended beginner-friendly resources:
 
-* DevOps Roadmap by Shubham Londhe
-  https://youtu.be/iOE9NTAG35g
+## DevOps Roadmap
 
-Additional beginner-friendly resources:
+https://roadmap.sh/devops
 
-* What is DevOps? — AWS
-  https://aws.amazon.com/devops/what-is-devops/
+## What is DevOps? — AWS
 
-* Microsoft DevOps Overview
-  https://learn.microsoft.com/en-us/devops/what-is-devops/
+https://aws.amazon.com/devops/what-is-devops/
 
-* DevOps Roadmap
-  https://roadmap.sh/devops
+## Microsoft DevOps Overview
+
+https://learn.microsoft.com/en-us/devops/what-is-devops/
+
+## IBM DevOps Guide
+
+https://www.ibm.com/topics/devops
+
+## DevOps Explained by Red Hat
+
+https://www.redhat.com/en/topics/devops
 
 ---
 
@@ -166,7 +172,7 @@ Commit your notes to GitHub.
 # 📂 Suggested Folder Structure
 
 ```bash id="x9sh9z"
-content/day-01-devops-foundations/
+<YEAR>/day-01/
 ├── README.md
 ├── notes.md
 ├── resources.md
@@ -198,30 +204,6 @@ and share:
 * [ ] Wrote learning notes
 * [ ] Shared progress publicly
 * [ ] Committed Day 01 work to GitHub
-
----
-
-# 📚 Additional Resources
-
-## DevOps Roadmap
-
-https://roadmap.sh/devops
-
-## What is DevOps? — AWS
-
-https://aws.amazon.com/devops/what-is-devops/
-
-## Microsoft DevOps Overview
-
-https://learn.microsoft.com/en-us/devops/what-is-devops/
-
-## IBM DevOps Guide
-
-https://www.ibm.com/topics/devops
-
-## DevOps Explained by Red Hat
-
-https://www.redhat.com/en/topics/devops
 
 ---
 # 🚀 Next Day
