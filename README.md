@@ -54,7 +54,7 @@ No endless videos. No passive learning.
               📊 Observability  →  🔒 DevSecOps  →  🚀 Capstone
 ```
 
-Full day-by-day breakdown → [📚 TOC.md](./TOC.md)
+Full day-by-day breakdown → [📚 TABLE-OF-CONTENTS.md](./TABLE-OF-CONTENTS.md)
 
 ---
 
@@ -76,22 +76,77 @@ Full day-by-day breakdown → [📚 TOC.md](./TOC.md)
 ```
 learn-devops-in-90-days/
 │
-├── README.md              ← You are here
-├── TOC.md                 ← Full index of all 90 days
-├── CONTRIBUTING.md        ← How to contribute
-├── LICENSE
+├──📄README.md              ← You are here
+├──📚TABLE-OF-CONTENTS.md   ← Full index of all 90 days
+├──🤝CONTRIBUTING.md        ← How to contribute
+├──📜LICENSE
 │
-├── scripts/               ← Helper scripts
-│   └── helper-scripts.sh
+├──📂scripts/               ← Helper scripts
+│   ├── helper-scripts.sh
+│   ├── setup.sh
+│   ├── lint.sh
+│   └── cleanup.sh
 │
-└── content/               ← All 90 day folders live here
-    ├── day-01/
-    │   └── README.md
-    ├── day-02/
-    │   └── README.md
-    ├── ...
-    └── day-90/
-        └── README.md
+├── 📂 resources/                 ← Additional learning resources
+│   ├── books/
+│   ├── cheat-sheets/
+│   ├── interview-prep/
+│   ├── kubernetes/
+│   ├── linux/
+│   ├── networking/
+│   ├── aws/
+│   ├── terraform/
+│   └── devsecops/
+│
+├── 📂 projects/                  ← Real-world capstone projects
+│   ├── project-01-dockerized-app/
+│   ├── project-02-ci-cd-pipeline/
+│   ├── project-03-kubernetes-deployment/
+│   ├── project-04-terraform-aws/
+│   ├── project-05-observability-stack/
+│   └── README.md
+│
+├── 📂 .github/
+│   ├── workflows/                ← GitHub Actions CI/CD
+│   │   ├── lint.yml
+│   │   ├── markdown-check.yml
+│   │   ├── link-checker.yml
+│   │   └── contributor-check.yml
+│   │
+│   ├── ISSUE_TEMPLATE/
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── dependabot.yml
+│
+│── content/                      ← All 90 day folders live here
+│    ├── day-01/
+│    │   └── README.md
+│    ├── day-02/
+│    │   └── README.md
+│    ├── ...
+│    └── day-90/
+│        └── README.md
+│
+├── 📂 templates/                 ← Reusable templates
+│   ├── project-template/
+│   ├── readme-template.md
+│   ├── issue-template.md
+│   └── pr-template.md
+│
+├── 📂 docs/                      ← Advanced documentation
+│   ├── onboarding.md
+│   ├── roadmap.md
+│   ├── troubleshooting.md
+│   ├── faq.md
+│   ├── glossary.md
+│   └── certification-guide.md
+│
+└── 📂 examples/                  ← Sample configurations/examples
+    ├── docker/
+    ├── kubernetes/
+    ├── github-actions/
+    ├── terraform/
+    ├── ansible/
+    └── monitoring/
 ```
 
 ---
