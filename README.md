@@ -1,149 +1,188 @@
 # 🚀 Learn DevOps in 90 Days
-### Learn • Build • Practice • Become Job-Ready
 
-Welcome to **Learn DevOps in 90 Days** — a structured, hands-on DevOps challenge by **Aryashree Pritikrishna**.
+### A free, structured, hands-on DevOps learning journey — built for the community
 
-📌 GitHub: [aryashreep/learn-devops-in-90-days](https://github.com/aryashreep/learn-devops-in-90-days)
+[![GitHub Stars](https://img.shields.io/github/stars/aryashreep/learn-devops-in-90-days?style=for-the-badge&logo=github&color=FFD700)](https://github.com/aryashreep/learn-devops-in-90-days/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/aryashreep/learn-devops-in-90-days?style=for-the-badge&logo=github&color=00C9A7)](https://github.com/aryashreep/learn-devops-in-90-days/forks)
+[![Contributors](https://img.shields.io/github/contributors/aryashreep/learn-devops-in-90-days?style=for-the-badge&logo=github&color=845EC2)](https://github.com/aryashreep/learn-devops-in-90-days/graphs/contributors)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](./LICENSE)
 
-This repository is designed to help you **build real DevOps skills step by step in 90 days** — not by watching endless videos, but by **doing daily tasks**, building projects, and thinking like a **production-ready DevOps engineer**.
+> *"DevOps is not about tools. It is about ownership, reliability, and consistency."*
 
-This is not a theory-heavy course.  
-This is a **discipline + execution challenge**.
+Maintained by **[Aryashree Pritikrishna](https://github.com/aryashreep)**
+
+📚 [Table of Contents](./TOC.md) &nbsp; 🤝 [How to Contribute](./CONTRIBUTING.md) &nbsp; ⭐ [Star this Repo](https://github.com/aryashreep/learn-devops-in-90-days)
 
 ---
 
-## 🎯 What is #LearnDevOpsIn90Days?
+## 🎯 What is This?
 
-**#LearnDevOpsIn90Days** is a **day-wise DevOps learning challenge** where:
+**Learn DevOps in 90 Days** is a free, community-driven learning challenge where:
 
-- Every day has **one clear task**
-- Every task has a **real-world DevOps outcome**
-- Every learner builds a **public GitHub proof of work**
-- Every concept is reinforced through **hands-on practice**
+- 📅 Every day has **one clear task**
+- 🛠️ Every task produces a **real-world DevOps outcome**
+- 💻 Every learner builds a **public GitHub proof of work**
+- 🔁 Every concept is reinforced through **hands-on practice**
 
-By the end of 90 days, you will have:
+No endless videos. No passive learning.
+**This is a discipline + execution challenge.**
 
-- Strong DevOps fundamentals
-- Multiple mini-projects
-- One end-to-end DevOps capstone project
-- A GitHub profile that clearly shows consistency
-- Confidence to handle DevOps interviews and production systems
+---
+
+## ✨ What You Will Build Over 90 Days
+
+| 🏆 Outcome | Details |
+|---|---|
+| 💪 Strong fundamentals | Linux, Git, Python, Networking |
+| 🐳 Container fluency | Docker, Kubernetes, Helm, ArgoCD |
+| ☁️ Cloud confidence | AWS core and advanced services |
+| 🔄 CI/CD pipelines | Jenkins, GitHub Actions, GitLab CI |
+| 🔒 Security mindset | DevSecOps, image scanning, secrets management |
+| 📊 Observability skills | Prometheus, Grafana, OpenTelemetry |
+| 🏗️ Real projects | 5 capstone projects for your portfolio |
+| 📁 GitHub profile | 90 days of consistent public commits |
+
+---
+
+## 🗺️ Learning Roadmap
+
+```
+🐧 Linux  →  🐙 Git  →  🐍 Python  →  🐳 Docker  →  🔧 Jenkins
+                              ↓
+            ☸️ Kubernetes  →  ☁️ AWS  →  ⚙️ Ansible  →  🏗️ Terraform
+                              ↓
+              📊 Observability  →  🔒 DevSecOps  →  🚀 Capstone
+```
+
+Full day-by-day breakdown → [📚 TOC.md](./TOC.md)
 
 ---
 
 ## 🧠 Who Is This For?
 
-This challenge is ideal for:
+| 👤 Profile | Why This Fits |
+|---|---|
+| 🎓 Students and freshers | Structured path from zero to job-ready |
+| 💼 Working professionals | Switch to DevOps / SRE / Cloud roles |
+| 👨‍💻 Developers | Understand infrastructure, CI/CD, and automation |
+| 🔁 Career changers | Consistent daily practice builds momentum |
 
-- Students and freshers entering DevOps or Cloud
-- Working professionals switching to DevOps / SRE / Cloud roles
-- Developers who want to understand infrastructure and CI/CD
-- Anyone who believes **consistency beats talent**
-
-No prior DevOps experience is required.  
-**Commitment is mandatory.**
+**No prior DevOps experience required. Commitment is the only prerequisite.**
 
 ---
 
-## 🗂 Repository Structure
+## 📁 Repository Structure
 
 ```
 learn-devops-in-90-days/
 │
-├── README.md
-├── CONTRIBUTING.md
+├── README.md              ← You are here
+├── TOC.md                 ← Full index of all 90 days
+├── CONTRIBUTING.md        ← How to contribute
 ├── LICENSE
-├── .gitignore
 │
-├── scripts/
+├── scripts/               ← Helper scripts
 │   └── helper-scripts.sh
 │
-├── day-01/
-│   └── README.md
-├── day-02/
-│   └── README.md
-├── ...
-├── day-90/
-│   └── README.md
+└── content/               ← All 90 day folders live here
+    ├── day-01/
+    │   └── README.md
+    ├── day-02/
+    │   └── README.md
+    ├── ...
+    └── day-90/
+        └── README.md
+```
+
+---
+
+## ⚡ Quick Start — 5 Steps
+
+```bash
+# 1️⃣  Fork this repository (click Fork button top-right on GitHub)
+
+# 2️⃣  Clone your fork
+git clone https://github.com/<your-username>/learn-devops-in-90-days.git
+cd learn-devops-in-90-days
+
+# 3️⃣  Go to today's folder
+cd content/day-01
+
+# 4️⃣  Read the task, complete it, write your notes
+
+# 5️⃣  Commit and push your progress
+git add .
+git commit -m "day-01: what is devops — notes and task complete"
+git push origin main
 ```
 
 ---
 
 ## 📅 How the Challenge Works
 
-- **One day = one task**
-- Tasks are aligned with **core DevOps concepts**
-- Practice days focus on **reinforcement and hands-on execution**
-- Daily commits are encouraged
-
-Even **30–60 minutes per day** is enough if done honestly.
-
----
-
-## 🛠 What You Will Learn
-
-| Phase | Topics |
+| Day | Focus |
 |---|---|
-| Foundation | Linux fundamentals, shell scripting, networking basics |
-| Version Control | Git and GitHub workflows |
-| Containers | Docker and containerization |
-| Cloud | AWS core and advanced services |
-| CI/CD | Jenkins, GitHub Actions, GitLab CI |
-| Security | DevSecOps fundamentals |
-| Orchestration | Kubernetes, Helm, ArgoCD |
-| IaC & Config | Terraform and Ansible |
-| Observability | Grafana, Prometheus, OpenTelemetry |
-| Capstone | End-to-end DevOps project |
+| 🗓️ Monday – Friday | Core concept + hands-on task |
+| 🛠️ Saturday | Practice, revision, or mini project |
+| 😴 Sunday | Rest or catch up — you earned it |
+
+Even **30–60 minutes per day** done consistently beats 5-hour weekend binges.
 
 ---
 
-## 📦 How to Participate
+## 📊 Phase Tracker
 
-1. **Fork** this repository
-2. **Clone** your fork locally
-   ```bash
-   git clone https://github.com/<your-username>/learn-devops-in-90-days.git
-   ```
-3. Navigate to the current `day-XX` folder
-4. Complete the task described in that day's `README.md`
-5. Commit and push your work
-   ```bash
-   git add .
-   git commit -m "Day XX: <task summary>"
-   git push origin main
-   ```
+| Phase | Days | Topics | Status |
+|---|---|---|---|
+| 🐧 Foundation | 01–07 | Linux, Shell Scripting, Networking | 🟢 Ready |
+| 🐙 Version Control | 08–12 | Git and GitHub | 🟢 Ready |
+| 🐍 Scripting | 13–15 | Python for DevOps | 🟢 Ready |
+| 🐳 Containers | 16–21 | Docker | 🟢 Ready |
+| 🔧 CI/CD | 22–29 | Jenkins | 🟢 Ready |
+| ☸️ Orchestration | 30–37 | Kubernetes, Helm, ArgoCD | 🟢 Ready |
+| ☁️ Cloud | 38–53 | AWS | 🟢 Ready |
+| ⚙️ Config Management | 54–59 | Ansible | 🟢 Ready |
+| 🏗️ IaC | 60–71 | Terraform | 🟢 Ready |
+| 📊 Observability | 72–79 | Prometheus and Grafana | 🟢 Ready |
+| 🔒 DevSecOps | 80–84 | Security in CI/CD | 🟢 Ready |
+| 🚀 Capstone | 85–90 | End-to-end Projects | 🟢 Ready |
 
 ---
 
-## 🌍 Learn in Public
+## 🌍 Share Your Progress
 
-Share your progress on LinkedIn and tag your posts:
+Show up publicly. Tag your posts on LinkedIn:
 
 ```
-#LearnDevOpsIn90Days
-#DevOps
-#90DaysOfDevOps
-#OpenSource
+#LearnDevOpsIn90Days   #DevOps   #90DaysOfDevOps
+#OpenSource            #LearningInPublic
 ```
 
-Connect with me: [Aryashree Pritikrishna on GitHub](https://github.com/aryashreep)
+Connect: **[Aryashree Pritikrishna on GitHub](https://github.com/aryashreep)**
 
 ---
 
 ## 🤝 Contributing
 
-Contributions, suggestions, and improvements are welcome!  
-Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before raising a pull request.
+This repository is built **by the community, for the community.**
+
+Whether you are fixing a typo, adding notes, or sharing your task solution — **every contribution counts.**
+
+👉 Read [CONTRIBUTING.md](./CONTRIBUTING.md) before raising a pull request.
 
 ---
 
-## ❤️ Final Note
+## ⭐ Support This Project
 
-DevOps is not about tools.  
-It is about **ownership, reliability, and consistency**.
+If this repository helped you today:
 
-One day at a time.  
-One commit at a time.
+- ⭐ **Star it** so others can discover it
+- 🍴 **Fork it** and start your 90-day journey
+- 📣 **Share it** with a friend learning DevOps
+- 🤝 **Contribute** a fix, a note, or an improvement
 
-Happy Learning,  
-**Aryashree Pritikrishna**
+---
+
+**One day at a time. One commit at a time.**
+
+Made with ❤️ by [Aryashree Pritikrishna](https://github.com/aryashreep) and the community
