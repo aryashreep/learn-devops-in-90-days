@@ -1,6 +1,6 @@
 # 🗓️ Day 01 — Introduction to DevOps
 
-Welcome to **Day 01** of the **#90DaysOfDevOps** challenge 🚀
+Welcome to **Day 01** of the **#LearnDevOpsIn90Days** challenge 🚀
 
 Today marks the beginning of your DevOps learning journey.
 
