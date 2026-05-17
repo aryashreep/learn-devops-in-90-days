@@ -3,7 +3,7 @@
 **Thank you for taking the time to contribute!**
 Every fix, note, and improvement makes this better for thousands of learners.
 
-[🏠 Back to README](./README.md) &nbsp;|&nbsp; [📚 View TOC](./TOC.md)
+[🏠 Back to README](./README.md) &nbsp;|&nbsp; [📚 View Table of Contents](./TABLE-OF-CONTENTS.md)
 
 ---
 
