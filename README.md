@@ -49,10 +49,75 @@ No endless videos. No passive learning.
 ```
 🐧 Linux  →  🐙 Git  →  🐍 Python  →  🐳 Docker  →  🔧 Jenkins
                               ↓
-            ☸️ Kubernetes  →  ☁️ AWS  →  ⚙️ Ansible  →  🏗️ Terraform
+    ☸️ Kubernetes  →  ☁️ AWS  →  ⚙️ Ansible  →  🏗️ Terraform
                               ↓
-              📊 Observability  →  🔒 DevSecOps  →  🚀 Capstone
+       📊 Observability  →  🔒 DevSecOps  →  🚀 Capstone
 ```
+
+## 🗺️ DevOps Learning Phases
+
+## 🟢 Phase 1 — Foundations
+
+Build strong fundamentals required for every DevOps engineer.
+
+```text
+🐧 Linux  →  🐙 Git  →  🐍 Python
+```
+
+### Topics Covered
+
+* Linux basics and administration
+* Shell scripting
+* Networking fundamentals
+* Git and GitHub workflows
+* Python for automation
+
+### Goal
+
+Develop strong command-line, scripting, and version control skills.
+
+---
+
+# 🟡 Phase 2 — DevOps Core
+
+Learn the most important DevOps tools and workflows used in modern engineering teams.
+
+```text
+🐳 Docker  →  🔧 Jenkins  →  ☸️ Kubernetes
+```
+
+### Topics Covered
+
+* Containerization with Docker
+* CI/CD pipelines
+* Jenkins automation
+* Kubernetes orchestration
+* Helm and ArgoCD basics
+
+### Goal
+
+Understand automation, deployment pipelines, and container orchestration.
+
+---
+
+# 🔵 Phase 3 — Cloud, IaC & Production Engineering
+
+Learn infrastructure automation, monitoring, security, and real-world production practices.
+
+```text
+☁️ AWS  →  ⚙️ Ansible  →  🏗️ Terraform
+                ↓
+📊 Observability  →  🔒 DevSecOps  →  🚀 Capstone
+```
+
+### Topics Covered
+
+* AWS cloud fundamentals
+* Infrastructure as Code (Terraform)
+* Configuration management (Ansible)
+* Monitoring and observability
+* DevSecOps practices
+* Real-world capstone projects
 
 Full day-by-day breakdown → [📚 TABLE-OF-CONTENTS.md](./TABLE-OF-CONTENTS.md)
 
@@ -66,6 +131,7 @@ Full day-by-day breakdown → [📚 TABLE-OF-CONTENTS.md](./TABLE-OF-CONTENTS.md
 | 💼 Working professionals | Switch to DevOps / SRE / Cloud roles |
 | 👨‍💻 Developers | Understand infrastructure, CI/CD, and automation |
 | 🔁 Career changers | Consistent daily practice builds momentum |
+| ☁️ Cloud Learners        | Gain hands-on platform engineering exposure |
 
 **No prior DevOps experience required. Commitment is the only prerequisite.**
 
@@ -235,6 +301,60 @@ If this repository helped you today:
 - 🍴 **Fork it** and start your 90-day journey
 - 📣 **Share it** with a friend learning DevOps
 - 🤝 **Contribute** a fix, a note, or an improvement
+
+---
+
+# 🚀 What You Will Build
+
+| 🏆 Outcome                    | Details                               |
+| ----------------------------- | ------------------------------------- |
+| 💪 Linux & Networking Skills  | CLI, shell scripting, troubleshooting |
+| 🐙 Git & GitHub Mastery       | Branching, PRs, workflows             |
+| 🐍 Python Automation          | DevOps scripting fundamentals         |
+| 🐳 Docker Expertise           | Containerization and image workflows  |
+| ☸️ Kubernetes Skills          | Deployments, services, Helm, ArgoCD   |
+| ☁️ AWS Cloud Knowledge        | Core and advanced cloud services      |
+| ⚙️ Infrastructure as Code     | Terraform and automation              |
+| 🔄 CI/CD Pipelines            | Jenkins, GitHub Actions, GitLab CI    |
+| 📊 Monitoring & Observability | Prometheus, Grafana, OpenTelemetry    |
+| 🔒 DevSecOps Practices        | Security scanning and best practices  |
+| 🏗️ Real Projects             | Portfolio-ready capstone projects     |
+| 📁 GitHub Consistency         | 90 days of public contributions       |
+
+---
+
+# 💼 Career Paths After Completion
+
+This roadmap helps prepare learners for roles such as:
+
+* DevOps Engineer
+* Site Reliability Engineer (SRE)
+* Platform Engineer
+* Cloud Engineer
+* Infrastructure Engineer
+* Kubernetes Engineer
+* Automation Engineer
+* CI/CD Engineer
+* DevSecOps Engineer
+
+---
+
+# 🔥 Recommended Certifications
+
+This roadmap complements certifications such as:
+
+* AWS Certified Cloud Practitioner
+* AWS Solutions Architect Associate
+* Certified Kubernetes Administrator (CKA)
+* Terraform Associate
+* Docker Certified Associate
+* Certified DevOps Engineer
+
+---
+
+### Goal
+
+Become capable of building, automating, securing, and monitoring production-grade infrastructure.
 
 ---
 
