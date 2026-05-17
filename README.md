@@ -54,6 +54,52 @@ No endless videos. No passive learning.
        📊 Observability  →  🔒 DevSecOps  →  🚀 Capstone
 ```
 
+```mermaid id="y9f9vh"
+flowchart LR
+
+subgraph Foundations
+    P1["🐧 Foundation<br/>Linux<br/>Shell Scripting<br/>Networking"]
+    P2["🐙 Version Control<br/>Git<br/>GitHub"]
+end
+
+subgraph DevOps_Core
+    P3["🐍 Scripting<br/>Python for DevOps"]
+    P4["🐳 Containers<br/>Docker"]
+    P5["🔧 CI/CD<br/>Jenkins<br/>GitHub Actions"]
+end
+
+subgraph Infrastructure_Cloud
+    P6["☁️ Cloud Engineering<br/>AWS<br/>Cloud Fundamentals"]
+    P7["⚙️ Configuration Management<br/>Ansible<br/>Automation"]
+    P8["🏗️ Infrastructure as Code<br/>Terraform<br/>IaC"]
+end
+
+subgraph Platform_Operations
+    P9["☸️ Orchestration<br/>Kubernetes<br/>Helm<br/>ArgoCD"]
+    P10["📊 Observability & Monitoring<br/>Prometheus<br/>Grafana<br/>Logging"]
+end
+
+subgraph Security
+    P11["🔒 DevSecOps<br/>Security<br/>Scanning<br/>Secure CI/CD"]
+end
+
+subgraph Projects
+    P12["🚀 Capstone Projects<br/>End-to-End Projects<br/>Real-World Deployments"]
+end
+
+P1 --> P2
+P2 --> P3
+P3 --> P4
+P4 --> P5
+P5 --> P6
+P6 --> P7
+P7 --> P8
+P8 --> P9
+P9 --> P10
+P10 --> P11
+P11 --> P12
+```
+
 ## 🗺️ DevOps Learning Phases
 
 ### 🟢 Phase 1 — Foundations
