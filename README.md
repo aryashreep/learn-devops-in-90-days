@@ -56,7 +56,7 @@ No endless videos. No passive learning.
 
 ## 🗺️ DevOps Learning Phases
 
-## 🟢 Phase 1 — Foundations
+### 🟢 Phase 1 — Foundations
 
 Build strong fundamentals required for every DevOps engineer.
 
@@ -78,7 +78,7 @@ Develop strong command-line, scripting, and version control skills.
 
 ---
 
-# 🟡 Phase 2 — DevOps Core
+### 🟡 Phase 2 — DevOps Core
 
 Learn the most important DevOps tools and workflows used in modern engineering teams.
 
@@ -100,7 +100,7 @@ Understand automation, deployment pipelines, and container orchestration.
 
 ---
 
-# 🔵 Phase 3 — Cloud, IaC & Production Engineering
+### 🔵 Phase 3 — Cloud, IaC & Production Engineering
 
 Learn infrastructure automation, monitoring, security, and real-world production practices.
 
