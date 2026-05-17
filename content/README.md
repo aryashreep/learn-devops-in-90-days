@@ -16,8 +16,11 @@ The goal of this challenge is not just to learn tools — but to build:
 # 🎯 Today's Goals
 
 ✅ Understand what DevOps is
+
 ✅ Learn why DevOps matters in modern software engineering
+
 ✅ Explore automation, infrastructure, and scalability concepts
+
 ✅ Start documenting your learning publicly
 
 ---
