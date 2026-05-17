@@ -191,16 +191,6 @@ and share:
 
 ---
 
-# 📚 Additional Resources
-
-* https://roadmap.sh/devops
-* https://aws.amazon.com/devops/
-* https://kubernetes.io/
-* https://docs.docker.com/
-* https://github.com/
-
----
-
 # ✅ Day 01 Checklist
 
 * [ ] Forked the repository
@@ -211,6 +201,29 @@ and share:
 
 ---
 
+# 📚 Additional Resources
+
+## DevOps Roadmap
+
+https://roadmap.sh/devops
+
+## What is DevOps? — AWS
+
+https://aws.amazon.com/devops/what-is-devops/
+
+## Microsoft DevOps Overview
+
+https://learn.microsoft.com/en-us/devops/what-is-devops/
+
+## IBM DevOps Guide
+
+https://www.ibm.com/topics/devops
+
+## DevOps Explained by Red Hat
+
+https://www.redhat.com/en/topics/devops
+
+---
 # 🚀 Next Day
 
 ➡️ Day 02 — Linux Basics, Navigation, and Essential Commands
