@@ -241,6 +241,41 @@
 
 ---
 
+# 💡 For Recruiters & Hiring Managers
+
+This repository demonstrates:
+
+* hands-on DevOps execution,
+* structured learning,
+* automation practices,
+* public consistency,
+* open-source collaboration,
+* and engineering discipline.
+
+It also serves as a public portfolio of practical DevOps concepts and workflows.
+
+---
+
+# ⭐ Support This Project
+
+If this repository helped you:
+
+* ⭐ Star the repository
+* 🍴 Fork and start your journey
+* 📣 Share it with learners
+* 🤝 Contribute improvements
+* 💬 Recommend it to the community
+
+---
+
+# 🔍 SEO Keywords & Hashtags
+
+#DevOps #Kubernetes #Docker #AWS #Terraform #GitHubActions #CICD #DevSecOps #SRE #CloudEngineering #PlatformEngineering #OpenSource #Linux #Python #ArgoCD #Helm #Prometheus #Grafana #OpenTelemetry #InfrastructureAsCode #GitOps #CloudNative #Automation #Jenkins #KubernetesTutorial #DockerTutorial #AWSDevOps #LearnDevOps #DevOpsProjects #DevOpsRoadmap #CloudComputing #TechLearning #LearningInPublic #DeveloperCommunity #90DaysOfDevOps #OpenSourceProjects #DevOpsEngineer #SiteReliabilityEngineering #InfrastructureAutomation #PlatformOps
+
+DevOps roadmap, DevOps tutorial, Kubernetes learning path, Docker tutorial, AWS DevOps roadmap, Terraform tutorial, GitHub Actions, CI/CD pipeline, DevSecOps roadmap, SRE learning path, Cloud Engineering roadmap, Platform Engineering, Open Source DevOps projects
+
+---
+
 *This is a living document — updated as content is added.*
 
 [🏠 Back to README](./README.md) &nbsp;|&nbsp; [🤝 Contribute](./CONTRIBUTING.md)
