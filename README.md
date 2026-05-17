@@ -11,7 +11,7 @@
 
 Maintained by **[Aryashree Pritikrishna](https://github.com/aryashreep)**
 
-📚 [Table of Contents](./TOC.md) &nbsp; 🤝 [How to Contribute](./CONTRIBUTING.md) &nbsp; ⭐ [Star this Repo](https://github.com/aryashreep/learn-devops-in-90-days)
+📚 [Table of Contents](./TABLE-OF-CONTENTS.md) &nbsp; 🤝 [How to Contribute](./CONTRIBUTING.md) &nbsp; ⭐ [Star this Repo](https://github.com/aryashreep/learn-devops-in-90-days)
 
 ---
 
