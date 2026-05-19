@@ -5,7 +5,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/aryashreep/learn-devops-in-90-days?style=for-the-badge&logo=github&color=FFD700)](https://github.com/aryashreep/learn-devops-in-90-days/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/aryashreep/learn-devops-in-90-days?style=for-the-badge&logo=github&color=00C9A7)](https://github.com/aryashreep/learn-devops-in-90-days/forks)
 [![Contributors](https://img.shields.io/github/contributors/aryashreep/learn-devops-in-90-days?style=for-the-badge&logo=github&color=845EC2)](https://github.com/aryashreep/learn-devops-in-90-days/graphs/contributors)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](./LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue?style=for-the-badge)](./LICENSE)
 
 > *"DevOps is not about tools. It is about ownership, reliability, and consistency."*
 
@@ -185,6 +185,8 @@ Full day-by-day breakdown → [📚 TABLE-OF-CONTENTS.md](./TABLE-OF-CONTENTS.md
 
 ## 📁 Repository Structure
 
+> **Note:** Directories marked with `(planned)` will be added as the project grows.
+
 ```
 learn-devops-in-90-days/
 │
@@ -193,43 +195,7 @@ learn-devops-in-90-days/
 ├──🤝CONTRIBUTING.md        ← How to contribute
 ├──📜LICENSE
 │
-├──📂scripts/               ← Helper scripts
-│   ├── helper-scripts.sh
-│   ├── setup.sh
-│   ├── lint.sh
-│   └── cleanup.sh
-│
-├── 📂 resources/                 ← Additional learning resources
-│   ├── books/
-│   ├── cheat-sheets/
-│   ├── interview-prep/
-│   ├── kubernetes/
-│   ├── linux/
-│   ├── networking/
-│   ├── aws/
-│   ├── terraform/
-│   └── devsecops/
-│
-├── 📂 projects/                  ← Real-world capstone projects
-│   ├── project-01-dockerized-app/
-│   ├── project-02-ci-cd-pipeline/
-│   ├── project-03-kubernetes-deployment/
-│   ├── project-04-terraform-aws/
-│   ├── project-05-observability-stack/
-│   └── README.md
-│
-├── 📂 .github/
-│   ├── workflows/                ← GitHub Actions CI/CD
-│   │   ├── lint.yml
-│   │   ├── markdown-check.yml
-│   │   ├── link-checker.yml
-│   │   └── contributor-check.yml
-│   │
-│   ├── ISSUE_TEMPLATE/
-│   ├── PULL_REQUEST_TEMPLATE.md
-│   └── dependabot.yml
-│
-│── content/                      ← All 90 day folders live here
+├── 📂 content/                   ← All 90 day folders live here
 │    ├── day-01/
 │    │   └── README.md
 │    ├── day-02/
@@ -238,27 +204,28 @@ learn-devops-in-90-days/
 │    └── day-90/
 │        └── README.md
 │
-├── 📂 templates/                 ← Reusable templates
-│   ├── project-template/
-│   ├── readme-template.md
-│   ├── issue-template.md
-│   └── pr-template.md
+├── 📂 resources/                 ← Additional learning resources
 │
-├── 📂 docs/                      ← Advanced documentation
-│   ├── onboarding.md
-│   ├── roadmap.md
-│   ├── troubleshooting.md
-│   ├── faq.md
-│   ├── glossary.md
-│   └── certification-guide.md
+├── 📂 scripts/ (planned)        ← Helper scripts
+│   ├── setup.sh
+│   ├── lint.sh
+│   └── cleanup.sh
 │
-└── 📂 examples/                  ← Sample configurations/examples
-    ├── docker/
-    ├── kubernetes/
-    ├── github-actions/
-    ├── terraform/
-    ├── ansible/
-    └── monitoring/
+├── 📂 projects/ (planned)       ← Real-world capstone projects
+│   ├── project-01-dockerized-app/
+│   ├── project-02-ci-cd-pipeline/
+│   ├── project-03-kubernetes-deployment/
+│   ├── project-04-terraform-aws/
+│   └── project-05-observability-stack/
+│
+├── 📂 .github/ (planned)
+│   ├── workflows/                ← GitHub Actions CI/CD
+│   ├── ISSUE_TEMPLATE/
+│   └── PULL_REQUEST_TEMPLATE.md
+│
+├── 📂 templates/ (planned)      ← Reusable templates
+├── 📂 docs/ (planned)           ← Advanced documentation
+└── 📂 examples/ (planned)       ← Sample configurations/examples
 ```
 
 ---
@@ -301,18 +268,18 @@ Even **30–60 minutes per day** done consistently beats 5-hour weekend binges.
 
 | Phase | Days | Topics | Status |
 |---|---|---|---|
-| 🐧 Foundation | 01–07 | Linux, Shell Scripting, Networking | 🟢 Ready |
-| 🐙 Version Control | 08–12 | Git and GitHub | 🟢 Ready |
-| 🐍 Scripting | 13–15 | Python for DevOps | 🟢 Ready |
-| 🐳 Containers | 16–21 | Docker | 🟢 Ready |
-| 🔧 CI/CD | 22–29 | Jenkins | 🟢 Ready |
-| ☸️ Orchestration | 30–37 | Kubernetes, Helm, ArgoCD | 🟢 Ready |
-| ☁️ Cloud | 38–53 | AWS | 🟢 Ready |
-| ⚙️ Config Management | 54–59 | Ansible | 🟢 Ready |
-| 🏗️ IaC | 60–71 | Terraform | 🟢 Ready |
-| 📊 Observability | 72–79 | Prometheus and Grafana | 🟢 Ready |
-| 🔒 DevSecOps | 80–84 | Security in CI/CD | 🟢 Ready |
-| 🚀 Capstone | 85–90 | End-to-end Projects | 🟢 Ready |
+| 🐧 Foundation | 01–07 | Linux, Shell Scripting, Networking | 🟢 In Progress |
+| 🐙 Version Control | 08–12 | Git and GitHub | 🟡 Planned |
+| 🐍 Scripting | 13–15 | Python for DevOps | 🟡 Planned |
+| 🐳 Containers | 16–21 | Docker | 🟡 Planned |
+| 🔧 CI/CD | 22–29 | Jenkins | 🟡 Planned |
+| ☸️ Orchestration | 30–37 | Kubernetes, Helm, ArgoCD | 🟡 Planned |
+| ☁️ Cloud | 38–53 | AWS | 🟡 Planned |
+| ⚙️ Config Management | 54–59 | Ansible | 🟡 Planned |
+| 🏗️ IaC | 60–71 | Terraform | 🟡 Planned |
+| 📊 Observability | 72–79 | Prometheus and Grafana | 🟡 Planned |
+| 🔒 DevSecOps | 80–84 | Security in CI/CD | 🟡 Planned |
+| 🚀 Capstone | 85–90 | End-to-end Projects | 🟡 Planned |
 
 ---
 

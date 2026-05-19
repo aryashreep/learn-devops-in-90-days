@@ -188,7 +188,7 @@ Commit your notes to GitHub.
 
 Create your first LinkedIn post using:
 
-* #90DaysOfDevOps
+* #LearnDevOpsIn90Days
 * #DevOps
 * #LearningInPublic
 
