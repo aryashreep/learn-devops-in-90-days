@@ -86,9 +86,11 @@ cd "curriculum/Module 1 - Introduction To DevOps, Cloud & SRE/day-01"
 
 # 4️⃣  Read the Pro Module, enter the lab-session/ folder, and complete the task
 
-# 5️⃣  Commit and push your progress
+# 5️⃣  Commit your Proof of Work
+After completing the lab, save your work (scripts, logs, screenshots) in the **`lab-session/solution/`** folder of that day.
+```bash
 git add .
-git commit -m "day-01: intro completed"
+git commit -m "day-XX: lab solution completed"
 git push origin main
 ```
 
