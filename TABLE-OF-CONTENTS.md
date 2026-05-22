@@ -1,144 +1,160 @@
 # 📚 Table of Contents
 
-**Your complete 90-day DevOps roadmap — one link per day.**
+**Your complete 90-day DevOps roadmap — structured for professional mastery.**
 
 [🏠 Back to README](./README.md) &nbsp;|&nbsp; [🤝 Contribute](./CONTRIBUTING.md)
 
 ---
 
-> 💡 **How to use this:** Click any day link to open that day's task and notes.
-> Each folder has a `README.md` with the task, key learnings, and references.
-> Work through them in order — each phase builds on the last.
+> 💡 **How to use this Academy:**
+> 1. **Pro Module:** The high-fidelity "Blackboard" lecture (Golu & Ladoo style).
+> 2. **Task / Lab:** The daily hands-on session in the `lab-session/` folder.
+> 3. **Mastery Exam:** A 30-MCQ validation test at the end of each module.
 
 ---
 
-## 🐧 Phase 1 — Foundation
-### Days 01–07 | Linux, Shell Scripting, Networking
+## 📦 Module 1 - Introduction To DevOps, Cloud & SRE
+> *Mindset transition from Traditional IT to modern DevOps Culture.*
 
-> The ground every DevOps engineer stands on. Master the terminal before anything else.
-
-| Day | Topic | Task / Lab | Pro Module (Blackboard) |
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 01 | What is DevOps — culture & principles | [📁 Day 01](./curriculum/day-01/README.md) | [🎓 Day 01 Pro](./curriculum/day-01/Day01_DevOps_Intro.html) |
-| 🗓️ Day 02 | Linux basics — navigation & commands | [📁 Day 02](./curriculum/day-02/README.md) | [🎓 Day 02 Pro](./curriculum/day-02/Day02_Linux_Foundations.html) |
-| 🗓️ Day 03 | Linux intermediate — users & permissions | [📁 Day 03](./curriculum/day-03/README.md) | [🎓 Day 03 Pro](./curriculum/day-03/Day03_Linux_Permissions.html) |
-| 🗓️ Day 04 | Shell scripting — variables & loops | [📁 Day 04](./curriculum/day-04/README.md) | 🚧 Coming Soon |
-| 🗓️ Day 05 | Shell scripting — automation tasks | [📁 Day 05](./curriculum/day-05/README.md) | 🚧 Coming Soon |
-| 🗓️ Day 06 | Package managers & systemd | [📁 Day 06](./curriculum/day-06/README.md) | 🚧 Coming Soon |
-| 🗓️ Day 07 | Networking basics — DNS & SSH | [📁 Day 07](./curriculum/day-07/README.md) | 🚧 Coming Soon |
+| 🗓️ Day 01 | Breaking the Wall of Confusion | [🎓 Day 01 Pro](./curriculum/Module%201%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/Day01_DevOps_Intro.html) | [🧪 Lab 01](./curriculum/Module%201%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/lab-session/task.md) |
+| 🏆 **Exam** | **Module 1 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%201%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/mastery-exam/README.md) | -- |
 
 ---
 
-## 🐙 Phase 2 — Version Control
-### Days 08–12 | Git and GitHub
+## 🐧 Module 2 - Linux Foundations
+> *Master the terminal: The ground every DevOps engineer stands on.*
 
-> Version control is the backbone of every DevOps workflow. Learn it deeply.
-
-| Day | Topic | Folder |
-|---|---|---|
-| 🗓️ Day 08 | Git fundamentals — init, clone, commit | [📁 curriculum/day-08](./curriculum/day-08/README.md) |
-| 🗓️ Day 09 | Branching strategies and pull requests | [📁 curriculum/day-09](./curriculum/day-09/README.md) |
-| 🗓️ Day 10 | Advanced Git & conflict resolution | [📁 curriculum/day-10](./curriculum/day-10/README.md) |
-| 🗓️ Day 11 | GitHub workflows & Actions intro | 🚧 Planned |
-| 🗓️ Day 12 | Git cheatsheet + practice tasks | 🚧 Planned |
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 02 | Linux Foundations (Kernel/Shell) | [🎓 Day 02 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/Day02_Linux_Foundations.html) | [🧪 Lab 02](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/lab-session/task.md) |
+| 🗓️ Day 02 | Command Cheat Sheet | [🎓 Cheat Sheet Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/Day02_Linux_CheatSheet.html) | Included in Day 02 |
+| 🗓️ Day 03 | Users, Groups & Permissions | [🎓 Day 03 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/Day03_Linux_Permissions.html) | [🧪 Lab 03](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/lab-session/task.md) |
+| 🗓️ Day 04 | Advanced Navigation & Searching | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🗓️ Day 05 | Linux Troubleshooting Runbook | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🗓️ Day 06 | Package Managers & systemd | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🏆 **Exam** | **Module 2 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%202%20-%20Linux%20Foundations/mastery-exam/README.md) | -- |
 
 ---
 
-## 🐍 Phase 3 — Scripting with Python
-### Days 13–15 | Python for DevOps
-
-> Not software engineering Python. DevOps Python — automation, parsing, and tooling.
+## 🌐 Module 3 - Networking & System Design
+> *DNS, Ports, SSH, and the architecture of the Internet.*
 
 | Day | Topic | Status |
 |---|---|---|
-| 🗓️ Day 13 | Python basics — control flow | 🚧 Planned |
-| 🗓️ Day 14 | Data structures — lists & dicts | 🚧 Planned |
-| 🗓️ Day 15 | Python for DevOps — file handling | 🚧 Planned |
+| 🗓️ Day 07 | Networking Basics for DevOps | 🚧 Planned |
+| 🗓️ Day 08 | Ports, Protocols & Firewalls | 🚧 Planned |
+| 🗓️ Day 09 | DNS & Load Balancing Concepts | 🚧 Planned |
+| 🗓️ Day 10 | SSH & Secure Shell Mastery | 🚧 Planned |
+| 🏆 **Exam** | **Module 3 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) |
 
 ---
 
-## 🐳 Phase 4 — Containers with Docker
-### Days 16–21 | Docker
+## 🐚 Module 4 - Shell Scripting For DevOps
+> *Automate the boring stuff with Bash.*
 
-| Day | Topic | Status |
-|---|---|---|
-| 🗓️ Day 16 | Docker fundamentals — images & containers | 🚧 Planned |
-| 🗓️ Day 17 | Writing Dockerfiles — best practices | 🚧 Planned |
-| 🗓️ Day 18 | Docker Compose & multi-container apps | 🚧 Planned |
-| 🗓️ Day 19 | Docker Volumes and networking | 🚧 Planned |
-| 🗓️ Day 20 | Docker practice project | 🚧 Planned |
-| 🗓️ Day 21 | Docker interview preparation | 🚧 Planned |
+| Status | 🚧 Planned |
+|---|---|
 
 ---
 
-## 🔧 Phase 5 — CI/CD with Jenkins
-### Days 22–29 | Jenkins
+## 🐙 Module 5 - Introduction to Git [GitHub & GitLab]
+> *Version control as the single source of truth.*
 
-| Day | Topic | Status |
-|---|---|---|
-| 🗓️ Day 22 | Jenkins intro & installation | 🚧 Planned |
-| 🗓️ Day 26 | Declarative pipelines — syntax & agents | 🚧 Planned |
-| 🗓️ Day 29 | Jenkins revision & troubleshooting | 🚧 Planned |
+| Status | 🚧 Planned |
+|---|---|
 
 ---
 
-## ☸️ Phase 6 — Orchestration with Kubernetes
-### Days 30–37 | Kubernetes, Helm, ArgoCD
+## 🎫 Module 6 - Jira For DevOps
+> *Agile, Scrum, and Ticket Lifecycles in DevOps pipelines.*
 
-| Day | Topic | Status |
-|---|---|---|
-| 🗓️ Day 30 | Kubernetes architecture overview | 🚧 Planned |
-| 🗓️ Day 36 | ArgoCD — GitOps continuous delivery | 🚧 Planned |
+| Status | 🚧 Planned |
+|---|---|
 
 ---
 
-## ☁️ Phase 7 — Cloud with AWS
-### Days 38–53 | Amazon Web Services
+## 🐳 Module 7 - Docker
+> *Containerization from scratch to production.*
 
-| Day | Topic | Status |
-|---|---|---|
-| 🗓️ Day 38 | AWS fundamentals — regions & AZs | 🚧 Planned |
-| 🗓️ Day 40 | EC2 — compute automation | 🚧 Planned |
-| 🗓️ Day 45 | VPC — secure networking | 🚧 Planned |
+| Status | 🚧 Planned |
+|---|---|
 
 ---
 
-## 🚀 Phase 12 — Capstone Projects
-### Days 85–90 | Build Real Things
+## 🤖 Module 8 - CI/CD Pipelines (GitHub Actions)
+> *Cloud-native automation for the modern era.*
 
-| Day | Project | Status |
-|---|---|---|
-| 🏆 Day 85 | Deploy a Netflix clone on K8s | 🚧 Planned |
-| 🏆 Day 87 | Full CI/CD pipeline on AWS | 🚧 Planned |
-| 🏆 Day 89 | Terraform & Ansible Provisioning | 🚧 Planned |
+| Status | 🚧 Planned |
+|---|---|
 
 ---
 
-## 🗂️ Quick Reference
+## 🏗️ Module 9 - CI/CD Pipelines (Jenkins)
+> *Enterprise-grade pipeline automation.*
 
-| 🏷️ Topic | 📍 Phase | 📅 Days |
-|---|---|---|
-| 🐧 Linux and Shell | Foundation | 1–7 |
-| 🐙 Git and GitHub | Version Control | 8–12 |
-| 🐳 Docker | Containers | 16–21 |
-| 🔧 Jenkins | CI/CD | 22–29 |
-| ☸️ Kubernetes | Orchestration | 30–37 |
-| ☁️ AWS | Cloud | 38–53 |
+| Status | 🚧 Planned |
+|---|---|
 
 ---
 
-# ⭐ Support This Project
+## ☸️ Module 10 - Kubernetes (CKA)
+> *The industry standard for container orchestration.*
 
-If this repository helped you:
-
-* ⭐ Star the repository
-* 🍴 Fork and start your journey
-* 📣 Share it with learners
+| Status | 🚧 Planned |
+|---|---|
 
 ---
 
-*This is a living document — updated as content is added.*
+## ☁️ Module 11 - Terraform
+> *Infrastructure as Code: Provisioning at scale.*
 
-[🏠 Back to README](./README.md) &nbsp;|&nbsp; [🤝 Contribute](./CONTRIBUTING.md)
+| Status | 🚧 Planned |
+|---|---|
 
-*Maintained by [Aryashree Pritikrishna](https://github.com/aryashreep)*
+---
+
+## ⚙️ Module 12 - Ansible
+> *Configuration Management & Automation.*
+
+| Status | 🚧 Planned |
+|---|---|
+
+---
+
+## 📊 Module 13 - SRE & Observability
+> *Metrics, Logs, and Traces: Managing what you measure.*
+
+| Status | 🚧 Planned |
+|---|---|
+
+---
+
+## 🚀 Module 14 - GitOps on Kubernetes
+> *ArgoCD, Helm, and automated environment syncing.*
+
+| Status | 🚧 Planned |
+|---|---|
+
+---
+
+## 🏆 Module 15 - Capstone Projects
+> *The portfolio builders. Real-world end-to-end deployments.*
+
+| Status | 🚧 Planned |
+|---|---|
+
+---
+
+# ⭐ Support This Academy
+
+If this repository helped you today:
+
+* ⭐ **Star it** to show your support
+* 🍴 **Fork it** to start your journey
+* 📣 **Share it** on LinkedIn with #LearnDevOpsIn90Days
+
+---
+
+*Academy Maintained by [Aryashree Pritikrishna](https://github.com/aryashreep)*
