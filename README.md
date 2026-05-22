@@ -230,6 +230,43 @@ learn-devops-in-90-days/
 
 ---
 
+## 🛠️ Automated Content Generation
+
+This repository uses a specialized AI Skill (**`devops-90days-training`**) to generate high-quality, branded training modules. If you are an admin or a maintainer, you can generate new chapters using the following standard.
+
+### 🐧 The "Golu & Ladoo" Pro Standard (v6.1)
+All generated modules follow a strict pedagogical and visual standard:
+- **Style:** Blackboard / Doodle (Dark background, colorful chalk markers).
+- **Characters:** **Golu** (Learner) and **Ladoo** (Mentor robot).
+- **Tone:** Conversational Hinglish (Hindi + English).
+- **PDF Ready:** Fully optimized for **Cmd + P** (Print to PDF).
+
+### ⌨️ How to Generate Content
+Trigger the generation by providing a natural command along with your source material:
+
+**Recommended Command:**
+> "Generate Day {NN} chapter on {Topic Name}"
+> *Example: "Generate Day 02 chapter on Linux Fundamentals"*
+
+**Other Supported Triggers:**
+"Build Day {NN} chapter", "Create Blackboard Edition for {Topic}"
+
+**The 11-Element Sequence:**
+The skill automatically generates:
+1. Learning Objectives (with "Kyu Seekhein?" stake-setting)
+2. Analogy (Golu & Ladoo conversation)
+3. Did You Know? (Fast facts/stats)
+4. Key Directories (with Micro-Doodles)
+5. Key Concepts (Technical diagrams)
+6. Compare (Split-screen VS layout)
+7. Real-World Example (Troubleshooting stories)
+8. Common Misconceptions (Myth vs Reality)
+9. Try It Yourself (Hands-on tasks)
+10. Quick Summary (Bullet-first recap)
+11. Mini Quiz (7 questions + Answer Key)
+
+---
+
 ## ⚡ Quick Start — 5 Steps
 
 ```bash
