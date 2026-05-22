@@ -195,7 +195,7 @@ learn-devops-in-90-days/
 ├──🤝CONTRIBUTING.md        ← How to contribute
 ├──📜LICENSE
 │
-├── 📂 content/                   ← All 90 day folders live here
+├── 📂 curriculum/                   ← All 90 day folders live here
 │    ├── day-01/
 │    │   └── README.md
 │    ├── day-02/
@@ -277,7 +277,7 @@ git clone https://github.com/<your-username>/learn-devops-in-90-days.git
 cd learn-devops-in-90-days
 
 # 3️⃣  Go to today's folder
-cd content/day-01
+cd curriculum/day-01
 
 # 4️⃣  Read the task, complete it, write your notes
 
