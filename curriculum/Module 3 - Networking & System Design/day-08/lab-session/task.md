@@ -1,30 +1,40 @@
-# 🧪 Lab Session: Day 08 — Firewall & Port Security
+# 🧪 Lab Session: Day 08 — Cloud Server Setup & Nginx
 
-**Jagu:** "Bhai Golu, server ko 'khula' nahi chhod sakte! Aaj hum 'Security Guard' bankar ports ko lock karenge."
+**Jagu:** "Beep Boop! Golu, ab hum 'Ground' se 'Cloud' pe move karenge. Aaj hum apna pehla web server live karenge AWS/Utho pe!"
 
 ## 🎯 Task Objectives
-- Master port identification.
-- Configure basic firewall rules.
-- Perform a local security scan.
+- Launch and connect to a Cloud Instance via SSH.
+- Install and configure Nginx web server.
+- Manage Security Groups (Firewalls) for web access.
+- Collect and analyze production logs.
 
 ## 🛠️ Hands-on Challenges
 
-1.  **Port Scan:** Use `netstat -ant` or `ss -at` to list all active TCP connections.
-2.  **Firewall Setup:** Use `ufw` (on Ubuntu) or `iptables`:
-    - Allow SSH (Port 22).
-    - Allow HTTP (Port 80).
-    - Enable the firewall.
-3.  **The Block Test:** Try to block a specific IP address from reaching your machine.
-4.  **Nmap Discovery:** Install `nmap`. Scan your own machine (`localhost`) and see which ports are reported as "Open".
-5.  **Config Backup:** List all your active firewall rules and save them to a file.
+1.  **Launch & Connect:**
+    - Launch an AWS EC2 (t2.micro) or Utho instance.
+    - Connect using SSH: `ssh -i your-key.pem ubuntu@your-ip`.
+2.  **Server Engine:**
+    - Update system: `sudo apt update`.
+    - Install Nginx: `sudo apt install nginx -y`.
+    - Verify: `systemctl status nginx`.
+3.  **Firewall Opening:**
+    - Go to Cloud Console ➔ Security Groups.
+    - Add an "Inbound Rule" for **Port 80 (HTTP)**.
+    - Visit `http://your-ip` in your browser.
+4.  **Log Extractor:**
+    - Read access logs: `tail -n 20 /var/log/nginx/access.log`.
+    - Save logs to your home folder: `cat /var/log/nginx/access.log > ~/nginx-logs.txt`.
+5.  **Local Download:** Use `scp` from your LOCAL terminal to download the logs:
+    - `scp -i your-key.pem ubuntu@your-ip:~/nginx-logs.txt .`
 
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Server secure hai! Rules list share kar do."
+**Jagu:** "Golu, teri website live hai! Proof save kar."
 
-1. Save your `ufw status numbered` output or your firewall rules in a file in the **`solution/`** folder.
-2. Commit and push!
+1. Create a file named **`day-08-cloud-deployment.md`** in the **`solution/`** folder.
+2. Add screenshots of your **Nginx Welcome Page** and the **`nginx-logs.txt`** file.
+3. Commit and push!
 
 ---
 *#LearnDevOpsIn90Days • Day 08 • Golu & Jagu Edition*

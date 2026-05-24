@@ -1,27 +1,42 @@
-# 🧪 Lab Session: Day 09 — DNS & Load Balancing Lab
+# 🧪 Lab Session: Day 09 — User & Group Management Challenge
 
-**Jagu:** "Beep Boop! Golu, kabhi socha hai browser ko kaise pata chalta hai ki `github.com` kahan hai? Aaj hum DNS ke raste pe chalenge!"
+**Jagu:** "Golu, production servers pe har koi 'Root' nahi hota. Aaj hum seekhenge ki kaise multiple users (Tokyo, Berlin, Professor) ko manage karte hain aur permissions dete hain!"
 
 ## 🎯 Task Objectives
-- Perform deep DNS lookups.
-- Understand local name resolution.
-- Visualize simple Load Balancing concepts.
+- Create and manage system users.
+- Implement Group-based access control.
+- Setup shared team workspaces with strict permissions.
 
 ## 🛠️ Hands-on Challenges
 
-1.  **The Dig Site:** Use `dig google.com` to find the IP address. Identify the "ANSWER SECTION".
-2.  **Mail Master:** Use `dig MX yahoo.com` to find their mail servers.
-3.  **Local Hack:** Edit your `/etc/hosts` file. Add a line: `127.0.0.1 golu.dev`. Now try to `ping golu.dev`. What happens?
-4.  **TTL Watch:** Run `dig` again on a domain and notice the "TTL" number decreasing.
-5.  **Concept Task:** Draw a simple diagram (or write a flow) of how a Load Balancer would distribute traffic between 3 servers.
+1.  **The Money Heist Team:**
+    - Create 3 users: `tokyo`, `berlin`, `professor`.
+    - Use `sudo useradd -m <name>` and set passwords with `sudo passwd <name>`.
+2.  **Organizing the Gang:**
+    - Create 2 groups: `developers` and `admins`.
+    - Assign users:
+        - `tokyo` ➔ `developers`
+        - `berlin` ➔ `developers` AND `admins`
+        - `professor` ➔ `admins`
+3.  **Shared Workspace:**
+    - Create directory: `sudo mkdir -p /opt/dev-project`.
+    - Change group owner: `sudo chgrp developers /opt/dev-project`.
+    - Set permissions: `sudo chmod 775 /opt/dev-project`.
+4.  **Verification:**
+    - Switch to user `tokyo`: `sudo su - tokyo`.
+    - Try creating a file in `/opt/dev-project`.
+5.  **New Recruit:**
+    - Create user `nairobi` and group `project-team`.
+    - Add `nairobi` and `tokyo` to `project-team`.
+    - Setup `/opt/team-workspace` with `775` for the new group.
 
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "DNS Master Golu! Apne lookup results save karo."
+**Jagu:** "Golu, system secure hai! Access list ready karo."
 
-1. Create `dns-lab.md` in the **`solution/`** folder.
-2. Paste the output of your `dig` commands and the result of your `/etc/hosts` hack.
+1. Create a file named **`day-09-user-management.md`** in the **`solution/`** folder.
+2. List the members of each group using `grep` on `/etc/group`.
 3. Commit and push!
 
 ---

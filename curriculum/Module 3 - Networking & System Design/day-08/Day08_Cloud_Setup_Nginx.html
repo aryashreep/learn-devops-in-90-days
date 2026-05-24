@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 07: Networking Basics - Golu & Jagu Pro Edition</title>
+    <title>Day 08: Cloud Setup & Nginx - Golu & Jagu Pro Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -90,9 +90,7 @@
         .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
         .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
 
-        /* Networking Visuals */
-        .packet { width: 40px; height: 30px; border: 2px solid var(--chalk-pink); border-radius: 5px; display: inline-block; position: relative; margin: 0 10px; }
-        .packet::after { content: '✉'; color: var(--chalk-pink); position: absolute; top: 0; left: 10px; }
+        .cloud-icon { font-size: 2.5rem; color: var(--chalk-blue); margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -113,8 +111,8 @@
     </header>
 
     <header>
-        <h1>Networking Basics</h1>
-        <p class="subtitle handwritten">Day 07: How Servers Talk and Packets Travel 🌐</p>
+        <h1>Cloud Setup & Nginx</h1>
+        <p class="subtitle handwritten">Day 08: From Local Terminal to the Global Cloud ☁️</p>
     </header>
 
     <!-- INTRO SECTION -->
@@ -126,13 +124,14 @@
                     <span class="char-name">Golu</span>
                 </div>
                 <div class="speech-bubble">
-                    "Jagu, main `ping google.com` toh kar raha hoon, par parde ke peeche (under the hood) kya ho raha hai?"
+                    "Jagu, mere computer pe toh sab chal raha hai, par duniya ko meri website kaise dikhau? <br> 
+                    Kya mujhe apna laptop 24 ghante on rakhna padega?"
                 </div>
             </div>
             <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
                 <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, har command ek <span class="chalk-text">Network Packet</span> bhejta hai. <br> 
-                    Aaj hum in packets ka 'Postal System' seekhenge."
+                    "Beep Boop! Nahi Golu, iske liye hum <span class="chalk-text">Cloud Computing</span> use karte hain. <br> 
+                    Aaj hum AWS/Utho pe apna pehla server 'Launch' karenge!"
                 </div>
                 <div class="doodle-wrapper">
                     <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
@@ -143,7 +142,7 @@
         <div class="content-box accent-yellow">
             <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
             <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum networking ki foundation rakhenge. <b>IP Addresses</b>, subnets, aur <b>OSI Model</b> ka simplified view. Ye Kubernetes aur Cloud seekhne ke liye non-negotiable hai!
+                Aaj hum real-world deployment karenge. Cloud Instance banana, SSH se connect karna, Nginx install karna, aur server ko public internet ke liye open karna!
             </p>
         </div>
     </section>
@@ -153,27 +152,26 @@
         <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
             <ul>
-                <li><strong>Identity:</strong> Distinguish between Public and Private IP addresses.</li>
-                <li><strong>Blueprint:</strong> Understand the OSI Model from a DevOps perspective.</li>
-                <li><strong>Diagnostic:</strong> Use `ping` and `traceroute` to trace data paths.</li>
-                <li><strong>Transport:</strong> Learn the difference between TCP and UDP.</li>
+                <li><strong>Provision:</strong> Launch a cloud instance (AWS EC2 / Utho).</li>
+                <li><strong>Connect:</strong> Use SSH to manage remote servers securely.</li>
+                <li><strong>Deploy:</strong> Install and verify the Nginx web server.</li>
+                <li><strong>Shield:</strong> Configure Security Groups/Firewalls for Port 80.</li>
             </ul>
             <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
-                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki on-call troubleshooting mein 80% problems network layers mein hi hoti hain!
+                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real DevOps work cloud infrastructure ke bina start hi nahi hota!
             </p>
         </div>
     </section>
 
     <!-- ② ANALOGY -->
     <section>
-        <div class="topic-title">💡 ANALOGY: The Global Postal System</div>
+        <div class="topic-title">💡 ANALOGY: Renting a High-Tech Shop</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-white);">
             <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">IP Address:</span> Ghar ka address (Where to go?).<br>
-                2. <span class="chalk-text">Router:</span> Local post office (Redirects the packet).<br>
-                3. <span class="chalk-text">Packet:</span> Chithi (The data being sent).<br>
-                4. <span class="chalk-text">TCP:</span> Registered Post (Confirm milega).<br>
-                5. <span class="chalk-text">UDP:</span> Normal Post (Bhej diya, mile na mile).
+                1. <span class="chalk-text">On-Premise:</span> Apni dukan kharidna (Hard & Expensive).<br>
+                2. <span class="chalk-text">Cloud Instance:</span> Mall mein dukan kiraye pe lena (Easy & Fast).<br>
+                3. <span class="chalk-text">Security Group:</span> Dukan ka Shutter (Who can enter?).<br>
+                4. <span class="chalk-text">Nginx:</span> Sales person jo customers ko handle karta hai.
             </p>
         </div>
     </section>
@@ -181,40 +179,38 @@
     <!-- ③ DID YOU KNOW? -->
     <section>
         <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">127.0.0.1</div><div class="handwritten" style="color:var(--chalk-blue);">Localhost (Self)</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">7 Layers</div><div class="handwritten" style="color:var(--chalk-blue);">The OSI Model</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">ICMP</div><div class="handwritten" style="color:var(--chalk-blue);">The 'Ping' Language</div></div>
+        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Port 80</div><div class="handwritten" style="color:var(--chalk-blue);">Standard HTTP</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-pink);">2 Min</div><div class="handwritten" style="color:var(--chalk-blue);">To Launch EC2</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-green);">Elastic</div><div class="handwritten" style="color:var(--chalk-blue);">Grow/Shrink Fast</div></div>
         </div>
     </section>
 
-    <!-- ⑤ Key Concepts: Simplified OSI -->
+    <!-- ⑤ Key Concepts: Security Groups -->
     <section>
-        <div class="topic-title">📌 Key Concepts: DevOps OSI View</div>
+        <div class="topic-title">📌 Key Concepts: The Inbound Wall</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
+            <p class="hinglish">Security Group ek virtual firewall hai jo decide karti hai ki kaunsa traffic server ke andar aayega.</p>
             <ul>
-                <li><span class="chalk-text">Layer 7 (App):</span> HTTP/HTTPS (Where code lives).</li>
-                <li><span class="chalk-text">Layer 4 (Transport):</span> TCP/UDP (How data is moved).</li>
-                <li><span class="chalk-text">Layer 3 (Network):</span> IP Addresses (Routing).</li>
-                <li><span class="chalk-text">Layer 1/2:</span> Cables and MAC addresses (The wires).</li>
+                <li><span class="chalk-text">SSH (Port 22):</span> Sirf aapke liye (Management).</li>
+                <li><span class="chalk-text">HTTP (Port 80):</span> Pure world ke liye (Website).</li>
+                <li><span class="chalk-text">HTTPS (Port 443):</span> Secure world ke liye (SSL).</li>
             </ul>
         </div>
     </section>
 
     <!-- ⑥ Compare -->
     <section>
-        <div class="topic-title">🔄 Compare: TCP vs UDP</div>
+        <div class="topic-title">🔄 Compare: Localhost vs Public IP</div>
         <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">TCP (Reliable)</h3>
-                <p class="hinglish">"Ghar ki registry jaisa—pohanchne par sign (ACK) chahiye."</p>
-                <p style="font-size: 0.8rem; color: #888;">Used in: Web (HTTP), Email, SSH.</p>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-white);">
+                <h3 class="handwritten">Localhost (127.0.0.1)</h3>
+                <p class="hinglish">"Ghar ka aaina—sirf aap hi khud ko dekh sakte ho."</p>
             </div>
             <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">UDP (Fast)</h3>
-                <p class="hinglish">"Chai tapri pe awaaz lagana—bus bol diya, koi sunne ya na sunne!"</p>
-                <p style="font-size: 0.8rem; color: #888;">Used in: Video Streaming, Gaming, DNS.</p>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+                <h3 class="handwritten">Public IP</h3>
+                <p class="hinglish">"Ghar ka address—pure world se koi bhi dekh sakta hai."</p>
             </div>
         </div>
     </section>
@@ -224,22 +220,22 @@
         <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
             <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> IP address permanent hoti hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Most IPs are Dynamic (DHCP). Cloud mein hum usey **Static/Elastic IP** banate hain permanent rehne ke liye.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> 'Ping' command Layer 7 pe kaam karti hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Ping ICMP use karti hai jo Layer 3 (Network) ka part hai.</li>
+                <li><span style="color:var(--chalk-red);">Myth:</span> Cloud free tier matlab sab kuch free hai.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Limits check karo! Agar t2.micro se bada server banaya, toh bill aa jayega.</li>
+                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Security Group configure nahi kiya toh bhi website chalegi.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! By default cloud providers sab kuch block rakhte hain. Port 80 manually open karna padta hai.</li>
             </ul>
         </div>
     </section>
 
     <!-- ⑪ MINI QUIZ -->
     <section>
-        <div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
+        <div class="topic-title">❓ MINI QUIZ</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. HTTP protocol kaunsi OSI layer par chalta hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Layer 3</span><span class="quiz-opt">b) Layer 4</span><span class="quiz-opt">c) Layer 7</span><span class="quiz-opt">d) Layer 1</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Reliability ke liye kaunsa transport protocol best hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) UDP</span><span class="quiz-opt">b) TCP</span><span class="quiz-opt">c) ICMP</span><span class="quiz-opt">d) ARP</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">1. Nginx server ke liye by default kaunsa port open karna padta hai?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) 22</span><span class="quiz-opt">b) 443</span><span class="quiz-opt">c) 80</span><span class="quiz-opt">d) 3306</span></div></div>
+            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Remote cloud server pe files download karne ke liye command?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) ssh</span><span class="quiz-opt">b) scp</span><span class="quiz-opt">c) cp</span><span class="quiz-opt">d) mv</span></div></div>
             <div class="answer-key">
                 <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
                 <p class="hinglish">"Golu, match kar lo: 1-c | 2-b"</p>
@@ -248,7 +244,7 @@
     </section>
 
     <div class="footer">
-        #LearnDevOpsIn90Days • Day 07 • Module 3 • Pro Edition • By Aryashree Pritikrishna
+        #LearnDevOpsIn90Days • Day 08 • Module 3 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
 
