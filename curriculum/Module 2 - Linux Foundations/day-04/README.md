@@ -16,4 +16,19 @@ Ready to practice? Head over to the lab session:
 👉 [Lab Session: Searching Mastery](./lab-session/task.md)
 
 ---
-*Follow the journey on LinkedIn with #LearnDevOpsIn90Days*
+
+## Why This Matters for DevOps
+Hands‑on practice builds speed and confidence. In production incidents, you won’t have time to search for basic commands. Muscle memory is key!
+
+## Submission
+1. Fork this repository.
+2. Navigate to your today's folder: `curriculum/Module 2 - Linux Foundations/day-04/lab-session/solution/`.
+3. Add your `linux-practice.md` or screenshots.
+4. Commit and push: `git commit -m "day-04: searching mastery complete"`.
+
+## Learn in Public
+Share your progress on LinkedIn:
+- What was the most useful `find` flag you learned?
+- Tag **@AryashreePritikrishna** and use #LearnDevOpsIn90Days
+
+Happy Learning! 🚀

@@ -16,4 +16,19 @@ Ready to practice? Head over to the lab session:
 👉 [Lab Session: SSH Key Mastery](./lab-session/task.md)
 
 ---
-*Follow the journey on LinkedIn with #LearnDevOpsIn90Days*
+
+## Why This Matters for DevOps
+SSH is the "Front Door" to your servers. Mastering keys and configs makes your remote management fast and secure.
+
+## Submission
+1. Fork this repository.
+2. Navigate to your today's folder: `curriculum/Module 3 - Networking & System Design/day-10/lab-session/solution/`.
+3. Add your public key or SSH config notes.
+4. Commit and push: `git commit -m "day-10: ssh mastery complete"`.
+
+## Learn in Public
+Share your progress on LinkedIn:
+- Post about why key-based auth is better than passwords.
+- Tag **@AryashreePritikrishna** and use #LearnDevOpsIn90Days
+
+Happy Learning! 🚀

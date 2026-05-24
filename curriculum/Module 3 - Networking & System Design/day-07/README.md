@@ -16,4 +16,19 @@ Ready to practice? Head over to the lab session:
 👉 [Lab Session: Networking Fundamentals](./lab-session/task.md)
 
 ---
-*Follow the journey on LinkedIn with #LearnDevOpsIn90Days*
+
+## Why This Matters for DevOps
+Understanding the network is critical for troubleshooting deployment issues and securing cloud infrastructure.
+
+## Submission
+1. Fork this repository.
+2. Navigate to your today's folder: `curriculum/Module 3 - Networking & System Design/day-07/lab-session/solution/`.
+3. Add your networking notes or command results.
+4. Commit and push: `git commit -m "day-07: networking basics complete"`.
+
+## Learn in Public
+Share your progress on LinkedIn:
+- Share one thing you learned about how packets travel.
+- Tag **@AryashreePritikrishna** and use #LearnDevOpsIn90Days
+
+Happy Learning! 🚀

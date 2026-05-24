@@ -20,7 +20,7 @@ Maintained by **[Aryashree Pritikrishna](https://github.com/aryashreep)**
 **Learn DevOps in 90 Days** is a free, structured learning academy where:
 
 - 📅 **15 Modules** cover the entire DevOps spectrum.
-- 🎓 **Pro Blackboard Modules** provide high-fidelity theory (Golu & Ladoo style).
+- 🎓 **Pro Blackboard Modules** provide high-fidelity theory (Golu & Jagu style).
 - 🧪 **Daily Lab Sessions** ensure hands-on mastery.
 - 🏆 **Mastery Exams** validate your progress after every module.
 

@@ -7,7 +7,7 @@
 ---
 
 > 💡 **How to use this Academy:**
-> 1. **Pro Module:** The high-fidelity "Blackboard" lecture (Golu & Ladoo style).
+> 1. **Pro Module:** The high-fidelity "Blackboard" lecture (Golu & Jagu style).
 > 2. **Task / Lab:** The daily hands-on session in the `lab-session/` folder.
 > 3. **Mastery Exam:** A 30-MCQ validation test at the end of each module.
 
