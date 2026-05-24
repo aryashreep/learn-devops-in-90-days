@@ -71,8 +71,14 @@
 ---
 
 ## 🐙 Module 5 - Git & GitHub (Days 22-28)
-| Day 27 | Portfolio Project | 🏆 GitHub Profile Makeover |
-|---|---|---|
+> *Version control as the single source of truth.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 22 | Introduction to Git | [🎓 Day 22 Pro](./curriculum/Module%205%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/Day22_Git_Introduction.html) | [🧪 Lab 22](./curriculum/Module%205%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/lab-session/task.md) |
+| 🗓️ Day 23 | Branching & GitHub | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🗓️ Day 27 | Portfolio Project | 🏆 GitHub Profile Makeover | -- |
+
 
 ---
 
