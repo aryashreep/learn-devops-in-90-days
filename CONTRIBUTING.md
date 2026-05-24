@@ -30,7 +30,7 @@ cd learn-devops-in-90-days
 git checkout -b day-14-notes
 
 # 4️⃣  Make your changes in the correct folder
-#     All day content lives under content/day-XX/
+#     All day content lives under curriculum/Module X - Name/day-XX/
 
 # 5️⃣  Commit with a clear message
 git commit -m "day-14: add python data structures notes and examples"
@@ -43,10 +43,10 @@ git push origin day-14-notes
 
 ## 📁 Where to Put Your Work
 
-All content lives inside the `content/` folder:
+All content lives inside the `curriculum/` folder:
 
 ```
-content/
+curriculum/
 ├── day-01/
 │   ├── README.md       ← task description + your notes
 │   └── scripts/        ← any shell or python scripts (optional)
@@ -64,7 +64,7 @@ content/
 
 Before submitting your PR, confirm all of the following:
 
-- [ ] 📂 Changes are inside the correct `content/day-XX/` folder
+- [ ] 📂 Changes are inside the correct `curriculum/Module X - Name/day-XX/` folder
 - [ ] 📝 Your `README.md` follows the day template (see below)
 - [ ] 🔤 Filenames match the expected structure exactly
 - [ ] 💬 Commit message is clear and follows the format: `day-XX: short description`
@@ -76,7 +76,7 @@ Before submitting your PR, confirm all of the following:
 
 ## 📝 Day README Template
 
-Every `content/day-XX/README.md` should follow this structure:
+Every `curriculum/Module X - Name/day-XX/README.md` should follow this structure:
 
 ```markdown
 # Day XX — Topic Name

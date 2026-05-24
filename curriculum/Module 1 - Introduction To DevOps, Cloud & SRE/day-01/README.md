@@ -1,214 +1,99 @@
-# 🗓️ Day 01 — Introduction to DevOps
+# Day 01 – Introduction to DevOps and Cloud
 
-Welcome to **Day 01** of the **#LearnDevOpsIn90Days** challenge 🚀
+## Task
+Today’s goal is to **set the foundation for your DevOps journey**.
 
-Today marks the beginning of your DevOps learning journey.
+You will create a **90-day personal DevOps learning plan** that clearly defines:
+- What is your understanding of DevOps and Cloud Engineering?
+- Why you are starting learning DevOps & Cloud?
+- Where do you want to reach?
+- How you will stay consistent every single day?
 
-The goal of this challenge is not just to learn tools — but to build:
-
-* consistency,
-* engineering discipline,
-* automation thinking,
-* and real-world DevOps skills.
-
----
-
-# 🎯 Today's Goals
-
-✅ Understand what DevOps is
-
-✅ Learn why DevOps matters in modern software engineering
-
-✅ Explore automation, infrastructure, and scalability concepts
-
-✅ Start documenting your learning publicly
+This is not a generic plan.  
+This is your **career execution blueprint** for the next 90 days.
 
 ---
 
-# 📌 Tasks for Today
+## Expected Output
+By the end of today, you should have:
 
-## 1️⃣ Fork This Repository
+- A markdown file named:  
+  `learning-plan.md`
 
-Start by forking this repository to your GitHub account.
+or
 
-This will become your:
+- A hand written plan for the next 90 Days (Recommended)
 
-* learning journal,
-* proof of work,
-* and public portfolio.
 
----
-
-# 2️⃣ Start with a DevOps Roadmap
-
-📺 Recommended beginner-friendly resources:
-
-## DevOps Roadmap
-
-https://roadmap.sh/devops
-
-## What is DevOps? — AWS
-
-https://aws.amazon.com/devops/what-is-devops/
-
-## Microsoft DevOps Overview
-
-https://learn.microsoft.com/en-us/devops/what-is-devops/
-
-## IBM DevOps Guide
-
-https://www.ibm.com/topics/devops
-
-## DevOps Explained by Red Hat
-
-https://www.redhat.com/en/topics/devops
+The file/note should clearly reflect your intent, discipline, and seriousness toward becoming a DevOps engineer.
 
 ---
 
-# 3️⃣ Write and Share Your Understanding
+## Guidelines
+Follow these rules while creating your plan:
 
-Create:
-
-* a LinkedIn post,
-* GitHub notes,
-* or a small article explaining:
-
-### Topics to Cover
-
-* What is DevOps?
-* What is Automation?
-* What is Infrastructure?
-* What is Scaling?
-* Why is DevOps important?
-* How DevOps improves software delivery?
-
-Learning in public helps:
-
-* reinforce concepts,
-* build confidence,
-* and create visibility in the tech community.
+- Mention your **current level**  
+  (student / fresher / working professional / non-IT background, etc.)
+- Define **3 clear goals** for the next 90 days  
+  (example: deploy a production-grade application on Kubernetes)
+- Define **3 core DevOps skills** you want to build  
+  (example: Linux troubleshooting, CI/CD pipelines, Kubernetes debugging)
+- Allocate a **weekly time budget**  
+  (example: 2–2.5 hours per day on weekdays, 4-6 hours weekends)
+- Keep the document **under 1 page**
+- Be honest and realistic; consistency matters more than perfection
 
 ---
 
-# 📖 What is DevOps?
+## Resources
+You may refer to:
 
-DevOps is a culture and engineering practice that brings together:
+- TrainWithShubham [course curriculum](https://english.trainwithshubham.com/JOSH_BATCH_10_Syllabus_v1.pdf)
+- TrainWithShubham DevOps [roadmap](https://docs.google.com/spreadsheets/d/1eE-NhZQFr545LkP4QNhTgXcZTtkMFeEPNyVXAflXia0/edit?gid=2073716385#gid=2073716385)
+- Your own past experience and career aspirations
 
-* Development (Dev)
-* Operations (Ops)
-
-to improve:
-
-* collaboration,
-* automation,
-* software quality,
-* and delivery speed.
-
-## Formal Definition
-
-> “DevOps is the union of people, process, and products to enable continuous delivery of value to our end users.”
+Avoid over-researching today. The focus is **clarity**, not depth.
 
 ---
 
-# ⚙️ Why DevOps Matters
+## Why This Matters for DevOps
+DevOps engineers succeed not just because of tools, but because of:
 
-Traditional software delivery often faced problems like:
+- Discipline
+- Ownership
+- Long-term thinking
+- Ability to execute consistently
 
-* Slow deployments,
-* communication gaps,
-* manual processes,
-* and unstable releases.
+In real jobs, no one tells you exactly what to do every day.  
+This task trains you to **take ownership of your own growth**, just like a real DevOps engineer.
 
-DevOps helps solve these through:
-
-* Automation,
-* CI/CD pipelines,
-* infrastructure as code,
-* monitoring,
-* and collaboration.
-
----
-
-# 🚀 Main Goal of DevOps
-
-The primary goal of DevOps is to:
-
-> Reduce software delivery cycle time while improving reliability and quality.
-
-A simple way to think about it:
-
-### ❓ How quickly and safely can you deploy even a one-line change to production?
-
-Modern DevOps practices help organizations:
-
-* deploy faster,
-* recover quicker,
-* scale efficiently,
-* and deliver better customer experiences.
+A clear plan:
+- Reduces confusion
+- Prevents burnout
+- Keeps you focused during tough days
 
 ---
 
-# 🧠 Key Concepts Introduced Today
-
-| Concept        | Meaning                              |
-| -------------- | ------------------------------------ |
-| Automation     | Reducing manual repetitive tasks     |
-| Infrastructure | Servers, networking, cloud, systems  |
-| Scaling        | Handling increasing traffic/workload |
-| CI/CD          | Continuous Integration & Deployment  |
-| Collaboration  | Dev + Ops working together           |
+## Submission
+1. Fork this `90DaysOfDevOps` repository  
+2. Navigate to the `2026/day-01/` folder  
+3. Add your `learning-plan.md` file  
+4. Commit and push your changes to your fork  
 
 ---
 
-# 📝 Mini Assignment
+## Learn in Public
+Share your Day 01 progress on LinkedIn:
 
-Write 5–10 lines about:
+- Post 2–3 lines on why you’re starting **#90DaysOfDevOps**
+- Share one goal from your learning plan
+- Optional: screenshot of your markdown file or a professional picture
 
-* Your understanding of DevOps,
-* why you joined this challenge,
-* and what you want to achieve in 90 days.
+Use hashtags:
+#90DaysOfDevOps
+#DevOpsKaJosh
+#TrainWithShubham
 
-Commit your notes to GitHub.
 
----
-
-# 📂 Suggested Folder Structure
-
-```bash id="x9sh9z"
-<YEAR>/day-01/
-├── README.md
-├── notes.md
-├── resources.md
-└── assignment.md
-```
-
----
-
-# ⭐ Bonus Challenge
-
-Create your first LinkedIn post using:
-
-* #LearnDevOpsIn90Days
-* #DevOps
-* #LearningInPublic
-
-and share:
-
-* why you started,
-* what you learned today,
-* and your goals for the next 90 days.
-
----
-
-# ✅ Day 01 Checklist
-
-* [ ] Forked the repository
-* [ ] Watched/read DevOps introduction resources
-* [ ] Wrote learning notes
-* [ ] Shared progress publicly
-* [ ] Committed Day 01 work to GitHub
-
----
-# 🚀 Next Day
-
-➡️ Day 02 — Linux Basics, Navigation, and Essential Commands
+Happy Learning  
+**TrainWithShubham**

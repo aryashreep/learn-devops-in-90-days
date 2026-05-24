@@ -2,7 +2,7 @@
 
 **Your complete 90-day DevOps roadmap — structured for professional mastery.**
 
-[🏠 Back to README](./README.md) &nbsp;|&nbsp; [🤝 Contribute](./CONTRIBUTING.md)
+[🏠 Back to README](./README.md) &nbsp;|&nbsp; 🗺️ [Full Curriculum](./curriculum/global-resources/COURSE_CURRICULUM.md) &nbsp;|&nbsp; [🤝 Contribute](./CONTRIBUTING.md)
 
 ---
 
@@ -31,9 +31,9 @@
 | 🗓️ Day 02 | Linux Foundations (Kernel/Shell) | [🎓 Day 02 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/Day02_Linux_Foundations.html) | [🧪 Lab 02](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/lab-session/task.md) |
 | 🗓️ Day 02 | Command Cheat Sheet | [🎓 Cheat Sheet Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/Day02_Linux_CheatSheet.html) | Included in Day 02 |
 | 🗓️ Day 03 | Users, Groups & Permissions | [🎓 Day 03 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/Day03_Linux_Permissions.html) | [🧪 Lab 03](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/lab-session/task.md) |
-| 🗓️ Day 04 | Advanced Navigation & Searching | 🚧 Coming Soon | 🚧 Coming Soon |
-| 🗓️ Day 05 | Linux Troubleshooting Runbook | 🚧 Coming Soon | 🚧 Coming Soon |
-| 🗓️ Day 06 | Package Managers & systemd | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🗓️ Day 04 | Advanced Navigation & Searching | [📁 Day 04 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-04/README.md) | [🧪 Lab 04](./curriculum/Module%202%20-%20Linux%20Foundations/day-04/lab-session/task.md) |
+| 🗓️ Day 05 | Linux Troubleshooting Runbook | [📁 Day 05 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-05/README.md) | [🧪 Lab 05](./curriculum/Module%202%20-%20Linux%20Foundations/day-05/lab-session/task.md) |
+| 🗓️ Day 06 | File I/O Mastery (Read/Write) | [📁 Day 06 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-06/README.md) | [🧪 Lab 06](./curriculum/Module%202%20-%20Linux%20Foundations/day-06/lab-session/task.md) |
 | 🏆 **Exam** | **Module 2 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%202%20-%20Linux%20Foundations/mastery-exam/README.md) | -- |
 
 ---
@@ -41,109 +41,73 @@
 ## 🌐 Module 3 - Networking & System Design
 > *DNS, Ports, SSH, and the architecture of the Internet.*
 
-| Day | Topic | Status |
-|---|---|---|
-| 🗓️ Day 07 | Networking Basics for DevOps | 🚧 Planned |
-| 🗓️ Day 08 | Ports, Protocols & Firewalls | 🚧 Planned |
-| 🗓️ Day 09 | DNS & Load Balancing Concepts | 🚧 Planned |
-| 🗓️ Day 10 | SSH & Secure Shell Mastery | 🚧 Planned |
-| 🏆 **Exam** | **Module 3 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) |
+| Day | Topic | Intro & Task | Status |
+|---|---|---|---|
+| 🗓️ Day 07 | Networking Basics for DevOps | [📁 Day 07](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-07/README.md) | 🚀 In Progress |
+| 🗓️ Day 08 | Ports, Protocols & Firewalls | [📁 Day 08](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-08/README.md) | 🚀 In Progress |
+| 🗓️ Day 09 | DNS & Load Balancing Concepts | [📁 Day 09](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-09/README.md) | 🚀 In Progress |
+| 🗓️ Day 10 | SSH & Secure Shell Mastery | [📁 Day 10](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-10/README.md) | 🚀 In Progress |
+| 🏆 **Exam** | **Module 3 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) | |
 
 ---
 
 ## 🐚 Module 4 - Shell Scripting For DevOps
 > *Automate the boring stuff with Bash.*
 
-| Status | 🚧 Planned |
-|---|---|
-
 ---
 
 ## 🐙 Module 5 - Introduction to Git [GitHub & GitLab]
 > *Version control as the single source of truth.*
-
-| Status | 🚧 Planned |
-|---|---|
 
 ---
 
 ## 🎫 Module 6 - Jira For DevOps
 > *Agile, Scrum, and Ticket Lifecycles in DevOps pipelines.*
 
-| Status | 🚧 Planned |
-|---|---|
-
 ---
 
 ## 🐳 Module 7 - Docker
 > *Containerization from scratch to production.*
 
-| Status | 🚧 Planned |
-|---|---|
-
 ---
 
-## 🤖 Module 8 - CI/CD Pipelines (GitHub Actions)
+## 🤖 Module 8 - CI-CD Pipelines (GitHub Actions)
 > *Cloud-native automation for the modern era.*
 
-| Status | 🚧 Planned |
-|---|---|
-
 ---
 
-## 🏗️ Module 9 - CI/CD Pipelines (Jenkins)
+## 🏗️ Module 9 - CI-CD Pipelines (Jenkins)
 > *Enterprise-grade pipeline automation.*
-
-| Status | 🚧 Planned |
-|---|---|
 
 ---
 
 ## ☸️ Module 10 - Kubernetes (CKA)
 > *The industry standard for container orchestration.*
 
-| Status | 🚧 Planned |
-|---|---|
-
 ---
 
 ## ☁️ Module 11 - Terraform
 > *Infrastructure as Code: Provisioning at scale.*
-
-| Status | 🚧 Planned |
-|---|---|
 
 ---
 
 ## ⚙️ Module 12 - Ansible
 > *Configuration Management & Automation.*
 
-| Status | 🚧 Planned |
-|---|---|
-
 ---
 
 ## 📊 Module 13 - SRE & Observability
 > *Metrics, Logs, and Traces: Managing what you measure.*
-
-| Status | 🚧 Planned |
-|---|---|
 
 ---
 
 ## 🚀 Module 14 - GitOps on Kubernetes
 > *ArgoCD, Helm, and automated environment syncing.*
 
-| Status | 🚧 Planned |
-|---|---|
-
 ---
 
 ## 🏆 Module 15 - Capstone Projects
 > *The portfolio builders. Real-world end-to-end deployments.*
-
-| Status | 🚧 Planned |
-|---|---|
 
 ---
 

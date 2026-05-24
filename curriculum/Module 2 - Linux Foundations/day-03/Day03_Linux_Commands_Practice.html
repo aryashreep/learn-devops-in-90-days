@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 02: Linux Architecture & systemd - Golu & Jagu Pro Edition</title>
+    <title>Day 03: Linux Command Toolkit - Golu & Jagu Pro Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -82,20 +82,15 @@
         li { margin-bottom: 15px; padding-left: 30px; position: relative; }
         li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
 
-        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
-        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
-        
+        .cmd-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-family: 'Fira Code', monospace; }
+        .cmd-table th { color: var(--chalk-yellow); border-bottom: 2px solid var(--chalk-yellow); text-align: left; padding: 12px; font-family: 'Architects Daughter'; }
+        .cmd-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); color: var(--chalk-white); }
+        .cmd-code { color: var(--chalk-blue); font-weight: bold; }
+
         .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
         .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
         .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
         .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
-
-        /* Architecture Model */
-        .onion-ring { border: 2px solid; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
-        .ring-apps { width: 280px; height: 280px; border-color: var(--chalk-pink); position: relative; }
-        .ring-shell { width: 210px; height: 210px; border-color: var(--chalk-blue); }
-        .ring-kernel { width: 140px; height: 140px; border-color: var(--chalk-orange); }
-        .ring-hardware { width: 70px; height: 70px; border-color: var(--chalk-yellow); background: rgba(254, 202, 87, 0.1); }
     </style>
 </head>
 <body>
@@ -116,8 +111,8 @@
     </header>
 
     <header>
-        <h1>Linux Architecture & systemd</h1>
-        <p class="subtitle handwritten">Day 02: Understanding the Soul of DevOps Infrastructure 🐧</p>
+        <h1>Linux Commands Practice</h1>
+        <p class="subtitle handwritten">Day 03: Building Your Career Toolkit ⌨️</p>
     </header>
 
     <!-- INTRO SECTION -->
@@ -129,13 +124,13 @@
                     <span class="char-name">Golu</span>
                 </div>
                 <div class="speech-bubble">
-                    "Jagu, sab kehte hain ki DevOps matlab Linux hai. Par ye Linux actually hai kya? Bas ek kala (black) screen?"
+                    "Jagu, itne saare commands hain, kaise yaad rakhun? Kuch <span class="chalk-text">Shortcuts</span> batao na!"
                 </div>
             </div>
             <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
                 <div class="speech-bubble bubble-blue">
-                    "Haha! Nahi Golu, Linux sirf screen nahi, pura <span class="chalk-text">Operating System ka Engine</span> hai! <br> 
-                    Aaj hum iska system breakdown karenge."
+                    "Bhai Golu, commands ratna nahi, use karna seekho! <br> 
+                    Aaj hum essential <span class="chalk-text">DevOps Toolkit</span> ka dashboard banayenge."
                 </div>
                 <div class="doodle-wrapper">
                     <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
@@ -146,7 +141,7 @@
         <div class="content-box accent-yellow">
             <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
             <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux ke <b>Core Architecture</b> samjhenge. Kernel kisse baat karta hai, Shell aapse kya poochti hai, aur `systemd` pure server ko kaise manage karta hai.
+                Aaj hum Linux CLI ke <b>Top Commands</b> ko categorize karenge. Navigation se lekar File operations aur Networking troubleshooting tak, sab yahan milega!
             </p>
         </div>
     </section>
@@ -156,53 +151,39 @@
         <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
             <ul>
-                <li><strong>Understand:</strong> Kernel vs User Space components.</li>
-                <li><strong>Master:</strong> Process states and life cycles (Running, Zombie, Sleep).</li>
-                <li><strong>Command:</strong> Control services with the mighty `systemd` and `systemctl`.</li>
+                <li><strong>Process Management:</strong> Inspect and control running apps.</li>
+                <li><strong>File System Mastery:</strong> Navigate and manipulate files efficiently.</li>
+                <li><strong>Network Troubleshooting:</strong> Diagnose connectivity issues like a pro.</li>
             </ul>
             <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
-                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real server troubleshooting mein apko 'systemd' se dosti karni hi padegi!
+                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real production issues hamesha command line par hi solve hote hain!
             </p>
         </div>
     </section>
 
-    <!-- ② ANALOGY -->
+    <!-- ④ Key Directories -->
     <section>
-        <div class="topic-title">💡 ANALOGY: The Body System</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Kernel:</span> Brain (Controls heart, lungs, and muscles).<br>
-                2. <span class="chalk-text">Shell:</span> Mouth (Talks to you and sends orders to brain).<br>
-                3. <span class="chalk-text">Systemd:</span> Nervous System (Tells every organ when to start/stop).
-            </p>
-        </div>
-    </section>
+        <div class="topic-title">📂 The DevOps Command Radar</div>
+        
+        <h3>1. Navigation & Navigation</h3>
+        <table class="cmd-table">
+            <thead><tr><th>Command</th><th>Usage</th></tr></thead>
+            <tbody>
+                <tr><td><span class="cmd-code">pwd</span></td><td>Print Working Directory (Kahan ho bhai?)</td></tr>
+                <tr><td><span class="cmd-code">ls -la</span></td><td>List all files with details (Hidden files too!)</td></tr>
+                <tr><td><span class="cmd-code">cd ..</span></td><td>Move to parent folder</td></tr>
+            </tbody>
+        </table>
 
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">PID 1</div><div class="handwritten" style="color:var(--chalk-blue);">Systemd is Always First</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">33yr</div><div class="handwritten" style="color:var(--chalk-blue);">Legacy since 1991</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">Open</div><div class="handwritten" style="color:var(--chalk-blue);">Anyone can read the code</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: The Onion Model -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: The Layers</div>
-        <div class="diagram-container">
-            <div class="onion-ring ring-apps">
-                <div class="onion-ring ring-shell">
-                    <div class="onion-ring ring-kernel">
-                        <div class="onion-ring ring-hardware"></div>
-                    </div>
-                </div>
-            </div>
-            <p class="handwritten" style="margin-top: 35px; font-size: 1.3rem;">
-                <span class="hinglish">Flow:</span> You ➔ Shell ➔ Kernel ➔ Hardware ➔ Action!
-            </p>
-        </div>
+        <h3>2. Networking Troubleshooting</h3>
+        <table class="cmd-table">
+            <thead><tr><th>Command</th><th>Usage</th></tr></thead>
+            <tbody>
+                <tr><td><span class="cmd-code">ip addr</span></td><td>Check machine's IP address</td></tr>
+                <tr><td><span class="cmd-code">ping</span></td><td>Check connectivity to a server</td></tr>
+                <tr><td><span class="cmd-code">curl -I</span></td><td>Inspect HTTP headers of a site</td></tr>
+            </tbody>
+        </table>
     </section>
 
     <!-- ⑧ COMMON MISCONCEPTIONS -->
@@ -210,31 +191,27 @@
         <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
             <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> A 'Zombie' process eats RAM.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> It's just a dead process record. It eats 'Process Table' space, not RAM.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Kill -9 is the only way to stop an app.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> It's like an emergency brake. Pehle normal `kill` try karo!</li>
+                <li><span style="color:var(--chalk-red);">Myth:</span> You need to know 1000+ commands.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Most Senior Engineers use only 20-30 core commands daily. <code>history</code> is your friend!</li>
             </ul>
         </div>
     </section>
 
     <!-- ⑪ MINI QUIZ -->
     <section>
-        <div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
+        <div class="topic-title">❓ MINI QUIZ</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Linux ka 'Brain' kaun hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Shell</span><span class="quiz-opt">b) User</span><span class="quiz-opt">c) Kernel</span><span class="quiz-opt">d) Screen</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">2. systemd ka PID (Process ID) kya hota hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) 0</span><span class="quiz-opt">b) 1</span><span class="quiz-opt">c) 99</span><span class="quiz-opt">d) 100</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">1. Machine ka IP address check karne ke liye command?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) hostname</span><span class="quiz-opt">b) ip addr</span><span class="quiz-opt">c) pwd</span><span class="quiz-opt">d) top</span></div></div>
             <div class="answer-key">
                 <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-c | 2-b"</p>
+                <p class="hinglish">"Golu, match kar lo: 1-b"</p>
             </div>
         </div>
     </section>
 
     <div class="footer">
-        #LearnDevOpsIn90Days • Day 02 • Pro Edition • By Aryashree Pritikrishna
+        #LearnDevOpsIn90Days • Day 03 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
 

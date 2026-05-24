@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 05: Linux Troubleshooting Runbook - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                background-color: var(--bg-blackboard) !important;
+                color: var(--chalk-white) !important;
+            }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        .contact-item { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-bottom: 4px; }
+        .contact-icon { color: var(--chalk-green); font-size: 1rem; }
+
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.3rem; line-height: 1.4; }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+
+        .dir-icon { font-size: 1.5rem; margin-right: 10px; vertical-align: middle; }
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        
+        .quiz-item { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed rgba(255,255,255,0.05); }
+        .quiz-question { font-size: 1.25rem; margin-bottom: 10px; color: var(--chalk-white); }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .quiz-opt { font-family: 'Architects Daughter'; color: var(--chalk-blue); }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
+        .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
+    </style>
+</head>
+<body>
+
+<div class="blackboard">
+    <!-- BRANDED AUTHOR HEADER -->
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item"><span class="contact-icon">🔗</span> <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+            <div class="contact-item"><span class="contact-icon">💼</span> <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+            <div class="contact-item"><span class="contact-icon">📺</span> <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+            <div class="contact-item"><span class="contact-icon">📧</span> <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item"><span class="contact-icon">📞</span> <span>+91 8147450705</span></div>
+        </div>
+    </header>
+
+    <header>
+        <h1>Linux Troubleshooting Runbook</h1>
+        <p class="subtitle handwritten">Day 05: Diagnosing System Health Like a Senior SRE 🩺</p>
+    </header>
+
+    <!-- INTRO SECTION -->
+    <section id="intro">
+        <div class="intro-banner">
+            <div class="doodle-container" style="margin: 0;">
+                <div class="doodle-wrapper">
+                    <div class="malik-doodle">
+                        <div class="malik-head"><div class="malik-smile"></div></div>
+                        <div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
+                    </div>
+                    <span class="char-name">Golu</span>
+                </div>
+                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                    "Jagu, manager khade hain aur server 'slow' hai bol rahe hain! <br> 
+                    Mere pass koi plan nahi hai, main panic kar raha hoon!"
+                </div>
+            </div>
+            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+                <div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">
+                    "Beep Boop! Panic mat karo Golu. <br> 
+                    Panic se service fix nahi hoti, <span class="chalk-text">Runbook</span> se hoti hai! Chalo checkup karte hain."
+                </div>
+                <div class="doodle-wrapper">
+                    <div class="robot-doodle">
+                        <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+                        <div class="robot-body"></div><div class="robot-bag"></div>
+                    </div>
+                    <span class="char-name">Jagu</span>
+                </div>
+            </div>
+        </div>
+        <div class="content-box accent-yellow">
+            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
+            <p class="hinglish" style="font-size: 1.2rem;">
+                Aaj hum Linux troubleshooting ka <b>Systematic Approach</b> seekhenge. 
+                CPU, RAM, Disk aur Logs ka snapshot kaise lete hain aur ek repeatable 'Runbook' kaise likhte hain.
+            </p>
+        </div>
+    </section>
+
+    <!-- ① LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+            <ul>
+                <li><strong>Monitor:</strong> CPU and RAM health using `top` and `htop`.</li>
+                <li><strong>Analyze:</strong> Disk space and I/O with `df` and `du`.</li>
+                <li><strong>Trace:</strong> Deep-dive into system logs in `/var/log`.</li>
+                <li><strong>Repeat:</strong> Learn what a 'Runbook' is and how to create one.</li>
+            </ul>
+            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki on-call incidents mein ek checklist hone se aap 10x fast problems solve kar sakte ho!
+            </p>
+        </div>
+    </section>
+
+    <!-- ② ANALOGY -->
+    <section>
+        <div class="topic-title">💡 ANALOGY: The Doctor's Checklist</div>
+        <div class="doodle-container">
+            <div class="malik-doodle">
+                <div class="malik-head"><div class="malik-smile"></div></div>
+                <div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
+            </div>
+            <span class="char-name">Golu</span>
+            <div class="speech-bubble">
+                "Troubleshooting bilkul <span class="chalk-text">Doctor ke Checkup</span> jaisa hai! Doctor direct surgery nahi karta, pehle BP, Pulse, aur X-ray (Snapshots) check karta hai."
+            </div>
+        </div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
+            <p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Snapshots:</span> System ke vitals (CPU/RAM).<br>
+                2. <span class="chalk-text">X-Ray:</span> Detailed logs check karna.<br>
+                3. <span class="chalk-text">Runbook:</span> Standard treatment plan (Surgery steps).
+            </p>
+        </div>
+    </section>
+
+    <!-- ③ DID YOU KNOW? -->
+    <section>
+        <div class="topic-title">❓ DID YOU KNOW?</div>
+        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Z</div><div class="handwritten" style="color:var(--chalk-blue);">Zombie Processes</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-pink);">100%</div><div class="handwritten" style="color:var(--chalk-blue);">Disk Full = System Down</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-green);">/var/log</div><div class="handwritten" style="color:var(--chalk-blue);">Source of Truth</div></div>
+        </div>
+    </section>
+
+    <!-- ④ Key Directories -->
+    <section>
+        <div class="topic-title">📂 The SRE's Radar — Where to Monitor</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
+            <ul>
+                <li><span class="dir-icon">🔍</span> <span class="chalk-text">/var/log/syslog</span> → Overall system health and errors.</li>
+                <li><span class="dir-icon">🌐</span> <span class="chalk-text">/var/log/nginx/</span> → Web server specific access and error logs.</li>
+                <li><span class="dir-icon">⚙️</span> <span class="chalk-text">/proc</span> → Virtual filesystem for real-time kernel info.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑤ Key Concepts: The Troubleshooting Flow -->
+    <section>
+        <div class="topic-title">📌 Key Concepts: Vitals Check</div>
+        <div class="diagram-container">
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+                <div class="content-box" style="border-color: var(--chalk-pink); flex: 1; min-width: 200px;">
+                    <h3 class="handwritten">CPU / RAM</h3>
+                    <code>top</code> / <code>free -h</code>
+                </div>
+                <div class="content-box" style="border-color: var(--chalk-green); flex: 1; min-width: 200px;">
+                    <h3 class="handwritten">Disk Space</h3>
+                    <code>df -h</code> / <code>du -sh</code>
+                </div>
+                <div class="content-box" style="border-color: var(--chalk-blue); flex: 1; min-width: 200px;">
+                    <h3 class="handwritten">Logs</h3>
+                    <code>tail -n 50</code> / <code>journalctl</code>
+                </div>
+            </div>
+            <p class="handwritten" style="margin-top: 35px; font-size: 1.4rem;">
+                <span class="hinglish">Strategy:</span> Capture evidence BEFORE taking action!
+            </p>
+        </div>
+    </section>
+
+    <!-- ⑥ Compare -->
+    <section>
+        <div class="topic-title">🔄 Compare: Reactive vs Proactive</div>
+        <div class="vs-container">
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
+                <h3 class="handwritten">Reactive (Panic)</h3>
+                <p class="hinglish">"Restart everything! Kuch toh fix ho jayega."</p>
+                <p style="font-size: 0.8rem; color: #888;">Risk: Problem temporary hide hota hai, solve nahi.</p>
+            </div>
+            <div class="vs-circle">VS</div>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+                <h3 class="handwritten">Proactive (SRE)</h3>
+                <p class="hinglish">"Check Vitals ➔ Read Logs ➔ Fix Root Cause."</p>
+                <p style="font-size: 0.8rem; color: #888;">Benefit: Permanent fix and data for post-mortem.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ REAL-WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Slow Server</div>
+        <div class="doodle-container">
+            <div class="robot-doodle">
+                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+                <div class="robot-body"></div><div class="robot-bag"></div>
+            </div>
+            <span class="char-name">Jagu</span>
+            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
+                "Bhai, users keh rahe hain website respond nahi kar rahi. <br> 
+                Jaldi se vitals check karo!"
+            </div>
+        </div>
+        <div class="content-box" style="border-color: var(--chalk-blue);">
+            <p><strong>Step 1:</strong> <code>top</code> shows CPU at 99%. Culprit: `ffmpeg` backup script.</p>
+            <p><strong>Step 2:</strong> <code>kill -9 <pid></code> immediately restores website speed.</p>
+            <p class="hinglish" style="margin-top: 10px;">"Evidence ke bina fixing andhera teer chalane jaisa hai!"</p>
+        </div>
+    </section>
+
+    <!-- ⑧ COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+            <ul>
+                <li><span style="color:var(--chalk-red);">Myth:</span> Restart fix is always the best fix.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Restarts destroy evidence (logs in /tmp or RAM). Only restart if you know why.</li>
+                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Troubleshooting is only for 'Experts'.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Simple commands + a solid Runbook (checklist) can make anyone an expert.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑨ TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">▶ TRY IT YOURSELF</div>
+        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+            <p class="handwritten" style="font-size: 1.2rem;">1. <code>df -h</code> <span class="hinglish">(Disk ka temperature check karo)</span></p>
+            <p class="handwritten" style="font-size: 1.2rem;">2. <code>free -h</code> <span class="hinglish">(RAM kitni baki hai?)</span></p>
+            <p class="handwritten" style="font-size: 1.2rem;">3. <code>ps aux --sort=-%mem | head -10</code> <span class="hinglish">(Kaunsa app memory kha raha hai?)</span></p>
+        </div>
+    </section>
+
+    <!-- ⑩ QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">✓ QUICK SUMMARY</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
+            <ul>
+                <li><strong>Snapshots:</strong> Get the system vitals first.</li>
+                <li><strong>Logs:</strong> They never lie—read them!</li>
+                <li><strong>Runbook:</strong> Your battle-tested checklist.</li>
+                <li><strong>Evidence:</strong> Document everything before you fix.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑪ MINI QUIZ -->
+    <section>
+        <div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. Disk space check karne ke liye human-readable command?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) du</span><span class="quiz-opt">b) df -h</span><span class="quiz-opt">c) ls -la</span><span class="quiz-opt">d) top</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. Live resource monitoring ke liye kaunsa interactive tool use hota hai?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) cat</span><span class="quiz-opt">b) grep</span><span class="quiz-opt">c) htop</span><span class="quiz-opt">d) find</span></div></div>
+            <div class="quiz-item" style="border:none;"><p class="quiz-question">3. Incident ke waqt follow hone wali checklist ko kya kehte hain?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) Diary</span><span class="quiz-opt">b) Storybook</span><span class="quiz-opt">c) Runbook</span><span class="quiz-opt">d) Logbook</span></div></div>
+            <div class="answer-key">
+                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c | 3-c"</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <p>DevOps & Cloud — 90-Day Learning Journey • Day 05</p>
+        <a href="https://github.com/aryashreep/learn-devops-in-90-days">Explore the Repo: github.com/aryashreep/learn-devops-in-90-days</a>
+    </div>
+</div>
+
+</body>
+</html>

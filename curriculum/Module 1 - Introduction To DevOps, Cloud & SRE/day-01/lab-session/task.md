@@ -1,9 +1,28 @@
-# Lab Session: DevOps Introduction
-## Task
-- Write your own 'DevOps Chef' analogy.
-- Identify one 'Wall of Confusion' in your current workplace or project.
-- Share your learning goals on LinkedIn with #LearnDevOpsIn90Days.
+# 🧪 Lab Session: Day 01 — 90-Day Blueprinting
+
+**Jagu:** "Beep Boop! Golu, har bada mission ek solid plan se shuru hota hai. Aaj hum tumhari 90-day DevOps journey ki 'Foundations' rakhenge!"
+
+## 🎯 Task Objectives
+- Define your current technical starting point.
+- Set 3 non-negotiable goals for this journey.
+- Create a sustainable study schedule.
+
+## 🛠️ Hands-on Challenges
+
+1.  **The Goal Post:** Define 3 clear goals you want to achieve by Day 90 (e.g., "Get AWS Cloud Practitioner certified" or "Deploy a Jenkins pipeline").
+2.  **Skill Gap Analysis:** Identify 3 core skills you are excited to build (e.g., Linux, Kubernetes, Terraform).
+3.  **Time Management:** Create a weekly time budget. How many hours will you dedicate on weekdays vs. weekends?
+4.  **Consistency Rule:** Write one sentence on how you will stay motivated when things get technical and tough.
+5.  **Understanding:** In 2 sentences, explain what DevOps means to you after reading today's Pro Module.
 
 ---
+
 ### ✅ Proof of Work
-Save your notes or screenshots in the **`curriculum/Module 1 - Introduction To DevOps, Cloud & SRE/day-01/lab-session/solution/`** folder.
+**Jagu:** "Golu, ye plan tera career blueprint hai. Isse safe rakho!"
+
+1. Create a file named **`learning-plan.md`** in the **`solution/`** folder.
+2. Fill it with your goals, skills, and time budget.
+3. Commit and push!
+
+---
+*#LearnDevOpsIn90Days • Day 01 • Golu & Jagu Edition*
