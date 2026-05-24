@@ -32,14 +32,14 @@
 | 🗓️ Day 03 | Linux Command Toolkit | [🎓 Day 03 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/Day03_Linux_Commands_Practice.html) | [🧪 Lab 03](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/lab-session/task.md) |
 | 🗓️ Day 04 | Advanced Navigation & Searching | [🎓 Day 04 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-04/Day04_Navigation_Searching.html) | [🧪 Lab 04](./curriculum/Module%202%20-%20Linux%20Foundations/day-04/lab-session/task.md) |
 | 🗓️ Day 05 | Linux Troubleshooting Runbook | [🎓 Day 05 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-05/Day05_Troubleshooting_Runbook.html) | [🧪 Lab 05](./curriculum/Module%202%20-%20Linux%20Foundations/day-05/lab-session/task.md) |
-| 🗓️ Day 06 | File I/O Mastery (Read/Write) | [📁 Day 06 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-06/README.md) | [🧪 Lab 06](./curriculum/Module%202%20-%20Linux%20Foundations/day-06/lab-session/task.md) |
-| 🗓️ Day 07 | File System Hierarchy | [📁 Day 07 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-07/README.md) | [🧪 Lab 07](./curriculum/Module%202%20-%20Linux%20Foundations/day-07/lab-session/task.md) |
+| 🗓️ Day 06 | File I/O Mastery (Read/Write) | [🎓 Day 06 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-06/Day06_File_IO_Mastery.html) | [🧪 Lab 06](./curriculum/Module%202%20-%20Linux%20Foundations/day-06/lab-session/task.md) |
+| 🗓️ Day 07 | File System Hierarchy | [🎓 Day 07 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-07/Day07_File_System_Hierarchy.html) | [🧪 Lab 07](./curriculum/Module%202%20-%20Linux%20Foundations/day-07/lab-session/task.md) |
 | 🗓️ Day 08 | Cloud Setup & Nginx | [🎓 Day 08 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-08/Day08_Cloud_Setup_Nginx.html) | [🧪 Lab 08](./curriculum/Module%202%20-%20Linux%20Foundations/day-08/lab-session/task.md) |
 | 🗓️ Day 09 | User & Group Management | [🎓 Day 09 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-09/Day09_User_Group_Management.html) | [🧪 Lab 09](./curriculum/Module%202%20-%20Linux%20Foundations/day-09/lab-session/task.md) |
-| 🗓️ Day 10 | File Permissions & Operations | [📁 Day 10 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-10/README.md) | [🧪 Lab 10](./curriculum/Module%202%20-%20Linux%20Foundations/day-10/lab-session/task.md) |
-| 🗓️ Day 11 | Ownership (chown/chgrp) | 🚧 Coming Soon | 🚧 Coming Soon |
-| 🗓️ Day 12 | **Revision & Recovery Lab** | 🚧 Coming Soon | 🚧 Coming Soon |
-| 🗓️ Day 13 | Volume Management (LVM) | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🗓️ Day 10 | File Permissions & Operations | [🎓 Day 10 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-10/Day10_Permissions_Operations.html) | [🧪 Lab 10](./curriculum/Module%202%20-%20Linux%20Foundations/day-10/lab-session/task.md) |
+| 🗓️ Day 11 | Ownership (chown/chgrp) | [🎓 Day 11 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-11/Day11_Ownership_Mastery.html) | [🧪 Lab 11](./curriculum/Module%202%20-%20Linux%20Foundations/day-11/lab-session/task.md) |
+| 🗓️ Day 12 | **Revision & Recovery Lab** | ⚔️ Battle Test | [🧪 Lab 12](./curriculum/Module%202%20-%20Linux%20Foundations/day-12/lab-session/task.md) |
+| 🗓️ Day 13 | Volume Management (LVM) | [🎓 Day 13 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-13/Day13_LVM_Mastery.html) | [🧪 Lab 13](./curriculum/Module%202%20-%20Linux%20Foundations/day-13/lab-session/task.md) |
 | 🏆 **Exam** | **Module 2 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%202%20-%20Linux%20Foundations/mastery-exam/README.md) | -- |
 
 ---
@@ -47,17 +47,26 @@
 ## 🌐 Module 3 - Networking & System Design (Days 14-15)
 > *DNS, Ports, SSH, and the architecture of the Internet.*
 
-| Day | Topic | Status |
-|---|---|---|
-| 🗓️ Day 14 | Networking Fundamentals | [📁 Lab 14](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-14/lab-session/task.md) |
-| 🗓️ Day 15 | DNS, IP, Subnets & Ports | [📁 Lab 15](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-15/lab-session/task.md) |
-| 🏆 **Exam** | **Module 3 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) |
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 14 | Networking Fundamentals | [🎓 Day 14 Pro](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-14/Day14_Networking_Basics.html) | [🧪 Lab 14](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-14/lab-session/task.md) |
+| 🗓️ Day 15 | DNS, IP, Subnets & Ports | [🎓 Day 15 Pro](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-15/Day15_Networking_Deep_Dive.html) | [🧪 Lab 15](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-15/lab-session/task.md) |
+| 🏆 **Exam** | **Module 3 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) | -- |
 
 ---
 
 ## 🐚 Module 4 - Shell Scripting (Days 16-21)
-| Day 19 | Shell Scripting Project | 🏆 Log Rotation & Backup |
-|---|---|---|
+> *Automate the boring stuff with Bash.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 16 | Shell Scripting Basics | [🎓 Day 16 Pro](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-16/Day16_Scripting_Basics.html) | [🧪 Lab 16](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-16/lab-session/task.md) |
+| 🗓️ Day 17 | Logic, Loops & Arguments | [🎓 Day 17 Pro](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-17/Day17_Logic_and_Arguments.html) | [🧪 Lab 17](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-17/lab-session/task.md) |
+| 🗓️ Day 18 | Bash Functions & Scope | [🎓 Day 18 Pro](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-18/Day18_Bash_Functions.html) | [🧪 Lab 18](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-18/lab-session/task.md) |
+| 🗓️ Day 19 | Log Rotation & Backup | [🎓 Day 19 Pro](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-19/Day19_Backup_and_Cron.html) | [🧪 Lab 19](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-19/lab-session/task.md) |
+| 🗓️ Day 20 | Log Analyzer Challenge | 🚧 Pro Module Coming | [🧪 Lab 20](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-20/lab-session/task.md) |
+| 🗓️ Day 21 | Scripting Cheat Sheet | 🚧 Pro Module Coming | [🧪 Lab 21](./curriculum/Module%204%20-%20Shell%20Scripting%20For%20DevOps/day-21/lab-session/task.md) |
+| 🏆 **Exam** | **Module 4 Mastery Exam** | 📝 30 MCQs | -- |
 
 ---
 
