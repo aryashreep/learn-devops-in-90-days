@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 07: Linux File System Hierarchy - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                background-color: var(--bg-blackboard) !important;
+                color: var(--chalk-white) !important;
+            }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        .contact-item { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-bottom: 4px; }
+        .contact-icon { color: var(--chalk-green); font-size: 1rem; }
+
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.3rem; line-height: 1.4; }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+
+        .dir-icon { font-size: 1.5rem; margin-right: 10px; vertical-align: middle; }
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
+        .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
+    </style>
+</head>
+<body>
+
+<div class="blackboard">
+    <!-- BRANDED AUTHOR HEADER -->
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+
+    <header>
+        <h1>File System Hierarchy</h1>
+        <p class="subtitle handwritten">Day 07: Mapping the Inverted Tree of Linux 🌳</p>
+    </header>
+
+    <!-- INTRO SECTION -->
+    <section id="intro">
+        <div class="intro-banner">
+            <div class="doodle-container" style="margin: 0;">
+                <div class="doodle-wrapper">
+                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                    <span class="char-name">Golu</span>
+                </div>
+                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                    "Jagu, main `cd /` toh kar leta hoon, par itne saare folders dekh ke chakkar aa jata hai! <br> 
+                    Ye `bin`, `etc`, `var` kya bala hain?"
+                </div>
+            </div>
+            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+                <div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">
+                    "Beep Boop! Golu, Linux file system ek <span class="chalk-text">Inverted Tree</span> jaisa hai. <br> 
+                    Aaj hum is tree ki har branch ka maqsad (purpose) samjhenge!"
+                </div>
+                <div class="doodle-wrapper">
+                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+                    <span class="char-name">Jagu</span>
+                </div>
+            </div>
+        </div>
+        <div class="content-box accent-yellow">
+            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
+            <p class="hinglish" style="font-size: 1.2rem;">
+                Aaj hum Linux ke standard directory structure (FHS) ko dekhenge. 
+                Kaunsi file kahan save hoti hai aur kyu—ye samjhna troubleshooting ke liye gold hai!
+            </p>
+        </div>
+    </section>
+
+    <!-- ① LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+            <ul>
+                <li><strong>Navigate:</strong> Understand the root (/) and its subdirectories.</li>
+                <li><strong>Purpose:</strong> Learn what lives in `/etc`, `/bin`, `/var`, and `/opt`.</li>
+                <li><strong>Concept:</strong> Why "Everything is a file" in Linux.</li>
+                <li><strong>Paths:</strong> Deepen your mastery of Absolute vs Relative paths.</li>
+            </ul>
+            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki server setup karte waqt agar galat folder mein file daali, toh system crash ho sakta hai!
+            </p>
+        </div>
+    </section>
+
+    <!-- ② ANALOGY -->
+    <section>
+        <div class="topic-title">💡 ANALOGY: The Organized Apartment</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
+            <p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">/ (Root):</span> Pura Apartment Complex.<br>
+                2. <span class="chalk-text">/etc (Kitchen):</span> Jahan saari recipes (Configs) rakhi hain.<br>
+                3. <span class="chalk-text">/bin (Toolbox):</span> Jahan repair ke tools (Commands) hain.<br>
+                4. <span class="chalk-text">/var (Dustbin/Meter):</span> Jahan kachra (Logs) aur readings (Variable data) hain.<br>
+                5. <span class="chalk-text">/home (Bedrooms):</span> Aapka personal space.
+            </p>
+        </div>
+    </section>
+
+    <!-- ③ DID YOU KNOW? -->
+    <section>
+        <div class="topic-title">❓ DID YOU KNOW?</div>
+        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">/dev</div><div class="handwritten" style="color:var(--chalk-blue);">Your Hard Drive is a File</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-pink);">/tmp</div><div class="handwritten" style="color:var(--chalk-blue);">Clears on Reboot</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-green);">/proc</div><div class="handwritten" style="color:var(--chalk-blue);">Fake Files (Live RAM)</div></div>
+        </div>
+    </section>
+
+    <!-- ④ Key Directories — What Lives Where -->
+    <section>
+        <div class="topic-title">📂 The SRE's Map — Directory Breakdown</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
+            <ul>
+                <li><span class="dir-icon">⚙️</span> <span class="chalk-text">/etc</span> → Editable Text Configurations (Super important!).</li>
+                <li><span class="dir-icon">📜</span> <span class="chalk-text">/bin</span> → Binaries needed for single-user mode.</li>
+                <li><span class="dir-icon">🔍</span> <span class="chalk-text">/var/log</span> → Log files (History book of the OS).</li>
+                <li><span class="dir-icon">📦</span> <span class="chalk-text">/opt</span> → Optional software (Third party tools).</li>
+                <li><span class="dir-icon">💻</span> <span class="chalk-text">/dev/null</span> → The "Black Hole" (Send unwanted output here).</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑤ Key Concepts: The Inverted Tree -->
+    <section>
+        <div class="topic-title">📌 Key Concepts: The Root Tree</div>
+        <div class="diagram-container">
+            <div class="handwritten" style="font-size: 1.5rem; text-align: center;">
+                <span style="color: var(--chalk-yellow);">/ (ROOT)</span><br>
+                │<br>
+                ├── <span style="color: var(--chalk-blue);">bin</span> (Commands)<br>
+                ├── <span style="color: var(--chalk-orange);">etc</span> (Configs)<br>
+                ├── <span style="color: var(--chalk-green);">home</span> (Users)<br>
+                ├── <span style="color: var(--chalk-pink);">var</span> (Logs)<br>
+                └── <span style="color: var(--chalk-white);">dev</span> (Devices)
+            </div>
+            <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
+                Everything starts from <span style="color: var(--chalk-yellow);">/</span>. There is no `C:` or `D:` drive in Linux!
+            </p>
+        </div>
+    </section>
+
+    <!-- ⑥ Compare -->
+    <section>
+        <div class="topic-title">🔄 Compare: / vs /root</div>
+        <div class="vs-container">
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
+                <h3 class="handwritten">/ (Slash)</h3>
+                <p class="hinglish">"Pura killa (The whole fort)—base of the system."</p>
+            </div>
+            <div class="vs-circle">VS</div>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+                <h3 class="handwritten">/root</h3>
+                <p class="hinglish">"King's Bedroom—personal home of the root user."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ REAL-WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: Fixing Nginx</div>
+        <div class="doodle-container">
+            <div class="robot-doodle">
+                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+                <div class="robot-body"></div><div class="robot-bag"></div>
+            </div>
+            <span class="char-name">Jagu</span>
+            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
+                "Golu, Nginx ka port badalna hai! Kaunse folder mein jaun?"
+            </div>
+        </div>
+        <div class="content-box" style="border-color: var(--chalk-blue);">
+            <p><strong>Step 1:</strong> Always look for configs in <code>/etc/</code>.</p>
+            <p><strong>Path:</strong> <code>/etc/nginx/nginx.conf</code></p>
+            <p class="hinglish" style="margin-top: 10px;">"Recipe kitchen (`/etc`) mein hi milegi!"</p>
+        </div>
+    </section>
+
+    <!-- ⑧ COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+            <ul>
+                <li><span style="color:var(--chalk-red);">Myth:</span> Hidden files (starting with `.`) are encrypted/secure.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Wo sirf `ls` command se hide hoti hain. `ls -a` se koi bhi dekh sakta hai.</li>
+                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> `/dev/null` file space khaati hai.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> It's a special file. Jo bhi isme dalo, wo gayab ho jata hai. No space used!</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑨ TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">▶ TRY IT YOURSELF: Nav-Drill</div>
+        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+            <p class="handwritten" style="font-size: 1.2rem;">1. <code>cd / && ls -F</code> <span class="hinglish">(Root par jaakar check karo)</span></p>
+            <p class="handwritten" style="font-size: 1.2rem;">2. <code>ls -lh /var/log</code> <span class="hinglish">(Logs ka size dekho)</span></p>
+            <p class="handwritten" style="font-size: 1.2rem;">3. <code>tree -L 1 /</code> <span class="hinglish">(Level 1 tree structure dekho)</span></p>
+        </div>
+    </section>
+
+    <!-- ⑩ QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">✓ QUICK SUMMARY</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
+            <ul>
+                <li><strong>/ :</strong> The starting point.</li>
+                <li><strong>/etc :</strong> Configuration heart.</li>
+                <li><strong>/var :</strong> Variable data and logs.</li>
+                <li><strong>/bin :</strong> Essential tools.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑪ MINI QUIZ -->
+    <section>
+        <div class="topic-title">❓ MINI QUIZ</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. System configuration files standardly kahan milti hain?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) /bin</span><span class="quiz-opt">b) /etc</span><span class="quiz-opt">c) /var</span><span class="quiz-opt">d) /home</span></div></div>
+            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Kaunsa directory reboot hone par khali (clear) ho jati hai?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) /opt</span><span class="quiz-opt">b) /dev</span><span class="quiz-opt">c) /tmp</span><span class="quiz-opt">d) /usr</span></div></div>
+            <div class="answer-key">
+                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        #LearnDevOpsIn90Days • Day 07 • Pro Standard Refactor • By Aryashree Pritikrishna
+    </div>
+</div>
+
+</body>
+</html>
