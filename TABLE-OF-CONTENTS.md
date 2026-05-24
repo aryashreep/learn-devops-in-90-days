@@ -2,7 +2,7 @@
 
 **Your complete 90-day DevOps roadmap — structured for professional mastery.**
 
-[🏠 Back to README](./README.md) &nbsp;|&nbsp; 🗺️ [Full Curriculum](./curriculum/global-resources/COURSE_CURRICULUM.md) &nbsp;|&nbsp; [🤝 Contribute](./CONTRIBUTING.md)
+[🏠 Back to README](./README.md) &nbsp;|&nbsp; 🗺️ [Full Curriculum Hub](./curriculum/global-resources/COURSE_CURRICULUM.md) &nbsp;|&nbsp; 🤝 [How to Contribute](./CONTRIBUTING.md)
 
 ---
 
@@ -13,7 +13,7 @@
 
 ---
 
-## 📦 Module 1 - Introduction To DevOps, Cloud & SRE
+## 📦 Module 1 - Introduction To DevOps, Cloud & SRE (Day 01)
 > *Mindset transition from Traditional IT to modern DevOps Culture.*
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
@@ -23,91 +23,108 @@
 
 ---
 
-## 🐧 Module 2 - Linux Foundations
+## 🐧 Module 2 - Linux Foundations (Days 02-13)
 > *Master the terminal: The ground every DevOps engineer stands on.*
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 02 | Linux Foundations (Kernel/Shell) | [🎓 Day 02 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/Day02_Linux_Foundations.html) | [🧪 Lab 02](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/lab-session/task.md) |
-| 🗓️ Day 02 | Command Cheat Sheet | [🎓 Cheat Sheet Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/Day02_Linux_CheatSheet.html) | Included in Day 02 |
-| 🗓️ Day 03 | Users, Groups & Permissions | [🎓 Day 03 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/Day03_Linux_Permissions.html) | [🧪 Lab 03](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/lab-session/task.md) |
-| 🗓️ Day 04 | Advanced Navigation & Searching | [📁 Day 04 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-04/README.md) | [🧪 Lab 04](./curriculum/Module%202%20-%20Linux%20Foundations/day-04/lab-session/task.md) |
-| 🗓️ Day 05 | Linux Troubleshooting Runbook | [📁 Day 05 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-05/README.md) | [🧪 Lab 05](./curriculum/Module%202%20-%20Linux%20Foundations/day-05/lab-session/task.md) |
+| 🗓️ Day 02 | Linux Architecture & systemd | [🎓 Day 02 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/Day02_Linux_Foundations.html) | [🧪 Lab 02](./curriculum/Module%202%20-%20Linux%20Foundations/day-02/lab-session/task.md) |
+| 🗓️ Day 03 | Linux Command Toolkit | [🎓 Day 03 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/Day03_Linux_Commands_Practice.html) | [🧪 Lab 03](./curriculum/Module%202%20-%20Linux%20Foundations/day-03/lab-session/task.md) |
+| 🗓️ Day 04 | Advanced Navigation & Searching | [🎓 Day 04 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-04/Day04_Navigation_Searching.html) | [🧪 Lab 04](./curriculum/Module%202%20-%20Linux%20Foundations/day-04/lab-session/task.md) |
+| 🗓️ Day 05 | Linux Troubleshooting Runbook | [🎓 Day 05 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-05/Day05_Troubleshooting_Runbook.html) | [🧪 Lab 05](./curriculum/Module%202%20-%20Linux%20Foundations/day-05/lab-session/task.md) |
 | 🗓️ Day 06 | File I/O Mastery (Read/Write) | [📁 Day 06 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-06/README.md) | [🧪 Lab 06](./curriculum/Module%202%20-%20Linux%20Foundations/day-06/lab-session/task.md) |
+| 🗓️ Day 07 | File System Hierarchy | [📁 Day 07 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-07/README.md) | [🧪 Lab 07](./curriculum/Module%202%20-%20Linux%20Foundations/day-07/lab-session/task.md) |
+| 🗓️ Day 08 | Cloud Setup & Nginx | [🎓 Day 08 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-08/Day08_Cloud_Setup_Nginx.html) | [🧪 Lab 08](./curriculum/Module%202%20-%20Linux%20Foundations/day-08/lab-session/task.md) |
+| 🗓️ Day 09 | User & Group Management | [🎓 Day 09 Pro](./curriculum/Module%202%20-%20Linux%20Foundations/day-09/Day09_User_Group_Management.html) | [🧪 Lab 09](./curriculum/Module%202%20-%20Linux%20Foundations/day-09/lab-session/task.md) |
+| 🗓️ Day 10 | File Permissions & Operations | [📁 Day 10 Intro](./curriculum/Module%202%20-%20Linux%20Foundations/day-10/README.md) | [🧪 Lab 10](./curriculum/Module%202%20-%20Linux%20Foundations/day-10/lab-session/task.md) |
+| 🗓️ Day 11 | Ownership (chown/chgrp) | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🗓️ Day 12 | **Revision & Recovery Lab** | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🗓️ Day 13 | Volume Management (LVM) | 🚧 Coming Soon | 🚧 Coming Soon |
 | 🏆 **Exam** | **Module 2 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%202%20-%20Linux%20Foundations/mastery-exam/README.md) | -- |
 
 ---
 
-## 🌐 Module 3 - Networking & System Design
+## 🌐 Module 3 - Networking & System Design (Days 14-15)
 > *DNS, Ports, SSH, and the architecture of the Internet.*
 
-| Day | Topic | Intro & Task | Status |
-|---|---|---|---|
-| 🗓️ Day 07 | Networking Basics for DevOps | [📁 Day 07](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-07/README.md) | 🚀 In Progress |
-| 🗓️ Day 08 | Ports, Protocols & Firewalls | [📁 Day 08](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-08/README.md) | 🚀 In Progress |
-| 🗓️ Day 09 | DNS & Load Balancing Concepts | [📁 Day 09](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-09/README.md) | 🚀 In Progress |
-| 🗓️ Day 10 | SSH & Secure Shell Mastery | [📁 Day 10](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-10/README.md) | 🚀 In Progress |
-| 🏆 **Exam** | **Module 3 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) | |
+| Day | Topic | Status |
+|---|---|---|
+| 🗓️ Day 14 | Networking Fundamentals | [📁 Lab 14](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-14/lab-session/task.md) |
+| 🗓️ Day 15 | DNS, IP, Subnets & Ports | [📁 Lab 15](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/day-15/lab-session/task.md) |
+| 🏆 **Exam** | **Module 3 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%203%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) |
 
 ---
 
-## 🐚 Module 4 - Shell Scripting For DevOps
-> *Automate the boring stuff with Bash.*
+## 🐚 Module 4 - Shell Scripting (Days 16-21)
+| Day 19 | Shell Scripting Project | 🏆 Log Rotation & Backup |
+|---|---|---|
 
 ---
 
-## 🐙 Module 5 - Introduction to Git [GitHub & GitLab]
-> *Version control as the single source of truth.*
+## 🐙 Module 5 - Git & GitHub (Days 22-28)
+| Day 27 | Portfolio Project | 🏆 GitHub Profile Makeover |
+|---|---|---|
 
 ---
 
-## 🎫 Module 6 - Jira For DevOps
-> *Agile, Scrum, and Ticket Lifecycles in DevOps pipelines.*
+## 🐳 Module 6 - Docker (Days 29-37)
+| Day 36 | Docker Project | 🏆 Containerize Full App |
+|---|---|---|
 
 ---
 
-## 🐳 Module 7 - Docker
-> *Containerization from scratch to production.*
+## 🤖 Module 7 - CI/CD (GitHub Actions) (Days 38-49)
+| Day 48 | Pipeline Project | 🏆 End-to-End CI/CD |
+|---|---|---|
 
 ---
 
-## 🤖 Module 8 - CI-CD Pipelines (GitHub Actions)
-> *Cloud-native automation for the modern era.*
+## ☸️ Module 8 - Kubernetes (Days 50-60)
+| Day 60 | **K8s Capstone** | 🏆 WordPress + MySQL |
+|---|---|---|
 
 ---
 
-## 🏗️ Module 9 - CI-CD Pipelines (Jenkins)
-> *Enterprise-grade pipeline automation.*
+## ☁️ Module 9 - Terraform (Days 61-67)
+| Day 67 | **TerraWeek Capstone** | 🏆 Multi-Environment IaC |
+|---|---|---|
 
 ---
 
-## ☸️ Module 10 - Kubernetes (CKA)
-> *The industry standard for container orchestration.*
+## ⚙️ Module 10 - Ansible (Days 68-72)
+| Day 72 | Automation Project | 🏆 Docker/Nginx Automation |
+|---|---|---|
 
 ---
 
-## ☁️ Module 11 - Terraform
-> *Infrastructure as Code: Provisioning at scale.*
+## 📊 Module 11 - Observability (Days 73-77)
+| Day 77 | Monitoring Project | 🏆 Full Stack Observability |
+|---|---|---|
 
 ---
 
-## ⚙️ Module 12 - Ansible
-> *Configuration Management & Automation.*
+## 🏷️ Module 12 - Helm (Days 78-80)
+| Day 80 | Helm Project | 🏆 Multi-Env CI/CD |
+|---|---|---|
 
 ---
 
-## 📊 Module 13 - SRE & Observability
-> *Metrics, Logs, and Traces: Managing what you measure.*
+## 🏗️ Module 13 - Amazon EKS (Days 81-83)
+| Day 83 | EKS Project | 🏆 Production AI-BankApp |
+|---|---|---|
 
 ---
 
-## 🚀 Module 14 - GitOps on Kubernetes
-> *ArgoCD, Helm, and automated environment syncing.*
+## 🚀 Module 14 - GitOps & ArgoCD (Days 84-86)
+| Day 86 | **GitOps Capstone** | 🏆 AI-BankApp Sync |
+|---|---|---|
 
 ---
 
-## 🏆 Module 15 - Capstone Projects
-> *The portfolio builders. Real-world end-to-end deployments.*
+## 🤖 Module 15 - Agentic AI (Days 87-90)
+| Day 89 | **GRAND CAPSTONE** | 🏆 Self-Healing KubeHealer |
+| Day 90 | **Final Portfolio** | 🏆 Complete Journey Record |
+|---|---|---|
 
 ---
 

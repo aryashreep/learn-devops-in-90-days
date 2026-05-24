@@ -11,7 +11,7 @@
 
 Maintained by **[Aryashree Pritikrishna](https://github.com/aryashreep)**
 
-📚 [Table of Contents](./TABLE-OF-CONTENTS.md) &nbsp; 🗺️ [Course Curriculum](./curriculum/global-resources/COURSE_CURRICULUM.md) &nbsp; 🤝 [How to Contribute](./CONTRIBUTING.md) &nbsp; ⭐ [Star this Repo](https://github.com/aryashreep/learn-devops-in-90-days)
+📚 [Table of Contents](./TABLE-OF-CONTENTS.md) &nbsp; 🗺️ [Full Curriculum Hub](./curriculum/global-resources/COURSE_CURRICULUM.md) &nbsp; 🤝 [How to Contribute](./CONTRIBUTING.md) &nbsp; ⭐ [Star this Repo](https://github.com/aryashreep/learn-devops-in-90-days)
 
 ---
 
@@ -19,41 +19,40 @@ Maintained by **[Aryashree Pritikrishna](https://github.com/aryashreep)**
 
 **Learn DevOps in 90 Days** is a free, structured learning academy where:
 
-- 📅 **15 Modules** cover the entire DevOps spectrum.
+- 📅 **15 Modules** cover the entire DevOps spectrum (Linux to Agentic AI).
 - 🎓 **Pro Blackboard Modules** provide high-fidelity theory (Golu & Jagu style).
 - 🧪 **Daily Lab Sessions** ensure hands-on mastery.
 - 🏆 **Mastery Exams** validate your progress after every module.
 
-No endless videos. No passive learning.
-**This is a discipline + execution challenge.**
+No endless videos. No passive learning. **This is a discipline + execution challenge.**
 
 ---
 
 ## 🗺️ 15-Module Academy Roadmap
 
 ```
-Foundations (M1-M3)  →  Tools & Git (M4-M6)  →  Containers (M7)
+Foundations (M1-M3)  →  Scripting & Git (M4-M5)  →  Containers (M6)
                                  ↓
-   CI/CD (M8-M9)  →  Orchestration (M10)  →  IaC (M11-M12)
+   CI/CD (M7)  →  Orchestration (M8)  →  IaC (M9-M10)
                                  ↓
-      Observability (M13)  →  GitOps (M14)  →  🚀 Capstone (M15)
+      Observability (M11)  →  GitOps (M14)  →  🤖 Agentic AI (M15)
 ```
 
-1.  **Module 1:** Introduction To DevOps, Cloud & SRE (Mindset)
-2.  **Module 2:** Linux Foundations (Terminal mastery)
-3.  **Module 3:** Networking & System Design (Infrastructure)
-4.  **Module 4:** Shell Scripting For DevOps (Automation)
-5.  **Module 5:** Introduction to Git [GitHub & GitLab] (Version Control)
-6.  **Module 6:** Jira For DevOps (Agile & Project Management)
-7.  **Module 7:** Docker (Containerization)
-8.  **Module 8:** CI/CD Pipelines (GitHub Actions)
-9.  **Module 9:** CI/CD Pipelines (Jenkins)
-10. **Module 10:** Kubernetes [CKA] (Orchestration)
-11. **Module 11:** Terraform (IaC Provisioning)
-12. **Module 12:** Ansible (IaC Configuration)
-13. **Module 13:** SRE / Observability (Monitoring)
-14. **Module 14:** GitOps on Kubernetes (ArgoCD & Helm)
-15. **Module 15:** Capstone Projects (Real-world Portfolio)
+1.  **Module 1:** Introduction To DevOps, Cloud & SRE (Day 01)
+2.  **Module 2:** Linux Foundations (Days 02–13)
+3.  **Module 3:** Networking & System Design (Days 14–15)
+4.  **Module 4:** Shell Scripting For DevOps (Days 16–21)
+5.  **Module 5:** Introduction to Git [GitHub & GitLab] (Days 22–28)
+6.  **Module 6:** Docker & Containerization (Days 29–37)
+7.  **Module 7:** CI/CD with GitHub Actions (Days 38–49)
+8.  **Module 8:** Kubernetes [CKA] (Days 50–60)
+9.  **Module 9:** Terraform [IaC] (Days 61–67)
+10. **Module 10:** Ansible [Config Mgmt] (Days 68–72)
+11. **Module 11:** SRE & Observability (Days 73–77)
+12. **Module 12:** Helm [K8s Package Mgmt] (Days 78–80)
+13. **Module 13:** Amazon EKS [Cloud Ops] (Days 81–83)
+14. **Module 14:** GitOps on Kubernetes (Days 84–86)
+15. **Module 15:** Agentic AI for DevOps (Days 87–90)
 
 Full day-by-day breakdown → [📚 TABLE-OF-CONTENTS.md](./TABLE-OF-CONTENTS.md)
 
@@ -72,38 +71,14 @@ Trigger the generation by providing a natural command along with your source mat
 
 ---
 
-## ⚡ Quick Start — 5 Steps
-
-```bash
-# 1️⃣  Fork this repository
-# 2️⃣  Clone your fork
-git clone https://github.com/<your-username>/learn-devops-in-90-days.git
-cd learn-devops-in-90-days
-
-# 3️⃣  Go to today's folder
-# Example: curriculum/Module 1 - .../day-01
-cd "curriculum/Module 1 - Introduction To DevOps, Cloud & SRE/day-01"
-
-# 4️⃣  Read the Pro Module, enter the lab-session/ folder, and complete the task
-
-# 5️⃣  Commit your Proof of Work
-After completing the lab, save your work (scripts, logs, screenshots) in the **`lab-session/solution/`** folder of that day.
-```bash
-git add .
-git commit -m "day-XX: lab solution completed"
-git push origin main
-```
-
----
-
 ## 📊 Phase Tracker
 
 | Phase | Modules | Topics | Status |
 |---|---|---|---|
 | 🟢 Phase 1 | M1–M3 | Intro, Linux, Networking | 🚀 In Progress |
-| 🟡 Phase 2 | M4–M6 | Scripting, Git, Jira | 📅 Planned |
-| 🔵 Phase 3 | M7–M10 | Docker, CI/CD, K8s | 📅 Planned |
-| 🟣 Phase 4 | M11–M15 | IaC, SRE, GitOps, Projects | 📅 Planned |
+| 🟡 Phase 2 | M4–M6 | Scripting, Git, Docker | 📅 Planned |
+| 🔵 Phase 3 | M7–M10 | CI/CD, K8s, Terraform, Ansible | 📅 Planned |
+| 🟣 Phase 4 | M11–M15 | SRE, Helm, EKS, GitOps, AI | 📅 Planned |
 
 ---
 
@@ -111,7 +86,7 @@ git push origin main
 
 Tag your progress on LinkedIn: `#LearnDevOpsIn90Days`
 
-Maintainer: **[Aryashree Pritikrishna](https://www.linkedin.com/in/aryashreepritikrishna/)**
+Maintainer: **[@AryashreePritikrishna](https://www.linkedin.com/in/aryashreepritikrishna/)**
 
 ---
 
