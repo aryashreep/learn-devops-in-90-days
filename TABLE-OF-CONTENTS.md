@@ -76,8 +76,8 @@
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
 | 🗓️ Day 22 | Introduction to Git | [🎓 Day 22 Pro](./curriculum/Module%205%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/Day22_Git_Introduction.html) | [🧪 Lab 22](./curriculum/Module%205%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/lab-session/task.md) |
-| 🗓️ Day 23 | Branching & GitHub | 🚧 Coming Soon | 🚧 Coming Soon |
-| 🗓️ Day 27 | Portfolio Project | 🏆 GitHub Profile Makeover | -- |
+| 🗓️ Day 23 | Branching & GitHub | [🎓 Day 23 Pro](./curriculum/Module%205%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-23/Day23_Git_Branching.html) | [🧪 Lab 23](./curriculum/Module%205%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-23/lab-session/task.md) |
+| 🗓️ Day 24 | Advanced Git | 🚧 Coming Soon | 🚧 Coming Soon |
 
 
 ---
