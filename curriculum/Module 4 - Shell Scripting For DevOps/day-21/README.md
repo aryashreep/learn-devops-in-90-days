@@ -11,7 +11,11 @@ Create a high-quality, personalized Shell Scripting Cheat Sheet that includes yo
 - Building a reusable script template for future modules.
 
 ## 🧪 Hands-on Lab
-👉 [Lab Session: My Automation Bible](./lab-session/task.md)
+👉 [Lab Session: My Automation Handbook](./lab-session/task.md)
+
+## 📚 Resources
+- 📖 [Shell Scripting Handbook](../SHELL_SCRIPTING_HANDBOOK.html)
+- 🏆 [Module 4 Mastery Exam](../mastery-exam/README.md)
 
 ---
 *#LearnDevOpsIn90Days • @AryashreePritikrishna • Phase 2: The Automation Surge*

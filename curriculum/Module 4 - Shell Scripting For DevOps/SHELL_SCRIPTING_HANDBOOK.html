@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shell Scripting Handbook - Zero to Production-Safe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                background-color: var(--bg-blackboard) !important;
+                color: var(--chalk-white) !important;
+            }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 100%; font-size: 1.3rem; line-height: 1.4; margin-bottom: 30px; }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+
+        .bash-box { background: #000; border: 2px solid var(--chalk-white); padding: 20px; border-radius: 10px; font-family: 'Fira Code', monospace; color: var(--chalk-green); line-height: 1.5; white-space: pre-wrap; margin: 20px 0; }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        
+        strong { color: var(--chalk-orange); }
+    </style>
+</head>
+<body>
+
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            #LearnDevOpsIn90Days<br>
+            @AryashreePritikrishna
+        </div>
+    </header>
+
+    <h1>The Shell Scripting Handbook</h1>
+    <div class="subtitle">Zero to Production-Safe Automation</div>
+
+    <section id="intro">
+        <div class="speech-bubble">
+            "Think of the <span class="chalk-text">Shell</span> as the steering wheel of your OS. Instead of clicking icons, you type commands. <span class="chalk-text">Bash</span> is just the most popular brand of shell!"
+        </div>
+        
+        <h2 class="topic-title">1. Why This Matters in DevOps</h2>
+        <div class="content-box">
+            Bash is the <strong>"glue"</strong> of DevOps. It connects different tools together. You use it to navigate servers, install software, run tests, and manage cloud infrastructure.
+        </div>
+        
+        <ul>
+            <li><strong>Shell:</strong> A command-line interpreter that processes commands.</li>
+            <li><strong>Bash:</strong> The default shell on most Linux distributions.</li>
+            <li><strong>Terminal:</strong> The window where you type shell commands.</li>
+        </ul>
+
+        <div class="bash-box"># Basic command
+echo "Hello, DevOps!"
+
+# Check which shell you are using
+echo $SHELL</div>
+    </section>
+
+    <section id="scripts">
+        <h2 class="topic-title">2. How a Shell Script Works</h2>
+        <div class="content-box">
+            A shell script is simply a text file containing a list of commands. Running the file runs all commands automatically. <span class="hinglish">Manual mehnat khatam, automation shuru!</span>
+        </div>
+        
+        <ul>
+            <li><strong>Interpreter:</strong> Bash reads the file top-to-bottom.</li>
+            <li><strong>Execution:</strong> Scripts are interpreted, not compiled.</li>
+        </ul>
+
+        <div class="bash-box"># Run a script
+bash myscript.sh
+
+# Or if executable
+./myscript.sh</div>
+    </section>
+
+    <section id="shebang">
+        <h2 class="topic-title">3. Script Structure & Shebang</h2>
+        <div class="content-box">
+            The <strong>"Shebang"</strong> (`#!`) is the first line. It tells the computer exactly which interpreter to use. <span class="hinglish">Portability ke liye zaroori hai!</span>
+        </div>
+
+        <div class="bash-box">#!/bin/bash
+# This is a comment.
+echo "The script is starting..."</div>
+
+        <div class="content-box">
+            To make it runnable: <code class="chalk-blue">chmod +x myscript.sh</code>
+        </div>
+    </section>
+
+    <section id="variables">
+        <h2 class="topic-title">4. Variables & Dynamic Data</h2>
+        <div class="content-box">
+            Variables are labeled boxes. <strong>Assignment:</strong> `VAR=value` (No spaces!). <strong>Access:</strong> `$VAR`.
+        </div>
+
+        <div class="bash-box">APP_NAME="MyApp"
+PORT=8080
+echo "Starting $APP_NAME on port $PORT"
+
+# Command Substitution
+CURRENT_DATE=$(date)
+echo "Server started at: $CURRENT_DATE"</div>
+    </section>
+
+    <section id="logic">
+        <h2 class="topic-title">5. Logic: Conditionals & Loops</h2>
+        <div class="content-box">
+            <strong>Conditionals:</strong> Decide based on success/failure. <strong>Loops:</strong> Repeat tasks (Batch processing).
+        </div>
+
+        <div class="bash-box"># IF/ELSE
+if [[ $COUNT -gt 5 ]]; then
+    echo "Big number"
+fi
+
+# FOR LOOP
+for NAME in ServerA ServerB; do
+    echo "Pinging $NAME..."
+done</div>
+    </section>
+
+    <section id="production">
+        <h2 class="topic-title">6. Production-Safe Scripts</h2>
+        <div class="speech-bubble">
+            "Writing a script is easy. Writing a <span class="chalk-red">production-safe</span> script requires defensive coding!"
+        </div>
+        
+        <ul>
+            <li><strong>Bash Strict Mode:</strong> `set -euo pipefail`</li>
+            <li><strong>Quoting:</strong> Always use `"$VAR"` to handle spaces.</li>
+            <li><strong>Exit Codes:</strong> Use `exit 1` to indicate failure.</li>
+        </ul>
+
+        <div class="bash-box">#!/bin/bash
+set -euo pipefail # The Safety Net
+
+# Check if directory exists before rm
+if [[ -d "$DIR" ]]; then
+    rm -rf "$DIR"
+fi</div>
+    </section>
+
+    <footer class="footer">
+        <p>#LearnDevOpsIn90Days • Phase 2: The Automation Surge</p>
+        <p>Created by Aryashree Pritikrishna</p>
+    </footer>
+</div>
+
+</body>
+</html>
