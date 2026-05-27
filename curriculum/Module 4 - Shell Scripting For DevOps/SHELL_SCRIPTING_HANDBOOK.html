@@ -57,6 +57,7 @@
         .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
         
         strong { color: var(--chalk-orange); }
+        code { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
     </style>
 </head>
 <body>
@@ -74,14 +75,15 @@
     </header>
 
     <h1>The Shell Scripting Handbook</h1>
-    <div class="subtitle">Zero to Production-Safe Automation</div>
+    <div class="subtitle">Complete Master Guide: Zero to Production-Safe</div>
 
+    <!-- Section 1: Introduction -->
     <section id="intro">
         <div class="speech-bubble">
             "Think of the <span class="chalk-text">Shell</span> as the steering wheel of your OS. Instead of clicking icons, you type commands. <span class="chalk-text">Bash</span> is just the most popular brand of shell!"
         </div>
         
-        <h2 class="topic-title">1. Why This Matters in DevOps</h2>
+        <h2 class="topic-title">1. What is Shell & Bash?</h2>
         <div class="content-box">
             Bash is the <strong>"glue"</strong> of DevOps. It connects different tools together. You use it to navigate servers, install software, run tests, and manage cloud infrastructure.
         </div>
@@ -99,6 +101,7 @@ echo "Hello, DevOps!"
 echo $SHELL</div>
     </section>
 
+    <!-- Section 2: How it Works -->
     <section id="scripts">
         <h2 class="topic-title">2. How a Shell Script Works</h2>
         <div class="content-box">
@@ -106,7 +109,7 @@ echo $SHELL</div>
         </div>
         
         <ul>
-            <li><strong>Interpreter:</strong> Bash reads the file top-to-bottom.</li>
+            <li><strong>Interpreter:</strong> Bash reads the file top-to-bottom and executes lines sequentially.</li>
             <li><strong>Execution:</strong> Scripts are interpreted, not compiled.</li>
         </ul>
 
@@ -117,6 +120,7 @@ bash myscript.sh
 ./myscript.sh</div>
     </section>
 
+    <!-- Section 3: Shebang -->
     <section id="shebang">
         <h2 class="topic-title">3. Script Structure & Shebang</h2>
         <div class="content-box">
@@ -124,7 +128,7 @@ bash myscript.sh
         </div>
 
         <div class="bash-box">#!/bin/bash
-# This is a comment.
+# This is a comment. The computer ignores this line.
 echo "The script is starting..."</div>
 
         <div class="content-box">
@@ -132,6 +136,7 @@ echo "The script is starting..."</div>
         </div>
     </section>
 
+    <!-- Section 4: Variables -->
     <section id="variables">
         <h2 class="topic-title">4. Variables & Dynamic Data</h2>
         <div class="content-box">
@@ -147,42 +152,189 @@ CURRENT_DATE=$(date)
 echo "Server started at: $CURRENT_DATE"</div>
     </section>
 
-    <section id="logic">
-        <h2 class="topic-title">5. Logic: Conditionals & Loops</h2>
+    <!-- Section 5: Input & Arguments -->
+    <section id="arguments">
+        <h2 class="topic-title">5. Input & Arguments</h2>
         <div class="content-box">
-            <strong>Conditionals:</strong> Decide based on success/failure. <strong>Loops:</strong> Repeat tasks (Batch processing).
+            Arguments allow you to pass information into a script right when you run it. <span class="hinglish">Chef ko ingredients dene jaisa hai!</span>
         </div>
 
-        <div class="bash-box"># IF/ELSE
-if [[ $COUNT -gt 5 ]]; then
-    echo "Big number"
-fi
-
-# FOR LOOP
-for NAME in ServerA ServerB; do
-    echo "Pinging $NAME..."
-done</div>
-    </section>
-
-    <section id="production">
-        <h2 class="topic-title">6. Production-Safe Scripts</h2>
-        <div class="speech-bubble">
-            "Writing a script is easy. Writing a <span class="chalk-red">production-safe</span> script requires defensive coding!"
-        </div>
-        
         <ul>
-            <li><strong>Bash Strict Mode:</strong> `set -euo pipefail`</li>
-            <li><strong>Quoting:</strong> Always use `"$VAR"` to handle spaces.</li>
-            <li><strong>Exit Codes:</strong> Use `exit 1` to indicate failure.</li>
+            <li><code>$1, $2</code>: Positional Parameters.</li>
+            <li><code>$#</code>: Total number of arguments.</li>
+            <li><code>read</code>: Prompts the user for interactive input.</li>
         </ul>
 
         <div class="bash-box">#!/bin/bash
+echo "Deploying file: $1"
+
+read -p "Are you sure? (y/n) " CONFIRM
+echo "User entered: $CONFIRM"</div>
+    </section>
+
+    <!-- Section 6: Conditionals -->
+    <section id="logic">
+        <h2 class="topic-title">6. Conditionals (if, else)</h2>
+        <div class="content-box">
+            Safety checks. "If the directory exists, clean it; otherwise, create it."
+        </div>
+
+        <div class="bash-box">COUNT=10
+# Numeric comparison
+if [[ $COUNT -gt 5 ]]; then
+    echo "Count is greater than 5"
+else
+    echo "Count is small"
+fi
+
+# String comparison
+if [[ "$STATUS" == "success" ]]; then
+    echo "Great job!"
+fi</div>
+    </section>
+
+    <!-- Section 7: Loops -->
+    <section id="loops">
+        <h2 class="topic-title">7. Loops (for, while)</h2>
+        <div class="content-box">
+            Loops let you repeat a task. "For every file in this folder, upload it."
+        </div>
+
+        <div class="bash-box"># FOR LOOP
+for NAME in ServerA ServerB ServerC; do
+    echo "Pinging $NAME..."
+done
+
+# WHILE LOOP
+COUNT=1
+while [[ $COUNT -le 3 ]]; do
+    echo "Attempt $COUNT..."
+    ((COUNT++))
+done</div>
+    </section>
+
+    <!-- Section 8: Functions -->
+    <section id="functions">
+        <h2 class="topic-title">8. Functions & Modularity</h2>
+        <div class="content-box">
+            Functions are reusable mini-scripts. <span class="hinglish">Ek baar likho, baar-baar use karo!</span>
+        </div>
+
+        <div class="bash-box">check_status() {
+    local SERVICE=$1
+    echo "Checking status of $SERVICE..."
+}
+
+check_status "nginx"
+check_status "mysql"</div>
+    </section>
+
+    <!-- Section 9: File Checks -->
+    <section id="filechecks">
+        <h2 class="topic-title">9. File & Directory Checks</h2>
+        <div class="content-box">
+            Before reading or entering, ask the computer: "Does this exist?"
+        </div>
+
+        <ul>
+            <li><code>-f</code>: Is it a file?</li>
+            <li><code>-d</code>: Is it a directory?</li>
+            <li><code>-x</code>: Is it executable?</li>
+        </ul>
+
+        <div class="bash-box">if [[ -d "/var/www/html" ]]; then
+    echo "Folder exists!"
+else
+    mkdir -p "/var/www/html"
+fi</div>
+    </section>
+
+    <!-- Section 10: Exit Codes -->
+    <section id="exitcodes">
+        <h2 class="topic-title">10. Exit Codes ($?)</h2>
+        <div class="content-box">
+            <code>0</code> = Success. <code>1-255</code> = Error. Pipelines rely on these!
+        </div>
+
+        <div class="bash-box">ls /folder
+STATUS=$?
+
+if [[ $STATUS -ne 0 ]]; then
+    echo "Command failed!"
+    exit 1
+fi</div>
+    </section>
+
+    <!-- Section 11: Pipes & Redirects -->
+    <section id="pipes">
+        <h2 class="topic-title">11. Pipes & Redirects</h2>
+        <ul>
+            <li><code>|</code>: Pipe output to another command.</li>
+            <li><code>></code>: Overwrite file.</li>
+            <li><code>>></code>: Append to file.</li>
+            <li><code>2>&1</code>: Redirect errors to the same place.</li>
+        </ul>
+
+        <div class="bash-box">cat app.log | grep "error" | wc -l
+ls > file_list.txt
+echo "Update log" >> backup.log</div>
+    </section>
+
+    <!-- Section 12: Environment Variables -->
+    <section id="envvars">
+        <h2 class="topic-title">12. Environment Variables</h2>
+        <div class="content-box">
+            Global variables that affect how scripts run. Never hardcode secrets!
+        </div>
+
+        <ul>
+            <li><code>export</code>: Makes variable global.</li>
+            <li><code>printenv</code>: Lists all environment variables.</li>
+        </ul>
+
+        <div class="bash-box">echo "User: $USER"
+export API_KEY="secret123"</div>
+    </section>
+
+    <!-- Section 13: Debugging -->
+    <section id="debugging">
+        <h2 class="topic-title">13. Debugging Scripts</h2>
+        <ul>
+            <li><code>set -x</code>: Debug mode (prints every command).</li>
+            <li><code>set -e</code>: Exit immediately on error.</li>
+            <li><code>shellcheck</code>: The ultimate linting tool.</li>
+        </ul>
+
+        <div class="bash-box">set -x
+echo "Variable is $VAR"
+set +x</div>
+    </section>
+
+    <!-- Section 14: Cron Jobs -->
+    <section id="cron">
+        <h2 class="topic-title">14. Cron Jobs & Scheduling</h2>
+        <div class="content-box">
+            Time-based job scheduler. <code>* * * * *</code> = Minute, Hour, Day, Month, DayOfWeek.
+        </div>
+
+        <div class="bash-box"># Run every day at 2:30 AM
+30 2 * * * /path/to/backup.sh</div>
+    </section>
+
+    <!-- Section 15: Production-Safe -->
+    <section id="production">
+        <h2 class="topic-title">15. Writing Production-Safe Scripts</h2>
+        <div class="speech-bubble">
+            "Reliability is everything. Production-safe scripts fail safely and predictably."
+        </div>
+        
+        <div class="bash-box">#!/bin/bash
 set -euo pipefail # The Safety Net
 
-# Check if directory exists before rm
-if [[ -d "$DIR" ]]; then
-    rm -rf "$DIR"
-fi</div>
+# Defensive deletion
+rm -rf "${DIRECTORY:?}/tmp"
+
+echo "Script finished successfully"</div>
     </section>
 
     <footer class="footer">
