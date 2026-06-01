@@ -55,7 +55,7 @@
 
 ---
 
-## 🐚 Module 4 - Shell Scripting (Days 16-21)
+## 🐚 Module 3 - Shell Scripting (Days 16-21)
 > *Automate the boring stuff with Bash.*
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
