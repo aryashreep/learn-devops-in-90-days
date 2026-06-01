@@ -1,6 +1,6 @@
-# 🗓️ Day 15 — Networking Concepts: DNS, IP, Subnets & Ports
+# 🗓️ Day 21 — Networking Concepts: DNS, IP, Subnets & Ports
 
-Welcome to **Day 15**! Today we dive deep into how the internet is wired. 
+Welcome to **Day 21**! Today we dive deep into how the internet is wired. 
 
 ## 🎯 Today's Goal
 Understand the "Naming" and "Address" system of the web.

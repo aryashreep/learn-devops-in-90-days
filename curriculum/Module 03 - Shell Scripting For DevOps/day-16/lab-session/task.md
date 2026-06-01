@@ -1,31 +1,37 @@
-# 🧪 Lab Session: Day 16 — My First Automation
+# 🧪 Lab Session: Day 16 — Building with Blocks
 
-**Jagu:** "Beep Boop! Golu, manually commands chalana toh thik hai, par real engineer wo hai jo 'Scripts' likhta hai. Aaj hum tumhara pehla 'Robot' (Script) banayenge!"
+**Jagu:** "Beep Boop! Golu, ek hi code baar-baar likhna band karo. Aaj hum 'Custom Stamps' (Functions) banayenge taaki tum ek bar design karo aur hazaron baar use karo!"
 
 ## 🎯 Task Objectives
-- Create a functional `.sh` script with a proper Shebang.
-- Use variables to personalize the script output.
-- Implement user interaction via the `read` command.
+- Define and execute custom Bash functions.
+- Pass arguments specifically into functions.
+- Understand variable scope (Local vs Global).
 
 ## 🛠️ Hands-on Challenges
 
-1.  **The Greeting Bot:** 
-    - Create a file `greet.sh`. 
-    - Add `#!/bin/bash` at the top.
-    - Ask for the user's name: `read -p "Aapka naam kya hai? " name`.
-    - Print: "Welcome to the DevOps Journey, $name!"
-2.  **Variable Magic:** Create a script `vars.sh` that stores your "Favorite Tool" (e.g., Docker) in a variable and prints "I am excited to learn $TOOL."
-3.  **Math Assistant:** Write a script that takes two numbers from the user and prints their **Sum**.
-4.  **The Power Up:** Use `chmod +x` to make your scripts executable. Run them using `./script.sh`.
-5.  **Environment Check:** Use `echo $USER` and `echo $HOME` inside your script to see system variables.
+1.  **The Logger Function:** 
+    - Create a script `logger.sh`.
+    - Define a function `log_info()` that takes one argument and prints: `[INFO] $(date): $1`.
+    - Call the function twice with different messages.
+2.  **Scope Detective:** 
+    - Create a script `scope.sh`.
+    - Define a global variable `CITY="Mumbai"`.
+    - Inside a function, use `local CITY="Delhi"`.
+    - Print the variable inside and outside the function to see the difference.
+3.  **The Math Library:**
+    - Write a script with functions for `add()`, `sub()`, and `multiply()`.
+    - Each function should take two arguments and print the result.
+4.  **Error Handler:** 
+    - Write a function `check_file()` that takes a filename as an argument.
+    - If the file exists, print "File found!"; if not, return an error code.
 
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, automation ki pehli seedi par kadam rakh diya hai! Scripts save kar."
+**Jagu:** "Golu, modular code hi maintainable code hota hai. Apni library save kar!"
 
-1. Create a file named **`first-scripts-report.md`** in the **`solution/`** folder.
-2. Paste the code for your `greet.sh` and a screenshot of it running.
+1. Create a file named **`function-library.md`** in the **`solution/`** folder.
+2. Paste the code for your `logger.sh` and the 'Scope Detective' script.
 3. Commit and push!
 
 ---

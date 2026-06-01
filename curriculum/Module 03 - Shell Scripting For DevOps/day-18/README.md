@@ -1,21 +1,17 @@
-# 🗓️ Day 18 — Shell Scripting: Functions and Intermediate Concepts
+# 🗓️ Day 18 — Bash Scripting Challenge: Log Analyzer and Report Generator
 
-Welcome to **Day 18**! Today, we take your scripting skills to the "Pro Level" by learning how to write clean, reusable, and modular code.
+Welcome to **Day 18**! Today, you become an automation pro. You will build a tool that extracts intelligence from raw system data.
 
 ## 🎯 Today's Goal
-Master Bash Functions—learn how to group commands into reusable blocks and understand how variables behave inside and outside of those blocks.
+Build a script that reads a log file, identifies the number of errors, and generates a formatted summary report.
 
 ## 🧠 Key Learnings
-- **Bash Functions:** Defining and calling reusable code blocks.
-- **Local vs. Global Variables:** Protecting your data inside functions.
-- **Return Codes:** How functions communicate success or failure.
-- **Modularity:** Why writing small, specific functions is the DevOps way.
-
-## 🧠 Pro Module
-[🎓 Day 18 Pro Module: Bash Functions](./Day18_Bash_Functions.html)
+- **Parsing:** Using `grep` and `awk` inside scripts to extract data.
+- **Reporting:** Formatting script output into a professional summary.
+- **Automation Logic:** Combining searching, counting, and file writing.
 
 ## 🧪 Hands-on Lab
-👉 [Lab Session: Building with Blocks](./lab-session/task.md)
+👉 [Lab Session: The Log Analyzer Project](./lab-session/task.md)
 
 ---
 *#LearnDevOpsIn90Days • @AryashreePritikrishna • Phase 2: The Automation Surge*

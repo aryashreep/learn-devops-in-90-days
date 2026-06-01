@@ -1,31 +1,30 @@
-# 🧪 Lab Session: Day 19 — The Backup Project
+# 🧪 Lab Session: Day 19 — My Automation Bible
 
-**Jagu:** "Beep Boop! Golu, aaj hum ek asali 'DevOps Hero' wala kaam karenge. Servers pe logs itne badh jaate hain ki disk full ho jati hai. Aaj hum ek script banayenge jo unhe saaf (cleanup) karegi aur backup legi!"
+**Jagu:** "Golu, tune pichle 6 dinon mein jo seekha hai, wo DevOps ka 'Fuel' hai. Aaj hum in sabko ek 'Arsenal' mein pack karenge taaki future mein jab hum Docker aur Jenkins seekhein, toh humein syntax ki tension na ho!"
 
-## 🎯 Project Objectives
-- Build a script that finds files older than X days.
-- Compress those files into a `.tar.gz` archive with a date-stamp.
-- Schedule the script to run automatically every night.
+## 🎯 Task Objectives
+- Summarize variables, loops, and conditions.
+- Document function syntax and scope rules.
+- Create a "Master Template" script for your future projects.
 
-## 🛠️ Project Challenges
+## 🛠️ Challenges
 
-1.  **The Architect:** Create a script `backup_manager.sh`.
-    - Define a variable `BACKUP_DIR="/home/$USER/backups"`.
-    - Create the directory if it doesn't exist (`mkdir -p`).
-2.  **The Packer:** Use the `tar -cvzf` command to compress a dummy log folder into a file named `log_backup_$(date +%Y-%m-%d).tar.gz`.
-3.  **The Cleaner:** Research and add a line to your script that deletes backups older than 7 days (Hint: use `find -mtime +7 -delete`).
-4.  **The Clock:** Open your crontab with `crontab -e`.
-    - Add a line to run your script every day at **03:00 AM**.
-    - Verify with `crontab -l`.
+1.  **The Summary:** Create a markdown file `scripting-cheat-sheet.md`. 
+    - Add code snippets for `if-else`, `for loop`, and `function`.
+2.  **The Special Variables Table:** Document what `$0`, `$1`, `$#`, `$@`, and `$?` do.
+3.  **The Master Template:** Create a script `template.sh` that includes:
+    - Shebang line.
+    - Author comments.
+    - A standard logging function.
+    - Basic error check logic.
 
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ye script tere resume mein star banegi! Pura code save kar."
+**Jagu:** "Shabash Golu! Tera foundational journey ka Phase 2 complete ho gaya hai. Ab tu 'Scripting Master' hai!"
 
-1. Create a file named **`backup-project.md`** in the **`solution/`** folder.
-2. Paste the full code of your `backup_manager.sh` and your **Crontab line**.
-3. Commit and push!
+1. Save your `scripting-cheat-sheet.md` and `template.sh` in the **`solution/`** folder.
+2. Commit and push!
 
 ---
 *#LearnDevOpsIn90Days • Day 19 • Golu & Jagu Edition*

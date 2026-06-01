@@ -1,33 +1,30 @@
-# 🧪 Lab Session: Day 17 — The Smart Automation
+# 🧪 Lab Session: Day 17 — The Backup Project
 
-**Jagu:** "Beep Boop! Golu, manually ek-ek file banana toh baccho ka khel hai. Aaj hum seekhenge ki kaise ek single script se hazaron files ya users 'automatic' banaye jaate hain!"
+**Jagu:** "Beep Boop! Golu, aaj hum ek asali 'DevOps Hero' wala kaam karenge. Servers pe logs itne badh jaate hain ki disk full ho jati hai. Aaj hum ek script banayenge jo unhe saaf (cleanup) karegi aur backup legi!"
 
-## 🎯 Task Objectives
-- Use positional arguments to make scripts dynamic.
-- Implement a `for` loop to automate repetitive tasks.
-- Add basic `if` logic to handle errors.
+## 🎯 Project Objectives
+- Build a script that finds files older than X days.
+- Compress those files into a `.tar.gz` archive with a date-stamp.
+- Schedule the script to run automatically every night.
 
-## 🛠️ Hands-on Challenges
+## 🛠️ Project Challenges
 
-1.  **The Argument Master:** 
-    - Create a script `user_info.sh`. 
-    - It should take your Name and Age as arguments: `./user_info.sh Golu 25`.
-    - Print: "User $1 is $2 years old."
-2.  **The Folder Factory:** 
-    - Create a script `create_folders.sh`.
-    - Use a `for` loop to create 5 folders named `module_1` to `module_5` in one go.
-3.  **The Safe Script:**
-    - Create a script that checks if a directory exists before creating it.
-    - Use: `if [ -d "$DIR" ]; then echo "Already exists"; else mkdir $DIR; fi`.
-4.  **Arg Count Check:** Write a script that checks if the user has provided EXACTLY 2 arguments. If not, print: "Bhai, 2 arguments dena zaroori hai!"
+1.  **The Architect:** Create a script `backup_manager.sh`.
+    - Define a variable `BACKUP_DIR="/home/$USER/backups"`.
+    - Create the directory if it doesn't exist (`mkdir -p`).
+2.  **The Packer:** Use the `tar -cvzf` command to compress a dummy log folder into a file named `log_backup_$(date +%Y-%m-%d).tar.gz`.
+3.  **The Cleaner:** Research and add a line to your script that deletes backups older than 7 days (Hint: use `find -mtime +7 -delete`).
+4.  **The Clock:** Open your crontab with `crontab -e`.
+    - Add a line to run your script every day at **03:00 AM**.
+    - Verify with `crontab -l`.
 
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ab tu 'Bulk Operations' ka king ban gaya hai! Apne scripts save kar."
+**Jagu:** "Golu, ye script tere resume mein star banegi! Pura code save kar."
 
-1. Create a file named **`logic-scripts-report.md`** in the **`solution/`** folder.
-2. Paste the code for your `create_folders.sh` and the 'Safe Script'.
+1. Create a file named **`backup-project.md`** in the **`solution/`** folder.
+2. Paste the full code of your `backup_manager.sh` and your **Crontab line**.
 3. Commit and push!
 
 ---

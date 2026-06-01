@@ -1,22 +1,21 @@
-# 🗓️ Day 16 — Shell Scripting Basics
+# 🗓️ Day 16 — Shell Scripting: Functions and Intermediate Concepts
 
-Welcome to **Day 16**! Today, you stop being a user and start being an engineer. We begin our journey into **Automation**.
+Welcome to **Day 16**! Today, we take your scripting skills to the "Pro Level" by learning how to write clean, reusable, and modular code.
 
 ## 🎯 Today's Goal
-Write your first Linux automation script and understand how to talk to the Shell using variables and inputs.
+Master Bash Functions—learn how to group commands into reusable blocks and understand how variables behave inside and outside of those blocks.
 
 ## 🧠 Key Learnings
-- What is a Shell Script and why we use them.
-- The **Shebang** (`#!/bin/bash`) line.
-- Using **Variables** to store and reuse data.
-- Taking **User Input** with the `read` command.
-- Printing output with `echo` and `printf`.
+- **Bash Functions:** Defining and calling reusable code blocks.
+- **Local vs. Global Variables:** Protecting your data inside functions.
+- **Return Codes:** How functions communicate success or failure.
+- **Modularity:** Why writing small, specific functions is the DevOps way.
 
 ## 🧠 Pro Module
-[🎓 Day 16 Pro Module: Scripting Basics](./Day16_Scripting_Basics.html)
+[🎓 Day 16 Pro Module: Bash Functions](./Day16_Bash_Functions.html)
 
 ## 🧪 Hands-on Lab
-👉 [Lab Session: My First Automation](./lab-session/task.md)
+👉 [Lab Session: Building with Blocks](./lab-session/task.md)
 
 ---
 *#LearnDevOpsIn90Days • @AryashreePritikrishna • Phase 2: The Automation Surge*

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 18: Bash Functions - Golu & Jagu Pro Edition</title>
+    <title>Day 17: Log Rotation & Backup - Golu & Jagu Pro Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,6 +27,7 @@
             }
             .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
             section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
         }
 
         body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
@@ -86,7 +87,9 @@
         .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
         .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
 
-        .bash-box { background: #000; border: 2px solid var(--chalk-white); padding: 20px; border-radius: 10px; font-family: 'Fira Code', monospace; color: var(--chalk-green); line-height: 1.5; }
+        .cron-box { background: #000; border: 2px solid var(--chalk-white); padding: 25px; border-radius: 15px; font-family: 'Fira Code', monospace; color: var(--chalk-green); text-align: center; }
+        .cron-unit { display: inline-block; margin: 0 10px; border-bottom: 1px solid var(--chalk-yellow); }
+        .cron-label { font-size: 0.7rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -108,8 +111,8 @@
     </header>
 
     <header>
-        <h1>Bash Functions & Scope</h1>
-        <p class="subtitle handwritten">Day 18: Organizing Your Code Like a Pro Engineer 🧱🐚</p>
+        <h1>Log Rotation & Backup</h1>
+        <p class="subtitle handwritten">Day 17: Building Real-World Production Automation 💾📦</p>
     </header>
 
     <!-- INTRO SECTION -->
@@ -120,16 +123,15 @@
                     <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
                     <span class="char-name">Golu</span>
                 </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, meri script itni badi ho gayi hai ki main khud confuse ho raha hoon! <br> 
-                    Same code har line pe copy-paste karna pad raha hai."
+                <div class="speech-bubble">
+                    "Jagu, manager keh rahe hain ki log files disk space kha rahi hain! <br> 
+                    Mujhe roz raat ko 3 baje uthkar manually purane logs delete karne padenge?"
                 </div>
             </div>
             <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
                 <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, isse 'Spaghetti Code' kehte hain. <br> 
-                    Aaj hum <span class="chalk-text">Functions</span> seekhenge. <br> 
-                    Code ko blocks mein divide karo aur modular engineer bano!"
+                    "Beep Boop! Nahi Golu, DevOps matlab smart laziness. <br> 
+                    Aaj hum ek script banayenge jo logs ko <span class="chalk-text">Zip</span> karegi aur <span class="chalk-text">Crontab</span> usey auto-schedule karega!"
                 </div>
                 <div class="doodle-wrapper">
                     <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
@@ -140,8 +142,8 @@
         <div class="content-box accent-yellow">
             <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
             <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Bash Functions ki power samjhenge. Local vs Global variables ka difference, 
-                reusable blocks banana, aur return codes se error handling karna.
+                Aaj hum 3 powerful concepts ko combine karenge: `tar` for archiving, `find` for cleanup, aur `cron` for scheduling. 
+                Ye tumhara pehla **Senior-Level Project** hai!
             </p>
         </div>
     </section>
@@ -151,25 +153,23 @@
         <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
             <ul>
-                <li><strong>Modularity:</strong> Group multiple commands into a single named block.</li>
-                <li><strong>Privacy:</strong> Use the `local` keyword to protect your function variables.</li>
-                <li><strong>Communication:</strong> Pass arguments into functions and use return codes.</li>
-                <li><strong>Efficiency:</strong> Write code once, use it everywhere (Don't Repeat Yourself - DRY).</li>
+                <li><strong>Package:</strong> Use `tar` and `gzip` to bundle logs into small archives.</li>
+                <li><strong>Cleanup:</strong> Automatically find and delete files older than 7 days.</li>
+                <li><strong>Schedule:</strong> Master the Crontab syntax for recurring automation.</li>
+                <li><strong>Build:</strong> Create a production-ready `backup_manager.sh` script.</li>
             </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
-                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real DevOps scripts hazaron lines ki hoti hain—bina functions ke unhe maintain karna namumkin hai!
-            </p>
         </div>
     </section>
 
     <!-- ② ANALOGY -->
     <section>
-        <div class="topic-title">💡 ANALOGY: The Lego Bricks</div>
+        <div class="topic-title">💡 ANALOGY: Cleaning the Warehouse</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-white);">
             <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Normal Script:</span> Ek badi clay ki murti (Poori ek piece, todna mushkil).<br>
-                2. <span class="chalk-text">Function:</span> Lego bricks (Chote-chote reusable blocks).<br>
-                3. <span class="chalk-text">Library:</span> Lego set (In blocks ko jodo aur kuch bhi bada bana lo!).
+                1. <span class="chalk-text">Logs:</span> Raddi akhbaar (Piling up every day).<br>
+                2. <span class="chalk-text">Tar:</span> Raddi ko rassi se bandhna (Bundling).<br>
+                3. <span class="chalk-text">Gzip:</span> Raddi ko daba kar chota karna (Compression).<br>
+                4. <span class="chalk-text">Crontab:</span> Alarm clock jo subah 3 baje safai wale (Script) ko uthata hai.
             </p>
         </div>
     </section>
@@ -178,69 +178,59 @@
     <section>
         <div class="topic-title">❓ DID YOU KNOW?</div>
         <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">()</div><div class="handwritten" style="color:var(--chalk-blue);">The Function Marker</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">local</div><div class="handwritten" style="color:var(--chalk-blue);">Scope Shield</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">return</div><div class="handwritten" style="color:var(--chalk-blue);">The Exit Signal</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">.gz</div><div class="handwritten" style="color:var(--chalk-blue);">90% Space Saving</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-pink);">* * *</div><div class="handwritten" style="color:var(--chalk-blue);">Cron Wildcards</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-green);">/var/spool</div><div class="handwritten" style="color:var(--chalk-blue);">Where Cron lives</div></div>
         </div>
     </section>
 
-    <!-- ⑤ Key Concepts: Function Anatomy -->
+    <!-- ⑤ Key Concepts: Crontab Decoding -->
     <section>
-        <div class="topic-title">📌 Key Concepts: Function Anatomy</div>
-        <div class="bash-box">
-            <span style="color:var(--chalk-yellow);"># 1. Defining a function</span><br>
-            function say_hello() {<br>
-            &nbsp;&nbsp;echo "Namaste $1!"<br>
-            }<br><br>
-            <span style="color:var(--chalk-yellow);"># 2. Calling with arguments</span><br>
-            say_hello "Golu"<br><br>
-            <span style="color:var(--chalk-yellow);"># 3. Local Variable Example</span><br>
-            my_func() {<br>
-            &nbsp;&nbsp;<span style="color:var(--chalk-pink);">local</span> SECRET="Hidden"<br>
-            &nbsp;&nbsp;echo $SECRET<br>
-            }
+        <div class="topic-title">📌 Key Concepts: Decoding Crontab</div>
+        <div class="cron-box">
+            <span class="cron-unit">* <div class="cron-label">Min</div></span>
+            <span class="cron-unit">* <div class="cron-label">Hour</div></span>
+            <span class="cron-unit">* <div class="cron-label">DOM</div></span>
+            <span class="cron-unit">* <div class="cron-label">Month</div></span>
+            <span class="cron-unit">* <div class="cron-label">DOW</div></span>
+            <span style="margin-left: 20px; color: var(--chalk-white);">/path/to/script.sh</span>
         </div>
         <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
-            <span class="hinglish">Logic:</span> Functions ko script ke TOP pe define karna zaroori hai!
+            <span class="hinglish">Strategy:</span> Use `0 3 * * *` to run exactly at 3:00 AM every night!
         </p>
     </section>
 
     <!-- ⑥ Compare -->
     <section>
-        <div class="topic-title">🔄 Compare: Global vs Local</div>
+        <div class="topic-title">🔄 Compare: tar vs gzip</div>
         <div class="vs-container">
             <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">Global Variable</h3>
-                <p class="hinglish">"Ghar ki TV jaisa—room ke bahar bhi sab dekh sakte hain."</p>
+                <h3 class="handwritten">tar (The Binder)</h3>
+                <p class="hinglish">"100 files ko 1 file banata hai. Size kam nahi karta."</p>
             </div>
             <div class="vs-circle">VS</div>
             <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">Local Variable</h3>
-                <p class="hinglish">"Aapka mobile phone—sirf aapke pocket (function) mein hi dikhega."</p>
+                <h3 class="handwritten">gzip (The Squeezer)</h3>
+                <p class="hinglish">"File ka hawa nikal kar size 1/10th kar deta hai."</p>
             </div>
         </div>
     </section>
 
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
+    <!-- ⑦ REAL-WORLD EXAMPLE -->
     <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> Bash functions value return kar sakte hain (like Python).</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Bash functions sirf **Exit Status (0-255)** return karte hain. Data return karne ke liye `echo` use karo!</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Function ke arguments script ke arguments ke same hain.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Function ka `$1` alag hota hai aur Script ka `$1` alag.</li>
-            </ul>
+        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Log-Pocalypse</div>
+        <div class="doodle-container">
+            <div class="robot-doodle">
+                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+                <div class="robot-body"></div><div class="robot-bag"></div>
+            </div>
+            <span class="char-name">Jagu</span>
+            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
+                "Golu, Flipkart ki sale pe servers itne logs generate karte hain ki agar rotate nahi kiya, toh 1 ghante mein disk full ho jayegi!"
+            </div>
         </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>hello() { echo "Bhai $1!"; }</code> <span class="hinglish">(Terminal pe function banao)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>hello Golu</code> <span class="hinglish">(Usey call karo!)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. Write a script that uses a function to check if a folder exists.</p>
+        <div class="content-box" style="border-color: var(--chalk-blue);">
+            <p><strong>The Fix:</strong> Scripts moved to `/etc/cron.daily` that zip logs and push them to S3 buckets instantly.</p>
         </div>
     </section>
 
@@ -248,19 +238,19 @@
     <section>
         <div class="topic-title">❓ MINI QUIZ</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Variable ko function ke andar 'Private' rakhne ke liye kaunsa keyword use hota hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) private</span><span class="quiz-opt">b) local</span><span class="quiz-opt">c) static</span><span class="quiz-opt">d) hidden</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Bash function max kitni value return kar sakta hai (Exit Status)?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) 10</span><span class="quiz-opt">b) 100</span><span class="quiz-opt">c) 255</span><span class="quiz-opt">d) Unlimited</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">1. Files ko bundle aur compress (gzip) karne ke liye kaunsa flag tar ke saath use karte hain?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) -c</span><span class="quiz-opt">b) -z</span><span class="quiz-opt">c) -x</span><span class="quiz-opt">d) -v</span></div></div>
+            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Har Monday subah 5 baje script chalane ke liye cron line?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) 0 5 * * 1</span><span class="quiz-opt">b) 5 0 * * 1</span><span class="quiz-opt">c) * * 5 1 *</span><span class="quiz-opt">d) 0 5 1 * *</span></div></div>
             <div class="answer-key">
                 <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
+                <p class="hinglish">"Golu, match kar lo: 1-b | 2-a"</p>
             </div>
         </div>
     </section>
 
     <div class="footer">
-        #LearnDevOpsIn90Days • Day 18 • Pro Edition • By Aryashree Pritikrishna
+        #LearnDevOpsIn90Days • Day 17 • Project Edition • By Aryashree Pritikrishna
     </div>
 </div>
 

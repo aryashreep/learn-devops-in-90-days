@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 19: Log Rotation & Backup - Golu & Jagu Pro Edition</title>
+    <title>Day 20: Shell Scripting Basics - Golu & Jagu Pro Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,7 +27,6 @@
             }
             .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
             section { page-break-inside: avoid; }
-            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
         }
 
         body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
@@ -38,6 +37,7 @@
         .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
         .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
         .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        .contact-item { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-bottom: 4px; }
         
         h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
         h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
@@ -87,9 +87,7 @@
         .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
         .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
 
-        .cron-box { background: #000; border: 2px solid var(--chalk-white); padding: 25px; border-radius: 15px; font-family: 'Fira Code', monospace; color: var(--chalk-green); text-align: center; }
-        .cron-unit { display: inline-block; margin: 0 10px; border-bottom: 1px solid var(--chalk-yellow); }
-        .cron-label { font-size: 0.7rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; margin-top: 5px; }
+        .bash-box { background: #000; border: 2px solid var(--chalk-white); padding: 20px; border-radius: 10px; font-family: 'Fira Code', monospace; color: var(--chalk-green); }
     </style>
 </head>
 <body>
@@ -102,17 +100,17 @@
             <p>DevOps & Cloud Training Series • 2026 Edition</p>
         </div>
         <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
             <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
             <div class="contact-item">📞 +91 8147450705</div>
         </div>
     </header>
 
     <header>
-        <h1>Log Rotation & Backup</h1>
-        <p class="subtitle handwritten">Day 19: Building Real-World Production Automation 💾📦</p>
+        <h1>Shell Scripting Basics</h1>
+        <p class="subtitle handwritten">Day 20: Building Your First Automation Robot 🐚🤖</p>
     </header>
 
     <!-- INTRO SECTION -->
@@ -123,15 +121,16 @@
                     <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
                     <span class="char-name">Golu</span>
                 </div>
-                <div class="speech-bubble">
-                    "Jagu, manager keh rahe hain ki log files disk space kha rahi hain! <br> 
-                    Mujhe roz raat ko 3 baje uthkar manually purane logs delete karne padenge?"
+                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                    "Jagu, main roz subah server update aur clean karne ke liye same 5 commands chalata hoon. <br> 
+                    Thak gaya hoon yaar! Koi automatic rasta nahi hai?"
                 </div>
             </div>
             <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
                 <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Nahi Golu, DevOps matlab smart laziness. <br> 
-                    Aaj hum ek script banayenge jo logs ko <span class="chalk-text">Zip</span> karegi aur <span class="chalk-text">Crontab</span> usey auto-schedule karega!"
+                    "Beep Boop! Bilkul hai Golu. <br> 
+                    Aaj hum commands ko 'Shell Script' mein pack karenge. <br> 
+                    Ab tumhara kaam ye <span class="chalk-text">Robot</span> karega!"
                 </div>
                 <div class="doodle-wrapper">
                     <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
@@ -142,8 +141,7 @@
         <div class="content-box accent-yellow">
             <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
             <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum 3 powerful concepts ko combine karenge: `tar` for archiving, `find` for cleanup, aur `cron` for scheduling. 
-                Ye tumhara pehla **Senior-Level Project** hai!
+                Aaj hum manual CLI se <b>Automation</b> ki taraf move karenge. Shell script kya hoti hai, `Shebang` kyu zaroori hai, aur variables kaise use karte hain.
             </p>
         </div>
     </section>
@@ -153,23 +151,26 @@
         <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
             <ul>
-                <li><strong>Package:</strong> Use `tar` and `gzip` to bundle logs into small archives.</li>
-                <li><strong>Cleanup:</strong> Automatically find and delete files older than 7 days.</li>
-                <li><strong>Schedule:</strong> Master the Crontab syntax for recurring automation.</li>
-                <li><strong>Build:</strong> Create a production-ready `backup_manager.sh` script.</li>
+                <li><strong>Understand:</strong> What is a .sh file and how the Shell reads it.</li>
+                <li><strong>Blueprint:</strong> Master the mandatory Shebang (`#!/bin/bash`) line.</li>
+                <li><strong>Variables:</strong> Learn to store and reuse data dynamically.</li>
+                <li><strong>Interact:</strong> Take user input using the `read` command.</li>
             </ul>
+            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real DevOps engineer repetitive kaam se nafrat karta hai aur automation se pyar!
+            </p>
         </div>
     </section>
 
     <!-- ② ANALOGY -->
     <section>
-        <div class="topic-title">💡 ANALOGY: Cleaning the Warehouse</div>
+        <div class="topic-title">💡 ANALOGY: The Chef's Robot</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-white);">
             <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Logs:</span> Raddi akhbaar (Piling up every day).<br>
-                2. <span class="chalk-text">Tar:</span> Raddi ko rassi se bandhna (Bundling).<br>
-                3. <span class="chalk-text">Gzip:</span> Raddi ko daba kar chota karna (Compression).<br>
-                4. <span class="chalk-text">Crontab:</span> Alarm clock jo subah 3 baje safai wale (Script) ko uthata hai.
+                1. <span class="chalk-text">Manual:</span> Chef roz khud kitchen mein sabzi kat-ta hai (CLI commands).<br>
+                2. <span class="chalk-text">Script:</span> Chef ek 'Recipe Card' (Script) likhta hai aur Robot ko de deta hai.<br>
+                3. <span class="chalk-text">Shebang:</span> Card pe likha hai ki Robot "Hindi" ya "English" (Bash or Python) bolega.<br>
+                4. <span class="chalk-text">Automation:</span> Robot card padhta hai aur sabzi kat-ta hai bina Chef ke!
             </p>
         </div>
     </section>
@@ -178,59 +179,65 @@
     <section>
         <div class="topic-title">❓ DID YOU KNOW?</div>
         <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">.gz</div><div class="handwritten" style="color:var(--chalk-blue);">90% Space Saving</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">* * *</div><div class="handwritten" style="color:var(--chalk-blue);">Cron Wildcards</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">/var/spool</div><div class="handwritten" style="color:var(--chalk-blue);">Where Cron lives</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">#!</div><div class="handwritten" style="color:var(--chalk-blue);">Called a 'Hash-Bang'</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-pink);">.sh</div><div class="handwritten" style="color:var(--chalk-blue);">The Standard Extension</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-green);">$USER</div><div class="handwritten" style="color:var(--chalk-blue);">Global Environment Var</div></div>
         </div>
     </section>
 
-    <!-- ⑤ Key Concepts: Crontab Decoding -->
+    <!-- ⑤ Key Concepts: The Script Anatomy -->
     <section>
-        <div class="topic-title">📌 Key Concepts: Decoding Crontab</div>
-        <div class="cron-box">
-            <span class="cron-unit">* <div class="cron-label">Min</div></span>
-            <span class="cron-unit">* <div class="cron-label">Hour</div></span>
-            <span class="cron-unit">* <div class="cron-label">DOM</div></span>
-            <span class="cron-unit">* <div class="cron-label">Month</div></span>
-            <span class="cron-unit">* <div class="cron-label">DOW</div></span>
-            <span style="margin-left: 20px; color: var(--chalk-white);">/path/to/script.sh</span>
+        <div class="topic-title">📌 Key Concepts: Script Anatomy</div>
+        <div class="bash-box">
+            <span style="color:var(--chalk-yellow);">#!/bin/bash</span> <span style="color:#666;"># I am the Shebang (Interpreter path)</span><br><br>
+            <span style="color:var(--chalk-pink);">NAME</span>="Golu" <span style="color:#666;"># Defining a Variable</span><br>
+            echo "Hello $NAME" <span style="color:#666;"># Accessing a Variable</span><br><br>
+            read -p "Topic? " TOPIC <span style="color:#666;"># Taking User Input</span><br>
+            echo "Learning $TOPIC with Jagu!"
         </div>
         <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
-            <span class="hinglish">Strategy:</span> Use `0 3 * * *` to run exactly at 3:00 AM every night!
+            <span class="hinglish">Rule No 1:</span> Variable assign karte waqt `=` ke aage-piche spaces mat dena!
         </p>
     </section>
 
     <!-- ⑥ Compare -->
     <section>
-        <div class="topic-title">🔄 Compare: tar vs gzip</div>
+        <div class="topic-title">🔄 Compare: Local vs Env Variables</div>
         <div class="vs-container">
             <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">tar (The Binder)</h3>
-                <p class="hinglish">"100 files ko 1 file banata hai. Size kam nahi karta."</p>
+                <h3 class="handwritten">Local Variable</h3>
+                <p class="hinglish">"Sirf isi script ke andar chalega."</p>
+                <code>MY_NAME="Golu"</code>
             </div>
             <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">gzip (The Squeezer)</h3>
-                <p class="hinglish">"File ka hawa nikal kar size 1/10th kar deta hai."</p>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+                <h3 class="handwritten">Env Variable</h3>
+                <p class="hinglish">"System ke har corner ko pata hai."</p>
+                <code>echo $PATH</code>
             </div>
         </div>
     </section>
 
-    <!-- ⑦ REAL-WORLD EXAMPLE -->
+    <!-- ⑧ COMMON MISCONCEPTIONS -->
     <section>
-        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Log-Pocalypse</div>
-        <div class="doodle-container">
-            <div class="robot-doodle">
-                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                <div class="robot-body"></div><div class="robot-bag"></div>
-            </div>
-            <span class="char-name">Jagu</span>
-            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
-                "Golu, Flipkart ki sale pe servers itne logs generate karte hain ki agar rotate nahi kiya, toh 1 ghante mein disk full ho jayegi!"
-            </div>
+        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+            <ul>
+                <li><span style="color:var(--chalk-red);">Myth:</span> `.sh` file banate hi run ho jayegi.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Linux usey by default 'Text' manta hai. `chmod +x` se 'Power' deni padti hai.</li>
+                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Script sirf boring tasks ke liye hai.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Scripts cloud servers khade kar sakti hain, backups le sakti hain, aur hack bhi rok sakti hain!</li>
+            </ul>
         </div>
-        <div class="content-box" style="border-color: var(--chalk-blue);">
-            <p><strong>The Fix:</strong> Scripts moved to `/etc/cron.daily` that zip logs and push them to S3 buckets instantly.</p>
+    </section>
+
+    <!-- ⑨ TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">▶ TRY IT YOURSELF</div>
+        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+            <p class="handwritten" style="font-size: 1.2rem;">1. <code>vim backup.sh</code> <span class="hinglish">(Ek file banao)</span></p>
+            <p class="handwritten" style="font-size: 1.2rem;">2. Add: <code>#!/bin/bash</code> + <code>echo "Backing up..."</code></p>
+            <p class="handwritten" style="font-size: 1.2rem;">3. <code>chmod +x backup.sh && ./backup.sh</code> <span class="hinglish">(Robot ko life do!)</span></p>
         </div>
     </section>
 
@@ -238,19 +245,19 @@
     <section>
         <div class="topic-title">❓ MINI QUIZ</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Files ko bundle aur compress (gzip) karne ke liye kaunsa flag tar ke saath use karte hain?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) -c</span><span class="quiz-opt">b) -z</span><span class="quiz-opt">c) -x</span><span class="quiz-opt">d) -v</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Har Monday subah 5 baje script chalane ke liye cron line?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) 0 5 * * 1</span><span class="quiz-opt">b) 5 0 * * 1</span><span class="quiz-opt">c) * * 5 1 *</span><span class="quiz-opt">d) 0 5 1 * *</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">1. Shell script ki pehli line (Shebang) kya honi chahiye?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) #!bash</span><span class="quiz-opt">b) #!/bin/bash</span><span class="quiz-opt">c) #/bin/sh</span><span class="quiz-opt">d) // bash</span></div></div>
+            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. User se interactive input lene ke liye command?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) write</span><span class="quiz-opt">b) echo</span><span class="quiz-opt">c) read</span><span class="quiz-opt">d) input</span></div></div>
             <div class="answer-key">
                 <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-a"</p>
+                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
             </div>
         </div>
     </section>
 
     <div class="footer">
-        #LearnDevOpsIn90Days • Day 19 • Project Edition • By Aryashree Pritikrishna
+        #LearnDevOpsIn90Days • Day 20 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
 

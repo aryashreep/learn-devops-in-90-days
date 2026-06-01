@@ -29,23 +29,23 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## 🐚 Module 03 - Shell Scripting For DevOps (Days 16-21)
+## 🐚 Module 03 - Shell Scripting For DevOps (Days 14-19)
 | Day | Topic |
 |---|---|
-| Day 16 | [Shell Scripting Basics](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/README.md) |
-| Day 17 | [Shell Scripting: Loops, Arguments and Error Handling](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/README.md) |
-| Day 18 | [Shell Scripting: Functions and Intermediate Concepts](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/README.md) |
-| Day 19 | [Shell Scripting Project: Log Rotation, Backup and Crontab](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/README.md) |
-| Day 20 | [Bash Scripting Challenge: Log Analyzer and Report Generator](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-20/README.md) |
-| Day 21 | [Shell Scripting Handbook: Complete Master Guide](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-21/README.md) |
+| Day 20 | [Shell Scripting Basics](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/README.md) |
+| Day 21 | [Shell Scripting: Loops, Arguments and Error Handling](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/README.md) |
+| Day 16 | [Shell Scripting: Functions and Intermediate Concepts](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/README.md) |
+| Day 17 | [Shell Scripting Project: Log Rotation, Backup and Crontab](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/README.md) |
+| Day 18 | [Bash Scripting Challenge: Log Analyzer and Report Generator](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-20/README.md) |
+| Day 19 | [Shell Scripting Handbook: Complete Master Guide](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-21/README.md) |
 
 ---
 
-## 🌐 Module 04 - Networking & System Design (Days 14-15)
+## 🌐 Module 04 - Networking & System Design (Days 20-21)
 | Day | Topic |
 |---|---|
-| [Day 14](../Module%2004%20-%20Networking%20&%20System%20Design/day-14/README.md) | Networking Fundamentals and Hands-on Checks |
-| [Day 15](../Module%2004%20-%20Networking%20&%20System%20Design/day-15/README.md) | Networking Concepts: DNS, IP, Subnets and Ports |
+| [Day 20](../Module%2004%20-%20Networking%20&%20System%20Design/day-14/README.md) | Networking Fundamentals and Hands-on Checks |
+| [Day 21](../Module%2004%20-%20Networking%20&%20System%20Design/day-15/README.md) | Networking Concepts: DNS, IP, Subnets and Ports |
 
 ---
 

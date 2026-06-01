@@ -1,37 +1,35 @@
-# 🧪 Lab Session: Day 18 — Building with Blocks
+# 🧪 Lab Session: Day 18 — The Log Analyzer
 
-**Jagu:** "Beep Boop! Golu, ek hi code baar-baar likhna band karo. Aaj hum 'Custom Stamps' (Functions) banayenge taaki tum ek bar design karo aur hazaron baar use karo!"
+**Jagu:** "Beep Boop! Golu, imagine karo tumhare pass 10GB ki log file hai. Kya tum manually errors ginoge? Bilkul nahi! Aaj hum ek 'Intelligence Agent' (Script) banayenge jo ye kaam 1 second mein karega."
 
-## 🎯 Task Objectives
-- Define and execute custom Bash functions.
-- Pass arguments specifically into functions.
-- Understand variable scope (Local vs Global).
+## 🎯 Project Objectives
+- Write a script that counts "ERROR" and "WARNING" messages in a log.
+- Identify the most frequent error message.
+- Generate a summary report with the current date.
 
-## 🛠️ Hands-on Challenges
+## 🛠️ Project Challenges
 
-1.  **The Logger Function:** 
-    - Create a script `logger.sh`.
-    - Define a function `log_info()` that takes one argument and prints: `[INFO] $(date): $1`.
-    - Call the function twice with different messages.
-2.  **Scope Detective:** 
-    - Create a script `scope.sh`.
-    - Define a global variable `CITY="Mumbai"`.
-    - Inside a function, use `local CITY="Delhi"`.
-    - Print the variable inside and outside the function to see the difference.
-3.  **The Math Library:**
-    - Write a script with functions for `add()`, `sub()`, and `multiply()`.
-    - Each function should take two arguments and print the result.
-4.  **Error Handler:** 
-    - Write a function `check_file()` that takes a filename as an argument.
-    - If the file exists, print "File found!"; if not, return an error code.
+1.  **The Scanner:** Create a script `log_analyzer.sh`.
+    - It should take the log file path as an argument: `./log_analyzer.sh access.log`.
+2.  **The Counter:** Use `grep -c "ERROR"` to count error lines. Do the same for "WARNING".
+3.  **The Reporter:** Create a report file `log_report_$(date +%F).txt` that looks like this:
+    ```text
+    ---------------------------------
+    Log Analysis Report - 2024-05-22
+    ---------------------------------
+    Total Errors: 45
+    Total Warnings: 12
+    ---------------------------------
+    ```
+4.  **The Critical List:** Add a feature that lists the specific line numbers where "CRITICAL" errors occurred.
 
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, modular code hi maintainable code hota hai. Apni library save kar!"
+**Jagu:** "Golu, ye script real production troubleshooting mein kaam aayegi. Portfolio mein add karle!"
 
-1. Create a file named **`function-library.md`** in the **`solution/`** folder.
-2. Paste the code for your `logger.sh` and the 'Scope Detective' script.
+1. Create a file named **`log-analyzer-project.md`** in the **`solution/`** folder.
+2. Paste your `log_analyzer.sh` code and the content of one generated report.
 3. Commit and push!
 
 ---

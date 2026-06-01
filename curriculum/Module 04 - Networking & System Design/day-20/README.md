@@ -1,9 +1,9 @@
-# 🗓️ Day 14 — Networking Fundamentals
+# 🗓️ Day 20 — Networking Fundamentals
 
-Welcome to **Day 14**! Today we start our journey into the world of packets and ports.
+Welcome to **Day 20**! Today we start our journey into the world of packets and ports.
 
 ## 🧠 Pro Module
-[🎓 Day 14 Pro Module](./Day14_Networking_Basics.html)
+[🎓 Day 20 Pro Module](./Day20_Networking_Basics.html)
 
 ## 📚 Resources
 - 📖 [Networking Handbook](../NETWORKING_HANDBOOK.html)

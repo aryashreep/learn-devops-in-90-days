@@ -1,21 +1,21 @@
-# 🗓️ Day 19 — Shell Scripting Project: Log Rotation, Backup and Crontab
+# 🗓️ Day 19 — Shell Scripting Cheat Sheet: Build Your Own Reference Guide
 
-Welcome to **Day 19**! Today is a major milestone. You are going to build a tool that every real-world server needs: an **Automated Backup and Log Rotation system**.
+Welcome to **Day 19**! You've finished the core scripting arc. Today is about organizing your knowledge so you never have to "Google" basic syntax again.
 
 ## 🎯 Today's Goal
-Build a professional-grade script that compresses logs, moves them to a backup folder, and schedules itself to run every night at 3 AM using **Crontab**.
+Create a high-quality, personalized Shell Scripting Cheat Sheet that includes your most-used logic and commands.
 
 ## 🧠 Key Learnings
-- **Archiving:** Using the `tar` command to bundle and compress files.
-- **Timestamping:** Creating unique filenames using the `date` command.
-- **Scheduling:** Understanding the `crontab -e` syntax to automate your scripts.
-- **Project Thinking:** Combining variables, loops, and functions into one final solution.
-
-## 🧠 Pro Module
-[🎓 Day 19 Pro Module: The Backup Project](./Day19_Backup_and_Cron.html)
+- Consolidating Variables, Loops, and Functions.
+- Documenting "Special Variables" ($?, $#, $0).
+- Building a reusable script template for future modules.
 
 ## 🧪 Hands-on Lab
-👉 [Lab Session: The Automation Project](./lab-session/task.md)
+👉 [Lab Session: My Automation Handbook](./lab-session/task.md)
+
+## 📚 Resources
+- 📖 [Shell Scripting Handbook](../SHELL_SCRIPTING_HANDBOOK.html)
+- 🏆 [Module 03 Mastery Exam](../mastery-exam/README.md)
 
 ---
 *#LearnDevOpsIn90Days • @AryashreePritikrishna • Phase 2: The Automation Surge*

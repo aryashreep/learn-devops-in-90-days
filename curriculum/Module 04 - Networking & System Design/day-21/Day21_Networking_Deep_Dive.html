@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 16: Shell Scripting Basics - Golu & Jagu Pro Edition</title>
+    <title>Day 21: Networking Concepts - Golu & Jagu Pro Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -38,7 +38,8 @@
         .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
         .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
         .contact-item { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-bottom: 4px; }
-        
+        .contact-icon { color: var(--chalk-green); font-size: 1rem; }
+
         h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
         h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
         .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
@@ -65,6 +66,7 @@
         .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
         .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
         .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
         .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
         .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
 
@@ -73,7 +75,7 @@
         
         .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
         .hinglish { color: var(--chalk-green); font-style: italic; }
-        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 50px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
         
         ul { list-style: none; padding-left: 0; }
         li { margin-bottom: 15px; padding-left: 30px; position: relative; }
@@ -86,31 +88,28 @@
         .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
         .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
         .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
-
-        .bash-box { background: #000; border: 2px solid var(--chalk-white); padding: 20px; border-radius: 10px; font-family: 'Fira Code', monospace; color: var(--chalk-green); }
     </style>
 </head>
 <body>
 
 <div class="blackboard">
-    <!-- BRANDED AUTHOR HEADER -->
     <header class="author-header">
         <div class="author-info">
             <h2>Aryashree Pritikrishna</h2>
             <p>DevOps & Cloud Training Series • 2026 Edition</p>
         </div>
         <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
             <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
             <div class="contact-item">📞 +91 8147450705</div>
         </div>
     </header>
 
     <header>
-        <h1>Shell Scripting Basics</h1>
-        <p class="subtitle handwritten">Day 16: Building Your First Automation Robot 🐚🤖</p>
+        <h1>DNS, IP & Subnets Mastery</h1>
+        <p class="subtitle handwritten">Day 21: The Global Naming and Address System 🌐</p>
     </header>
 
     <!-- INTRO SECTION -->
@@ -122,15 +121,14 @@
                     <span class="char-name">Golu</span>
                 </div>
                 <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, main roz subah server update aur clean karne ke liye same 5 commands chalata hoon. <br> 
-                    Thak gaya hoon yaar! Koi automatic rasta nahi hai?"
+                    "Jagu, main `github.com` toh type kar leta hoon, par internet usey kaise dhundta hai? <br> 
+                    Aur ye `/24` aur `/16` kya bala hain?"
                 </div>
             </div>
             <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
                 <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Bilkul hai Golu. <br> 
-                    Aaj hum commands ko 'Shell Script' mein pack karenge. <br> 
-                    Ab tumhara kaam ye <span class="chalk-text">Robot</span> karega!"
+                    "Beep Boop! Golu, aaj hum internet ki 'Dictionary' aur 'Map' dono seekhenge. <br> 
+                    DNS, IPs aur CIDR ke bina Cloud security impossible hai. Chalo wired world mein!"
                 </div>
                 <div class="doodle-wrapper">
                     <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
@@ -141,7 +139,8 @@
         <div class="content-box accent-yellow">
             <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
             <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum manual CLI se <b>Automation</b> ki taraf move karenge. Shell script kya hoti hai, `Shebang` kyu zaroori hai, aur variables kaise use karte hain.
+                Aaj hum internet ke backend concepts master karenge. DNS lookup flow, CIDR (Subnetting), 
+                aur common ports jo har DevOps engineer ko ratne chahiye!
             </p>
         </div>
     </section>
@@ -151,26 +150,26 @@
         <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
             <ul>
-                <li><strong>Understand:</strong> What is a .sh file and how the Shell reads it.</li>
-                <li><strong>Blueprint:</strong> Master the mandatory Shebang (`#!/bin/bash`) line.</li>
-                <li><strong>Variables:</strong> Learn to store and reuse data dynamically.</li>
-                <li><strong>Interact:</strong> Take user input using the `read` command.</li>
+                <li><strong>Interpret:</strong> DNS flow from root to authoritative nameservers.</li>
+                <li><strong>Calculate:</strong> Understand CIDR notation and subnet sizes.</li>
+                <li><strong>Navigate:</strong> Use `dig` and `whois` for deep network discovery.</li>
+                <li><strong>Map:</strong> Link services (HTTP, SSH, MySQL) to their standard ports.</li>
             </ul>
             <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
-                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real DevOps engineer repetitive kaam se nafrat karta hai aur automation se pyar!
+                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki VPC design aur Kubernetes Service setup bina subnets aur ports ke nahi hota!
             </p>
         </div>
     </section>
 
     <!-- ② ANALOGY -->
     <section>
-        <div class="topic-title">💡 ANALOGY: The Chef's Robot</div>
+        <div class="topic-title">💡 ANALOGY: The Global Phonebook</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-white);">
             <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Manual:</span> Chef roz khud kitchen mein sabzi kat-ta hai (CLI commands).<br>
-                2. <span class="chalk-text">Script:</span> Chef ek 'Recipe Card' (Script) likhta hai aur Robot ko de deta hai.<br>
-                3. <span class="chalk-text">Shebang:</span> Card pe likha hai ki Robot "Hindi" ya "English" (Bash or Python) bolega.<br>
-                4. <span class="chalk-text">Automation:</span> Robot card padhta hai aur sabzi kat-ta hai bina Chef ke!
+                1. <span class="chalk-text">Name:</span> github.com (Aapka dost ka naam).<br>
+                2. <span class="chalk-text">DNS:</span> Truecaller/Phonebook (Naam se number dhundna).<br>
+                3. <span class="chalk-text">IP Address:</span> Phone Number (Asali binary identity).<br>
+                4. <span class="chalk-text">CIDR:</span> Area Code (Ek hi area ke saare numbers).
             </p>
         </div>
     </section>
@@ -179,65 +178,43 @@
     <section>
         <div class="topic-title">❓ DID YOU KNOW?</div>
         <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">#!</div><div class="handwritten" style="color:var(--chalk-blue);">Called a 'Hash-Bang'</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">.sh</div><div class="handwritten" style="color:var(--chalk-blue);">The Standard Extension</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">$USER</div><div class="handwritten" style="color:var(--chalk-blue);">Global Environment Var</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">8.8.8.8</div><div class="handwritten" style="color:var(--chalk-blue);">Google's DNS</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-pink);">65535</div><div class="handwritten" style="color:var(--chalk-blue);">Total Ports</div></div>
+            <div><div style="font-size: 3rem; color: var(--chalk-green);">TTL</div><div class="handwritten" style="color:var(--chalk-blue);">Time to Live (Cache)</div></div>
         </div>
     </section>
 
-    <!-- ⑤ Key Concepts: The Script Anatomy -->
+    <!-- ⑤ Key Concepts: CIDR Simplified -->
     <section>
-        <div class="topic-title">📌 Key Concepts: Script Anatomy</div>
-        <div class="bash-box">
-            <span style="color:var(--chalk-yellow);">#!/bin/bash</span> <span style="color:#666;"># I am the Shebang (Interpreter path)</span><br><br>
-            <span style="color:var(--chalk-pink);">NAME</span>="Golu" <span style="color:#666;"># Defining a Variable</span><br>
-            echo "Hello $NAME" <span style="color:#666;"># Accessing a Variable</span><br><br>
-            read -p "Topic? " TOPIC <span style="color:#666;"># Taking User Input</span><br>
-            echo "Learning $TOPIC with Jagu!"
+        <div class="topic-title">📌 Key Concepts: The /24 Magic</div>
+        <div class="diagram-container">
+            <div class="handwritten" style="font-size: 1.5rem;">
+                <span style="color: var(--chalk-blue);">/32</span> ➔ Only 1 IP (Just you).<br>
+                <span style="color: var(--chalk-green);">/24</span> ➔ 256 IPs (A small office).<br>
+                <span style="color: var(--chalk-orange);">/16</span> ➔ 65,536 IPs (A giant company).<br>
+                <span style="color: var(--chalk-red);">/0</span> ➔ The Entire World!
+            </div>
+            <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
+                <span class="hinglish">Strategy:</span> Number jitna chota, network utna bada!
+            </p>
         </div>
-        <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
-            <span class="hinglish">Rule No 1:</span> Variable assign karte waqt `=` ke aage-piche spaces mat dena!
-        </p>
     </section>
 
     <!-- ⑥ Compare -->
     <section>
-        <div class="topic-title">🔄 Compare: Local vs Env Variables</div>
+        <div class="topic-title">🔄 Compare: A Record vs CNAME</div>
         <div class="vs-container">
             <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">Local Variable</h3>
-                <p class="hinglish">"Sirf isi script ke andar chalega."</p>
-                <code>MY_NAME="Golu"</code>
+                <h3 class="handwritten">A Record</h3>
+                <p class="hinglish">"Direct mapping—Naam to IP."</p>
+                <code>golu.dev ➔ 1.2.3.4</code>
             </div>
             <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">Env Variable</h3>
-                <p class="hinglish">"System ke har corner ko pata hai."</p>
-                <code>echo $PATH</code>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+                <h3 class="handwritten">CNAME</h3>
+                <p class="hinglish">"Alias—Nickname to Real Name."</p>
+                <code>www.golu.dev ➔ golu.dev</code>
             </div>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> `.sh` file banate hi run ho jayegi.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Linux usey by default 'Text' manta hai. `chmod +x` se 'Power' deni padti hai.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Script sirf boring tasks ke liye hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Scripts cloud servers khade kar sakti hain, backups le sakti hain, aur hack bhi rok sakti hain!</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>vim backup.sh</code> <span class="hinglish">(Ek file banao)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. Add: <code>#!/bin/bash</code> + <code>echo "Backing up..."</code></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>chmod +x backup.sh && ./backup.sh</code> <span class="hinglish">(Robot ko life do!)</span></p>
         </div>
     </section>
 
@@ -245,19 +222,19 @@
     <section>
         <div class="topic-title">❓ MINI QUIZ</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Shell script ki pehli line (Shebang) kya honi chahiye?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) #!bash</span><span class="quiz-opt">b) #!/bin/bash</span><span class="quiz-opt">c) #/bin/sh</span><span class="quiz-opt">d) // bash</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. User se interactive input lene ke liye command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) write</span><span class="quiz-opt">b) echo</span><span class="quiz-opt">c) read</span><span class="quiz-opt">d) input</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">1. MySQL database by default kaunsa port use karta hai?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) 80</span><span class="quiz-opt">b) 22</span><span class="quiz-opt">c) 3306</span><span class="quiz-opt">d) 443</span></div></div>
+            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. `/24` subnet mein kitne total IP addresses hote hain?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) 2</span><span class="quiz-opt">b) 256</span><span class="quiz-opt">c) 65536</span><span class="quiz-opt">d) 1024</span></div></div>
             <div class="answer-key">
                 <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
+                <p class="hinglish">"Golu, match kar lo: 1-c | 2-b"</p>
             </div>
         </div>
     </section>
 
     <div class="footer">
-        #LearnDevOpsIn90Days • Day 16 • Pro Edition • By Aryashree Pritikrishna
+        #LearnDevOpsIn90Days • Day 21 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
 

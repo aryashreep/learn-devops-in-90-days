@@ -1,4 +1,4 @@
-# 🧪 Lab Session: Day 15 — Web Architecture Lab
+# 🧪 Lab Session: Day 21 — Web Architecture Lab
 
 **Jagu:** "Beep Boop! Golu, aaj hum internet ke 'Phonebook' aur 'Doors' ko samjhenge. DNS aur Ports ke bina cloud automation impossible hai. Chalo, wires ke andar jhaankte hain!"
 
@@ -25,4 +25,4 @@
 3. Commit and push!
 
 ---
-*#LearnDevOpsIn90Days • Day 15 • Golu & Jagu Edition*
+*#LearnDevOpsIn90Days • Day 21 • Golu & Jagu Edition*

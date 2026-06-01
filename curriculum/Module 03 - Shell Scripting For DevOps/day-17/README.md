@@ -1,21 +1,21 @@
-# 🗓️ Day 17 — Shell Scripting: Loops, Arguments and Error Handling
+# 🗓️ Day 17 — Shell Scripting Project: Log Rotation, Backup and Crontab
 
-Welcome to **Day 17**! Today, your scripts become "Smart." We will learn how to make them repeat tasks and handle data like a pro.
+Welcome to **Day 17**! Today is a major milestone. You are going to build a tool that every real-world server needs: an **Automated Backup and Log Rotation system**.
 
 ## 🎯 Today's Goal
-Master the logic of Shell Scripting—learn how to use loops to process multiple items and positional arguments to pass data into your scripts.
+Build a professional-grade script that compresses logs, moves them to a backup folder, and schedules itself to run every night at 3 AM using **Crontab**.
 
 ## 🧠 Key Learnings
-- **Positional Arguments:** Passing data into scripts ($1, $2, $#).
-- **For Loops:** Repeating a task for a list of items (e.g., creating 10 users).
-- **While Loops:** Running a task until a condition is met.
-- **Basic Error Handling:** Using `if` statements to check if a command succeeded.
+- **Archiving:** Using the `tar` command to bundle and compress files.
+- **Timestamping:** Creating unique filenames using the `date` command.
+- **Scheduling:** Understanding the `crontab -e` syntax to automate your scripts.
+- **Project Thinking:** Combining variables, loops, and functions into one final solution.
 
 ## 🧠 Pro Module
-[🎓 Day 17 Pro Module: Script Logic](./Day17_Logic_and_Arguments.html)
+[🎓 Day 17 Pro Module: The Backup Project](./Day17_Backup_and_Cron.html)
 
 ## 🧪 Hands-on Lab
-👉 [Lab Session: The Smart Automation](./lab-session/task.md)
+👉 [Lab Session: The Automation Project](./lab-session/task.md)
 
 ---
 *#LearnDevOpsIn90Days • @AryashreePritikrishna • Phase 2: The Automation Surge*
