@@ -1,4 +1,4 @@
-# 🏆 Module 04 Mastery Exam: Shell Scripting For DevOps
+# 🏆 Module 03 Mastery Exam: Shell Scripting For DevOps
 
 Welcome to the **Mastery Exam**! This assessment covers everything from basic syntax to production-safe automation logic.
 

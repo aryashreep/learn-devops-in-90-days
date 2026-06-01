@@ -44,29 +44,29 @@
 
 ---
 
-## 🌐 Module 03 - Networking & System Design (Days 14-15)
-> *DNS, Ports, SSH, and the architecture of the Internet.*
-
-| Day | Topic | Pro Module (Blackboard) | Task / Lab |
-|---|---|---|---|
-| 🗓️ Day 14 | Networking Fundamentals | [🎓 Day 14 Pro](./curriculum/Module%2003%20-%20Networking%20&%20System%20Design/day-14/Day14_Networking_Basics.html) | [🧪 Lab 14](./curriculum/Module%2003%20-%20Networking%20&%20System%20Design/day-14/lab-session/task.md) |
-| 🗓️ Day 15 | DNS, IP, Subnets & Ports | [🎓 Day 15 Pro](./curriculum/Module%2003%20-%20Networking%20&%20System%20Design/day-15/Day15_Networking_Deep_Dive.html) | [🧪 Lab 15](./curriculum/Module%2003%20-%20Networking%20&%20System%20Design/day-15/lab-session/task.md) |
-| 🏆 **Exam** | **Module 03 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2003%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) | -- |
-
----
-
-## 🐚 Module 04 - Shell Scripting (Days 16-21)
+## 🐚 Module 03 - Shell Scripting (Days 16-21)
 > *Automate the boring stuff with Bash.*
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 16 | Shell Scripting Basics | [🎓 Day 16 Pro](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-16/Day16_Scripting_Basics.html) | [🧪 Lab 16](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-16/lab-session/task.md) |
-| 🗓️ Day 17 | Logic, Loops & Arguments | [🎓 Day 17 Pro](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-17/Day17_Logic_and_Arguments.html) | [🧪 Lab 17](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-17/lab-session/task.md) |
-| 🗓️ Day 18 | Bash Functions & Scope | [🎓 Day 18 Pro](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-18/Day18_Bash_Functions.html) | [🧪 Lab 18](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-18/lab-session/task.md) |
-| 🗓️ Day 19 | Log Rotation & Backup | [🎓 Day 19 Pro](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-19/Day19_Backup_and_Cron.html) | [🧪 Lab 19](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-19/lab-session/task.md) |
-| 🗓️ Day 20 | Log Analyzer Challenge | 🚧 Pro Module Coming | [🧪 Lab 20](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-20/lab-session/task.md) |
-| 🗓️ Day 21 | Scripting Cheat Sheet | 🚧 Pro Module Coming | [🧪 Lab 21](./curriculum/Module%2004%20-%20Shell%20Scripting%20For%20DevOps/day-21/lab-session/task.md) |
-| 🏆 **Exam** | **Module 04 Mastery Exam** | 📝 30 MCQs | -- |
+| 🗓️ Day 16 | Shell Scripting Basics | [🎓 Day 16 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/Day16_Scripting_Basics.html) | [🧪 Lab 16](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/lab-session/task.md) |
+| 🗓️ Day 17 | Logic, Loops & Arguments | [🎓 Day 17 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/Day17_Logic_and_Arguments.html) | [🧪 Lab 17](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/lab-session/task.md) |
+| 🗓️ Day 18 | Bash Functions & Scope | [🎓 Day 18 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/Day18_Bash_Functions.html) | [🧪 Lab 18](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/lab-session/task.md) |
+| 🗓️ Day 19 | Log Rotation & Backup | [🎓 Day 19 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/Day19_Backup_and_Cron.html) | [🧪 Lab 19](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/lab-session/task.md) |
+| 🗓️ Day 20 | Log Analyzer Challenge | 🚧 Pro Module Coming | [🧪 Lab 20](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-20/lab-session/task.md) |
+| 🗓️ Day 21 | Scripting Cheat Sheet | 🚧 Pro Module Coming | [🧪 Lab 21](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-21/lab-session/task.md) |
+| 🏆 **Exam** | **Module 03 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/mastery-exam/README.md) | -- |
+
+---
+
+## 🌐 Module 04 - Networking & System Design (Days 14-15)
+> *DNS, Ports, SSH, and the architecture of the Internet.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 14 | Networking Fundamentals | [🎓 Day 14 Pro](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-14/Day14_Networking_Basics.html) | [🧪 Lab 14](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-14/lab-session/task.md) |
+| 🗓️ Day 15 | DNS, IP, Subnets & Ports | [🎓 Day 15 Pro](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-15/Day15_Networking_Deep_Dive.html) | [🧪 Lab 15](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-15/lab-session/task.md) |
+| 🏆 **Exam** | **Module 04 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) | -- |
 
 ---
 

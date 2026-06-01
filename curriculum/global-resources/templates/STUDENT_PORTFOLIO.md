@@ -12,7 +12,7 @@
 ## 🏆 Module Mastery Badges
 - 🟢 **Module 01 (Intro):** [Passed/Pending]
 - ⚪ **Module 02 (Linux):** [In Progress]
-- ⚪ **Module 03 (Networking):** [Planned]
+- ⚪ **Module 04 (Networking):** [Planned]
 
 ---
 

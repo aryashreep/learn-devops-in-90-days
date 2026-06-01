@@ -29,31 +29,31 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## 🌐 Module 03 - Networking & System Design (Days 14-15)
+## 🐚 Module 03 - Shell Scripting For DevOps (Days 16-21)
 | Day | Topic |
 |---|---|
-| [Day 14](../Module%2003%20-%20Networking%20&%20System%20Design/day-14/README.md) | Networking Fundamentals and Hands-on Checks |
-| [Day 15](../Module%2003%20-%20Networking%20&%20System%20Design/day-15/README.md) | Networking Concepts: DNS, IP, Subnets and Ports |
+| Day 16 | [Shell Scripting Basics](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/README.md) |
+| Day 17 | [Shell Scripting: Loops, Arguments and Error Handling](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/README.md) |
+| Day 18 | [Shell Scripting: Functions and Intermediate Concepts](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/README.md) |
+| Day 19 | [Shell Scripting Project: Log Rotation, Backup and Crontab](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/README.md) |
+| Day 20 | [Bash Scripting Challenge: Log Analyzer and Report Generator](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-20/README.md) |
+| Day 21 | [Shell Scripting Handbook: Complete Master Guide](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-21/README.md) |
 
 ---
 
-## 🐚 Module 04 - Shell Scripting For DevOps (Days 16-21)
+## 🌐 Module 04 - Networking & System Design (Days 14-15)
 | Day | Topic |
 |---|---|
-| Day 16 | Shell Scripting Basics |
-| Day 17 | Shell Scripting: Loops, Arguments and Error Handling |
-| Day 18 | Shell Scripting: Functions and Intermediate Concepts |
-| Day 19 | Shell Scripting Project: Log Rotation, Backup and Crontab |
-| Day 20 | Bash Scripting Challenge: Log Analyzer and Report Generator |
-| Day 21 | Shell Scripting Cheat Sheet: Build Your Own Reference Guide |
+| [Day 14](../Module%2004%20-%20Networking%20&%20System%20Design/day-14/README.md) | Networking Fundamentals and Hands-on Checks |
+| [Day 15](../Module%2004%20-%20Networking%20&%20System%20Design/day-15/README.md) | Networking Concepts: DNS, IP, Subnets and Ports |
 
 ---
 
 ## 🐙 Module 05 - Introduction to Git [GitHub & GitLab] (Days 22-28)
 | Day | Topic |
 |---|---|
-| Day 22 | Introduction to Git: Your First Repository |
-| Day 23 | Git Branching and Working with GitHub |
+| [Day 22](../Module%2005%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-22/README.md) | Introduction to Git: Your First Repository |
+| [Day 23](../Module%2005%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-23/README.md) | Git Branching and Working with GitHub |
 | Day 24 | Advanced Git: Merge, Rebase, Stash and Cherry Pick |
 | Day 25 | Git Reset vs Revert and Branching Strategies |
 | Day 26 | GitHub CLI: Manage GitHub from Your Terminal |
