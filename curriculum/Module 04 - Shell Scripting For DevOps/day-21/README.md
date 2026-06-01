@@ -15,7 +15,7 @@ Create a high-quality, personalized Shell Scripting Cheat Sheet that includes yo
 
 ## 📚 Resources
 - 📖 [Shell Scripting Handbook](../SHELL_SCRIPTING_HANDBOOK.html)
-- 🏆 [Module 4 Mastery Exam](../mastery-exam/README.md)
+- 🏆 [Module 04 Mastery Exam](../mastery-exam/README.md)
 
 ---
 *#LearnDevOpsIn90Days • @AryashreePritikrishna • Phase 2: The Automation Surge*

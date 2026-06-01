@@ -4,40 +4,40 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## 📦 Module 1 - Introduction To DevOps, Cloud & SRE (Day 1)
+## 📦 Module 01 - Introduction To DevOps, Cloud & SRE (Day 1)
 | Day | Topic |
 |---|---|
-| [Day 01](../Module%201%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/README.md) | Introduction to DevOps and Cloud |
+| [Day 01](../Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/README.md) | Introduction to DevOps and Cloud |
 
 ---
 
-## 🐧 Module 2 - Linux Foundations (Days 2-13)
+## 🐧 Module 02 - Linux Foundations (Days 2-13)
 | Day | Topic |
 |---|---|
-| [Day 02](../Module%202%20-%20Linux%20Foundations/day-02/README.md) | Linux Architecture, Processes, and systemd |
-| [Day 03](../Module%202%20-%20Linux%20Foundations/day-03/README.md) | Linux Commands Practice |
-| [Day 04](../Module%202%20-%20Linux%20Foundations/day-04/README.md) | Linux Practice: Processes and Services |
-| [Day 05](../Module%202%20-%20Linux%20Foundations/day-05/README.md) | Linux Troubleshooting Drill: CPU, Memory, and Logs |
-| [Day 06](../Module%202%20-%20Linux%20Foundations/day-06/README.md) | Linux Fundamentals: Read and Write Text Files |
-| [Day 07](../Module%202%20-%20Linux%20Foundations/day-07/README.md) | Linux File System Hierarchy and Scenario-Based Practice |
-| [Day 08](../Module%202%20-%20Linux%20Foundations/day-08/README.md) | Cloud Server Setup: Docker, Nginx and Web Deployment |
-| [Day 09](../Module%202%20-%20Linux%20Foundations/day-09/README.md) | Linux User and Group Management Challenge |
-| [Day 10](../Module%202%20-%20Linux%20Foundations/day-10/README.md) | File Permissions and File Operations Challenge |
-| [Day 11](../Module%202%20-%20Linux%20Foundations/day-11/README.md) | File Ownership Challenge (chown and chgrp) |
-| [Day 12](../Module%202%20-%20Linux%20Foundations/day-12/README.md) | **Revision Day:** Breather and Foundation Review |
-| [Day 13](../Module%202%20-%20Linux%20Foundations/day-13/README.md) | Linux Volume Management (LVM) |
+| [Day 02](../Module%2002%20-%20Linux%20Foundations/day-02/README.md) | Linux Architecture, Processes, and systemd |
+| [Day 03](../Module%2002%20-%20Linux%20Foundations/day-03/README.md) | Linux Commands Practice |
+| [Day 04](../Module%2002%20-%20Linux%20Foundations/day-04/README.md) | Linux Practice: Processes and Services |
+| [Day 05](../Module%2002%20-%20Linux%20Foundations/day-05/README.md) | Linux Troubleshooting Drill: CPU, Memory, and Logs |
+| [Day 06](../Module%2002%20-%20Linux%20Foundations/day-06/README.md) | Linux Fundamentals: Read and Write Text Files |
+| [Day 07](../Module%2002%20-%20Linux%20Foundations/day-07/README.md) | Linux File System Hierarchy and Scenario-Based Practice |
+| [Day 08](../Module%2002%20-%20Linux%20Foundations/day-08/README.md) | Cloud Server Setup: Docker, Nginx and Web Deployment |
+| [Day 09](../Module%2002%20-%20Linux%20Foundations/day-09/README.md) | Linux User and Group Management Challenge |
+| [Day 10](../Module%2002%20-%20Linux%20Foundations/day-10/README.md) | File Permissions and File Operations Challenge |
+| [Day 11](../Module%2002%20-%20Linux%20Foundations/day-11/README.md) | File Ownership Challenge (chown and chgrp) |
+| [Day 12](../Module%2002%20-%20Linux%20Foundations/day-12/README.md) | **Revision Day:** Breather and Foundation Review |
+| [Day 13](../Module%2002%20-%20Linux%20Foundations/day-13/README.md) | Linux Volume Management (LVM) |
 
 ---
 
-## 🌐 Module 3 - Networking & System Design (Days 14-15)
+## 🌐 Module 03 - Networking & System Design (Days 14-15)
 | Day | Topic |
 |---|---|
-| [Day 14](../Module%203%20-%20Networking%20&%20System%20Design/day-14/README.md) | Networking Fundamentals and Hands-on Checks |
-| [Day 15](../Module%203%20-%20Networking%20&%20System%20Design/day-15/README.md) | Networking Concepts: DNS, IP, Subnets and Ports |
+| [Day 14](../Module%2003%20-%20Networking%20&%20System%20Design/day-14/README.md) | Networking Fundamentals and Hands-on Checks |
+| [Day 15](../Module%2003%20-%20Networking%20&%20System%20Design/day-15/README.md) | Networking Concepts: DNS, IP, Subnets and Ports |
 
 ---
 
-## 🐚 Module 4 - Shell Scripting For DevOps (Days 16-21)
+## 🐚 Module 04 - Shell Scripting For DevOps (Days 16-21)
 | Day | Topic |
 |---|---|
 | Day 16 | Shell Scripting Basics |
@@ -49,7 +49,7 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## 🐙 Module 5 - Introduction to Git [GitHub & GitLab] (Days 22-28)
+## 🐙 Module 05 - Introduction to Git [GitHub & GitLab] (Days 22-28)
 | Day | Topic |
 |---|---|
 | Day 22 | Introduction to Git: Your First Repository |
@@ -62,7 +62,7 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## 🐳 Module 6 - Docker & Containerization (Days 29-37)
+## 🐳 Module 06 - Docker & Containerization (Days 29-37)
 | Day | Topic |
 |---|---|
 | Day 29 | Introduction to Docker |
@@ -77,7 +77,7 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## 🤖 Module 7 - CI/CD with GitHub Actions (Days 38-49)
+## 🤖 Module 07 - CI/CD with GitHub Actions (Days 38-49)
 | Day | Topic |
 |---|---|
 | Day 38 | YAML Basics |
@@ -95,7 +95,7 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## ☸️ Module 8 - Kubernetes [CKA] (Days 50-60)
+## ☸️ Module 08 - Kubernetes [CKA] (Days 50-60)
 | Day | Topic |
 |---|---|
 | Day 50 | Kubernetes Architecture and Cluster Setup |
@@ -112,7 +112,7 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## ☁️ Module 9 - Terraform [IaC] (Days 61-67)
+## ☁️ Module 09 - Terraform [IaC] (Days 61-67)
 | Day | Topic |
 |---|---|
 | Day 61 | Introduction to Terraform and First AWS Infra |

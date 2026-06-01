@@ -22,7 +22,7 @@ Every day in DevOps, you will edit `nginx.conf`, read `error.log`, or write `.sh
 
 ## Submission
 1. Fork this repository.
-2. Navigate to today's folder: `curriculum/Module 2 - Linux Foundations/day-06/lab-session/solution/`.
+2. Navigate to today's folder: `curriculum/Module 02 - Linux Foundations/day-06/lab-session/solution/`.
 3. Add your `file-io-practice.md` or screenshots.
 4. Commit and push: `git commit -m "day-06: file io mastery complete"`.
 

@@ -1,4 +1,4 @@
-# 🏆 Module 3 Mastery Exam: Networking & System Design
+# 🏆 Module 03 Mastery Exam: Networking & System Design
 
 Welcome to the **Networking Mastery Exam**! This assessment tests your knowledge of networking fundamentals, troubleshooting, and cloud-native architecture.
 

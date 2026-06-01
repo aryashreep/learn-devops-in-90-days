@@ -10,31 +10,31 @@
 ---
 
 ## 🏆 Module Mastery Badges
-- 🟢 **Module 1 (Intro):** [Passed/Pending]
-- ⚪ **Module 2 (Linux):** [In Progress]
-- ⚪ **Module 3 (Networking):** [Planned]
+- 🟢 **Module 01 (Intro):** [Passed/Pending]
+- ⚪ **Module 02 (Linux):** [In Progress]
+- ⚪ **Module 03 (Networking):** [Planned]
 
 ---
 
 ## 📂 Day-by-Day Lab Solutions
 
-### 📦 Module 1 - Introduction To DevOps, Cloud & SRE
+### 📦 Module 01 - Introduction To DevOps, Cloud & SRE
 | Day | Topic | My Solution / Proof |
 |:--- | :--- | :--- |
-| Day 01 | Breaking the Wall | [📁 View My Plan](../../curriculum/Module%201%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/lab-session/solution/) |
+| Day 01 | Breaking the Wall | [📁 View My Plan](../../curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/lab-session/solution/) |
 
-### 🐧 Module 2 - Linux Foundations
+### 🐧 Module 02 - Linux Foundations
 | Day | Topic | My Solution / Proof |
 |:--- | :--- | :--- |
-| Day 02 | Architecture & systemd | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-02/lab-session/solution/) |
-| Day 03 | Command Toolkit | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-03/lab-session/solution/) |
-| Day 04 | Navigation & Searching | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-04/lab-session/solution/) |
-| Day 05 | Troubleshooting | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-05/lab-session/solution/) |
-| Day 06 | File I/O Mastery | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-06/lab-session/solution/) |
-| Day 07 | FS Hierarchy | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-07/lab-session/solution/) |
-| Day 08 | Cloud & Nginx | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-08/lab-session/solution/) |
-| Day 09 | User/Group Mgmt | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-09/lab-session/solution/) |
-| Day 10 | File Permissions | [📁 View Work](../../curriculum/Module%202%20-%20Linux%20Foundations/day-10/lab-session/solution/) |
+| Day 02 | Architecture & systemd | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-02/lab-session/solution/) |
+| Day 03 | Command Toolkit | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-03/lab-session/solution/) |
+| Day 04 | Navigation & Searching | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-04/lab-session/solution/) |
+| Day 05 | Troubleshooting | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-05/lab-session/solution/) |
+| Day 06 | File I/O Mastery | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-06/lab-session/solution/) |
+| Day 07 | FS Hierarchy | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-07/lab-session/solution/) |
+| Day 08 | Cloud & Nginx | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-08/lab-session/solution/) |
+| Day 09 | User/Group Mgmt | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-09/lab-session/solution/) |
+| Day 10 | File Permissions | [📁 View Work](../../curriculum/Module%2002%20-%20Linux%20Foundations/day-10/lab-session/solution/) |
 
 ---
 

@@ -21,7 +21,7 @@ Linux is the base OS for almost every production system. If you know how process
 
 ## Submission
 1. Fork this repository.
-2. Navigate to your today's folder: `curriculum/Module 2 - Linux Foundations/day-02/lab-session/solution/`.
+2. Navigate to your today's folder: `curriculum/Module 02 - Linux Foundations/day-02/lab-session/solution/`.
 3. Add your `linux-architecture-notes.md`.
 4. Commit and push: `git commit -m "day-02: architecture mastery complete"`.
 

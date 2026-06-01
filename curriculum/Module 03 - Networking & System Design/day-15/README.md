@@ -15,7 +15,7 @@ Understand the "Naming" and "Address" system of the web.
 👉 [Lab Session: Web Architecture](./lab-session/task.md)
 
 ## 🏆 Assessment
-- 🏆 [Module 3 Mastery Exam](../mastery-exam/README.md)
+- 🏆 [Module 03 Mastery Exam](../mastery-exam/README.md)
 
 ---
 *Follow the journey on LinkedIn with #LearnDevOpsIn90Days • @AryashreePritikrishna*
