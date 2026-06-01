@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking Handbook - Master Guide for DevOps</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blackboard: #0f172a;
+            --chalk-white: #f8fafc;
+            --chalk-yellow: #fde047;
+            --chalk-blue: #38bdf8;
+            --chalk-green: #4ade80;
+            --chalk-pink: #f472b6;
+            --chalk-orange: #fb923c;
+            --chalk-red: #f87171;
+            --wood-frame: #334155;
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 40px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 25px 25px; position: relative; }
+        
+        .header { border-bottom: 2px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+        .header h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; }
+        
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.2rem; margin-bottom: 40px; }
+        
+        section { margin-bottom: 60px; }
+        .topic-title { color: var(--chalk-pink); font-size: 2rem; border-bottom: 1px dashed var(--chalk-pink); padding-bottom: 10px; margin-bottom: 20px; }
+        
+        .bubble { border: 2px solid var(--chalk-white); border-radius: 20px; padding: 20px; margin-bottom: 20px; line-height: 1.6; }
+        .chalk-highlight { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        
+        .bash-box { background: #000; border-left: 5px solid var(--chalk-blue); padding: 15px; border-radius: 5px; font-family: 'Fira Code', monospace; color: var(--chalk-green); margin: 20px 0; overflow-x: auto; }
+        
+        ul { list-style-type: none; padding-left: 0; }
+        li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        li::before { content: "★"; position: absolute; left: 0; color: var(--chalk-orange); }
+
+        .analogy-box { background: rgba(56, 189, 248, 0.1); border: 2px solid var(--chalk-blue); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .analogy-title { color: var(--chalk-blue); font-weight: bold; display: block; margin-bottom: 10px; text-transform: uppercase; }
+
+        footer { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 40px; color: #94a3b8; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="blackboard">
+    <div class="header">
+        <div>
+            <h2>Aryashree Pritikrishna</h2>
+            <small>DevOps Training Series • 2026</small>
+        </div>
+        <div style="text-align: right">
+            #LearnDevOpsIn90Days
+        </div>
+    </div>
+
+    <h1>The Networking Handbook</h1>
+    <p class="subtitle">From Bits and Frames to VPCs and Load Balancers</p>
+
+    <section id="what-is-networking">
+        <h2 class="topic-title">1. What is Networking?</h2>
+        <div class="bubble">
+            A network is formed when two or more systems connect to communicate. Think of it like a <span class="chalk-highlight">Postal Service</span> for computers. You need roads (cables), addresses (IPs), and envelopes (packets).
+        </div>
+        <div class="analogy-box">
+            <span class="analogy-title">Why it matters:</span>
+            In DevOps, "Infrastructure as Code" means defining networks using software. If the network fails, your app is unreachable, no matter how good your code is!
+        </div>
+        <ul>
+            <li><strong>Nodes:</strong> Any device (server, laptop, router) on the network.</li>
+            <li><strong>Links:</strong> The physical or wireless connections.</li>
+            <li><strong>Protocol:</strong> The rules of the conversation (e.g., TCP/IP).</li>
+            <li><strong>Topology:</strong> The layout (Star, Bus, Mesh).</li>
+        </ul>
+    </section>
+
+    <section id="osi-model">
+        <h2 class="topic-title">2. OSI vs. TCP/IP (Practical View)</h2>
+        <div class="bubble">
+            Models split networking into layers, like an <span class="chalk-highlight">Assembly Line</span>. Each layer has a specific job.
+        </div>
+        <ul>
+            <li><strong>Layer 7 (Application):</strong> HTTP, FTP, SSH (Where apps live).</li>
+            <li><strong>Layer 4 (Transport):</strong> TCP/UDP ports (Reliability).</li>
+            <li><strong>Layer 3 (Network):</strong> IP addresses and Routing.</li>
+            <li><strong>Layer 2 (Data Link):</strong> MAC addresses and Switches.</li>
+            <li><strong>Layer 1 (Physical):</strong> Cables and electricity.</li>
+        </ul>
+        <div class="bash-box"># Layer 3 Check (Can I see the machine?)
+ping 8.8.8.8
+
+# Layer 4 Check (Is the door open?)
+telnet google.com 80</div>
+    </section>
+
+    <section id="ip-addressing">
+        <h2 class="topic-title">3. IP Addresses & Subnetting</h2>
+        <div class="analogy-box">
+            <span class="analogy-title">The Building Analogy:</span>
+            An IP address is the building's street address. A <strong>Public IP</strong> is the front door (routable on the internet). A <strong>Private IP</strong> is like an internal extension (e.g., 10.x.x.x).
+        </div>
+        <div class="bubble">
+            <strong>Subnetting</strong> is slicing a large network into smaller slices. <strong>CIDR</strong> notation (like /24) tells you how big the slice is.
+        </div>
+        <ul>
+            <li><strong>/32:</strong> Just 1 single IP.</li>
+            <li><strong>/24:</strong> 254 usable IPs.</li>
+            <li><strong>/16:</strong> 65,000+ usable IPs.</li>
+        </ul>
+        <div class="hinglish">Lower CIDR = More IPs. Higher CIDR = Fewer IPs. Confusion mat paalo!</div>
+    </section>
+
+    <section id="dns">
+        <h2 class="topic-title">4. DNS: The Internet's Phonebook</h2>
+        <div class="bubble">
+            Computers only know IPs. DNS translates "google.com" into 142.250.x.x. <span class="chalk-highlight">"It's always DNS"</span> is a meme because when it breaks, everything feels broken!
+        </div>
+        <ul>
+            <li><strong>A Record:</strong> Name to IPv4.</li>
+            <li><strong>CNAME:</strong> Name to another Name (Alias).</li>
+            <li><strong>TTL (Time to Live):</strong> How long the record is cached.</li>
+        </ul>
+        <div class="bash-box"># DNS Lookup
+nslookup google.com
+dig google.com</div>
+    </section>
+
+    <section id="tcp-udp">
+        <h2 class="topic-title">5. TCP vs. UDP</h2>
+        <div class="analogy-box">
+            <span class="analogy-title">Communication Styles:</span>
+            <strong>TCP:</strong> Like a Phone Call. Reliable, ordered, and acknowledged (3-Way Handshake).<br>
+            <strong>UDP:</strong> Like a P.A. System. Fast, but unreliable. Use for streaming or gaming.
+        </div>
+        <div class="bash-box"># Test connection with netcat
+nc -zv <host> <port></div>
+    </section>
+
+    <section id="firewalls">
+        <h2 class="topic-title">6. Firewalls & NAT</h2>
+        <div class="bubble">
+            A <strong>Firewall</strong> is a security guard. It follows Inbound/Outbound rules. In the cloud, we call them <span class="chalk-highlight">Security Groups</span>.
+        </div>
+        <div class="bubble">
+            <strong>NAT (Network Address Translation):</strong> Allows private servers to share one Public IP to access the internet. Like an office receptionist handing out mail.
+        </div>
+    </section>
+
+    <section id="load-balancing">
+        <h2 class="topic-title">7. Load Balancing & Proxies</h2>
+        <ul>
+            <li><strong>L4 Load Balancer:</strong> Distributes based on IP/Port (Fast).</li>
+            <li><strong>L7 Load Balancer:</strong> Distributes based on content/URL (Smart).</li>
+            <li><strong>Reverse Proxy:</strong> Sits in front of your server to handle SSL and Caching (Bodyguard).</li>
+        </ul>
+    </section>
+
+    <section id="cloud-k8s">
+        <h2 class="topic-title">8. VPC & Kubernetes Networking</h2>
+        <div class="bubble">
+            <strong>VPC:</strong> Your own private slice of the cloud data center.
+        </div>
+        <div class="bubble">
+            <strong>K8s Networking:</strong> Pods are ephemeral! Never use Pod IPs; always talk via <span class="chalk-highlight">Services</span> (Stable DNS names).
+        </div>
+    </section>
+
+    <section id="troubleshooting">
+        <h2 class="topic-title">9. Troubleshooting Funnel</h2>
+        <div class="hinglish">Sabse pehle bottom (Physical/IP) se shuru karo, fir Application tak jaao.</div>
+        <ol>
+            <li>Is the cable plugged in? (Cloud: Is instance running?)</li>
+            <li>Can I ping the Gateway?</li>
+            <li>Is the Firewall/Security Group blocking the port?</li>
+            <li>Is the service actually running? (curl -v)</li>
+        </ol>
+    </section>
+
+    <footer>
+        <p>#LearnDevOpsIn90Days • Created with ❤️ by Aryashree Pritikrishna</p>
+    </footer>
+</div>
+
+</body>
+</html>

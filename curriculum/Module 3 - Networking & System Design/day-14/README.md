@@ -5,5 +5,9 @@ Welcome to **Day 14**! Today we start our journey into the world of packets and 
 ## 🧠 Pro Module
 [🎓 Day 14 Pro Module](./Day14_Networking_Basics.html)
 
+## 📚 Resources
+- 📖 [Networking Handbook](../NETWORKING_HANDBOOK.html)
+- 🛠️ [Networking Cheat Sheet](../NETWORKING_CHEATSHEET.md)
+
 ## 🧪 Hands-on Lab
 [📁 Lab Session](./lab-session/task.md)
