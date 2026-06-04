@@ -171,15 +171,22 @@ nc -zv <host> <port></div>
         </div>
     </section>
 
-    <section id="troubleshooting">
-        <h2 class="topic-title">9. Troubleshooting Funnel</h2>
-        <div class="hinglish">Sabse pehle bottom (Physical/IP) se shuru karo, fir Application tak jaao.</div>
-        <ol>
-            <li>Is the cable plugged in? (Cloud: Is instance running?)</li>
-            <li>Can I ping the Gateway?</li>
-            <li>Is the Firewall/Security Group blocking the port?</li>
-            <li>Is the service actually running? (curl -v)</li>
-        </ol>
+    <section id="system-design">
+        <h2 class="topic-title">10. System Design & Scalability</h2>
+        <div class="bubble">
+            System Design is the process of defining the architecture, components, and interfaces for a system to satisfy specific requirements. In DevOps, this means building for <span class="chalk-highlight">High Availability</span> and <span class="chalk-highlight">Fault Tolerance</span>.
+        </div>
+        <ul>
+            <li><strong>Vertical Scaling (Scale Up):</strong> Adding more power (CPU/RAM) to an existing machine.</li>
+            <li><strong>Horizontal Scaling (Scale Out):</strong> Adding more machines to your network pool.</li>
+            <li><strong>High Availability (HA):</strong> Ensuring the system remains operational even if a component fails (Multi-AZ).</li>
+            <li><strong>Monolith:</strong> A single, unified unit of software.</li>
+            <li><strong>Microservices:</strong> A collection of small, independent services communicating over a network.</li>
+        </ul>
+        <div class="analogy-box">
+            <span class="analogy-title">The Restaurant Analogy:</span>
+            A <strong>Monolith</strong> is one chef doing everything. If he gets sick, the restaurant closes. <strong>Microservices</strong> are a team: one for salads, one for mains, one for desserts. If the salad chef is sick, you still get your main course!
+        </div>
     </section>
 
     <footer>

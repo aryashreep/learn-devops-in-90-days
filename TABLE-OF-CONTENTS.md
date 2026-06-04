@@ -64,8 +64,8 @@
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 20 | Networking Fundamentals | [🎓 Day 20 Pro](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-14/Day20_Networking_Basics.html) | [🧪 Lab 14](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-14/lab-session/task.md) |
-| 🗓️ Day 21 | DNS, IP, Subnets & Ports | [🎓 Day 21 Pro](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-15/Day21_Networking_Deep_Dive.html) | [🧪 Lab 15](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-15/lab-session/task.md) |
+| 🗓️ Day 20 | Networking Fundamentals | [🎓 Day 20 Pro](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/Day20_Networking_Basics.html) | [🧪 Lab 20](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/lab-session/task.md) |
+| 🗓️ Day 21 | DNS, IP, Subnets & Ports | [🎓 Day 21 Pro](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/Day21_Networking_Deep_Dive.html) | [🧪 Lab 21](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/lab-session/task.md) |
 | 🏆 **Exam** | **Module 04 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) | -- |
 
 ---

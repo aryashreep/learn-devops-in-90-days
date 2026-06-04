@@ -150,26 +150,26 @@
         <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
             <ul>
-                <li><strong>Interpret:</strong> DNS flow from root to authoritative nameservers.</li>
-                <li><strong>Calculate:</strong> Understand CIDR notation and subnet sizes.</li>
-                <li><strong>Navigate:</strong> Use `dig` and `whois` for deep network discovery.</li>
-                <li><strong>Map:</strong> Link services (HTTP, SSH, MySQL) to their standard ports.</li>
+                <li><strong>Communication:</strong> Trace how data flows via OSI and TCP/IP models.</li>
+                <li><strong>Transport:</strong> Master Layer 4 protocols (TCP vs UDP) and their use cases.</li>
+                <li><strong>Security:</strong> Understand HTTPS, TLS, and Firewall fundamentals.</li>
+                <li><strong>Design:</strong> Learn Scalability, Availability, and Monolith vs Microservices.</li>
             </ul>
             <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
-                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki VPC design aur Kubernetes Service setup bina subnets aur ports ke nahi hota!
+                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki architecture design ke bina cloud infrastructure sirf ek 'Box' hai!
             </p>
         </div>
     </section>
 
     <!-- ② ANALOGY -->
     <section>
-        <div class="topic-title">💡 ANALOGY: The Global Phonebook</div>
+        <div class="topic-title">💡 ANALOGY: The Smart Factory</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-white);">
             <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Name:</span> github.com (Aapka dost ka naam).<br>
-                2. <span class="chalk-text">DNS:</span> Truecaller/Phonebook (Naam se number dhundna).<br>
-                3. <span class="chalk-text">IP Address:</span> Phone Number (Asali binary identity).<br>
-                4. <span class="chalk-text">CIDR:</span> Area Code (Ek hi area ke saare numbers).
+                1. <span class="chalk-text">OSI Model:</span> Assembly line steps.<br>
+                2. <span class="chalk-text">HTTPS:</span> Sealed, tamper-proof packaging.<br>
+                3. <span class="chalk-text">Load Balancer:</span> Traffic police directing trucks.<br>
+                4. <span class="chalk-text">Microservices:</span> Specialized independent workshops.
             </p>
         </div>
     </section>
@@ -178,43 +178,115 @@
     <section>
         <div class="topic-title">❓ DID YOU KNOW?</div>
         <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">8.8.8.8</div><div class="handwritten" style="color:var(--chalk-blue);">Google's DNS</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">65535</div><div class="handwritten" style="color:var(--chalk-blue);">Total Ports</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">TTL</div><div class="handwritten" style="color:var(--chalk-blue);">Time to Live (Cache)</div></div>
+            <div><div style="font-size: 2.5rem; color: var(--chalk-yellow);">3-Way</div><div class="handwritten" style="color:var(--chalk-blue);">TCP Handshake</div></div>
+            <div><div style="font-size: 2.5rem; color: var(--chalk-pink);">Port 443</div><div class="handwritten" style="color:var(--chalk-blue);">Encrypted Web</div></div>
+            <div><div style="font-size: 2.5rem; color: var(--chalk-green);">Stateless</div><div class="handwritten" style="color:var(--chalk-blue);">HTTP Nature</div></div>
         </div>
     </section>
 
-    <!-- ⑤ Key Concepts: CIDR Simplified -->
+    <!-- ④ Communication Flow -->
     <section>
-        <div class="topic-title">📌 Key Concepts: The /24 Magic</div>
-        <div class="diagram-container">
-            <div class="handwritten" style="font-size: 1.5rem;">
-                <span style="color: var(--chalk-blue);">/32</span> ➔ Only 1 IP (Just you).<br>
-                <span style="color: var(--chalk-green);">/24</span> ➔ 256 IPs (A small office).<br>
-                <span style="color: var(--chalk-orange);">/16</span> ➔ 65,536 IPs (A giant company).<br>
-                <span style="color: var(--chalk-red);">/0</span> ➔ The Entire World!
+        <div class="topic-title">🔄 The Data Journey: OSI vs TCP/IP</div>
+        <div class="content-box">
+            <h3 class="handwritten" style="color: var(--chalk-blue);">How Communication Happens</h3>
+            <p class="hinglish">"Golu, data seedha nahi jata, usey 7 layers se guzarna padta hai!"</p>
+            <div class="bash-box">
+                [L7: App] -> [L4: Port] -> [L3: IP] -> [L2: MAC] -> [L1: Cable]
             </div>
-            <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
-                <span class="hinglish">Strategy:</span> Number jitna chota, network utna bada!
+            <p class="handwritten" style="margin-top: 15px;">
+                Jab aap browser mein <code>google.com</code> likhte ho, toh data 'Encapsulate' hota hai niche jaate waqt, aur 'Decapsulate' hota hai receiver side par.
             </p>
         </div>
     </section>
 
-    <!-- ⑥ Compare -->
+    <!-- ⑤ TCP vs UDP -->
     <section>
-        <div class="topic-title">🔄 Compare: A Record vs CNAME</div>
+        <div class="topic-title">⚡ Layer 4: TCP vs UDP</div>
         <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">A Record</h3>
-                <p class="hinglish">"Direct mapping—Naam to IP."</p>
-                <code>golu.dev ➔ 1.2.3.4</code>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+                <h3 class="handwritten">TCP (The Professional)</h3>
+                <p class="hinglish">"Bhai, confirm kar le data pahucha ya nahi!"</p>
+                <ul>
+                    <li>Handshake: Yes</li>
+                    <li>Ordered: Yes</li>
+                    <li>Use: Web, Email, SSH</li>
+                </ul>
             </div>
             <div class="vs-circle">VS</div>
             <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">CNAME</h3>
-                <p class="hinglish">"Alias—Nickname to Real Name."</p>
-                <code>www.golu.dev ➔ golu.dev</code>
+                <h3 class="handwritten">UDP (The Speedster)</h3>
+                <p class="hinglish">"Bol diya, bas bol diya! Fast and Furious."</p>
+                <ul>
+                    <li>Handshake: No</li>
+                    <li>Ordered: No</li>
+                    <li>Use: Streaming, Gaming, DNS</li>
+                </ul>
             </div>
+        </div>
+    </section>
+
+    <!-- ⑥ Internet Security -->
+    <section>
+        <div class="topic-title">🔒 Security: HTTPS & Firewalls</div>
+        <div class="content-box" style="border-color: var(--chalk-red);">
+            <h3 class="handwritten">How Security Works</h3>
+            <p class="hinglish">"Bina TLS ke aapka password 'Khula Khat' (Postcard) jaisa hai."</p>
+            <ul>
+                <li><strong>HTTPS:</strong> HTTP + SSL/TLS Encryption.</li>
+                <li><strong>Firewall:</strong> Security Guard jo rules follow karta hai (Security Groups).</li>
+                <li><strong>NAT:</strong> Private network ko mask karke bahar le jaana.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑦ System Design Fundamentals -->
+    <section>
+        <div class="topic-title">🏗️ System Design: The Architect's View</div>
+        <div class="diagram-container">
+            <h3 class="handwritten" style="color: var(--chalk-orange);">Scalability & Availability</h3>
+            <div style="display: flex; gap: 20px; justify-content: space-around; margin-top: 20px;">
+                <div class="content-box" style="border: 1px solid var(--chalk-blue);">
+                    <strong>Vertical Scaling</strong><br>
+                    Add more RAM/CPU
+                </div>
+                <div class="content-box" style="border: 1px solid var(--chalk-green);">
+                    <strong>Horizontal Scaling</strong><br>
+                    Add more Servers! (Auto Scaling)
+                </div>
+            </div>
+            <p class="hinglish" style="margin-top: 20px;">
+                "Jagu, system design matlab software ka 'Blue-Print' banana!"
+            </p>
+        </div>
+    </section>
+
+    <!-- ⑧ Monolith vs Microservices -->
+    <section>
+        <div class="topic-title">📐 Architecture Types</div>
+        <div class="content-box">
+            <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <li>
+                    <strong style="color: var(--chalk-red);">Monolith:</strong>
+                    "Ek bada dabba." Everything in one code base. Hard to scale, easy to start.
+                </li>
+                <li>
+                    <strong style="color: var(--chalk-green);">Microservices:</strong>
+                    "Chote-chote components." Scalable, resilient, but complex to manage.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑨ Project Walkthrough -->
+    <section>
+        <div class="topic-title">🚀 Project: The E-Commerce Flow</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
+            <p class="handwritten" style="font-size: 1.2rem;">
+                User -> DNS -> CDN -> Load Balancer -> Web Servers -> Database
+            </p>
+            <p class="hinglish" style="margin-top: 15px;">
+                "Golu, yehi hai woh map jo aapko 12 LPA dilayega!"
+            </p>
         </div>
     </section>
 

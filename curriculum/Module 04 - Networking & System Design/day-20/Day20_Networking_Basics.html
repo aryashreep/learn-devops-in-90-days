@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 07: Networking Basics - Golu & Jagu Pro Edition</title>
+    <title>Day 20: Networking Fundamentals - Golu & Jagu Pro Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -109,8 +109,8 @@
     </header>
 
     <header>
-        <h1>Networking Basics</h1>
-        <p class="subtitle handwritten">Day 07: How Servers Talk and Packets Travel 🌐</p>
+        <h1>Networking Fundamentals</h1>
+        <p class="subtitle handwritten">Day 20: How the Internet Works and Systems Connect 🌐</p>
     </header>
 
     <!-- INTRO SECTION -->
@@ -149,11 +149,14 @@
         <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
             <ul>
-                <li><strong>Identity:</strong> Distinguish between Public and Private IP addresses.</li>
-                <li><strong>Blueprint:</strong> Understand the OSI Model from a DevOps perspective.</li>
-                <li><strong>Diagnostic:</strong> Use `ping` and `traceroute` to trace data paths.</li>
-                <li><strong>Transport:</strong> Learn the difference between TCP and UDP.</li>
+                <li><strong>Infrastructure:</strong> Understand the physical internet (Routers, Switches, Hubs).</li>
+                <li><strong>Cloud Edge:</strong> Distinguish between Data Centers, CDN, and Edge Locations.</li>
+                <li><strong>Addressing:</strong> Master IP addresses, Subnets, and CIDR notation.</li>
+                <li><strong>Resolution:</strong> Learn the end-to-end DNS lookup flow.</li>
             </ul>
+            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+                💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki bina foundation ke aap production outages troubleshoot nahi kar sakte!
+            </p>
         </div>
     </section>
 
@@ -162,10 +165,10 @@
         <div class="topic-title">💡 ANALOGY: The Global Postal System</div>
         <div class="content-box" style="border: 2px dashed var(--chalk-white);">
             <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">IP Address:</span> Ghar ka address.<br>
-                2. <span class="chalk-text">Router:</span> Local post office.<br>
-                3. <span class="chalk-text">TCP:</span> Registered Post (Confirm milega).<br>
-                4. <span class="chalk-text">UDP:</span> Normal Post (Fast par risky).
+                1. <span class="chalk-text">IP Address:</span> Ghar ka unique address.<br>
+                2. <span class="chalk-text">Router:</span> Post office jo rasta dikhata hai.<br>
+                3. <span class="chalk-text">Switch:</span> Society ka gatekeeper (Local delivery).<br>
+                4. <span class="chalk-text">DNS:</span> Global Phonebook (Name to Address).
             </p>
         </div>
     </section>
@@ -174,25 +177,67 @@
     <section>
         <div class="topic-title">❓ DID YOU KNOW?</div>
         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">127.0.0.1</div><div class="handwritten" style="color:var(--chalk-blue);">Localhost</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">7 Layers</div><div class="handwritten" style="color:var(--chalk-blue);">OSI Model</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">ICMP</div><div class="handwritten" style="color:var(--chalk-blue);">Ping Language</div></div>
+            <div><div style="font-size: 2.5rem; color: var(--chalk-yellow);">99%</div><div class="handwritten" style="color:var(--chalk-blue);">Traffic Undersea</div></div>
+            <div><div style="font-size: 2.5rem; color: var(--chalk-pink);">13</div><div class="handwritten" style="color:var(--chalk-blue);">Root DNS Servers</div></div>
+            <div><div style="font-size: 2.5rem; color: var(--chalk-green);">0.0.0.0</div><div class="handwritten" style="color:var(--chalk-blue);">The "Anywhere" IP</div></div>
         </div>
     </section>
 
-    <!-- ⑥ Compare -->
+    <!-- ④ Physical Infrastructure -->
     <section>
-        <div class="topic-title">🔄 Compare: TCP vs UDP</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">TCP (Reliable)</h3>
-                <p class="hinglish">"Ghar ki registry jaisa—sign chahiye."</p>
+        <div class="topic-title">🏗️ Infrastructure: The Backbone</div>
+        <div class="content-box">
+            <h3 class="handwritten" style="color: var(--chalk-blue);">Routers vs Switches vs Hubs</h3>
+            <p class="hinglish">"Golu, network mein 'Dimaag' aur 'Postman' ka farq hota hai!"</p>
+            <ul>
+                <li><strong>Hub (The Dumbest):</strong> Data sabko bhejta hai (Broadcast). Pure chaos!</li>
+                <li><strong>Switch (The Smart One):</strong> Sirf usko bhejta hai jiske liye hai (Unicast via MAC).</li>
+                <li><strong>Router (The Legend):</strong> Alag-alag networks ko connect karta hai (Gateway).</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑤ Data Centers & CDN -->
+    <section>
+        <div class="topic-title">☁️ Data Centers & The Edge</div>
+        <div class="content-box" style="border-color: var(--chalk-orange);">
+            <h3 class="handwritten">CDN & Edge Locations</h3>
+            <p class="hinglish">"Agar US mein server hai, toh India mein video fast kaise chalti hai?"</p>
+            <div class="analogy-box" style="border: 1px solid var(--chalk-orange); padding: 15px; border-radius: 10px;">
+                <strong>CDN (Content Delivery Network):</strong> Aapke ghar ke paas wali Kirana Shop. Sara saaman (Data) wahan pehle se cached hota hai!
             </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">UDP (Fast)</h3>
-                <p class="hinglish">"Bol diya, koi sunne ya na sunne!"</p>
+            <ul style="margin-top: 15px;">
+                <li><strong>Region:</strong> Physical location in the world.</li>
+                <li><strong>Availability Zone (AZ):</strong> One or more data centers.</li>
+                <li><strong>Edge Location:</strong> Cache storage sites for CDN.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑥ CIDR & Subnets -->
+    <section>
+        <div class="topic-title">🔢 CIDR: The /24 Magic</div>
+        <div class="diagram-container">
+            <h3 class="handwritten" style="color: var(--chalk-pink);">Subnetting Simplified</h3>
+            <p class="hinglish">"Bhai, subnetting matlab ek bade pizza ke slices karna!"</p>
+            <div style="font-size: 1.4rem; line-height: 1.8;">
+                <span class="chalk-text">/32</span> ➔ 1 IP (Only you)<br>
+                <span class="chalk-text">/24</span> ➔ 256 IPs (Small Office)<br>
+                <span class="chalk-text">/16</span> ➔ 65k IPs (Big Enterprise)
             </div>
+        </div>
+    </section>
+
+    <!-- ⑦ DNS Flow -->
+    <section>
+        <div class="topic-title">🔍 DNS: The 4-Step Journey</div>
+        <div class="content-box" style="background: rgba(72, 219, 251, 0.05); border: 2px solid var(--chalk-blue);">
+            <ol>
+                <li><strong>Recursive Resolver:</strong> Your ISP (The middleman).</li>
+                <li><strong>Root Nameserver:</strong> The "." (The Grandfather).</li>
+                <li><strong>TLD Nameserver:</strong> The ".com", ".in" (The Manager).</li>
+                <li><strong>Authoritative Nameserver:</strong> The "GitHub.com" (The actual owner).</li>
+            </ol>
         </div>
     </section>
 
