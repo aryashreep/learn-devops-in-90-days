@@ -75,9 +75,14 @@
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 22 | Introduction to Git | [🎓 Day 22 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/Day22_Git_Introduction.html) | [🧪 Lab 22](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/lab-session/task.md) |
-| 🗓️ Day 23 | Branching & GitHub | [🎓 Day 23 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-23/Day23_Git_Branching.html) | [🧪 Lab 23](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-23/lab-session/task.md) |
-| 🗓️ Day 24 | Advanced Git | 🚧 Coming Soon | 🚧 Coming Soon |
+| 🗓️ Day 22 | Git Foundations & Local Setup | [🎓 Day 22 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/Day22_Git_Introduction.html) | [🧪 Lab 22](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/lab-session/task.md) |
+| 🗓️ Day 23 | Branching & Workflows | [🎓 Day 23 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-23/Day23_Git_Branching.html) | [🧪 Lab 23](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-23/lab-session/task.md) |
+| 🗓️ Day 24 | GitHub Collaboration & CLI | [🎓 Day 24 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-24/Day24_GitHub_Collaboration.html) | [🧪 Lab 24](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-24/lab-session/task.md) |
+| 🗓️ Day 25 | Integrating Work (Merge/Rebase) | [🎓 Day 25 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-25/Day25_Integrating_Work.html) | [🧪 Lab 25](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-25/lab-session/task.md) |
+| 🗓️ Day 26 | Undoing & Surgical Edits | [🎓 Day 26 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-26/Day26_Git_Recovery.html) | [🧪 Lab 26](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-26/lab-session/task.md) |
+| 🗓️ Day 27 | Collaboration & Safety | [🎓 Day 27 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-27/Day27_Collaboration_Safety.html) | [🧪 Lab 27](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-27/lab-session/task.md) |
+| 🗓️ Day 28 | Git Mastery (Advanced Tools) | [🎓 Day 28 Pro](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-28/Day28_Git_Mastery.html) | [🧪 Lab 28](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-28/lab-session/task.md) |
+| 🏆 **Exam** | **Module 05 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/mastery-exam/README.md) | -- |
 
 
 ---
