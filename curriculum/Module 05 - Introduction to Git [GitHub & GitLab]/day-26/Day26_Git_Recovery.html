@@ -212,11 +212,21 @@
     <section>
         <div class="topic-title">✂ Surgical Tools</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
-            <h3 class="handwritten">Cherry-Pick & Stash</h3>
+            <h3 class="handwritten">1. git commit --amend — "Choti si galti"</h3>
+            <p class="hinglish">
+                Agar commit karne ke baad yaad aaye ki message galat hai ya koi ek file bhool gaye, toh naya commit mat banao! 
+                Bas file add karo aur <code class="chalk-text">git commit --amend</code> chala do. Last commit update ho jayega.
+            </p>
+            <h3 class="handwritten" style="margin-top: 20px;">2. Cherry-Pick & Stash</h3>
             <ul>
                 <li><strong>git cherry-pick [SHA]:</strong> Kisi doosri branch se ek specific fruit (commit) utha kar apni branch pe lana.</li>
                 <li><strong>git stash:</strong> "Arey koi guest aa gaya!"—Messy code chhupao, clean slate pe kaam karo, baad mein `stash pop` karlo.</li>
             </ul>
+            <h3 class="handwritten" style="margin-top: 20px;">3. Reverting a Merge — "The -m 1 trick"</h3>
+            <p class="hinglish">
+                Merge commit ko normal `git revert` nahi kar sakte kyunki uske do parents hote hain. 
+                Hume batana padta hai: <code class="chalk-text">git revert -m 1 [Merge-SHA]</code>. Iska matlab "Main line pe wapis chalo!"
+            </p>
         </div>
     </section>
 

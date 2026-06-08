@@ -19,6 +19,14 @@
     - Run `git status`. **Jagu says:** "Dekh, ye file abhi 'Untracked' hai!"
 4.  **The Stage:** Add the file to the staging area: `git add secret_mission.txt`. Check status again.
 5.  **The Save Point:** Commit your change: `git commit -m "Initial commit: The mission begins"`.
+6.  **The Invisible Shield (.gitignore):**
+    - Create a file `secrets.env`.
+    - Create a `.gitignore` file and add `secrets.env` inside it.
+    - Run `git status`. **Jagu says:** "Dekh, Git ko `secrets.env` dikh hi nahi rahi!"
+7.  **The Surgical Removal:**
+    - Create a file `temp.log`, add it, and commit it.
+    - Now use `git rm --cached temp.log`.
+    - Run `git status`. Notice the file is still on your computer but Git wants to delete it from the repo.
 
 ---
 

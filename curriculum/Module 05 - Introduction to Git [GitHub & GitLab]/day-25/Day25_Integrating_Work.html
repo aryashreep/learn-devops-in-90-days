@@ -211,14 +211,28 @@
         </p>
     </section>
 
-    <!-- ⑥ Fetch vs Pull -->
+    <!-- ⑥ Fetch vs Pull vs Pull-Rebase -->
     <section>
-        <div class="topic-title">📡 Fetch vs Pull</div>
+        <div class="topic-title">📡 Fetch, Pull & The Pro Way</div>
         <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
             <ul>
                 <li><span style="color:var(--chalk-yellow);">git fetch:</span> Sirf jaankari lata hai cloud se. Local code change nahi hota. "Sirf dekho!"</li>
-                <li><span style="color:var(--chalk-green);">git pull:</span> Fetch karta hai + automatic Merge kar deta hai. "Dekho aur badal do!"</li>
+                <li><span style="color:var(--chalk-green);">git pull:</span> Fetch + automatic Merge. History mein extra merge commits add kar sakta hai.</li>
+                <li><span style="color:var(--chalk-blue);">git pull --rebase:</span> Fetch + Rebase. Aapke local commits ko cloud ke latest commits ke aage laga deta hai. <span class="hinglish">(DevOps Engineers ki pehli pasand!)</span></li>
             </ul>
+        </div>
+    </section>
+
+    <!-- ⑥.a Squash Commits -->
+    <section>
+        <div class="topic-title">📦 Squash: Cleaning the Mess</div>
+        <div class="content-box" style="border: 2px solid var(--chalk-pink);">
+            <h3 class="handwritten" style="color:var(--chalk-pink);">Squash Commit — "10 ka 1"</h3>
+            <p class="hinglish">
+                Agar tumne feature branch pe 10 chote-chote "wip", "fix typo" commits kiye hain, toh `main` branch mein unhe 
+                ek saath <span class="chalk-text">Squash</span> karke merge karo. Isse `main` ki history ekdum professional dikhti hai!
+            </p>
+            <code class="chalk-text">git merge --squash feature-branch</code>
         </div>
     </section>
 

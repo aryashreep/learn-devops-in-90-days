@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 30: Issues & Hierarchy - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #0052cc;
+            --chalk-light-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-blue); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-light-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.3rem; line-height: 1.4; }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        
+        .hierarchy-container { display: flex; flex-direction: column; align-items: center; gap: 20px; margin: 40px 0; }
+        .hierarchy-box { border: 3px solid; border-radius: 15px; padding: 15px 40px; text-align: center; font-family: 'Architects Daughter'; font-size: 1.5rem; width: 300px; }
+        .arrow-down { font-size: 2rem; color: var(--chalk-white); }
+        
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="blackboard">
+    <header>
+        <h1>Issues & Hierarchy</h1>
+        <p class="subtitle handwritten">Day 30: From Big Goals to Small Tasks 🧱🎫</p>
+    </header>
+
+    <!-- INTRO SECTION -->
+    <section id="intro">
+        <div class="intro-banner">
+            <div class="doodle-container" style="margin: 0;">
+                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                    "Jagu, maine 'Build Login Page' ka ticket banaya, par wo bahut bada ho gaya! <br> 
+                    Usmein design bhi hai, backend bhi hai, aur testing bhi. Sab khichdi ban gaya hai!"
+                </div>
+            </div>
+            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+                <div class="speech-bubble bubble-blue">
+                    "Beep Boop! Golu, bade goals ko chote pieces mein todna seekho. <br> 
+                    Jira mein isey <span class="chalk-text">Issue Hierarchy</span> kehte hain. <br> 
+                    Chalo, Lego blocks ki tarah projects build karte hain!"
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ① THE HIERARCHY -->
+    <section>
+        <div class="topic-title">📐 THE HIERARCHY</div>
+        <div class="hierarchy-container">
+            <div class="hierarchy-box" style="border-color: var(--chalk-pink); background: rgba(255, 159, 243, 0.1);">EPIC (The Goal)</div>
+            <div class="arrow-down">⬇</div>
+            <div class="hierarchy-box" style="border-color: var(--chalk-yellow); background: rgba(254, 202, 87, 0.1);">STORY / TASK (The Requirement)</div>
+            <div class="arrow-down">⬇</div>
+            <div class="hierarchy-box" style="border-color: var(--chalk-light-blue); background: rgba(72, 219, 251, 0.1);">SUB-TASK (The Action)</div>
+        </div>
+        <p class="handwritten" style="text-align: center; font-size: 1.2rem; color: var(--chalk-orange);">
+            *Bug kisi bhi level pe aa sakta hai, par usually Story/Task ke niche hota hai!*
+        </p>
+    </section>
+
+    <!-- ② ISSUE TYPES -->
+    <section>
+        <div class="topic-title">📋 COMMON ISSUE TYPES</div>
+        <div class="content-box">
+            <ul>
+                <li><strong style="color:var(--chalk-pink);">Epic:</strong> Ek bada feature jise pura karne mein kai saptah lag sakte hain. (e.g., User Authentication).</li>
+                <li><strong style="color:var(--chalk-yellow);">User Story:</strong> User ki requirement. "As a [user], I want [action] so that [value]".</li>
+                <li><strong style="color:var(--chalk-light-blue);">Task:</strong> Technical kaam jo story ke liye zaruri hai.</li>
+                <li><strong style="color:var(--chalk-red);">Bug:</strong> Jo chalna chahiye tha par nahi chal raha!</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑪ MINI QUIZ -->
+    <section>
+        <div class="topic-title">❓ MINI QUIZ</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-light-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. Jira hierarchy mein sabse top level pe kya hota hai?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) Task</span><span class="quiz-opt">b) Story</span><span class="quiz-opt">c) Epic</span><span class="quiz-opt">d) Sub-task</span></div></div>
+            <div class="answer-key">
+                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+                <p class="hinglish">"Golu, match kar lo: 1-c"</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        #LearnDevOpsIn90Days • Day 30 • Phase 3: Project Management • By Aryashree Pritikrishna
+    </div>
+</div>
+
+</body>
+</html>
