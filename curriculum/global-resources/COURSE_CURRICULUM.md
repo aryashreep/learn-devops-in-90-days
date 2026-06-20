@@ -65,15 +65,15 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 ## 🐳 Module 06 - Docker & Containerization (Days 29-37)
 | Day | Topic |
 |---|---|
-| Day 29 | Introduction to Docker |
-| Day 30 | Docker Images and Container Lifecycle |
-| Day 31 | Dockerfile: Build Your Own Images |
-| Day 32 | Docker Volumes and Networking |
-| Day 33 | Docker Compose: Multi-Container Basics |
-| Day 34 | Docker Compose: Real-World Multi-Container Apps |
-| Day 35 | Multi-Stage Builds and Docker Hub |
-| Day 36 | Docker Project: Dockerize a Full Application |
-| Day 37 | **Docker Revision and Cheat Sheet** |
+| [Day 29](../Module%2006%20-%20Docker%20&%20Containerization/day-29/README.md) | Introduction to Docker |
+| [Day 30](../Module%2006%20-%20Docker%20&%20Containerization/day-30/README.md) | Docker Images and Container Lifecycle |
+| [Day 31](../Module%2006%20-%20Docker%20&%20Containerization/day-31/README.md) | Dockerfile: Build Your Own Images |
+| [Day 32](../Module%2006%20-%20Docker%20&%20Containerization/day-32/README.md) | Docker Volumes and Networking |
+| [Day 33](../Module%2006%20-%20Docker%20&%20Containerization/day-33/README.md) | Docker Compose: Multi-Container Basics |
+| [Day 34](../Module%2006%20-%20Docker%20&%20Containerization/day-34/README.md) | Docker Compose: Real-World Multi-Container Apps |
+| [Day 35](../Module%2006%20-%20Docker%20&%20Containerization/day-35/README.md) | Multi-Stage Builds and Docker Hub |
+| [Day 36](../Module%2006%20-%20Docker%20&%20Containerization/day-36/README.md) | Docker Project: Dockerize a Full Application |
+| [Day 37](../Module%2006%20-%20Docker%20&%20Containerization/day-37/README.md) | **Docker Revision and Cheat Sheet** |
 
 ---
 

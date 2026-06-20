@@ -87,9 +87,22 @@
 
 ---
 
-## 🐳 Module 06 - Docker (Days 29-37)
-| Day 36 | Docker Project | 🏆 Containerize Full App |
-|---|---|---|
+## 🐳 Module 06 - Docker & Containerization (Days 29-37)
+> *Build, ship, and run any app anywhere as a lightweight container.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 29 | Introduction to Docker | [🎓 Day 29 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-29/Day29_Introduction_to_Docker.html) | [🧪 Lab 29](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-29/lab-session/task.md) |
+| 🗓️ Day 30 | Docker Images & Lifecycle | [🎓 Day 30 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-30/Day30_Docker_Images_And_Lifecycle.html) | [🧪 Lab 30](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-30/lab-session/task.md) |
+| 🗓️ Day 31 | Dockerfile Basics | [🎓 Day 31 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-31/Day31_Dockerfile_Build_Your_Own_Images.html) | [🧪 Lab 31](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-31/lab-session/task.md) |
+| 🗓️ Day 32 | Volumes & Networking | [🎓 Day 32 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-32/Day32_Docker_Volumes_and_Networking.html) | [🧪 Lab 32](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-32/lab-session/task.md) |
+| 🗓️ Day 33 | Docker Compose Basics | [🎓 Day 33 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-33/Day33_Docker_Compose_Basics.html) | [🧪 Lab 33](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-33/lab-session/task.md) |
+| 🗓️ Day 34 | Compose in Real-World | [🎓 Day 34 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-34/Day34_Compose_in_Real-World.html) | [🧪 Lab 34](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-34/lab-session/task.md) |
+| 🗓️ Day 35 | Multi-Stage Builds & Hub | [🎓 Day 35 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-35/Day35_Multi-Stage_Builds_And_Docker_Hub.html) | [🧪 Lab 35](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-35/lab-session/task.md) |
+| 🗓️ Day 36 | Dockerizing a Full App | [🎓 Day 36 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-36/Day36_Docker_Project_Dockerize_a_Full_Application.html) | [🧪 Lab 36](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-36/lab-session/task.md) |
+| 🗓️ Day 37 | Revision & Cheat Sheet | [🎓 Day 37 Pro](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-37/Day37_Docker_Revision_and_Cheat_Sheet.html) | [🧪 Lab 37](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-37/lab-session/task.md) |
+| 🏆 **Exam** | **Module 06 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2006%20-%20Docker%20&%20Containerization/mastery-exam/README.md) | -- |
+
 
 ---
 
