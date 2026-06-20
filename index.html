@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn DevOps in 90 Days Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Outfit:wght@300;400;600;800&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e14;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-main: #f1f2f6;
+            --text-mute: #a4b0be;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --accent-gradient: linear-gradient(135deg, #48dbfb, #1dd1a1);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.25s ease;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 25px 25px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        header.hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+            border-bottom: 1px dashed var(--border-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        header.hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 0;
+            background: linear-gradient(135deg, var(--chalk-yellow), var(--chalk-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header.hero p.tagline {
+            font-size: 1.5rem;
+            color: var(--chalk-blue);
+            margin: 15px 0 30px 0;
+            font-family: 'Architects Daughter', cursive;
+        }
+
+        .meta-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--chalk-yellow);
+            transform: translateY(-2px);
+        }
+
+        /* Methodology Guide */
+        .guide-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+
+        .guide-section h2 {
+            font-family: 'Architects Daughter', cursive;
+            color: var(--chalk-yellow);
+            margin-top: 0;
+            font-size: 2rem;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--chalk-green);
+        }
+
+        .step-num {
+            width: 35px;
+            height: 35px;
+            background: var(--accent-gradient);
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin: 0 auto 15px auto;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            font-size: 0.85rem;
+            color: var(--text-mute);
+            margin: 0;
+        }
+
+        /* Search Filter */
+        .search-container {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 16px 24px;
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-family: inherit;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--chalk-blue);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(72, 219, 251, 0.15);
+        }
+
+        /* Module Accordion */
+        .module-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .module-header {
+            padding: 24px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.01);
+            user-select: none;
+        }
+
+        .module-header:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .module-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .module-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
+            color: var(--text-mute);
+            transform: rotate(0deg);
+        }
+
+        .module-content {
+            display: none;
+            padding: 10px 30px 30px 30px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Day row layout */
+        .day-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .day-row:last-child {
+            border-bottom: none;
+        }
+
+        .day-row:hover {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .day-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .day-num {
+            font-family: 'Fira Code', monospace;
+            font-weight: bold;
+            color: var(--chalk-yellow);
+            font-size: 1.1rem;
+            min-width: 70px;
+        }
+
+        .day-topic {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .day-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* Action Buttons */
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid transparent;
+        }
+
+        .btn-pro {
+            background: rgba(72, 219, 251, 0.1);
+            color: var(--chalk-blue);
+            border-color: rgba(72, 219, 251, 0.2);
+        }
+
+        .btn-pro:hover {
+            background: var(--chalk-blue);
+            color: var(--bg-dark);
+        }
+
+        .btn-lab {
+            background: rgba(29, 209, 161, 0.1);
+            color: var(--chalk-green);
+            border-color: rgba(29, 209, 161, 0.2);
+        }
+
+        .btn-lab:hover {
+            background: var(--chalk-green);
+            color: var(--bg-dark);
+        }
+
+        .btn-coming {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-mute);
+            border-color: transparent;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Mastery Exam Card */
+        .exam-card {
+            background: rgba(254, 202, 87, 0.05);
+            border: 1px dashed var(--chalk-yellow);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .exam-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--chalk-yellow);
+        }
+
+        .btn-exam {
+            background: rgba(254, 202, 87, 0.1);
+            color: var(--chalk-yellow);
+            border-color: rgba(254, 202, 87, 0.2);
+        }
+
+        .btn-exam:hover {
+            background: var(--chalk-yellow);
+            color: var(--bg-dark);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-mute);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Hero header -->
+    <header class="hero">
+        <h1>Learn DevOps in 90 Days</h1>
+        <p class="tagline">#LearnDevOpsIn90Days Academy</p>
+        <div class="meta-badges">
+            <a class="badge" href="https://github.com/aryashreep/learn-devops-in-90-days" target="_blank">
+                <span>⭐ GitHub Repo</span>
+            </a>
+            <a class="badge" href="https://www.linkedin.com/in/aryashreepritikrishna/" target="_blank">
+                <span>💼 LinkedIn Connection</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Methodology Guide -->
+    <section class="guide-section">
+        <h2>🛠️ Academy Study Flow</h2>
+        <p class="hinglish" style="color:var(--text-mute);">
+            Is academy ka main goal hai consistency aur hands-on implementation. Har din ka topic seekhne ke liye niche diye gaye steps follow karein:
+        </p>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <div class="step-title">Study Slide</div>
+                <p class="step-desc">Open the daily <b>🎓 Pro Module</b> to view theory slides in Golu & Jagu Hinglish style.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <div class="step-title">Solve Lab</div>
+                <p class="step-desc">Click on the <b>🧪 Lab Session</b> task list and perform hands-on configuration/commands.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <div class="step-title">Write Report</div>
+                <p class="step-desc">Create your solution file containing execution output and logs inside the daily solution directory.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <div class="step-title">Share Publicly</div>
+                <p class="step-desc">Post your key learnings on LinkedIn using <b>#LearnDevOpsIn90Days</b> to build your proof of work.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Input -->
+    <div class="search-container">
+        <input type="text" id="search-input" onkeyup="filterSyllabus()" placeholder="🔍 Search daily topics, modules, or tools (e.g. docker, systemd, volumes)...">
+    </div>
+
+    <!-- Syllabus Content -->
+    <main id="syllabus">
+        <!-- DYNAMIC MODULES WILL GO HERE -->
+
+        <div class="module-card" id="mod_0">
+            <div class="module-header" onclick="toggleModule('mod_0')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">📦 Module 01 - Introduction To DevOps, Cloud & SRE (Day 01)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_0">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_0">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 01</span>
+                    <span class="day-topic">Breaking the Wall of Confusion</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/Day01_DevOps_Intro.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+                </div>
+                
+            <div class="exam-card">
+                <div class="exam-title">
+                    <span>🏆</span>
+                    <span>Module 01 Mastery Exam</span>
+                </div>
+                <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/mastery-exam/README.md" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>
+            </div>
+        
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_1">
+            <div class="module-header" onclick="toggleModule('mod_1')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🐧 Module 02 - Linux Foundations (Days 02-13)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_1">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_1">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 02</span>
+                    <span class="day-topic">Linux Architecture & systemd</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-02/Day02_Linux_Foundations.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-02/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 03</span>
+                    <span class="day-topic">Linux Command Toolkit</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-03/Day03_Linux_Commands_Practice.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-03/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 04</span>
+                    <span class="day-topic">Advanced Navigation & Searching</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-04/Day04_Navigation_Searching.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-04/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 05</span>
+                    <span class="day-topic">Linux Troubleshooting Runbook</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-05/Day05_Troubleshooting_Runbook.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-05/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 06</span>
+                    <span class="day-topic">File I/O Mastery (Read/Write)</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-06/Day06_File_IO_Mastery.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-06/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 07</span>
+                    <span class="day-topic">File System Hierarchy</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-07/Day07_File_System_Hierarchy.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-07/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 08</span>
+                    <span class="day-topic">Cloud Setup & Nginx</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-08/Day08_Cloud_Setup_Nginx.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-08/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 09</span>
+                    <span class="day-topic">User & Group Management</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-09/Day09_User_Group_Management.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-09/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 10</span>
+                    <span class="day-topic">File Permissions & Operations</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-10/Day10_Permissions_Operations.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-10/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 11</span>
+                    <span class="day-topic">Ownership (chown/chgrp)</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-11/Day11_Ownership_Mastery.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-11/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 12</span>
+                    <span class="day-topic">Revision & Recovery Lab</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-12/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 13</span>
+                    <span class="day-topic">Volume Management (LVM)</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2002%20-%20Linux%20Foundations/day-13/Day13_LVM_Mastery.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-13/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+                </div>
+                
+            <div class="exam-card">
+                <div class="exam-title">
+                    <span>🏆</span>
+                    <span>Module 02 Mastery Exam</span>
+                </div>
+                <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/mastery-exam/README.md" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>
+            </div>
+        
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_2">
+            <div class="module-header" onclick="toggleModule('mod_2')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🐚 Module 03 - Shell Scripting (Days 14-19)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_2">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_2">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 20</span>
+                    <span class="day-topic">Shell Scripting Basics</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/Day14_Scripting_Basics.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 21</span>
+                    <span class="day-topic">Logic, Loops & Arguments</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/Day15_Logic_and_Arguments.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 16</span>
+                    <span class="day-topic">Bash Functions & Scope</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/Day16_Bash_Functions.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 17</span>
+                    <span class="day-topic">Log Rotation & Backup</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/Day17_Backup_and_Cron.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 18</span>
+                    <span class="day-topic">Log Analyzer Challenge</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-20/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 19</span>
+                    <span class="day-topic">Scripting Cheat Sheet</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-21/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+                </div>
+                
+            <div class="exam-card">
+                <div class="exam-title">
+                    <span>🏆</span>
+                    <span>Module 03 Mastery Exam</span>
+                </div>
+                <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/mastery-exam/README.md" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>
+            </div>
+        
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_3">
+            <div class="module-header" onclick="toggleModule('mod_3')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🌐 Module 04 - Networking & System Design (Days 20-21)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_3">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_3">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 20</span>
+                    <span class="day-topic">Networking Fundamentals</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/Day20_Networking_Basics.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 21</span>
+                    <span class="day-topic">DNS, IP, Subnets & Ports</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/Day21_Networking_Deep_Dive.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+                </div>
+                
+            <div class="exam-card">
+                <div class="exam-title">
+                    <span>🏆</span>
+                    <span>Module 04 Mastery Exam</span>
+                </div>
+                <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/mastery-exam/README.md" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>
+            </div>
+        
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_4">
+            <div class="module-header" onclick="toggleModule('mod_4')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🐙 Module 05 - Git & GitHub (Days 22-28)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_4">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_4">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 22</span>
+                    <span class="day-topic">Git Foundations & Local Setup</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/Day22_Git_Introduction.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-22/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 23</span>
+                    <span class="day-topic">Branching & Workflows</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-23/Day23_Git_Branching.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-23/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 24</span>
+                    <span class="day-topic">GitHub Collaboration & CLI</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-24/Day24_GitHub_Collaboration.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-24/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 25</span>
+                    <span class="day-topic">Integrating Work (Merge/Rebase)</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-25/Day25_Integrating_Work.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-25/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 26</span>
+                    <span class="day-topic">Undoing & Surgical Edits</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-26/Day26_Git_Recovery.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-26/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 27</span>
+                    <span class="day-topic">Collaboration & Safety</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-27/Day27_Collaboration_Safety.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-27/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 28</span>
+                    <span class="day-topic">Git Mastery (Advanced Tools)</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-28/Day28_Git_Mastery.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/day-28/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+                </div>
+                
+            <div class="exam-card">
+                <div class="exam-title">
+                    <span>🏆</span>
+                    <span>Module 05 Mastery Exam</span>
+                </div>
+                <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20\[GitHub%20&%20GitLab\]/mastery-exam/README.md" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>
+            </div>
+        
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_5">
+            <div class="module-header" onclick="toggleModule('mod_5')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🐳 Module 06 - Docker & Containerization (Days 29-37)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_5">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_5">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 29</span>
+                    <span class="day-topic">Introduction to Docker</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-29/Day29_Introduction_to_Docker.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-29/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 30</span>
+                    <span class="day-topic">Docker Images & Lifecycle</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-30/Day30_Docker_Images_And_Lifecycle.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-30/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 31</span>
+                    <span class="day-topic">Dockerfile Basics</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-31/Day31_Dockerfile_Build_Your_Own_Images.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-31/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 32</span>
+                    <span class="day-topic">Volumes & Networking</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-32/Day32_Docker_Volumes_and_Networking.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-32/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 33</span>
+                    <span class="day-topic">Docker Compose Basics</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-33/Day33_Docker_Compose_Basics.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-33/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 34</span>
+                    <span class="day-topic">Compose in Real-World</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-34/Day34_Compose_in_Real-World.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-34/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 35</span>
+                    <span class="day-topic">Multi-Stage Builds & Hub</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-35/Day35_Multi-Stage_Builds_And_Docker_Hub.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-35/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 36</span>
+                    <span class="day-topic">Dockerizing a Full App</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-36/Day36_Docker_Project_Dockerize_a_Full_Application.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-36/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 37</span>
+                    <span class="day-topic">Revision & Cheat Sheet</span>
+                </div>
+                <div class="day-actions">
+                    <a href="./curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-37/Day37_Docker_Revision_and_Cheat_Sheet.html" class="btn btn-pro" target="_blank">🎓 Pro Module</a>
+                    <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/day-37/lab-session/task.md" class="btn btn-lab" target="_blank">🧪 Lab Session</a>
+                </div>
+            </div>
+        
+                </div>
+                
+            <div class="exam-card">
+                <div class="exam-title">
+                    <span>🏆</span>
+                    <span>Module 06 Mastery Exam</span>
+                </div>
+                <a href="https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20&%20Containerization/mastery-exam/README.md" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>
+            </div>
+        
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_6">
+            <div class="module-header" onclick="toggleModule('mod_6')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🤖 Module 07 - CI/CD (GitHub Actions) (Days 38-49)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_6">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_6">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 48</span>
+                    <span class="day-topic">Pipeline Project</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_7">
+            <div class="module-header" onclick="toggleModule('mod_7')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">☸️ Module 08 - Kubernetes (Days 50-60)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_7">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_7">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 60</span>
+                    <span class="day-topic">K8s Capstone</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_8">
+            <div class="module-header" onclick="toggleModule('mod_8')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">☁️ Module 09 - Terraform (Days 61-67)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_8">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_8">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 67</span>
+                    <span class="day-topic">TerraWeek Capstone</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_9">
+            <div class="module-header" onclick="toggleModule('mod_9')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">⚙️ Module 10 - Ansible (Days 68-72)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_9">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_9">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 72</span>
+                    <span class="day-topic">Automation Project</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_10">
+            <div class="module-header" onclick="toggleModule('mod_10')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">📊 Module 11 - Observability (Days 73-77)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_10">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_10">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 77</span>
+                    <span class="day-topic">Monitoring Project</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_11">
+            <div class="module-header" onclick="toggleModule('mod_11')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🏷️ Module 12 - Helm (Days 78-80)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_11">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_11">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 80</span>
+                    <span class="day-topic">Helm Project</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_12">
+            <div class="module-header" onclick="toggleModule('mod_12')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🏗️ Module 13 - Amazon EKS (Days 81-83)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_12">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_12">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 83</span>
+                    <span class="day-topic">EKS Project</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_13">
+            <div class="module-header" onclick="toggleModule('mod_13')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🚀 Module 14 - GitOps & ArgoCD (Days 84-86)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_13">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_13">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 86</span>
+                    <span class="day-topic">GitOps Capstone</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="module-card" id="mod_14">
+            <div class="module-header" onclick="toggleModule('mod_14')">
+                <div class="module-title-wrapper">
+                    <h3 class="module-title">🤖 Module 15 - Agentic AI (Days 87-90)</h3>
+                </div>
+                <span class="toggle-icon" id="icon-mod_14">▼</span>
+            </div>
+            <div class="module-content" id="content-mod_14">
+                <div class="days-list">
+                    
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 89</span>
+                    <span class="day-topic">GRAND CAPSTONE</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+            <div class="day-row">
+                <div class="day-info">
+                    <span class="day-num">Day 90</span>
+                    <span class="day-topic">Final Portfolio</span>
+                </div>
+                <div class="day-actions">
+                    <span class="btn btn-coming">🚧 Coming Soon</span>
+                    
+                </div>
+            </div>
+        
+                </div>
+                
+            </div>
+        </div>
+    
+    </main>
+</div>
+
+<script>
+    function toggleModule(id) {
+        const content = document.getElementById('content-' + id);
+        const icon = document.getElementById('icon-' + id);
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            icon.style.transform = 'rotate(180deg)';
+        } else {
+            content.style.display = 'none';
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    function filterSyllabus() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const modules = document.querySelectorAll('.module-card');
+        
+        modules.forEach(mod => {
+            let hasVisibleDays = false;
+            const days = mod.querySelectorAll('.day-row');
+            
+            days.forEach(day => {
+                const topic = day.querySelector('.day-topic').textContent.toLowerCase();
+                const dayNum = day.querySelector('.day-num').textContent.toLowerCase();
+                
+                if (topic.includes(query) || dayNum.includes(query)) {
+                    day.style.display = 'flex';
+                    hasVisibleDays = true;
+                } else {
+                    day.style.display = 'none';
+                }
+            });
+            
+            // Search module title too
+            const modTitle = mod.querySelector('.module-title').textContent.toLowerCase();
+            if (modTitle.includes(query) || hasVisibleDays) {
+                mod.style.display = 'block';
+                if (query !== '') {
+                    // Expand module during search
+                    const content = mod.querySelector('.module-content');
+                    content.style.display = 'block';
+                    mod.querySelector('.toggle-icon').style.transform = 'rotate(180deg)';
+                }
+            } else {
+                mod.style.display = 'none';
+            }
+        });
+    }
+    
+    // Expand the first module on page load
+    window.onload = function() {
+        const firstMod = document.querySelector('.module-card');
+        if (firstMod) {
+            const id = firstMod.id;
+            document.getElementById('content-' + id).style.display = 'block';
+            document.getElementById('icon-' + id).style.transform = 'rotate(180deg)';
+        }
+    }
+</script>
+</body>
+</html>
