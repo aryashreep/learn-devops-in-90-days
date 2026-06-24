@@ -80,18 +80,18 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 ## 🤖 Module 07 - CI/CD with GitHub Actions (Days 38-49)
 | Day | Topic |
 |---|---|
-| Day 38 | YAML Basics |
-| Day 39 | What is CI/CD? |
-| Day 40 | Your First GitHub Actions Workflow |
-| Day 41 | Triggers and Matrix Builds |
-| Day 42 | Runners: GitHub-Hosted and Self-Hosted |
-| Day 43 | Jobs, Steps, Env Vars and Conditionals |
-| Day 44 | Secrets, Artifacts and Running Real Tests in CI |
-| Day 45 | Docker Build and Push in GitHub Actions |
-| Day 46 | Reusable Workflows and Composite Actions |
-| Day 47 | Advanced Triggers: PR Events, Cron Schedules |
-| Day 48 | GitHub Actions Project: End-to-End CI/CD Pipeline |
-| Day 49 | DevSecOps: Add Security to Your CI/CD Pipeline |
+| [Day 38](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-38/README.md) | YAML Basics |
+| [Day 39](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-39/README.md) | What is CI/CD? |
+| [Day 40](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-40/README.md) | Your First GitHub Actions Workflow |
+| [Day 41](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-41/README.md) | Triggers and Matrix Builds |
+| [Day 42](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-42/README.md) | Runners: GitHub-Hosted and Self-Hosted |
+| [Day 43](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-43/README.md) | Jobs, Steps, Env Vars and Conditionals |
+| [Day 44](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-44/README.md) | Secrets, Artifacts and Running Real Tests in CI |
+| [Day 45](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-45/README.md) | Docker Build and Push in GitHub Actions |
+| [Day 46](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-46/README.md) | Reusable Workflows and Composite Actions |
+| [Day 47](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-47/README.md) | Advanced Triggers: PR Events, Cron Schedules |
+| [Day 48](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-48/README.md) | GitHub Actions Project: End-to-End CI/CD Pipeline |
+| [Day 49](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-49/README.md) | DevSecOps: Add Security to Your CI/CD Pipeline |
 
 ---
 

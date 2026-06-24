@@ -107,8 +107,21 @@
 ---
 
 ## 🤖 Module 07 - CI/CD (GitHub Actions) (Days 38-49)
-| Day 48 | Pipeline Project | 🏆 End-to-End CI/CD |
-|---|---|---|
+| Day | Topic | Lecture | Lab |
+|---|---|---|---|
+| 🗓️ Day 38 | YAML Basics | [🎓 Day 38 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-38/Day38_YAML_Basics.html) | [🧪 Lab 38](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-38/lab-session/task.md) |
+| 🗓️ Day 39 | What is CI/CD? | [🎓 Day 39 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-39/Day39_What_Is_CICD.html) | [🧪 Lab 39](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-39/lab-session/task.md) |
+| 🗓️ Day 40 | Your First GitHub Actions Workflow | [🎓 Day 40 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-40/Day40_Your_First_Workflow.html) | [🧪 Lab 40](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-40/lab-session/task.md) |
+| 🗓️ Day 41 | Triggers and Matrix Builds | [🎓 Day 41 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-41/Day41_Triggers_and_Matrix_Builds.html) | [🧪 Lab 41](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-41/lab-session/task.md) |
+| 🗓️ Day 42 | Runners: Hosted vs Self-Hosted | [🎓 Day 42 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-42/Day42_Runners_Hosted_vs_Self.html) | [🧪 Lab 42](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-42/lab-session/task.md) |
+| 🗓️ Day 43 | Jobs, Steps, Env Vars and Conditionals | [🎓 Day 43 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-43/Day43_Jobs_Steps_EnvVars_Conditionals.html) | [🧪 Lab 43](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-43/lab-session/task.md) |
+| 🗓️ Day 44 | Secrets, Artifacts and Caching | [🎓 Day 44 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-44/Day44_Secrets_Artifacts_Caching.html) | [🧪 Lab 44](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-44/lab-session/task.md) |
+| 🗓️ Day 45 | Docker Build and Push | [🎓 Day 45 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-45/Day45_Docker_Build_and_Push.html) | [🧪 Lab 45](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-45/lab-session/task.md) |
+| 🗓️ Day 46 | Reusable Workflows & Composite Actions | [🎓 Day 46 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-46/Day46_Reusable_Workflows_Composite.html) | [🧪 Lab 46](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-46/lab-session/task.md) |
+| 🗓️ Day 47 | Advanced Triggers & OIDC | [🎓 Day 47 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-47/Day47_Advanced_Triggers_OIDC.html) | [🧪 Lab 47](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-47/lab-session/task.md) |
+| 🗓️ Day 48 | End-to-End CI/CD Project | [🎓 Day 48 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-48/Day48_E2E_Pipeline_Project.html) | [🧪 Lab 48](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-48/lab-session/task.md) |
+| 🗓️ Day 49 | DevSecOps & Debugging | [🎓 Day 49 Pro](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-49/Day49_DevSecOps_Security_Debugging.html) | [🧪 Lab 49](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-49/lab-session/task.md) |
+| 🏆 **Exam** | **Module 07 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/mastery-exam/README.md) | -- |
 
 ---
 
