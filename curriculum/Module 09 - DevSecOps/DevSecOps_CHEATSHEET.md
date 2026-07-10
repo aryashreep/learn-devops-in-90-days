@@ -550,6 +550,6 @@ done
 
 ---
 
-> *🛡️ DevSecOps Cheatsheet — #LearnDevOpsIn90Days • Module 08*
+> *🛡️ DevSecOps Cheatsheet — #LearnDevOpsIn90Days • Module 09*
 >
 > *Maintainer: [Aryashree Pritikrishna](https://github.com/aryashreep)*
