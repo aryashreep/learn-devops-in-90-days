@@ -1,88 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 43: Triggers and Matrix Builds - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-blackboard: #0a0e14;
-            --chalk-white: #f1f2f6;
-            --chalk-yellow: #feca57;
-            --chalk-blue: #48dbfb;
-            --chalk-green: #1dd1a1;
-            --chalk-pink: #ff9ff3;
-            --chalk-orange: #ff9f43;
-            --chalk-red: #ff6b6b;
-            --wood-frame: #2f3542;
-        }
-        @media print {
-            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; background-color: var(--bg-blackboard) !important; color: var(--chalk-white) !important; }
-            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
-            section { page-break-inside: avoid; }
-        }
-        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
-        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
-        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
-        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
-        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
-        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
-        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
-        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
-        ul { list-style: none; padding-left: 0; }
-        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
-        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
-        pre { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--chalk-blue); overflow-x: auto; font-family: 'Fira Code', monospace; }
-        code { font-family: 'Fira Code', monospace; color: var(--chalk-pink); }
-        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
-        .speech-bubble { border: 2px solid var(--chalk-yellow); border-radius: 25px; padding: 20px 30px; font-size: 1.3rem; line-height: 1.4; font-family: 'Architects Daughter'; }
-        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
-    </style>
-</head>
-<body>
-<div class="blackboard">
-    <header>
-        <h1>Triggers and Matrix Builds</h1>
-        <p class="subtitle handwritten">Day 43 • Golu & Jagu Pro Edition</p>
-    </header>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Day 43: Triggers and Matrix Builds - Golu & Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e14;--w:#f1f2f6;--y:#feca57;--b:#48dbfb;--g:#1dd1a1;--p:#ff9ff3;--o:#ff9f43;--r:#ff6b6b;--wood:#2f3542}
+@media print{body{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;background:var(--bg)!important;color:var(--w)!important}.blackboard{border:none!important;box-shadow:none!important;width:100%!important;margin:0!important;padding:10px!important}section{page-break-inside:avoid}}
+body{background:var(--bg);color:var(--w);font-family:'Inter',sans-serif;margin:0;padding:20px}
+.blackboard{max-width:1000px;margin:0 auto;border:12px solid var(--wood);padding:50px;box-shadow:0 30px 60px rgba(0,0,0,.8);background-image:radial-gradient(circle,rgba(255,255,255,.03)1px,transparent 1px);background-size:30px 30px}
+h1,h2,h3,.h{font-family:'Architects Daughter',cursive}
+h1{font-size:3.5rem;text-align:center;color:var(--y);text-transform:uppercase;margin-bottom:5px}
+.st{text-align:center;color:var(--b);font-size:1.4rem;margin-bottom:50px;font-family:'Architects Daughter',cursive}
+section{margin-bottom:80px;padding-bottom:40px;border-bottom:2px dashed rgba(255,255,255,.1)}
+.tt{color:var(--p);font-size:2.2rem;margin-bottom:30px;text-transform:uppercase;border-bottom:1px solid var(--p);display:inline-block;font-family:'Architects Daughter',cursive}
+.cb{background:rgba(255,255,255,.04);padding:25px;border-radius:15px;border:2px solid transparent;margin-bottom:25px}
+pre{background:#000;padding:15px;border-radius:10px;border:1px solid var(--b);overflow-x:auto;font-family:'Fira Code',monospace;font-size:.85rem;line-height:1.5}
+code{font-family:'Fira Code',monospace;color:var(--p)}
+.ft{text-align:center;color:#666;margin-top:80px;font-family:'Architects Daughter',cursive;border-top:1px solid rgba(255,255,255,.1);padding-top:20px}
+.sb{border:2px solid var(--y);border-radius:25px;padding:20px 30px;font-size:1.3rem;line-height:1.4;font-family:'Architects Daughter',cursive;margin-bottom:30px}
+table{width:100%;border-collapse:collapse;margin:20px 0}th,td{border:1px solid rgba(255,255,255,.1);padding:12px;text-align:left}th{background:rgba(255,255,255,.05);color:var(--y)}
+</style></head>
+<body><div class="blackboard">
+<header><h1>Triggers and Matrix Builds</h1><p class="st">Day 43 \u2022 Events, Schedules & Multi-Version Testing \U0001f3af</p></header>
 
-    <section>
-        <div class="speech-bubble" style="margin-bottom: 30px;">
-            🤖 "Beep Boop! Day 43 mein aapka swagat hai! Aaj hum Triggers and Matrix Builds seekhenge."
-        </div>
+<section><div class="sb">\U0001f916 "Golu, har workflow ek event se trigger hota hai — push, PR, schedule, ya manual. Matrix build se ek hi workflow multiple OS/versions pe test kar sakta hai!"</div>
 
-        <div class="topic-title">🎯 Learning Objectives</div>
-        <div class="content-box">
-            <ul>
-                <li>Understand the core concepts of Triggers and Matrix Builds.</li>
-                <li>Apply practical knowledge through hands-on exercises.</li>
-                <li>Integrate with your GitHub Actions workflows.</li>
-            </ul>
-        </div>
-    </section>
+<div class="tt">\U0001f4a1 Workflow Triggers</div>
+<table><tr><th>Event</th><th>Trigger</th><th>Use Case</th></tr>
+<tr><td>push</td><td>Code pushed to branch</td><td>CI on every commit</td></tr>
+<tr><td>pull_request</td><td>PR opened/synced</td><td>Pre-merge validation</td></tr>
+<tr><td>schedule</td><td>Cron expression</td><td>Nightly builds, cleanup</td></tr>
+<tr><td>workflow_dispatch</td><td>Manual button click</td><td>Manual deploy, ad-hoc tasks</td></tr>
+<tr><td>release</td><td>Release published</td><td>Deploy new versions</td></tr>
+</table></section>
 
-    <section>
-        <div class="topic-title">💡 Key Concepts</div>
-        <div class="content-box">
-            <p class="handwritten" style="font-size:1.2rem;">
-                Content coming soon! This module is actively being developed.
-                Check the lab session for practical exercises.
-            </p>
-        </div>
-    </section>
+<section><div class="tt">\U0001f504 Matrix Strategy</div>
+<pre><code>jobs:
+  test:
+    runs-on: \${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ['16', '18', '20']
+        include:
+          - os: ubuntu-latest
+            node: '20'
+            experimental: true
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: \${{ matrix.node }}
+      - run: npm test</code></pre>
+<p class="h" style="color:var(--g)">This generates 6 parallel jobs (2 OS x 3 Node versions)!</p></section>
 
-    <section>
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># Example commands will be added here
-echo "Hands-on practice coming soon!"</code></pre>
-    </section>
+<section><div class="tt">\U0001f4cd Matrix Options</div>
+<table><tr><th>Option</th><th>Purpose</th><th>Default</th></tr>
+<tr><td>matrix</td><td>Define combination axes</td><td>Required</td></tr>
+<tr><td>include</td><td>Add extra combinations</td><td>None</td></tr>
+<tr><td>exclude</td><td>Remove specific combos</td><td>None</td></tr>
+<tr><td>fail-fast</td><td>Stop all if one fails</td><td>true</td></tr>
+<tr><td>max-parallel</td><td>Limit parallel jobs</td><td>All</td></tr>
+</table></section>
 
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community.</p>
-        <p>#LearnDevOpsIn90Days • Day 43 • Module 08 - CI-CD with GitHub Actions</p>
-    </div>
-</div>
-</body>
-</html>
+<section><div class="tt">\u23f0 Cron Schedule Examples</div>
+<pre><code>on:
+  schedule:
+    - cron: '0 0 * * *'     # Daily at midnight UTC
+    - cron: '30 8 * * 1-5'  # Weekdays 8:30 AM UTC
+    - cron: '0 */6 * * *'   # Every 6 hours
+    - cron: '0 2 * * 0'     # Weekly on Sunday 2 AM
+</code></pre>
+<p>Cron format: <code>minute hour day month weekday</code></p></section>
+
+<section><div class="tt">\U0001f9e9 Mini Quiz</div>
+<div class="cb"><p><strong>1. Manual trigger ke liye kaunsa event use karte hain?</strong></p>
+<p>A) push &nbsp; B) schedule &nbsp; C) workflow_dispatch &nbsp; D) pull_request</p>
+<p><strong>2. Matrix build mein 'fail-fast: false' kya karta hai?</strong></p>
+<p>A) Sab jobs fail ho jayenge &nbsp; B) Ek fail pe baaki continue &nbsp; C) Matrix disable ho jayega &nbsp; D) Jobs skip ho jayenge</p>
+<p style="color:var(--g);margin-top:20px"><strong>Answers:</strong> 1-C, 2-B</p></div></section>
+
+<div class="ft"><p>#LearnDevOpsIn90Days \u2022 Day 43 \u2022 Module 08 - CI-CD with GitHub Actions</p></div></div></body></html>

@@ -1,24 +1,56 @@
 # 🧪 Lab Session: Day 41 — What is CI/CD?
 
-**Jagu:** "Beep Boop! Let's get hands-on with today's challenge!"
+**Jagu:** "Beep Boop! Golu, CI/CD woh magic hai jo code likhne se lekar deploy karne tak ka automatic safar hai. Aaj hum CI/CD pipeline ka flow samjhenge!"
 
 ## 🎯 Task Objectives
-- Complete the hands-on tasks for this session.
-- Document your work in the solution folder.
+- Understand the difference between Continuous Integration, Continuous Delivery, and Continuous Deployment.
+- Map a CI/CD pipeline for a sample application.
+- Create a CI pipeline flowchart in markdown.
 
 ## 🛠️ Hands-on Challenges
 
-1. Follow along with the Pro Module content.
-2. Complete the practical exercises.
-3. Document your findings.
+1.  **CI vs CD — Venn Diagram:**
+    - Create a file `cicd-concepts.md` and document:
+    ```
+    CI (Continuous Integration):
+    - Developers push code multiple times a day
+    - Each push triggers automated build + test
+    - Catches bugs early (Shift-Left testing)
+    - Tools: GitHub Actions, Jenkins, GitLab CI
+
+    CD (Continuous Delivery/Deployment):
+    - Delivery: Code is always in a deployable state
+    - Deployment: Automatic deployment to production
+    - Requires CI to pass first
+    ```
+
+2.  **Pipeline Mapping:**
+    - For a simple Node.js web app, map the pipeline stages:
+    ```
+    Code Push → Lint → Build → Unit Test → Integration Test → 
+    Staging Deploy → E2E Test → Production Deploy
+    ```
+    - Identify which stages are CI and which are CD.
+
+3.  **Create a GitHub Repository Structure:**
+    ```bash
+    mkdir cicd-pipeline && cd cicd-pipeline
+    mkdir -p .github/workflows
+    mkdir -p src tests
+    touch README.md
+    ```
+
+4.  **Research CI/CD Tools:**
+    - Document 3 popular CI/CD tools and one-sentence description each
+    - Explain why GitHub Actions fits naturally for GitHub-hosted projects
 
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, upload your proofs to the solution folder!"
+**Jagu:** "Golu, apni CI/CD samajh submit karo!"
 
-1. Create your output proof files in the **`solution/`** folder.
-2. Record command outputs, script listings, or logs.
+1. Create **`cicd-concepts.md`** in the **`solution/`** folder with your pipeline map.
+2. Include your tool comparisons.
 3. Commit and push!
 
 ---
