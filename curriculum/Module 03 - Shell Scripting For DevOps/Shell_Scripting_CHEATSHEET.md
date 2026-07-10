@@ -111,8 +111,7 @@ $!     # Last background process PID
 
 # Logical operators
 [ "$A" -gt 5 -a "$B" -lt 10 ]      # AND (old style)
-[[ "$A" -gt 5 && "$B" -lt 10 ]]     # AND (modern)
-[[ "$A" -gt 5 \|\| "$B" -lt 10 ]]   # OR (modern)
+[[ "$A" -gt 5 && "$B" -lt 10 ]]     # AND (modern)[[ "$A" -gt 5 || "$B" -lt 10 ]]     # OR (modern)
 [ ! -f "$FILE" ]                     # NOT
 ```
 
