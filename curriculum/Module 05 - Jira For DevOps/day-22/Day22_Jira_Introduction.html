@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 22: Intro to Jira - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #0052cc; /* Jira Blue */
+            --chalk-light-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                background-color: var(--bg-blackboard) !important;
+                color: var(--chalk-white) !important;
+            }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-light-blue) !important; }
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-blue); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-blue); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-light-blue); }
+        .author-contact a { color: var(--chalk-light-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-blue); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-light-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-light-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-light-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-light-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.3rem; line-height: 1.4; }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-light-blue); }
+
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+
+    <header>
+        <h1>Introduction to Jira</h1>
+        <p class="subtitle handwritten">Day 22: Managing the Chaos with the Command Center 🎫🛠️</p>
+    </header>
+
+    <!-- INTRO SECTION -->
+    <section id="intro">
+        <div class="intro-banner">
+            <div class="doodle-container" style="margin: 0;">
+                <div class="doodle-wrapper">
+                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                    <span class="char-name">Golu</span>
+                </div>
+                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                    "Jagu, main bhool gaya ki aaj mujhe kya fix karna tha! <br> 
+                    Excel sheet mein dhundhna bahut mushkil hai. Koi better rasta hai?"
+                </div>
+            </div>
+            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+                <div class="speech-bubble bubble-blue">
+                    "Beep Boop! Golu, spreadsheets DevOps ke liye nahi hain. <br> 
+                    Aaj hum seekhenge <span class="chalk-text">Jira</span>—jahan har bug, har feature, aur har task ek 'Ticket' hota hai. <br> 
+                    Ab kuch nahi bhoolega!"
+                </div>
+                <div class="doodle-wrapper">
+                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+                    <span class="char-name">Jagu</span>
+                </div>
+            </div>
+        </div>
+        <div class="content-box accent-yellow">
+            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
+            <p class="hinglish" style="font-size: 1.2rem;">
+                Aaj hum **Project Management** ki duniya mein enter karenge. Jira kya hai, Software vs Business projects mein kya farq hai, 
+                aur Cloud vs Data Center ka logic kya hai. Saath hi, Jira ka basic UI bhi explore karenge.
+            </p>
+        </div>
+    </section>
+
+    <!-- ① LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+            <ul>
+                <li><strong>Define:</strong> What is Jira and why is it the industry standard?</li>
+                <li><strong>Choose:</strong> Understand different Jira project templates (Scrum/Kanban).</li>
+                <li><strong>Navigate:</strong> Master the Jira Dashboard and Sidebar.</li>
+                <li><strong>Deployment:</strong> Difference between Jira Cloud and Data Center.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ② WHY JIRA? -->
+    <section>
+        <div class="topic-title">❓ WHY JIRA FOR DEVOPS?</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
+            <p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Transparency:</span> Sabko dikhta hai kaun kya kar raha hai.<br>
+                2. <span class="chalk-text">Integration:</span> GitHub, Jenkins, aur Slack se seedha connect hota hai.<br>
+                3. <span class="chalk-text">Agile:</span> Sprints aur Backlogs manage karna bahut easy hai.<br>
+                4. <span class="chalk-text">History:</span> Har task ki poori history save rehti hai.
+            </p>
+        </div>
+    </section>
+
+    <!-- ③ CLOUD VS DATA CENTER -->
+    <section>
+        <div class="topic-title">☁️ CLOUD VS 🏢 DATA CENTER</div>
+        <div class="vs-container">
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-light-blue);">
+                <h3 class="handwritten">Jira Cloud</h3>
+                <p class="hinglish">"Atlassian manage karta hai. Instant setup, no maintenance."</p>
+                <ul>
+                    <li>Modern UI.</li>
+                    <li>SaaS model.</li>
+                    <li>Best for: Most startups & mid-size teams.</li>
+                </ul>
+            </div>
+            <div class="vs-circle">VS</div>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-orange);">
+                <h3 class="handwritten">Data Center</h3>
+                <p class="hinglish">"Aapke apne server pe chalta hai. Full control!"</p>
+                <ul>
+                    <li>Highly customizable.</li>
+                    <li>Self-managed.</li>
+                    <li>Best for: Giant enterprises with strict security.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑪ MINI QUIZ -->
+    <section>
+        <div class="topic-title">❓ MINI QUIZ</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-light-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. Jira ka main purpose kya hai?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) Code writing</span><span class="quiz-opt">b) Task & Project Tracking</span><span class="quiz-opt">c) Video editing</span><span class="quiz-opt">d) Database management</span></div></div>
+            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Atlassian dwara hosted Jira version ko kya kehte hain?</p>
+                <div class="quiz-options"><span class="quiz-opt">a) Jira On-Prem</span><span class="quiz-opt">b) Jira Data Center</span><span class="quiz-opt">c) Jira Cloud</span><span class="quiz-opt">d) Jira Server</span></div></div>
+            <div class="answer-key">
+                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        #LearnDevOpsIn90Days • Day 22 • Phase 3: Project Management • By Aryashree Pritikrishna
+    </div>
+</div>
+
+</body>
+</html>

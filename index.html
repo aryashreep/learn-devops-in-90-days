@@ -303,7 +303,7 @@ a { color: inherit; text-decoration: none; }
   <div class="rail-section">
     <div class="rail-label">
       <span>90-day mission map</span>
-      <span style="color:var(--amber)">Day 01 → Day 90</span>
+      <span style="color:var(--amber)">Day 01 → Day 93</span>
     </div>
     <div class="mission-rail" id="mission-rail">
       <!-- JS renders segments -->
@@ -398,11 +398,11 @@ const MODULES = [
     id: 'module0', emoji: '📦', title: 'Introduction to DevOps, Cloud & SRE',
     range: 'Day 01', accent: 'acc-amber', color: '#F5A623',
     railColor: '#F5A623', days: 1,
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20%26%20SRE/mastery-exam/README.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/mastery-exam/README.md',
     entries: [
       { day: 'Day 01', topic: 'Breaking the Wall of Confusion',
-        pro: './curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20%26%20SRE/day-01/Day01_DevOps_Intro.html',
-        lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20%26%20SRE/day-01/lab-session/task.md' }
+        pro: './curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/Day01_DevOps_Intro.html',
+        lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/lab-session/task.md' }
     ]
   },
   {
@@ -431,86 +431,109 @@ const MODULES = [
     railColor: '#4ADE80', days: 6,
     examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/mastery-exam/README.md',
     entries: [
-      { day: 'Day 14', topic: 'Shell Scripting Basics', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/Day14_Scripting_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/lab-session/task.md' },
-      { day: 'Day 15', topic: 'Logic, Loops & Arguments', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/Day15_Logic_and_Arguments.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/lab-session/task.md' },
-      { day: 'Day 16', topic: 'Bash Functions & Scope', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/Day16_Bash_Functions.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/lab-session/task.md' },
-      { day: 'Day 17', topic: 'Log Rotation & Backup', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/Day17_Backup_and_Cron.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/lab-session/task.md' },
-      { day: 'Day 18', topic: 'Log Analyzer Challenge', proComingSoon: true, lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-20/lab-session/task.md' },
-      { day: 'Day 19', topic: 'Scripting Cheat Sheet', proComingSoon: true, lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-21/lab-session/task.md' },
+      { day: 'Day 14', topic: 'Shell Scripting Basics', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/Day14_Scripting_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/lab-session/task.md' },
+      { day: 'Day 15', topic: 'Logic, Loops & Arguments', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-15/Day15_Logic_and_Arguments.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-15/lab-session/task.md' },
+      { day: 'Day 16', topic: 'Bash Functions & Scope', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/Day16_Bash_Functions.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/lab-session/task.md' },
+      { day: 'Day 17', topic: 'Log Rotation & Backup', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/Day17_Backup_and_Cron.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/lab-session/task.md' },
+      { day: 'Day 18', topic: 'Log Analyzer Challenge', proComingSoon: true, lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/lab-session/task.md' },
+      { day: 'Day 19', topic: 'Scripting Cheat Sheet', proComingSoon: true, lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/lab-session/task.md' },
     ]
   },
   {
     id: 'module3', emoji: '🌐', title: 'Networking & System Design',
     range: 'Days 20 – 21', accent: 'acc-blue', color: '#4A9EF5',
     railColor: '#4A9EF5', days: 2,
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20%26%20System%20Design/mastery-exam/README.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/mastery-exam/README.md',
     entries: [
-      { day: 'Day 20', topic: 'Networking Fundamentals', pro: './curriculum/Module%2004%20-%20Networking%20%26%20System%20Design/day-20/Day20_Networking_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20%26%20System%20Design/day-20/lab-session/task.md' },
-      { day: 'Day 21', topic: 'DNS, IP, Subnets & Ports', pro: './curriculum/Module%2004%20-%20Networking%20%26%20System%20Design/day-21/Day21_Networking_Deep_Dive.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20%26%20System%20Design/day-21/lab-session/task.md' },
+      { day: 'Day 20', topic: 'Networking Fundamentals', pro: './curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/Day20_Networking_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/lab-session/task.md' },
+      { day: 'Day 21', topic: 'DNS, IP, Subnets & Ports', pro: './curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/Day21_Networking_Deep_Dive.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/lab-session/task.md' },
     ]
   },
   {
-    id: 'module4', emoji: '🐙', title: 'Git & GitHub',
-    range: 'Days 22 – 28', accent: 'acc-coral', color: '#FB7185',
+    id: 'module4', emoji: '🎫', title: 'Jira For DevOps',
+    range: 'Days 22 – 23', accent: 'acc-blue', color: '#0052CC',
+    railColor: '#0052CC', days: 2,
+    entries: [
+      { day: 'Day 22', topic: 'Introduction to Jira',
+        pro: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/Day22_Jira_Introduction.html',
+        lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/lab-session/task.md' },
+      { day: 'Day 23', topic: 'Issues & Hierarchy',
+        pro: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-23/Day23_Issues_Hierarchy.html',
+        lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-23/lab-session/task.md' },
+    ]
+  },
+  {
+    id: 'module5', emoji: '🐙', title: 'Git & GitHub',
+    range: 'Days 24 – 30', accent: 'acc-coral', color: '#FB7185',
     railColor: '#FB7185', days: 7,
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/mastery-exam/README.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/mastery-exam/README.md',
     entries: [
-      { day: 'Day 22', topic: 'Git Foundations & Local Setup', pro: './curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-22/Day22_Git_Introduction.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-22/lab-session/task.md' },
-      { day: 'Day 23', topic: 'Branching & Workflows', pro: './curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-23/Day23_Git_Branching.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-23/lab-session/task.md' },
-      { day: 'Day 24', topic: 'GitHub Collaboration & CLI', pro: './curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-24/Day24_GitHub_Collaboration.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-24/lab-session/task.md' },
-      { day: 'Day 25', topic: 'Integrating Work (Merge/Rebase)', pro: './curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-25/Day25_Integrating_Work.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-25/lab-session/task.md' },
-      { day: 'Day 26', topic: 'Undoing & Surgical Edits', pro: './curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-26/Day26_Git_Recovery.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-26/lab-session/task.md' },
-      { day: 'Day 27', topic: 'Collaboration & Safety', pro: './curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-27/Day27_Collaboration_Safety.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-27/lab-session/task.md' },
-      { day: 'Day 28', topic: 'Git Mastery — Advanced Tools', pro: './curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-28/Day28_Git_Mastery.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Introduction%20to%20Git%20%5BGitHub%20%26%20GitLab%5D/day-28/lab-session/task.md' },
+      { day: 'Day 24', topic: 'Git Foundations & Local Setup', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-24/Day24_Git_Introduction.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-24/lab-session/task.md' },
+      { day: 'Day 25', topic: 'Branching & Workflows', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-25/Day25_Git_Branching.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-25/lab-session/task.md' },
+      { day: 'Day 26', topic: 'GitHub Collaboration & CLI', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-26/Day26_GitHub_Collaboration.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-26/lab-session/task.md' },
+      { day: 'Day 27', topic: 'Integrating Work (Merge/Rebase)', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-27/Day27_Integrating_Work.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-27/lab-session/task.md' },
+      { day: 'Day 28', topic: 'Undoing & Surgical Edits', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-28/Day28_Git_Recovery.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-28/lab-session/task.md' },
+      { day: 'Day 29', topic: 'Collaboration & Safety', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-29/Day29_Collaboration_Safety.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-29/lab-session/task.md' },
+      { day: 'Day 30', topic: 'Git Mastery (Advanced Tools)', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-30/Day30_Git_Mastery.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-30/lab-session/task.md' },
     ]
   },
   {
-    id: 'module5', emoji: '🐳', title: 'Docker & Containerization',
-    range: 'Days 29 – 37', accent: 'acc-blue', color: '#4A9EF5',
+    id: 'module6', emoji: '🐳', title: 'Docker & Containerization',
+    range: 'Days 31 – 39', accent: 'acc-blue', color: '#4A9EF5',
     railColor: '#60B4FF', days: 9,
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/mastery-exam/README.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/mastery-exam/README.md',
     entries: [
-      { day: 'Day 29', topic: 'Introduction to Docker', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-29/Day29_Introduction_to_Docker.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-29/lab-session/task.md' },
-      { day: 'Day 30', topic: 'Docker Images & Lifecycle', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-30/Day30_Docker_Images_And_Lifecycle.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-30/lab-session/task.md' },
-      { day: 'Day 31', topic: 'Dockerfile Basics', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-31/Day31_Dockerfile_Build_Your_Own_Images.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-31/lab-session/task.md' },
-      { day: 'Day 32', topic: 'Volumes & Networking', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-32/Day32_Docker_Volumes_and_Networking.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-32/lab-session/task.md' },
-      { day: 'Day 33', topic: 'Docker Compose Basics', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-33/Day33_Docker_Compose_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-33/lab-session/task.md' },
-      { day: 'Day 34', topic: 'Compose in Real-World', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-34/Day34_Compose_in_Real-World.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-34/lab-session/task.md' },
-      { day: 'Day 35', topic: 'Multi-Stage Builds & Hub', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-35/Day35_Multi-Stage_Builds_And_Docker_Hub.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-35/lab-session/task.md' },
-      { day: 'Day 36', topic: 'Dockerizing a Full App', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-36/Day36_Docker_Project_Dockerize_a_Full_Application.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-36/lab-session/task.md' },
-      { day: 'Day 37', topic: 'Revision & Cheat Sheet', pro: './curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-37/Day37_Docker_Revision_and_Cheat_Sheet.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Docker%20%26%20Containerization/day-37/lab-session/task.md' },
+      { day: 'Day 31', topic: 'Introduction to Docker', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-31/Day31_Introduction_to_Docker.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-31/lab-session/task.md' },
+      { day: 'Day 32', topic: 'Docker Images & Lifecycle', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-32/Day32_Docker_Images_And_Lifecycle.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-32/lab-session/task.md' },
+      { day: 'Day 33', topic: 'Dockerfile Basics', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-33/Day33_Dockerfile_Build_Your_Own_Images.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-33/lab-session/task.md' },
+      { day: 'Day 34', topic: 'Volumes & Networking', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-34/Day34_Docker_Volumes_and_Networking.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-34/lab-session/task.md' },
+      { day: 'Day 35', topic: 'Docker Compose Basics', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-35/Day35_Docker_Compose_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-35/lab-session/task.md' },
+      { day: 'Day 36', topic: 'Compose in Real-World', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-36/Day36_Compose_in_Real-World.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-36/lab-session/task.md' },
+      { day: 'Day 37', topic: 'Multi-Stage Builds & Hub', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-37/Day37_Multi-Stage_Builds_And_Docker_Hub.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-37/lab-session/task.md' },
+      { day: 'Day 38', topic: 'Dockerizing a Full App', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-38/Day38_Docker_Project_Dockerize_a_Full_Application.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-38/lab-session/task.md' },
+      { day: 'Day 39', topic: 'Revision & Cheat Sheet', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-39/Day39_Docker_Revision_and_Cheat_Sheet.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-39/lab-session/task.md' },
     ]
   },
   {
-    id: 'module6', emoji: '🤖', title: 'CI/CD with GitHub Actions',
-    range: 'Days 38 – 49', accent: 'acc-purple', color: '#A78BFA',
+    id: 'module7', emoji: '🤖', title: 'CI/CD with GitHub Actions',
+    range: 'Days 40 – 51', accent: 'acc-purple', color: '#A78BFA',
     railColor: '#A78BFA', days: 12,
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/mastery-exam/README.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/mastery-exam/README.md',
     entries: [
-      { day: 'Day 38', topic: 'YAML Basics', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-38/Day38_YAML_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-38/lab-session/task.md' },
-      { day: 'Day 39', topic: 'What is CI/CD?', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-39/Day39_What_Is_CICD.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-39/lab-session/task.md' },
-      { day: 'Day 40', topic: 'Your First GitHub Actions Workflow', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-40/Day40_Your_First_Workflow.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-40/lab-session/task.md' },
-      { day: 'Day 41', topic: 'Triggers and Matrix Builds', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-41/Day41_Triggers_and_Matrix_Builds.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-41/lab-session/task.md' },
-      { day: 'Day 42', topic: 'Runners: Hosted vs Self-Hosted', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-42/Day42_Runners_Hosted_vs_Self.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-42/lab-session/task.md' },
-      { day: 'Day 43', topic: 'Jobs, Steps, Env Vars and Conditionals', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-43/Day43_Jobs_Steps_EnvVars_Conditionals.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-43/lab-session/task.md' },
-      { day: 'Day 44', topic: 'Secrets, Artifacts and Caching', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-44/Day44_Secrets_Artifacts_Caching.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-44/lab-session/task.md' },
-      { day: 'Day 45', topic: 'Docker Build and Push', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-45/Day45_Docker_Build_and_Push.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-45/lab-session/task.md' },
-      { day: 'Day 46', topic: 'Reusable Workflows & Composite Actions', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-46/Day46_Reusable_Workflows_Composite.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-46/lab-session/task.md' },
-      { day: 'Day 47', topic: 'Advanced Triggers & OIDC', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-47/Day47_Advanced_Triggers_OIDC.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-47/lab-session/task.md' },
-      { day: 'Day 48', topic: 'End-to-End CI/CD Project', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-48/Day48_E2E_Pipeline_Project.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-48/lab-session/task.md' },
-      { day: 'Day 49', topic: 'DevSecOps & Debugging', pro: './curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-49/Day49_DevSecOps_Security_Debugging.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-49/lab-session/task.md' },
+      { day: 'Day 40', topic: 'YAML Basics', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/Day40_YAML_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/lab-session/task.md' },
+      { day: 'Day 41', topic: 'What is CI/CD?', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/Day41_What_Is_CICD.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/lab-session/task.md' },
+      { day: 'Day 42', topic: 'Your First GitHub Actions Workflow', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-42/Day42_Your_First_Workflow.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-42/lab-session/task.md' },
+      { day: 'Day 43', topic: 'Triggers and Matrix Builds', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-43/Day43_Triggers_and_Matrix_Builds.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-43/lab-session/task.md' },
+      { day: 'Day 44', topic: 'Runners: Hosted vs Self-Hosted', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-44/Day44_Runners_Hosted_vs_Self.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-44/lab-session/task.md' },
+      { day: 'Day 45', topic: 'Jobs, Steps, Env Vars and Conditionals', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-45/Day45_Jobs_Steps_EnvVars_Conditionals.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-45/lab-session/task.md' },
+      { day: 'Day 46', topic: 'Secrets, Artifacts and Caching', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-46/Day46_Secrets_Artifacts_Caching.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-46/lab-session/task.md' },
+      { day: 'Day 47', topic: 'Docker Build and Push', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-47/Day47_Docker_Build_and_Push.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-47/lab-session/task.md' },
+      { day: 'Day 48', topic: 'Reusable Workflows & Composite Actions', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-48/Day48_Reusable_Workflows_Composite.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-48/lab-session/task.md' },
+      { day: 'Day 49', topic: 'Advanced Triggers & OIDC', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-49/Day49_Advanced_Triggers_OIDC.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-49/lab-session/task.md' },
+      { day: 'Day 50', topic: 'End-to-End CI/CD Project', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-50/Day50_E2E_Pipeline_Project.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-50/lab-session/task.md' },
+      { day: 'Day 51', topic: 'DevSecOps & Debugging', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-51/Day51_DevSecOps_Security_Debugging.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-51/lab-session/task.md' },
     ]
   },
-  { id: 'module7', emoji: '☸️', title: 'Kubernetes', range: 'Days 50 – 60', accent: 'acc-teal', color: '#2DD4BF', railColor: '#00C9AF', days: 11, entries: [{ day: 'Day 50–60', topic: 'K8s Capstone', comingSoon: true }] },
-  { id: 'module8', emoji: '☁️', title: 'Terraform', range: 'Days 61 – 67', accent: 'acc-coral', color: '#FB7185', railColor: '#E8607A', days: 7, entries: [{ day: 'Day 61–67', topic: 'TerraWeek Capstone', comingSoon: true }] },
-  { id: 'module9', emoji: '⚙️', title: 'Ansible', range: 'Days 68 – 72', accent: 'acc-amber', color: '#F5A623', railColor: '#D4901A', days: 5, entries: [{ day: 'Day 68–72', topic: 'Automation Project', comingSoon: true }] },
-  { id: 'module10', emoji: '📊', title: 'Observability', range: 'Days 73 – 77', accent: 'acc-purple', color: '#A78BFA', railColor: '#9370F0', days: 5, entries: [{ day: 'Day 73–77', topic: 'Monitoring Project', comingSoon: true }] },
-  { id: 'module11', emoji: '🏷️', title: 'Helm', range: 'Days 78 – 80', accent: 'acc-blue', color: '#4A9EF5', railColor: '#3A8EE5', days: 3, entries: [{ day: 'Day 78–80', topic: 'Helm Project', comingSoon: true }] },
-  { id: 'module12', emoji: '🏗️', title: 'Amazon EKS', range: 'Days 81 – 83', accent: 'acc-amber', color: '#F5A623', railColor: '#C48218', days: 3, entries: [{ day: 'Day 81–83', topic: 'EKS Project', comingSoon: true }] },
-  { id: 'module13', emoji: '🚀', title: 'GitOps & ArgoCD', range: 'Days 84 – 86', accent: 'acc-purple', color: '#A78BFA', railColor: '#8B6EE8', days: 3, entries: [{ day: 'Day 84–86', topic: 'GitOps Capstone', comingSoon: true }] },
-  { id: 'module14', emoji: '🤖', title: 'Agentic AI', range: 'Days 87 – 90', accent: 'acc-coral', color: '#FB7185', railColor: '#F05070', days: 4, entries: [
-    { day: 'Day 89', topic: 'Grand Capstone', comingSoon: true },
-    { day: 'Day 90', topic: 'Final Portfolio', comingSoon: true }
+  {
+    id: 'module8', emoji: '🛡️', title: 'DevSecOps',
+    range: 'Day 52', accent: 'acc-green', color: '#4ADE80',
+    railColor: '#4ADE80', days: 1,
+    entries: [
+      { day: 'Day 52', topic: 'DevSecOps Pipeline Architecture',
+        pro: './curriculum/Module%2009%20-%20DevSecOps/day-52/Day52_DevSecOps_Pipeline_Architecture.html',
+        lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2009%20-%20DevSecOps/day-52/lab-session/task.md' }
+    ]
+  },
+  { id: 'module9', emoji: '☮️', title: 'Kubernetes', range: 'Days 53 – 63', accent: 'acc-teal', color: '#2DD4BF', railColor: '#00C9AF', days: 11, entries: [{ day: 'Day 53–63', topic: 'K8s Capstone', comingSoon: true }] },
+  { id: 'module10', emoji: '☁️', title: 'Terraform', range: 'Days 64 – 70', accent: 'acc-coral', color: '#FB7185', railColor: '#E8607A', days: 7, entries: [{ day: 'Day 64–70', topic: 'TerraWeek Capstone', comingSoon: true }] },
+  { id: 'module11', emoji: '⚙️', title: 'Ansible', range: 'Days 71 – 75', accent: 'acc-amber', color: '#F5A623', railColor: '#D4901A', days: 5, entries: [{ day: 'Day 71–75', topic: 'Automation Project', comingSoon: true }] },
+  { id: 'module12', emoji: '📊', title: 'Observability', range: 'Days 76 – 80', accent: 'acc-purple', color: '#A78BFA', railColor: '#9370F0', days: 5, entries: [{ day: 'Day 76–80', topic: 'Monitoring Project', comingSoon: true }] },
+  { id: 'module13', emoji: '🏷️', title: 'Helm', range: 'Days 81 – 83', accent: 'acc-blue', color: '#4A9EF5', railColor: '#3A8EE5', days: 3, entries: [{ day: 'Day 81–83', topic: 'Helm Project', comingSoon: true }] },
+  { id: 'module14', emoji: '🏗️', title: 'Amazon EKS', range: 'Days 84 – 86', accent: 'acc-amber', color: '#F5A623', railColor: '#C48218', days: 3, entries: [{ day: 'Day 84–86', topic: 'EKS Project', comingSoon: true }] },
+  { id: 'module15', emoji: '🚀', title: 'GitOps & ArgoCD', range: 'Days 87 – 89', accent: 'acc-purple', color: '#A78BFA', railColor: '#8B6EE8', days: 3, entries: [{ day: 'Day 87–89', topic: 'GitOps Capstone', comingSoon: true }] },
+  { id: 'module16', emoji: '🤖', title: 'Agentic AI', range: 'Days 90 – 93', accent: 'acc-coral', color: '#FB7185', railColor: '#F05070', days: 4, entries: [
+    { day: 'Day 92', topic: 'Grand Capstone', comingSoon: true },
+    { day: 'Day 93', topic: 'Final Portfolio', comingSoon: true }
   ] },
 ];
 

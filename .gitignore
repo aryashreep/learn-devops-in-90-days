@@ -39,4 +39,7 @@ crash.log
 .cache/
 .pytest_cache/
 coverage/
+
+# Claude AI
 CLAUDE.md
+.claude/

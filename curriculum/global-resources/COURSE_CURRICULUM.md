@@ -49,138 +49,159 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## 🐙 Module 05 - Introduction to Git [GitHub & GitLab] (Days 22-28)
+## 🗂️ Module 05 - Jira For DevOps (Days 22-23)
 | Day | Topic |
 |---|---|
-| [Day 22](../Module%2005%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-22/README.md) | Introduction to Git: Your First Repository |
-| [Day 23](../Module%2005%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-23/README.md) | Git Branching and Working with GitHub |
-| Day 24 | Advanced Git: Merge, Rebase, Stash and Cherry Pick |
-| Day 25 | Git Reset vs Revert and Branching Strategies |
-| Day 26 | GitHub CLI: Manage GitHub from Your Terminal |
-| Day 27 | GitHub Profile Makeover: Build Your Developer Identity |
-| Day 28 | **Revision Day:** Everything from Day 1 to Day 27 |
+| [Day 22](../Module%2005%20-%20Jira%20For%20DevOps/day-22/README.md) | Jira Introduction: Issues, Projects, and Workflows |
+| [Day 23](../Module%2005%20-%20Jira%20For%20DevOps/day-23/README.md) | Issues Hierarchy: Epics, Stories, Tasks, and Subtasks |
 
 ---
 
-## 🐳 Module 06 - Docker & Containerization (Days 29-37)
+## 🐙 Module 06 - Introduction to Git [GitHub & GitLab] (Days 24-30)
 | Day | Topic |
 |---|---|
-| [Day 29](../Module%2006%20-%20Docker%20&%20Containerization/day-29/README.md) | Introduction to Docker |
-| [Day 30](../Module%2006%20-%20Docker%20&%20Containerization/day-30/README.md) | Docker Images and Container Lifecycle |
-| [Day 31](../Module%2006%20-%20Docker%20&%20Containerization/day-31/README.md) | Dockerfile: Build Your Own Images |
-| [Day 32](../Module%2006%20-%20Docker%20&%20Containerization/day-32/README.md) | Docker Volumes and Networking |
-| [Day 33](../Module%2006%20-%20Docker%20&%20Containerization/day-33/README.md) | Docker Compose: Multi-Container Basics |
-| [Day 34](../Module%2006%20-%20Docker%20&%20Containerization/day-34/README.md) | Docker Compose: Real-World Multi-Container Apps |
-| [Day 35](../Module%2006%20-%20Docker%20&%20Containerization/day-35/README.md) | Multi-Stage Builds and Docker Hub |
-| [Day 36](../Module%2006%20-%20Docker%20&%20Containerization/day-36/README.md) | Docker Project: Dockerize a Full Application |
-| [Day 37](../Module%2006%20-%20Docker%20&%20Containerization/day-37/README.md) | **Docker Revision and Cheat Sheet** |
+| [Day 24](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-24/README.md) | Introduction to Git: Your First Repository |
+| [Day 25](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-25/README.md) | Git Branching and Working with GitHub |
+| [Day 26](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-26/README.md) | Advanced Git: Merge, Rebase, Stash and Cherry Pick |
+| [Day 27](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-27/README.md) | Git Reset vs Revert and Branching Strategies |
+| [Day 28](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-28/README.md) | GitHub CLI: Manage GitHub from Your Terminal |
+| [Day 31](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-29/README.md) | GitHub Profile Makeover: Build Your Developer Identity |
+| [Day 32](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-30/README.md) | **Revision Day:** Everything from Day 1 to Day 29 |
 
 ---
 
-## 🤖 Module 07 - CI/CD with GitHub Actions (Days 38-49)
+---
+
+## 🐳 Module 07 - Docker & Containerization (Days 31-39)
 | Day | Topic |
 |---|---|
-| [Day 38](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-38/README.md) | YAML Basics |
-| [Day 39](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-39/README.md) | What is CI/CD? |
-| [Day 40](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-40/README.md) | Your First GitHub Actions Workflow |
-| [Day 41](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-41/README.md) | Triggers and Matrix Builds |
-| [Day 42](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-42/README.md) | Runners: GitHub-Hosted and Self-Hosted |
-| [Day 43](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-43/README.md) | Jobs, Steps, Env Vars and Conditionals |
-| [Day 44](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-44/README.md) | Secrets, Artifacts and Running Real Tests in CI |
-| [Day 45](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-45/README.md) | Docker Build and Push in GitHub Actions |
-| [Day 46](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-46/README.md) | Reusable Workflows and Composite Actions |
-| [Day 47](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-47/README.md) | Advanced Triggers: PR Events, Cron Schedules |
-| [Day 48](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-48/README.md) | GitHub Actions Project: End-to-End CI/CD Pipeline |
-| [Day 49](../Module%2007%20-%20CI-CD%20with%20GitHub%20Actions/day-49/README.md) | DevSecOps: Add Security to Your CI/CD Pipeline |
+| [Day 31](../Module%2007%20-%20Docker%20&%20Containerization/day-31/README.md) | Introduction to Docker |
+| [Day 32](../Module%2007%20-%20Docker%20&%20Containerization/day-32/README.md) | Docker Images and Container Lifecycle |
+| [Day 33](../Module%2007%20-%20Docker%20&%20Containerization/day-33/README.md) | Dockerfile: Build Your Own Images |
+| [Day 34](../Module%2007%20-%20Docker%20&%20Containerization/day-34/README.md) | Docker Volumes and Networking |
+| [Day 35](../Module%2007%20-%20Docker%20&%20Containerization/day-35/README.md) | Docker Compose: Multi-Container Basics |
+| [Day 36](../Module%2007%20-%20Docker%20&%20Containerization/day-36/README.md) | Docker Compose: Real-World Multi-Container Apps |
+| [Day 37](../Module%2007%20-%20Docker%20&%20Containerization/day-37/README.md) | Multi-Stage Builds and Docker Hub |
+| [Day 40](../Module%2007%20-%20Docker%20&%20Containerization/day-38/README.md) | Docker Project: Dockerize a Full Application |
+| [Day 41](../Module%2007%20-%20Docker%20&%20Containerization/day-39/README.md) | **Docker Revision and Cheat Sheet** |
 
 ---
 
-## ☸️ Module 08 - Kubernetes [CKA] (Days 50-60)
+## 🤖 Module 08 - CI/CD with GitHub Actions (Days 40-51)
+| Day | Topic |
+|---|---|
+| [Day 40](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/README.md) | YAML Basics |
+| [Day 41](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/README.md) | What is CI/CD? |
+| [Day 42](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-42/README.md) | Your First GitHub Actions Workflow |
+| [Day 43](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-43/README.md) | Triggers and Matrix Builds |
+| [Day 44](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-44/README.md) | Runners: GitHub-Hosted and Self-Hosted |
+| [Day 45](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-45/README.md) | Jobs, Steps, Env Vars and Conditionals |
+| [Day 46](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-46/README.md) | Secrets, Artifacts and Running Real Tests in CI |
+| [Day 47](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-47/README.md) | Docker Build and Push in GitHub Actions |
+| [Day 48](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-48/README.md) | Reusable Workflows and Composite Actions |
+| [Day 49](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-49/README.md) | Advanced Triggers: PR Events, Cron Schedules |
+| [Day 50](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-50/README.md) | GitHub Actions Project: End-to-End CI/CD Pipeline |
+| [Day 51](../Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-51/README.md) | DevSecOps: Add Security to Your CI/CD Pipeline |
+
+---
+
+
+
+---
+
+## 🛡️ Module 09 - DevSecOps (Day 52)
+| Day | Topic |
+|---|---|
+| [Day 52](../Module%2009%20-%20DevSecOps/day-52/README.md) | DevSecOps Pipeline Architecture — SAST, DAST, SCA, Container Scan, Secret Scan, Severity Gates |
+
+---
+
+## ☸️ Module 10 - Kubernetes [CKA] (Days 53-62)
 | Day | Topic |
 |---|---|
 | Day 50 | Kubernetes Architecture and Cluster Setup |
-| Day 51 | Kubernetes Manifests and Your First Pods |
-| Day 52 | Kubernetes Namespaces and Deployments |
-| Day 53 | Kubernetes Services |
-| Day 54 | Kubernetes ConfigMaps and Secrets |
-| Day 55 | Persistent Volumes (PV) and PVC |
-| Day 56 | Kubernetes StatefulSets |
-| Day 57 | Resource Requests, Limits, and Probes |
-| Day 58 | Metrics Server and Horizontal Pod Autoscaler (HPA) |
-| Day 59 | Helm -- Kubernetes Package Manager |
-| Day 60 | **Capstone:** Deploy WordPress + MySQL on Kubernetes |
+| Day 53 | Kubernetes Manifests and Your First Pods |
+| Day 54 | Kubernetes Namespaces and Deployments |
+| Day 55 | Kubernetes Services |
+| Day 56 | Kubernetes ConfigMaps and Secrets |
+| Day 57 | Persistent Volumes (PV) and PVC |
+| Day 58 | Kubernetes StatefulSets |
+| Day 59 | Resource Requests, Limits, and Probes |
+| Day 60 | Metrics Server and Horizontal Pod Autoscaler (HPA) |
+| Day 61 | Helm -- Kubernetes Package Manager |
+| Day 62 | **Capstone:** Deploy WordPress + MySQL on Kubernetes |
 
 ---
 
-## ☁️ Module 09 - Terraform [IaC] (Days 61-67)
+## ☁️ Module 11 - Terraform [IaC] (Days 64-70)
 | Day | Topic |
 |---|---|
-| Day 61 | Introduction to Terraform and First AWS Infra |
-| Day 62 | Providers, Resources and Dependencies |
-| Day 63 | Variables, Outputs, Data Sources and Expressions |
-| Day 64 | Terraform State Management and Remote Backends |
-| Day 65 | Terraform Modules: Build Reusable Infrastructure |
-| Day 66 | Provision an EKS Cluster with Terraform Modules |
-| Day 67 | **Capstone:** Multi-Environment Infrastructure with Workspaces |
+| Day 63 | Introduction to Terraform and First AWS Infra |
+| Day 64 | Providers, Resources and Dependencies |
+| Day 65 | Variables, Outputs, Data Sources and Expressions |
+| Day 66 | Terraform State Management and Remote Backends |
+| Day 67 | Terraform Modules: Build Reusable Infrastructure |
+| Day 68 | Provision an EKS Cluster with Terraform Modules |
+| Day 69 | **Capstone:** Multi-Environment Infrastructure with Workspaces |
 
 ---
 
-## ⚙️ Module 10 - Ansible [Config Mgmt] (Days 68-72)
+## ⚙️ Module 12 - Ansible [Config Mgmt] (Days 71-75)
 | Day | Topic |
 |---|---|
-| Day 68 | Introduction to Ansible and Inventory Setup |
-| Day 69 | Ansible Playbooks and Modules |
-| Day 70 | Variables, Facts, Conditionals and Loops |
-| Day 71 | Roles, Galaxy, Templates and Vault |
-| Day 72 | **Project:** Automate Docker and Nginx Deployment |
+| Day 70 | Introduction to Ansible and Inventory Setup |
+| Day 71 | Ansible Playbooks and Modules |
+| Day 72 | Variables, Facts, Conditionals and Loops |
+| Day 73 | Roles, Galaxy, Templates and Vault |
+| Day 74 | **Project:** Automate Docker and Nginx Deployment |
 
 ---
 
-## 📊 Module 11 - SRE & Observability (Days 73-77)
+## 📊 Module 13 - SRE & Observability (Days 76-80)
 | Day | Topic |
 |---|---|
-| Day 73 | Introduction to Observability and Prometheus |
-| Day 74 | Node Exporter, cAdvisor, and Grafana Dashboards |
-| Day 75 | Log Management with Loki and Promtail |
-| Day 76 | OpenTelemetry and Alerting |
-| Day 77 | **Project:** Full Stack with Docker Compose |
+| Day 75 | Introduction to Observability and Prometheus |
+| Day 76 | Node Exporter, cAdvisor, and Grafana Dashboards |
+| Day 77 | Log Management with Loki and Promtail |
+| Day 78 | OpenTelemetry and Alerting |
+| Day 79 | **Project:** Full Stack with Docker Compose |
 
 ---
 
-## 🏷️ Module 12 - Helm [K8s Package Mgmt] (Days 78-80)
+## 🏷️ Module 14 - Helm [K8s Package Mgmt] (Days 81-83)
 | Day | Topic |
 |---|---|
-| Day 78 | Introduction to Helm and Chart Basics |
-| Day 79 | Creating a Custom Helm Chart for AI-BankApp |
-| Day 80 | **Project:** Multi-Environment Deployment and CI/CD |
+| Day 80 | Introduction to Helm and Chart Basics |
+| Day 81 | Creating a Custom Helm Chart for AI-BankApp |
+| Day 82 | **Project:** Multi-Environment Deployment and CI/CD |
 
 ---
 
-## 🏗️ Module 13 - Amazon EKS [Cloud Ops] (Days 81-83)
+## 🏗️ Module 15 - Amazon EKS [Cloud Ops] (Days 84-86)
 | Day | Topic |
 |---|---|
-| Day 81 | Introduction to Amazon EKS with Terraform |
-| Day 82 | EKS Networking and Persistent Storage |
-| Day 83 | **Project:** Production Deployment of AI-BankApp |
+| Day 83 | Introduction to Amazon EKS with Terraform |
+| Day 84 | EKS Networking and Persistent Storage |
+| Day 85 | **Project:** Production Deployment of AI-BankApp |
 
 ---
 
-## 🚀 Module 14 - GitOps & ArgoCD (Days 84-86)
+## 🚀 Module 16 - GitOps & ArgoCD (Days 87-89)
 | Day | Topic |
 |---|---|
-| Day 84 | Introduction to GitOps and ArgoCD |
-| Day 85 | ArgoCD Deep Dive: Sync Strategies and Rollbacks |
-| Day 86 | **Capstone:** End-to-End GitOps Pipeline with AI-BankApp |
+| Day 86 | Introduction to GitOps and ArgoCD |
+| Day 87 | ArgoCD Deep Dive: Sync Strategies and Rollbacks |
+| Day 88 | **Capstone:** End-to-End GitOps Pipeline with AI-BankApp |
 
 ---
 
-## 🤖 Module 15 - Agentic AI for DevOps (Days 87-90)
+## 🤖 Module 17 - Agentic AI for DevOps (Days 90-92)
 | Day | Topic |
 |---|---|
-| Day 87 | Introduction to Agentic AI for DevOps |
-| Day 88 | Multi-Tool Agents, MCP, and CI/CD Analyzer |
-| Day 89 | **GRAND CAPSTONE:** KubeHealer and Self-Healing AI Ops |
-| Day 90 | **Grand Finale:** The Complete DevOps Journey Portfolio |
+| Day 89 | Introduction to Agentic AI for DevOps |
+| Day 90 | Multi-Tool Agents, MCP, and CI/CD Analyzer |
+| Day 91 | **GRAND CAPSTONE:** KubeHealer and Self-Healing AI Ops |
+| Day 92 | **Grand Finale:** The Complete DevOps Journey Portfolio |
 
 ---
 Maintainer: **[Aryashree Pritikrishna](https://www.linkedin.com/in/aryashreepritikrishna/)**

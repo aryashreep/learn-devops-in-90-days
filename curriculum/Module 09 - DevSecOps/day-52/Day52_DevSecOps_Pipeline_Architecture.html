@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 52: DevSecOps Pipeline Architecture - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                background-color: var(--bg-blackboard) !important;
+                color: var(--chalk-white) !important;
+            }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1100px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        .contact-item { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-bottom: 4px; }
+        .contact-icon { color: var(--chalk-green); font-size: 1rem; }
+
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.3rem; line-height: 1.4; }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-blue { border-color: var(--chalk-blue); }
+        .speech-bubble.bubble-blue::before { border-right-color: var(--chalk-blue); }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        .diagram-title { color: var(--chalk-yellow); font-size: 1.4rem; margin-bottom: 20px; text-transform: uppercase; }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap; }
+        .vs-card { flex: 1; min-width: 180px; background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; }
+        .vs-card.danger { border-color: var(--chalk-red); }
+        .vs-card.secure { border-color: var(--chalk-green); }
+        .vs-title { font-family: 'Architects Daughter'; font-size: 1.5rem; text-align: center; margin-bottom: 15px; }
+        .vs-card.danger .vs-title { color: var(--chalk-red); }
+        .vs-card.secure .vs-title { color: var(--chalk-green); }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        
+        .quiz-item { border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
+        .quiz-question { font-weight: bold; font-size: 1.2rem; color: var(--chalk-white); margin-bottom: 12px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 20px; }
+        .quiz-opt { padding: 8px 12px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
+        .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
+        pre { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--chalk-blue); overflow-x: auto; font-family: 'Fira Code', monospace; font-size: 0.8rem; }
+        code { font-family: 'Fira Code', monospace; color: var(--chalk-pink); }
+        .pipeline-flow { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 20px 0; flex-wrap: wrap; }
+        .pipe-node { background: rgba(255,255,255,0.06); border: 2px solid var(--chalk-blue); border-radius: 10px; padding: 10px 14px; text-align: center; min-width: 100px; font-size: 0.75rem; }
+        .pipe-node.critical { border-color: var(--chalk-red); }
+        .pipe-node.gate { border-color: var(--chalk-yellow); background: rgba(254,202,87,0.08); }
+        .pipe-node.deploy { border-color: var(--chalk-green); background: rgba(29,209,161,0.08); }
+        .pipe-arrow { color: var(--chalk-orange); font-size: 1.2rem; }
+        .severity-critical { color: var(--chalk-red); font-weight: bold; }
+        .severity-high { color: var(--chalk-orange); font-weight: bold; }
+        .severity-medium { color: var(--chalk-yellow); font-weight: bold; }
+        .severity-low { color: var(--chalk-blue); font-weight: bold; }
+        .matrix-box { background: rgba(72,219,251,0.06); border: 1px solid var(--chalk-blue); border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+
+    <header>
+        <h1>DevSecOps Pipeline Architecture</h1>
+        <p class="subtitle handwritten">Day 52: Build a complete security-gated CI/CD pipeline with SAST, DAST, SCA, container scanning, secret detection, and severity gates.🔒</p>
+    </header>
+
+    <section id="intro">
+        <div class="intro-banner">
+            <div class="doodle-container" style="margin: 0;">
+                <div class="doodle-wrapper">
+                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                    <span class="char-name">Golu</span>
+                </div>
+                <div class="speech-bubble">
+                    "Jagu, Day 49 mein humne permissions harden karna seekh liya. Par ek production-grade DevSecOps pipeline ka complete architecture kya hota hai — SAST, DAST, container scan, secret scan sab kuch saath mein kaise kaam karta hai?"
+                </div>
+            </div>
+            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+                <div class="speech-bubble bubble-blue">
+                    "Golu, aaj hum ek full DevSecOps pipeline ka blueprint banayenge! Code lint se lekar deploy tak — har stage par security gate hoga. SAST, SCA, container scan, secret scan, DAST — sab kuch ek saath ek master workflow mein orchestrated!"
+                </div>
+                <div class="doodle-wrapper">
+                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+                    <span class="char-name">Jagu</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box accent-yellow">
+            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
+            <ul>
+                <li>Understand the Shift-Left security model and why security moves earlier in the pipeline</li>
+                <li>Differentiate SAST, DAST, SCA, Container Scanning, and Secret Scanning — and when each runs</li>
+                <li>Design a multi-stage DevSecOps pipeline with <code>needs:</code> dependency gates and <code>secrets: inherit</code></li>
+                <li>Configure Trivy severity thresholds (CRITICAL/HIGH/MEDIUM/LOW) to block or allow builds</li>
+                <li>Orchestrate 10+ reusable workflow files from a single <code>devsecops.yml</code> master pipeline</li>
+            </ul>
+            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+                💡 <span class="chalk-text">Kyu Seekhein?</span> 60% of security breaches happen due to known but unpatched CVEs. A DevSecOps pipeline catches them automatically before they reach production!
+            </p>
+        </div>
+    </section>
+
+    <section id="analogy">
+        <div class="topic-title">💡 Mental Model</div>
+        <p class="hinglish">
+            DevSecOps pipeline is like an <b>international airport security checkpoint</b>. Your code (passenger) must pass through multiple screening layers:
+        </p>
+        <div class="matrix-box">
+            <b>SAST (Code Scanner)</b> → Like checking passport &amp; visa before entering the terminal.<br>
+            <b>SCA (Dependency Scanner)</b> → Like checking luggage for prohibited items (govulncheck/npm audit).<br>
+            <b>Container Scan</b> → Like X-ray scanning your carry-on bag (Trivy was your Docker image).<br>
+            <b>Secret Scan</b> → Like a metal detector checking for hidden weapons in your pockets (GitLeaks).<br>
+            <b>DAST (Runtime Scan)</b> → Like a bomb-sniffing dog checking the plane before takeoff (OWASP ZAP).<br>
+            <b>CI Gate</b> → If ANY check fails (CRITICAL/HIGH found) → Boarding denied. Image not pushed.
+        </div>
+    </section>
+
+    <section id="stats">
+        <div class="topic-title">📈 Did You Know?</div>
+        <div class="vs-container">
+            <div class="vs-card secure">
+                <div class="vs-title" style="color:var(--chalk-blue);">Shift Left</div>
+                <p style="text-align:center;font-size:0.85rem;">Catching a vulnerability in code (SAST) costs <b>10x less</b> than fixing it in production. The earlier, the cheaper!</p>
+            </div>
+            <div class="vs-card secure">
+                <div class="vs-title" style="color:var(--chalk-blue);">OWASP Top 10</div>
+                <p style="text-align:center;font-size:0.85rem;">DAST (OWASP ZAP) tests for the 10 most critical web app security risks including injection, XSS, and broken access control.</p>
+            </div>
+            <div class="vs-card secure">
+                <div class="vs-title" style="color:var(--chalk-blue);">Trivy CVE DB</div>
+                <p style="text-align:center;font-size:0.85rem;">Trivy compares every Docker layer against 20,000+ known CVEs. CRITICAL findings block the build — MEDIUM/LOW get reported only.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="concepts">
+        <div class="topic-title">⚙️ Security Scanning Types</div>
+
+        <h3>1. SAST — Static Application Security Testing</h3>
+        <p>Analyses source code <b>without executing it</b>. Runs early in the pipeline (Shift Left).</p>
+        <div class="matrix-box">
+            <b>Tools:</b> Bandit (Python), flake8/ESLint (JS/TS), <code>go vet</code> (Go), SonarQube (multi-language)<br>
+            <b>Catches:</b> SQL injection patterns, hardcoded credentials, unsafe imports, code smells<br>
+            <b>When:</b> On every push/PR — runs in parallel with other CI checks
+        </div>
+
+        <h3>2. SCA — Software Composition Analysis (Dependency Scan)</h3>
+        <p>Scans third-party libraries and packages for known vulnerabilities (CVEs).</p>
+        <div class="matrix-box">
+            <b>Tools:</b> <code>govulncheck</code> (Go), <code>npm audit</code> (Node), Dependabot, Snyk<br>
+            <b>Catches:</b> Libraries with known CVEs, outdated packages with security patches<br>
+            <b>Configuration:</b> <code>continue-on-error: true</code> — reports vulnerabilities but doesn't fail by default<br>
+            <b>Output:</b> Report uploaded as artifact with 5-day retention
+        </div>
+
+        <h3>3. Container Scanning — hadolint + Trivy</h3>
+        <p>Two-stage Docker security check: first lint the Dockerfile, then scan the built image.</p>
+        <div class="matrix-box">
+            <b>Stage 1 — hadolint:</b> Lints Dockerfile for best practices (avoid root, optimize layers, proper labels)<br>
+            <b>Stage 2 — Trivy:</b> Scans built image against CVE database for OS and library vulnerabilities<br>
+            <b>Matrix Strategy:</b> Runs for both <code>[backend, frontend]</code> in parallel with <code>fail-fast: false</code>
+        </div>
+
+        <h3>4. Secret Scanning — GitLeaks</h3>
+        <p>Detects accidentally committed secrets (API keys, tokens, passwords) using regex + entropy detection.</p>
+        <div class="matrix-box">
+            <b>Tool:</b> GitLeaks — scans full Git history (<code>fetch-depth: 0</code>)<br>
+            <b>Why full history?</b> A secret may have been committed earlier and later removed — scanning only the latest commit misses old leaks<br>
+            <b>Detects:</b> AWS keys, GitHub tokens, private SSH keys, JWT tokens, generic passwords
+        </div>
+
+        <h3>5. DAST — Dynamic Application Security Testing</h3>
+        <p>Tests the running application by simulating real attacks. Runs <b>last</b> — after deployment.</p>
+        <div class="matrix-box">
+            <b>Tool:</b> OWASP ZAP Baseline Scan<br>
+            <b>What it checks:</b> OWASP Top 10 categories (injection, XSS, CSRF, etc.)<br>
+            <b>Prerequisite:</b> App must be live and healthy — includes a curl-based retry loop waiting for port 8080<br>
+            <b>Fail mode:</b> <code>failAction: false</code> (team decision — can be set to true for strict enforcement)
+        </div>
+    </section>
+
+    <section id="severity">
+        <div class="topic-title">⚠️ Severity Gating System</div>
+        <p class="hinglish">Har CVE ki ek severity hoti hai. Pipeline decide karta hai ki konse findings pe build block karna hai aur konse pe sirf report banana hai.</p>
+        <div class="vs-container">
+            <div class="vs-card danger">
+                <div class="vs-title"><span class="severity-critical">CRITICAL</span></div>
+                <p style="text-align:center;font-size:0.85rem;">Block the build/deploy. Must be fixed immediately. CI fails with <code>exit-code: 1</code>.</p>
+            </div>
+            <div class="vs-card secure" style="border-color:var(--chalk-orange);">
+                <div class="vs-title" style="color:var(--chalk-orange);">HIGH</div>
+                <p style="text-align:center;font-size:0.85rem;">A patch is usually available. Should be fixed promptly. CI can also fail on these.</p>
+            </div>
+            <div class="vs-card secure">
+                <div class="vs-title" style="color:var(--chalk-yellow);">MEDIUM</div>
+                <p style="text-align:center;font-size:0.85rem;">Acceptable for now. Track but do not block the pipeline.</p>
+            </div>
+            <div class="vs-card secure" style="border-color:var(--chalk-blue);">
+                <div class="vs-title" style="color:var(--chalk-blue);">LOW</div>
+                <p style="text-align:center;font-size:0.85rem;">Can generally be ignored. Simply reported for awareness.</p>
+            </div>
+        </div>
+        <p class="hinglish" style="margin-top:15px;"><b>Production Pipeline Rule:</b> CI is configured to fail on <span class="severity-critical">CRITICAL</span>/<span style="color:var(--chalk-orange);">HIGH</span> findings (security "gate"). MEDIUM/LOW are simply reported via artifacts.</p>
+    </section>
+
+    <section id="pipeline">
+        <div class="topic-title">🏗️ DevSecOps Pipeline Architecture</div>
+        <p class="hinglish">Ek master workflow <code>devsecops.yml</code> sab kuch orchestrate karta hai. Har CI job ek <b>reusable workflow</b> ko call karta hai <code>uses:</code> keyword se.</p>
+
+        <h3>Master Pipeline: devsecops.yml</h3>
+        <pre><code># Goal: To Run End-to-End DevSecOps CI Pipeline
+name: DevSecOps
+on:
+  push:
+    branches: [master]
+
+jobs:
+  # === CI Stage (Parallel — All Security Checks) ===
+  code-quality:
+    uses: .github/workflows/code-quality.yml
+
+  secret-scanning:
+    uses: .github/workflows/secret-scanning.yml
+
+  dependency-checks:
+    uses: .github/workflows/dependency-scan.yml
+
+  docker-checks:
+    uses: .github/workflows/docker-scans.yml
+    secrets: inherit    # Needs DockerHub auth
+
+  sonar-qube:
+    uses: .github/workflows/sonar-scan.yml
+    secrets: inherit    # Needs SONAR_TOKEN
+
+  code-tests:
+    uses: .github/workflows/code-tests.yml
+
+  # === Build Stage (Only if ALL CI checks pass) ===
+  docker-push:
+    needs: [code-quality, code-tests, sonar-qube,
+            docker-checks, dependency-checks, secret-scanning]
+    uses: .github/workflows/docker-push.yml
+    secrets: inherit
+
+  # === Deploy Stage (Only if image is pushed) ===
+  deploy:
+    needs: [docker-push]
+    uses: .github/workflows/deploy.yml
+    secrets: inherit
+
+  # === Runtime Security (Only after deploy) ===
+  dast-scan:
+    needs: [deploy]
+    uses: .github/workflows/dast.yml
+    secrets: inherit</code></pre>
+
+        <h3>Pipeline Dependency Diagram</h3>
+        <div class="diagram-container">
+            <div class="diagram-title">DevSecOps Pipeline Flow</div>
+            <div class="pipeline-flow" style="flex-direction:column;align-items:stretch;">
+                <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+                    <div class="pipe-node">code-quality</div>
+                    <div class="pipe-node">code-tests</div>
+                    <div class="pipe-node">sonar-qube</div>
+                    <div class="pipe-node">docker-checks</div>
+                    <div class="pipe-node">dependency-checks</div>
+                    <div class="pipe-node">secret-scanning</div>
+                </div>
+                <div style="text-align:center;color:var(--chalk-orange);margin:8px 0;">⬇ (All Pass — Security Gate)</div>
+                <div class="pipe-node gate" style="align-self:center;width:200px;">docker-push (Image → DockerHub)</div>
+                <div style="text-align:center;color:var(--chalk-orange);margin:8px 0;">⬇ (needs: [docker-push])</div>
+                <div class="pipe-node deploy" style="align-self:center;width:200px;">deploy (Self-Hosted Runner)</div>
+                <div style="text-align:center;color:var(--chalk-orange);margin:8px 0;">⬇ (needs: [deploy])</div>
+                <div class="pipe-node critical" style="align-self:center;width:200px;">dast-scan (OWASP ZAP)</div>
+            </div>
+            <p class="handwritten" style="margin-top:15px;color:var(--chalk-yellow);">Note: This dependency chain is the real security "gate" of DevSecOps. If SAST, secret scanning, or SonarQube fails, the image will never be built or pushed.</p>
+        </div>
+
+        <h3>Key Workflow Concepts</h3>
+        <div class="content-box accent-green">
+            <ul>
+                <li><code>uses:</code> — specifies which reusable workflow file to call (like a function call)</li>
+                <li><code>needs: []</code> — defines which jobs must succeed first (dependency chain)</li>
+                <li><code>secrets: inherit</code> — passes the parent's secrets to the child workflow. Only jobs needing auth (Docker, SonarQube) use this.</li>
+                <li><code>on: push branches: [master]</code> — defines the trigger condition</li>
+                <li>CI jobs run in parallel as a gate; CD jobs run sequentially afterward</li>
+                <li>Every child workflow uses <code>on: workflow_call</code> — they are only executed via <code>devsecops.yml</code>, not independently</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="workflows">
+        <div class="topic-title">📁 Workflow File Reference</div>
+
+        <h3>code-quality.yml — SAST (Static Code Analysis)</h3>
+        <pre><code>name: Code Quality
+on: workflow_call
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install npm Packages
+        run: npm install --legacy-peer-deps
+        working-directory: frontend
+      - name: Run Linter
+        run: npm run lint
+        working-directory: frontend
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache-dependency-path: go.sum
+      - name: Run Go Formatter
+        run: go fmt ./...
+        working-directory: backend
+      - name: Run Go Vet
+        run: go vet ./...
+        working-directory: backend</code></pre>
+
+        <h3>code-tests.yml — Unit Tests</h3>
+        <pre><code>name: Code Tests
+on: workflow_call
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version: '1.23', cache-dependency-path: go.sum }
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: npm, cache-dependency-path: frontend/package-lock.json }
+      - run: npm install --legacy-peer-deps
+        working-directory: frontend
+      - run: npm run test
+        working-directory: frontend
+      - run: go test ./...
+        working-directory: backend</code></pre>
+
+        <h3>dependency-scan.yml — SCA (Software Composition Analysis)</h3>
+        <pre><code>name: Dependency Scan
+on: workflow_call
+jobs:
+  dependency-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version: '1.23', cache-dependency-path: go.sum }
+      - name: Install Govulncheck
+        run: go install golang.org/x/vuln/cmd/govulncheck@latest
+      - name: Go Vulncheck
+        continue-on-error: true
+        run: govulncheck ./... &gt; govulncheck-report.txt
+        working-directory: backend
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: npm, cache-dependency-path: frontend/package-lock.json }
+      - name: Run npm Audit
+        run: npm audit
+        working-directory: frontend
+        continue-on-error: true
+      - name: Upload Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-scan-report
+          path: backend/govulncheck-report.txt
+          retention-days: 5</code></pre>
+
+        <h3>docker-scans.yml — Container Security (hadolint + Trivy)</h3>
+        <pre><code>name: Docker Scan
+on: workflow_call
+jobs:
+  docker-file-lint-and-scan:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        folders: [backend, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - name: ${{ matrix.folders }} Dockerfile Lint
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: ${{ matrix.folders }}/Dockerfile
+      - name: Docker Setup Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Docker Build ${{ matrix.folders }}
+        run: docker build -t ${{ vars.DOCKERHUB_USERNAME }}/devboard-${{ matrix.folders }}:latest .
+        working-directory: ${{ matrix.folders }}
+      - name: Run Trivy Scanner
+        uses: aquasecurity/trivy-action@0.30.0
+        # Note: continue-on-error: true lets the job report findings without
+        # failing the pipeline. The exit-code: 1 tells Trivy to return a non-zero
+        # exit code when CRITICAL vulnerabilities are found, but continue-on-error
+        # overrides this so the scan results are visible without blocking.
+        # For strict enforcement, set continue-on-error: false.
+        continue-on-error: true
+        with:
+          image-ref: ${{ vars.DOCKERHUB_USERNAME }}/devboard-${{ matrix.folders }}:latest
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: CRITICAL</code></pre>
+
+        <h3>docker-push.yml — Build & Push (Final CI Step)</h3>
+        <pre><code>name: Docker Push
+on: workflow_call
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        folders: [backend, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./${{ matrix.folders }}
+          push: true
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/devboard-${{ matrix.folders }}:latest</code></pre>
+
+        <h3>secret-scanning.yml — GitLeaks</h3>
+        <pre><code>name: Secret Scanning
+on: workflow_call
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: GitLeaks Scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}</code></pre>
+
+        <h3>dast.yml — OWASP ZAP Baseline Scan</h3>
+        <pre><code>name: DAST Scan
+on: workflow_call
+jobs:
+  zap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for Service Health
+        run: |
+          for i in {1..30}; do
+            curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/health && break
+            sleep 10
+          done
+      - name: OWASP ZAP Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: 'http://localhost:8080'
+          failAction: false</code></pre>
+
+        <h3>deploy.yml — CD (Self-Hosted Runner)</h3>
+        <pre><code>name: Deploy
+on: workflow_call
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Environment
+        run: cp env.example .env
+      - uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Pull and Restart
+        run: docker compose pull &amp;&amp; docker compose up -d</code></pre>
+    </section>
+
+    <section id="secrets-vs-vars">
+        <div class="topic-title">🔑 Secrets vs Vars — When to Use What</div>
+        <div class="vs-container">
+            <div class="vs-card danger">
+                <div class="vs-title">Secrets</div>
+                <p style="font-size:0.85rem;">Sensitive data — encrypted, never exposed in logs</p>
+                <ul style="font-size:0.8rem;">
+                    <li>DOCKERHUB_TOKEN</li>
+                    <li>SONAR_TOKEN</li>
+                    <li>GITHUB_TOKEN</li>
+                    <li>Database passwords &amp; API keys</li>
+                </ul>
+            </div>
+            <div class="vs-circle" style="border-color: var(--chalk-orange); color: var(--chalk-orange);">VS</div>
+            <div class="vs-card secure">
+                <div class="vs-title" style="color:var(--chalk-green);">Vars</div>
+                <p style="font-size:0.85rem;">Non-sensitive config — plain text, visible in settings</p>
+                <ul style="font-size:0.8rem;">
+                    <li>DOCKERHUB_USERNAME</li>
+                    <li>Environment names</li>
+                    <li>Port numbers</li>
+                    <li>Build configurations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="tryit">
+        <div class="topic-title">⌨️ Try It Yourself</div>
+        <pre><code># Create the master workflow:
+# .github/workflows/devsecops.yml
+#
+# Test the dependency chain logic:
+# 1. Push a change to master
+# 2. Watch the pipeline — all CI jobs run in parallel
+# 3. If one fails, docker-push is blocked
+# 4. After deploy, DAST scans the live app
+#
+# Quick Trivy test on your local image:
+docker pull alpine:latest
+trivy image --severity CRITICAL --ignore-unfixed alpine:latest</code></pre>
+    </section>
+
+    <section id="quiz">
+        <div class="topic-title">📝 Day 52 Mini Quiz</div>
+        <div class="quiz-item">
+            <div class="quiz-question">1. Which security scanning type analyzes source code WITHOUT executing it?</div>
+            <div class="quiz-options">
+                <span class="quiz-opt">A) DAST — Dynamic Analysis</span>
+                <span class="quiz-opt">B) SAST — Static Application Security Testing</span>
+                <span class="quiz-opt">C) SCA — Software Composition Analysis</span>
+                <span class="quiz-opt">D) Container Scan</span>
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-question">2. In the DevSecOps pipeline, what is the purpose of the `needs: []` keyword in the docker-push job?</div>
+            <div class="quiz-options">
+                <span class="quiz-opt">A) It runs docker-push in parallel with other jobs</span>
+                <span class="quiz-opt">B) It blocks docker-push until ALL listed jobs pass (the security gate)</span>
+                <span class="quiz-opt">C) It pushes the image faster</span>
+                <span class="quiz-opt">D) It skips the security checks</span>
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-question">3. Which tool would you use to find accidentally committed AWS access keys in your Git history?</div>
+            <div class="quiz-options">
+                <span class="quiz-opt">A) Trivy</span>
+                <span class="quiz-opt">B) hadolint</span>
+                <span class="quiz-opt">C) GitLeaks</span>
+                <span class="quiz-opt">D) OWASP ZAP</span>
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-question">4. What severity level should BLOCK the build in a production DevSecOps pipeline?</div>
+            <div class="quiz-options">
+                <span class="quiz-opt">A) CRITICAL and HIGH</span>
+                <span class="quiz-opt">B) All severities including LOW</span>
+                <span class="quiz-opt">C) Only CRITICAL, ignore everything else</span>
+                <span class="quiz-opt">D) None — security is optional</span>
+            </div>
+        </div>
+        <div class="quiz-item">
+            <div class="quiz-question">5. Why should `secrets: inherit` ONLY be used on jobs that require authentication?</div>
+            <div class="quiz-options">
+                <span class="quiz-opt">A) To slow down the pipeline</span>
+                <span class="quiz-opt">B) To prevent unnecessary exposure of secrets to jobs that don't need them (least privilege)</span>
+                <span class="quiz-opt">C) Because GitHub charges per secret inheritance</span>
+                <span class="quiz-opt">D) It's required for all jobs by default</span>
+            </div>
+        </div>
+        <div class="answer-key">
+            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+            <p>1: B, 2: B, 3: C, 4: A, 5: B</p>
+        </div>
+    </section>
+
+    <section id="summary">
+        <div class="topic-title">✓ Quick Summary</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
+            <ul>
+                <li><b>Shift Left:</b> Move security to the beginning of the pipeline, not the end</li>
+                <li><b>5 scanning types:</b> SAST (code), SCA (deps), Container (Docker), Secrets (GitLeaks), DAST (runtime)</li>
+                <li><b>Severity gates:</b> CRITICAL/HIGH = Block build; MEDIUM/LOW = Report only</li>
+                <li><b>Master pipeline:</b> <code>devsecops.yml</code> orchestrates 10+ child workflows via <code>uses:</code> and <code>needs:</code></li>
+                <li><b>Dependency chain:</b> All CI checks (parallel) → docker-push → deploy → dast-scan</li>
+                <li><b>Secrets vs Vars:</b> Secrets = sensitive (encrypted); Vars = non-sensitive config</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="footer">
+        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+    </div>
+</div>
+</body>
+</html>
