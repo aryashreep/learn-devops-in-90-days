@@ -1,4 +1,4 @@
-# 🧪 Lab Session: Day 21 — The Smart Automation
+# 🧪 Lab Session: Day 15 — The Smart Automation
 
 **Jagu:** "Beep Boop! Golu, manually ek-ek file banana toh baccho ka khel hai. Aaj hum seekhenge ki kaise ek single script se hazaron files ya users 'automatic' banaye jaate hain!"
 
@@ -31,4 +31,4 @@
 3. Commit and push!
 
 ---
-*#LearnDevOpsIn90Days • Day 21 • Golu & Jagu Edition*
+*#LearnDevOpsIn90Days • Day 15 • Golu & Jagu Edition*

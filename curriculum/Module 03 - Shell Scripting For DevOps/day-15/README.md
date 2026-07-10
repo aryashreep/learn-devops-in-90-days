@@ -1,6 +1,6 @@
-# 🗓️ Day 21 — Shell Scripting: Loops, Arguments and Error Handling
+# 🗓️ Day 15 — Shell Scripting: Loops, Arguments and Error Handling
 
-Welcome to **Day 21**! Today, your scripts become "Smart." We will learn how to make them repeat tasks and handle data like a pro.
+Welcome to **Day 15**! Today, your scripts become "Smart." We will learn how to make them repeat tasks and handle data like a pro.
 
 ## 🎯 Today's Goal
 Master the logic of Shell Scripting—learn how to use loops to process multiple items and positional arguments to pass data into your scripts.
@@ -12,7 +12,7 @@ Master the logic of Shell Scripting—learn how to use loops to process multiple
 - **Basic Error Handling:** Using `if` statements to check if a command succeeded.
 
 ## 🧠 Pro Module
-[🎓 Day 21 Pro Module: Script Logic](./Day15_Logic_and_Arguments.html)
+[🎓 Day 15 Pro Module: Script Logic](./Day15_Logic_and_Arguments.html)
 
 ## 🧪 Hands-on Lab
 👉 [Lab Session: The Smart Automation](./lab-session/task.md)

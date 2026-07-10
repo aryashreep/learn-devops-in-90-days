@@ -1,4 +1,4 @@
-# 🧪 Lab Session: Day 20 — My First Automation
+# 🧪 Lab Session: Day 14 — My First Automation
 
 **Jagu:** "Beep Boop! Golu, manually commands chalana toh thik hai, par real engineer wo hai jo 'Scripts' likhta hai. Aaj hum tumhara pehla 'Robot' (Script) banayenge!"
 
@@ -29,4 +29,4 @@
 3. Commit and push!
 
 ---
-*#LearnDevOpsIn90Days • Day 20 • Golu & Jagu Edition*
+*#LearnDevOpsIn90Days • Day 14 • Golu & Jagu Edition*
