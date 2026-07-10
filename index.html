@@ -238,6 +238,8 @@ a { color: inherit; text-decoration: none; }
 .btn-coming { background: transparent; color: var(--muted); border-color: transparent; cursor: default; font-size: 11px; }
 .btn-exam { background: var(--amber-dim); color: var(--amber); border-color: rgba(245,166,35,0.25); }
 .btn-exam:hover { background: var(--amber); color: var(--navy); }
+.btn-cheat { background: var(--green-dim); color: var(--green); border-color: rgba(74,222,128,0.2); }
+.btn-cheat:hover { background: var(--green); color: var(--navy); }
 
 /* Exam row */
 .exam-row {
@@ -398,6 +400,7 @@ const MODULES = [
     id: 'module0', emoji: '📦', title: 'Introduction to DevOps, Cloud & SRE',
     range: 'Day 01', accent: 'acc-amber', color: '#F5A623',
     railColor: '#F5A623', days: 1,
+    cheatLink: './curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/DevOps_Cloud_CHEATSHEET.md',
     examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/mastery-exam/README.md',
     entries: [
       { day: 'Day 01', topic: 'Breaking the Wall of Confusion',
@@ -409,6 +412,7 @@ const MODULES = [
     id: 'module1', emoji: '🐧', title: 'Linux Foundations',
     range: 'Days 02 – 13', accent: 'acc-teal', color: '#2DD4BF',
     railColor: '#2DD4BF', days: 12,
+    cheatLink: './curriculum/Module%2002%20-%20Linux%20Foundations/Linux_CHEATSHEET.md',
     examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/mastery-exam/README.md',
     entries: [
       { day: 'Day 02', topic: 'Linux Architecture & systemd', pro: './curriculum/Module%2002%20-%20Linux%20Foundations/day-02/Day02_Linux_Foundations.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-02/lab-session/task.md' },
@@ -429,6 +433,7 @@ const MODULES = [
     id: 'module2', emoji: '🐚', title: 'Shell Scripting',
     range: 'Days 14 – 19', accent: 'acc-green', color: '#4ADE80',
     railColor: '#4ADE80', days: 6,
+    cheatLink: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/Shell_Scripting_CHEATSHEET.md',
     examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/mastery-exam/README.md',
     entries: [
       { day: 'Day 14', topic: 'Shell Scripting Basics', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/Day14_Scripting_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/lab-session/task.md' },
@@ -443,6 +448,7 @@ const MODULES = [
     id: 'module3', emoji: '🌐', title: 'Networking & System Design',
     range: 'Days 20 – 21', accent: 'acc-blue', color: '#4A9EF5',
     railColor: '#4A9EF5', days: 2,
+    cheatLink: './curriculum/Module%2004%20-%20Networking%20&%20System%20Design/NETWORKING_CHEATSHEET.md',
     examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/mastery-exam/README.md',
     entries: [
       { day: 'Day 20', topic: 'Networking Fundamentals', pro: './curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/Day20_Networking_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/lab-session/task.md' },
@@ -453,6 +459,7 @@ const MODULES = [
     id: 'module4', emoji: '🎫', title: 'Jira For DevOps',
     range: 'Days 22 – 23', accent: 'acc-blue', color: '#0052CC',
     railColor: '#0052CC', days: 2,
+    cheatLink: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/Jira_CHEATSHEET.md',
     entries: [
       { day: 'Day 22', topic: 'Introduction to Jira',
         pro: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/Day22_Jira_Introduction.html',
@@ -466,6 +473,7 @@ const MODULES = [
     id: 'module5', emoji: '🐙', title: 'Git & GitHub',
     range: 'Days 24 – 30', accent: 'acc-coral', color: '#FB7185',
     railColor: '#FB7185', days: 7,
+    cheatLink: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/Git_CHEATSHEET.md',
     examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/mastery-exam/README.md',
     entries: [
       { day: 'Day 24', topic: 'Git Foundations & Local Setup', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-24/Day24_Git_Introduction.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-24/lab-session/task.md' },
@@ -481,6 +489,7 @@ const MODULES = [
     id: 'module6', emoji: '🐳', title: 'Docker & Containerization',
     range: 'Days 31 – 39', accent: 'acc-blue', color: '#4A9EF5',
     railColor: '#60B4FF', days: 9,
+    cheatLink: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/Docker_CHEATSHEET.md',
     examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/mastery-exam/README.md',
     entries: [
       { day: 'Day 31', topic: 'Introduction to Docker', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-31/Day31_Introduction_to_Docker.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-31/lab-session/task.md' },
@@ -498,6 +507,7 @@ const MODULES = [
     id: 'module7', emoji: '🤖', title: 'CI/CD with GitHub Actions',
     range: 'Days 40 – 51', accent: 'acc-purple', color: '#A78BFA',
     railColor: '#A78BFA', days: 12,
+    cheatLink: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/GitHub_Actions_CHEATSHEET.md',
     examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/mastery-exam/README.md',
     entries: [
       { day: 'Day 40', topic: 'YAML Basics', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/Day40_YAML_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/lab-session/task.md' },
@@ -518,6 +528,7 @@ const MODULES = [
     id: 'module8', emoji: '🛡️', title: 'DevSecOps',
     range: 'Day 52', accent: 'acc-green', color: '#4ADE80',
     railColor: '#4ADE80', days: 1,
+    cheatLink: './curriculum/Module%2009%20-%20DevSecOps/DevSecOps_CHEATSHEET.md',
     entries: [
       { day: 'Day 52', topic: 'DevSecOps Pipeline Architecture',
         pro: './curriculum/Module%2009%20-%20DevSecOps/day-52/Day52_DevSecOps_Pipeline_Architecture.html',
@@ -601,10 +612,12 @@ function buildModules() {
       </div>`;
     }).join('');
 
-    const examHTML = m.examLink && !comingSoonAll ? `
+    const cheatHTML = m.cheatLink ? `<a href="${m.cheatLink}" class="btn btn-cheat" target="_blank">📖 Cheatsheet</a>` : '';
+    const examHTML = m.examLink && !comingSoonAll ? `<a href="${m.examLink}" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>` : '';
+    const extrasHTML = (cheatHTML || examHTML) ? `
       <div class="exam-row">
-        <div class="exam-title">🏆 Module ${String(idx+1).padStart(2,'0')} Mastery Exam</div>
-        <a href="${m.examLink}" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>
+        <div class="exam-title">📚 Module ${String(idx+1).padStart(2,'0')} Resources</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">${cheatHTML}${extrasHTML}</div>
       </div>` : '';
 
     card.innerHTML = `
@@ -620,7 +633,7 @@ function buildModules() {
       </div>
       <div class="module-body" id="body-${m.id}">
         ${entriesHTML}
-        ${examHTML}
+        ${extrasHTML}
       </div>`;
     main.appendChild(card);
   });
