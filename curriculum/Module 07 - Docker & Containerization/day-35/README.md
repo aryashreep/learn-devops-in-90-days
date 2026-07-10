@@ -23,7 +23,7 @@ Docker is fundamental. Understanding container isolation, configuration, and dia
 1. Fork this repository.
 2. Navigate to today's folder: `curriculum/Module 07 - Docker & Containerization/day-35/lab-session/solution/`.
 3. Add your proof of work file `"compose-basics.md"`.
-4. Commit and push: `git commit -m "day-39: docker compose basics complete"`.
+4. Commit and push: `git commit -m "day-35: docker compose basics complete"`.
 
 ## Learn in Public
 Share your progress on LinkedIn:

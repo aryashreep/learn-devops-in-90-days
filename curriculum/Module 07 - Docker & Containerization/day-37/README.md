@@ -23,7 +23,7 @@ Docker is fundamental. Understanding container isolation, configuration, and dia
 1. Fork this repository.
 2. Navigate to today's folder: `curriculum/Module 07 - Docker & Containerization/day-37/lab-session/solution/`.
 3. Add your proof of work file `"image-optimization.md"`.
-4. Commit and push: `git commit -m "day-39: multi-stage builds & docker hub complete"`.
+4. Commit and push: `git commit -m "day-37: multi-stage builds & docker hub complete"`.
 
 ## Learn in Public
 Share your progress on LinkedIn:

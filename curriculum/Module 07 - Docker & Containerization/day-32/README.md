@@ -23,7 +23,7 @@ Docker is fundamental. Understanding container isolation, configuration, and dia
 1. Fork this repository.
 2. Navigate to today's folder: `curriculum/Module 07 - Docker & Containerization/day-32/lab-session/solution/`.
 3. Add your proof of work file `"container-lifecycle.md"`.
-4. Commit and push: `git commit -m "day-38: docker images & container lifecycle complete"`.
+4. Commit and push: `git commit -m "day-32: docker images & container lifecycle complete"`.
 
 ## Learn in Public
 Share your progress on LinkedIn:

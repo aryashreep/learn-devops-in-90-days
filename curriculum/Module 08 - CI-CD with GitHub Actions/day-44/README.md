@@ -21,7 +21,7 @@ GitHub Actions is the backbone of automated modern software release pipelines. L
 1. Fork this repository.
 2. Navigate to today's folder: `curriculum/Module 08 - CI-CD with GitHub Actions/day-44/lab-session/solution/`.
 3. Add your proof of work files (`runner-setup.md`).
-4. Commit and push: `git commit -m "day-50: runners: github-hosted and self-hosted complete"`.
+4. Commit and push: `git commit -m "day-44: runners: github-hosted and self-hosted complete"`.
 
 ## Learn in Public
 Share your progress on LinkedIn:

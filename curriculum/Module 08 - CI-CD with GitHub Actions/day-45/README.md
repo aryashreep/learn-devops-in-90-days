@@ -21,7 +21,7 @@ GitHub Actions is the backbone of automated modern software release pipelines. L
 1. Fork this repository.
 2. Navigate to today's folder: `curriculum/Module 08 - CI-CD with GitHub Actions/day-45/lab-session/solution/`.
 3. Add your proof of work files (`sequence.yml`).
-4. Commit and push: `git commit -m "day-51: jobs, steps, env vars and conditionals complete"`.
+4. Commit and push: `git commit -m "day-45: jobs, steps, env vars and conditionals complete"`.
 
 ## Learn in Public
 Share your progress on LinkedIn:

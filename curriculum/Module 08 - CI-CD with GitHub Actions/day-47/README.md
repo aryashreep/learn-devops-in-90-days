@@ -21,7 +21,7 @@ GitHub Actions is the backbone of automated modern software release pipelines. L
 1. Fork this repository.
 2. Navigate to today's folder: `curriculum/Module 08 - CI-CD with GitHub Actions/day-47/lab-session/solution/`.
 3. Add your proof of work files (`docker-ci.yml`).
-4. Commit and push: `git commit -m "day-51: docker build and push in github actions complete"`.
+4. Commit and push: `git commit -m "day-47: docker build and push in github actions complete"`.
 
 ## Learn in Public
 Share your progress on LinkedIn:

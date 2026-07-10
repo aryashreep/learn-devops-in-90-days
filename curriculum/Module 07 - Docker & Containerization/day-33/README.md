@@ -23,7 +23,7 @@ Docker is fundamental. Understanding container isolation, configuration, and dia
 1. Fork this repository.
 2. Navigate to today's folder: `curriculum/Module 07 - Docker & Containerization/day-33/lab-session/solution/`.
 3. Add your proof of work file `"dockerfile-basics.md"`.
-4. Commit and push: `git commit -m "day-39: dockerfile: build your own images complete"`.
+4. Commit and push: `git commit -m "day-33: dockerfile: build your own images complete"`.
 
 ## Learn in Public
 Share your progress on LinkedIn:

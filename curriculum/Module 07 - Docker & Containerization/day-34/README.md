@@ -23,7 +23,7 @@ Docker is fundamental. Understanding container isolation, configuration, and dia
 1. Fork this repository.
 2. Navigate to today's folder: `curriculum/Module 07 - Docker & Containerization/day-34/lab-session/solution/`.
 3. Add your proof of work file `"volumes-networking.md"`.
-4. Commit and push: `git commit -m "day-38: docker volumes and networking complete"`.
+4. Commit and push: `git commit -m "day-34: docker volumes and networking complete"`.
 
 ## Learn in Public
 Share your progress on LinkedIn:
