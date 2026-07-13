@@ -617,7 +617,7 @@ function buildModules() {
     const extrasHTML = (cheatHTML || examHTML) ? `
       <div class="exam-row">
         <div class="exam-title">📚 Module ${String(idx+1).padStart(2,'0')} Resources</div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap">${cheatHTML}${extrasHTML}</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">${cheatHTML}${examHTML}</div>
       </div>` : '';
 
     card.innerHTML = `
