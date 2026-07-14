@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 01 — 90-Day Blueprinting
 
-**Jagu:** "Beep Boop! Golu, har bada mission ek solid plan se shuru hota hai. Aaj hum tumhari 90-day DevOps journey ki 'Foundations' rakhenge!"
+**Jagu:** "Beep Boop! Golu, every big mission starts with a solid plan. Today we will lay the 'Foundations' of your 90-day DevOps journey!"
 
 ## 🎯 Task Objectives
 - Define your current technical starting point.
@@ -18,7 +18,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ye plan tera career blueprint hai. Isse safe rakho!"
+**Jagu:** "Golu, this plan is your career blueprint. Keep it safe!"
 
 1. Create a file named **`learning-plan.md`** in the **`solution/`** folder.
 2. Fill it with your goals, skills, and time budget.

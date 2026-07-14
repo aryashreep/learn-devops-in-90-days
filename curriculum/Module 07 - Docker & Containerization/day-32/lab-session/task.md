@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 32 — Docker Images & Container Lifecycle
 
-**Jagu:** "Beep Boop! Golu, container ek lightweight VM jaisa hai — lekin isme koi OS nahi, bas app aur dependencies! Aaj hum containers ko birth se death tak dekhenge."
+**Jagu:** "Beep Boop! Golu, the container is like a lightweight VM — but it has no OS, just apps and dependencies! Today we will see containers from birth to death."
 
 ## 🎯 Task Objectives
 - Pull Docker images from Docker Hub.
@@ -29,7 +29,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, apna container life-cycle record kar lo!"
+**Jagu:** "Golu, record your container life-cycle!"
 
 1. Create a file named **`container-lifecycle.md`** in the **`solution/`** folder.
 2. Record your command outputs and observations.

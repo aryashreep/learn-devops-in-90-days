@@ -1,6 +1,6 @@
 # 🧪 Day 05 Solution: System Diagnosis Drill
 
-**Jagu:** "Shabash Golu! Tune server ka BP aur Pulse (Vitals) check karna seekh liya hai. Ye raha tera 'Proof of Work' diagnostic report!"
+**Jagu:** "Well done Golu! Tune server has learned to check BP and Pulse (Vitals). Here is your 'Proof of Work' diagnostic report!"
 
 ---
 
@@ -47,7 +47,7 @@ kill 12345
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, hamesha yaad rakh: `kill -9` aakhri rasta hona chahiye. Pehle `kill` (SIGTERM) try karo taaki process apna kaam samet kar band ho sake!"
+"Golu, always keep in mind: 'kill -9' should be the last one. Try `kill` (SIGTERM) first so that the process stops completely!"
 
 ---
 *#LearnDevOpsIn90Days • Day 05 • Golu & Jagu Edition*

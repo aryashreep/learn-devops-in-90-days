@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 49: Advanced Triggers: PR Events, Cron Schedules - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 49: Advanced Triggers: PR Events, Cron Schedules - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,133 +113,114 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Advanced Triggers: PR Events, Cron Schedules</h1>
-        <p class="subtitle handwritten">Day 49: Configure pull request filters, scheduled cron events, concurrency locks, and OIDC integrations. 🤖</p>
-    </header>
-
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, agar do deploy workflows ek sath chalne lagein to collision ho sakta hai. Aur AWS keys ko settings me save kiye bina secure login kaise karein?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, execution locks ke liye hum 'Concurrency Key' set karenge jo purani runs ko cancel kar degi. Aur AWS ke liye hum 'OIDC Token' use karenge, jisse bina static credentials ke secure runtime login hoga!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
-            <ul>
-                <li>Define specific pull_request types (opened, synchronized, closed)</li>\n<li>Write scheduled workflows using cron expressions</li>\n<li>Establish concurrency limits to prevent overlapping deployments</li>\n<li>Explain OIDC (OpenID Connect) for secure passwordless cloud authentication</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="analogy">
-        <div class="topic-title">💡 Mental Model</div>
-        <p class="hinglish">
-            OIDC is like a badge reader at an office. Instead of carrying around a master key (long-term AWS access keys) that could get stolen, GitHub Actions presents a digital voucher to AWS. AWS reads the voucher, checks the credentials, and hands over a temporary visitor card (short-term session tokens) that expires in 15 minutes.
-        </p>
-    </section>
-
-    <section id="stats">
-        <div class="topic-title">📈 Did You Know?</div>
-        <div class="vs-container">
-            
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Concurrency Group</div>
-            <p style="text-align:center;">Limits active executions in a group; cancels in-progress jobs when new commits arrive.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Zero Static Keys</div>
-            <p style="text-align:center;">OIDC removes the need to store AWS Access Keys in repository variables.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Cron Scheduling</div>
-            <p style="text-align:center;">Trigger nightly tests, backups, or maintenance scripts on a UNIX-cron schedule.</p>
-        </div>
-        </div>
-    </section>
-
-    <section id="directories">
-        <div class="topic-title">📁 Core Concepts & Directories</div>
-        <ul>
-            <li>Use `concurrency: group: ${{ github.workflow }}` to group runs.</li>\n<li>Use `permissions: id-token: write` to enable OIDC handshake tokens.</li>\n<li>Specify cron schedules: `on: schedule: - cron: '*/15 * * * *'` (every 15 mins).</li>
-        </ul>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">⚙️ Main Content</div>
-        
-        <h3>1. Concurrency Key</h3>
-        <p>Prevents deploy jobs from competing. If you push code twice in 10 seconds, it cancels the first run automatically:</p>
-        <pre><code>concurrency:
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Advanced Triggers: PR Events, Cron Schedules</h1>
+<p class="subtitle handwritten">Day 49: Configure pull request filters, scheduled cron events, concurrency locks, and OIDC integrations. 🤖</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Aware, if two deploy workflows start running together, collision may occur. And how to do secure login without saving AWS keys in settings?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, for execution locks we will set 'Concurrency Key' which will cancel the old runs. And for AWS we will use 'OIDC Token', which will allow secure runtime login without static credentials!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
+<ul>
+<li>Define specific pull_request types (opened, synchronized, closed)</li>\n<li>Write scheduled workflows using cron expressions</li>\n<li>Establish concurrency limits to prevent overlapping deployments</li>\n<li>Explain OIDC (OpenID Connect) for secure passwordless cloud authentication</li>
+</ul>
+</div>
+</section>
+<section id="analogy">
+<div class="topic-title">💡 Mental Model</div>
+<p class="handwritten">OIDC is like a badge reader at an office. Instead of carrying around a master key (long-term AWS access keys) that could get stolen, GitHub Actions presents a digital voucher to AWS. AWS reads the voucher, checks the credentials, and hands over a temporary visitor card (short-term session tokens) that expires in 15 minutes.</p>
+</section>
+<section id="stats">
+<div class="topic-title">📈 Did You Know?</div>
+<div class="vs-container">
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Concurrency Group</div>
+<p style="text-align:center;">Limits active executions in a group; cancels in-progress jobs when new commits arrive.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Zero Static Keys</div>
+<p style="text-align:center;">OIDC removes the need to store AWS Access Keys in repository variables.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Cron Scheduling</div>
+<p style="text-align:center;">Trigger nightly tests, backups, or maintenance scripts on a UNIX-cron schedule.</p>
+</div>
+</div>
+</section>
+<section id="directories">
+<div class="topic-title">📁 Core Concepts &amp; Directories</div>
+<ul>
+<li>Use `concurrency: group: ${{ github.workflow }}` to group runs.</li>\n<li>Use `permissions: id-token: write` to enable OIDC handshake tokens.</li>\n<li>Specify cron schedules: `on: schedule: - cron: '*/15 * * * *'` (every 15 mins).</li>
+</ul>
+</section>
+<section id="concepts">
+<div class="topic-title">⚙️ Main Content</div>
+<h3>1. Concurrency Key</h3>
+<p>Prevents deploy jobs from competing. If you push code twice in 10 seconds, it cancels the first run automatically:</p>
+<pre><code>concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true</code></pre>
-        <h3>2. Passwordless Authentication via OIDC</h3>
-        <p>Using <code>aws-actions/configure-aws-credentials</code>, GitHub exchanges a temporary JSON Web Token (JWT) for short-lived IAM credentials using OpenID Connect (OIDC).</p>
-        
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># Try this concurrency configuration block in your deployment YAML:
+<h3>2. Passwordless Authentication via OIDC</h3>
+<p>Using <code>aws-actions/configure-aws-credentials</code>, GitHub exchanges a temporary JSON Web Token (JWT) for short-lived IAM credentials using OpenID Connect (OIDC).</p>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<pre><code># Try this concurrency configuration block in your deployment YAML:
 concurrency:
   group: production-deploy
   cancel-in-progress: true</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 49 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. Which permission is MANDATORY in the permissions block of a workflow to enable OIDC authentication with clouds like AWS or GCP?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) contents: write</span>\n<span class="quiz-opt">B) id-token: write</span>\n<span class="quiz-opt">C) security-events: read</span>\n<span class="quiz-opt">D) statuses: write</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. What does setting 'cancel-in-progress: true' under a concurrency group do when a new commit is pushed?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) It stops the git push operation.</span>\n<span class="quiz-opt">B) It instantly cancels any currently running workflows in that concurrency group, starting the new run.</span>\n<span class="quiz-opt">C) It deletes the runner VM data permanently.</span>\n<span class="quiz-opt">D) It logs out of Docker registries.</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: B (id-token: write allows requesting the OIDC token), 2: B (Cancels in-progress runs in the same group)</p>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 49 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Which permission is MANDATORY in the permissions block of a workflow to enable OIDC authentication with clouds like AWS or GCP?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) contents: write</span>\n<span class="quiz-opt">B) id-token: write</span>\n<span class="quiz-opt">C) security-events: read</span>\n<span class="quiz-opt">D) statuses: write</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. What does setting 'cancel-in-progress: true' under a concurrency group do when a new commit is pushed?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) It stops the git push operation.</span>\n<span class="quiz-opt">B) It instantly cancels any currently running workflows in that concurrency group, starting the new run.</span>\n<span class="quiz-opt">C) It deletes the runner VM data permanently.</span>\n<span class="quiz-opt">D) It logs out of Docker registries.</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: B (id-token: write allows requesting the OIDC token), 2: B (Cancels in-progress runs in the same group)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 11 — Ownership Mastery
 
-**Jagu:** "Beep Boop! Golu, tune permissions toh seekh li, par agar file ka 'Malik' hi badalna ho toh? Aaj hum `chown` ke mastery se pure system ke King banenge!"
+**Jagu:** "Beep Boop! Golu, you have learned the tune permissions, but what if you want to change the 'Owner' of the file? Today we will become kings of the pure system through the mastery of 'chown'!"
 
 ## 🎯 Task Objectives
 - Change file and directory owners.
@@ -18,7 +18,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ownership change karna ek badi responsibility hai. Apna work report save karo!"
+**Jagu:** "Golu, changing ownership is a big responsibility. Save your work report!"
 
 1. Create a file named `ownership-report.md` in the **`solution/`** folder.
 2. Record the commands you used for the 'Double Swap' and a screenshot or text of `ls -la` results.

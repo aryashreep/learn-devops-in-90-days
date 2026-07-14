@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 07: Linux File System Hierarchy - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 07: Linux File System Hierarchy - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -93,225 +94,201 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- BRANDED AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>File System Hierarchy</h1>
-        <p class="subtitle handwritten">Day 07: Mapping the Inverted Tree of Linux 🌳</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, main `cd /` toh kar leta hoon, par itne saare folders dekh ke chakkar aa jata hai! <br> 
-                    Ye `bin`, `etc`, `var` kya bala hain?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">
-                    "Beep Boop! Golu, Linux file system ek <span class="chalk-text">Inverted Tree</span> jaisa hai. <br> 
-                    Aaj hum is tree ki har branch ka maqsad (purpose) samjhenge!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux ke standard directory structure (FHS) ko dekhenge. 
-                Kaunsi file kahan save hoti hai aur kyu—ye samjhna troubleshooting ke liye gold hai!
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Navigate:</strong> Understand the root (/) and its subdirectories.</li>
-                <li><strong>Purpose:</strong> Learn what lives in `/etc`, `/bin`, `/var`, and `/opt`.</li>
-                <li><strong>Concept:</strong> Why "Everything is a file" in Linux.</li>
-                <li><strong>Paths:</strong> Deepen your mastery of Absolute vs Relative paths.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<!-- BRANDED AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>File System Hierarchy</h1>
+<p class="subtitle handwritten">Day 07: Mapping the Inverted Tree of Linux 🌳</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Jagu, I tried to load the main `cd/`, but I am confused by seeing so many folders! <br/> 
+                    What are these `bin`, `etc`, `var`?</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">"Beep Boop! Golu, Linux file system is like <span class="chalk-text">Inverted Tree</span>. <br/> 
+                    Today we will understand the purpose of each branch of the tree!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will look at the standard directory structure (FHS) of Linux. 
+                Where is the file saved and why—this question is gold for troubleshooting!</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Navigate:</strong> Understand the root (/) and its subdirectories.</li>
+<li><strong>Purpose:</strong> Learn what lives in `/etc`, `/bin`, `/var`, and `/opt`.</li>
+<li><strong>Concept:</strong> Why "Everything is a file" in Linux.</li>
+<li><strong>Paths:</strong> Deepen your mastery of Absolute vs Relative paths.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki server setup karte waqt agar galat folder mein file daali, toh system crash ho sakta hai!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Organized Apartment</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">/ (Root):</span> Pura Apartment Complex.<br>
-                2. <span class="chalk-text">/etc (Kitchen):</span> Jahan saari recipes (Configs) rakhi hain.<br>
-                3. <span class="chalk-text">/bin (Toolbox):</span> Jahan repair ke tools (Commands) hain.<br>
-                4. <span class="chalk-text">/var (Dustbin/Meter):</span> Jahan kachra (Logs) aur readings (Variable data) hain.<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Organized Apartment</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">/ (Root):</span> Pura Apartment Complex.<br/>
+                2. <span class="chalk-text">/etc (Kitchen):</span> Jahan saari recipes (Configs) rakhi hain.<br/>
+                3. <span class="chalk-text">/bin (Toolbox):</span> Jahan repair ke tools (Commands) hain.<br/>
+                4. <span class="chalk-text">/var (Dustbin/Meter):</span> Jahan kachra (Logs) aur readings (Variable data) hain.<br/>
                 5. <span class="chalk-text">/home (Bedrooms):</span> Aapka personal space.
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">/dev</div><div class="handwritten" style="color:var(--chalk-blue);">Your Hard Drive is a File</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">/tmp</div><div class="handwritten" style="color:var(--chalk-blue);">Clears on Reboot</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">/proc</div><div class="handwritten" style="color:var(--chalk-blue);">Fake Files (Live RAM)</div></div>
-        </div>
-    </section>
-
-    <!-- ④ Key Directories — What Lives Where -->
-    <section>
-        <div class="topic-title">📂 The SRE's Map — Directory Breakdown</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
-            <ul>
-                <li><span class="dir-icon">⚙️</span> <span class="chalk-text">/etc</span> → Editable Text Configurations (Super important!).</li>
-                <li><span class="dir-icon">📜</span> <span class="chalk-text">/bin</span> → Binaries needed for single-user mode.</li>
-                <li><span class="dir-icon">🔍</span> <span class="chalk-text">/var/log</span> → Log files (History book of the OS).</li>
-                <li><span class="dir-icon">📦</span> <span class="chalk-text">/opt</span> → Optional software (Third party tools).</li>
-                <li><span class="dir-icon">💻</span> <span class="chalk-text">/dev/null</span> → The "Black Hole" (Send unwanted output here).</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: The Inverted Tree -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: The Root Tree</div>
-        <div class="diagram-container">
-            <div class="handwritten" style="font-size: 1.5rem; text-align: center;">
-                <span style="color: var(--chalk-yellow);">/ (ROOT)</span><br>
-                │<br>
-                ├── <span style="color: var(--chalk-blue);">bin</span> (Commands)<br>
-                ├── <span style="color: var(--chalk-orange);">etc</span> (Configs)<br>
-                ├── <span style="color: var(--chalk-green);">home</span> (Users)<br>
-                ├── <span style="color: var(--chalk-pink);">var</span> (Logs)<br>
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">/dev</div><div class="handwritten" style="color:var(--chalk-blue);">Your Hard Drive is a File</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">/tmp</div><div class="handwritten" style="color:var(--chalk-blue);">Clears on Reboot</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">/proc</div><div class="handwritten" style="color:var(--chalk-blue);">Fake Files (Live RAM)</div></div>
+</div>
+</section>
+<!-- ④ Key Directories — What Lives Where -->
+<section>
+<div class="topic-title">📂 The SRE's Map — Directory Breakdown</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
+<ul>
+<li><span class="dir-icon">⚙️</span> <span class="chalk-text">/etc</span> → Editable Text Configurations (Super important!).</li>
+<li><span class="dir-icon">📜</span> <span class="chalk-text">/bin</span> → Binaries needed for single-user mode.</li>
+<li><span class="dir-icon">🔍</span> <span class="chalk-text">/var/log</span> → Log files (History book of the OS).</li>
+<li><span class="dir-icon">📦</span> <span class="chalk-text">/opt</span> → Optional software (Third party tools).</li>
+<li><span class="dir-icon">💻</span> <span class="chalk-text">/dev/null</span> → The "Black Hole" (Send unwanted output here).</li>
+</ul>
+</div>
+</section>
+<!-- ⑤ Key Concepts: The Inverted Tree -->
+<section>
+<div class="topic-title">📌 Key Concepts: The Root Tree</div>
+<div class="diagram-container">
+<div class="handwritten" style="font-size: 1.5rem; text-align: center;">
+<span style="color: var(--chalk-yellow);">/ (ROOT)</span><br/>
+                │<br/>
+                ├── <span style="color: var(--chalk-blue);">bin</span> (Commands)<br/>
+                ├── <span style="color: var(--chalk-orange);">etc</span> (Configs)<br/>
+                ├── <span style="color: var(--chalk-green);">home</span> (Users)<br/>
+                ├── <span style="color: var(--chalk-pink);">var</span> (Logs)<br/>
                 └── <span style="color: var(--chalk-white);">dev</span> (Devices)
             </div>
-            <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
+<p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
                 Everything starts from <span style="color: var(--chalk-yellow);">/</span>. There is no `C:` or `D:` drive in Linux!
             </p>
-        </div>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: / vs /root</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
-                <h3 class="handwritten">/ (Slash)</h3>
-                <p class="hinglish">"Pura killa (The whole fort)—base of the system."</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">/root</h3>
-                <p class="hinglish">"King's Bedroom—personal home of the root user."</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑦ REAL-WORLD EXAMPLE -->
-    <section>
-        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: Fixing Nginx</div>
-        <div class="doodle-container">
-            <div class="robot-doodle">
-                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                <div class="robot-body"></div><div class="robot-bag"></div>
-            </div>
-            <span class="char-name">Jagu</span>
-            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
-                "Golu, Nginx ka port badalna hai! Kaunse folder mein jaun?"
-            </div>
-        </div>
-        <div class="content-box" style="border-color: var(--chalk-blue);">
-            <p><strong>Step 1:</strong> Always look for configs in <code>/etc/</code>.</p>
-            <p><strong>Path:</strong> <code>/etc/nginx/nginx.conf</code></p>
-            <p class="hinglish" style="margin-top: 10px;">"Recipe kitchen (`/etc`) mein hi milegi!"</p>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> Hidden files (starting with `.`) are encrypted/secure.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Wo sirf `ls` command se hide hoti hain. `ls -a` se koi bhi dekh sakta hai.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> `/dev/null` file space khaati hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> It's a special file. Jo bhi isme dalo, wo gayab ho jata hai. No space used!</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF: Nav-Drill</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>cd / && ls -F</code> <span class="hinglish">(Root par jaakar check karo)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>ls -lh /var/log</code> <span class="hinglish">(Logs ka size dekho)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>tree -L 1 /</code> <span class="hinglish">(Level 1 tree structure dekho)</span></p>
-        </div>
-    </section>
-
-    <!-- ⑩ QUICK SUMMARY -->
-    <section>
-        <div class="topic-title">✓ QUICK SUMMARY</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
-            <ul>
-                <li><strong>/ :</strong> The starting point.</li>
-                <li><strong>/etc :</strong> Configuration heart.</li>
-                <li><strong>/var :</strong> Variable data and logs.</li>
-                <li><strong>/bin :</strong> Essential tools.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. System configuration files standardly kahan milti hain?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) /bin</span><span class="quiz-opt">b) /etc</span><span class="quiz-opt">c) /var</span><span class="quiz-opt">d) /home</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Kaunsa directory reboot hone par khali (clear) ho jati hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) /opt</span><span class="quiz-opt">b) /dev</span><span class="quiz-opt">c) /tmp</span><span class="quiz-opt">d) /usr</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</div>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: / vs /root</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
+<h3 class="handwritten">/ (Slash)</h3>
+<p class="handwritten">"Pura killa (The whole fort)—base of the system."</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">/root</h3>
+<p class="handwritten">"King's Bedroom—personal home of the root user."</p>
+</div>
+</div>
+</section>
+<!-- ⑦ REAL-WORLD EXAMPLE -->
+<section>
+<div class="topic-title">🏢 REAL-WORLD EXAMPLE: Fixing Nginx</div>
+<div class="doodle-container">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<span class="char-name">Jagu</span>
+<div class="speech-bubble" style="border-color: var(--chalk-blue);">"Golu, Nginx port has to be changed! Which folder is there?"</div>
+</div>
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<p><strong>Step 1:</strong> Always look for configs in <code>/etc/</code>.</p>
+<p><strong>Path:</strong> <code>/etc/nginx/nginx.conf</code></p>
+<p class="handwritten" style="margin-top: 10px;">"Recipe kitchen (`/etc`) mein hi milegi!"</p>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> Hidden files (starting with `.`) are encrypted/secure.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Wo sirf `ls` command se hide hoti hain. `ls -a` se koi bhi dekh sakta hai.</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> `/dev/null` file space khaati hai.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> It's a special file. Jo bhi isme dalo, wo gayab ho jata hai. No space used!</li>
+</ul>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF: Nav-Drill</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>cd / &amp;&amp; ls -F</code> <span class="handwritten">(Please check root par)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. <code>ls -lh /var/log</code> <span class="handwritten">(look at the size of the logs)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. <code>tree -L 1 /</code> <span class="handwritten">(Level 1 tree structure dekho)</span></p>
+</div>
+</section>
+<!-- ⑩ QUICK SUMMARY -->
+<section>
+<div class="topic-title">✓ QUICK SUMMARY</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
+<ul>
+<li><strong>/ :</strong> The starting point.</li>
+<li><strong>/etc :</strong> Configuration heart.</li>
+<li><strong>/var :</strong> Variable data and logs.</li>
+<li><strong>/bin :</strong> Essential tools.</li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. System configuration files standardly kahan milti hain?</p>
+<div class="quiz-options"><span class="quiz-opt">a) /bin</span><span class="quiz-opt">b) /etc</span><span class="quiz-opt">c) /var</span><span class="quiz-opt">d) /home</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Kaunsa directory reboot hone par khali (clear) ho jati hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) /opt</span><span class="quiz-opt">b) /dev</span><span class="quiz-opt">c) /tmp</span><span class="quiz-opt">d) /usr</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, halftime: 1-b | 2-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 07 • Pro Standard Refactor • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

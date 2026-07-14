@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 33: Dockerfile: Build Your Own Images - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 33: Dockerfile: Build Your Own Images - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,135 +113,116 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Dockerfile: Build Your Own Images</h1>
-        <p class="subtitle handwritten">Day 33: Image Construction & Caching Layers 🐳</p>
-    </header>
-
-    
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, maine Dockerfile mein copy badla par poora npm install fir se chalne laga! Mera build time 5 minute le raha hai!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Arey Golu, order matters! Docker layers cache karta hai. Agar tum dependency package.json copy karne se pehle source code copy kar doge, to cache invalidate ho jayega! Pehle package copy karo fir npm install!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES & WHY SEEKHEIN</h3>
-            <p class="hinglish">
-                Dockerfile 'Infrastructure as Code' hai. Setup instructions ko code mein likhne se manually configure karne ki mistakes khatam hoti hain aur environment consistent rehta hai.
-            </p>
-            <ul>
-                <li>Write standard Dockerfiles with correct layering.</li>
-                <li>Understand layering mechanisms and caching behavior.</li>
-                <li>Use CMD vs ENTRYPOINT for container boot executables.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">🥞 The Dockerfile Layer Cake</div>
-        <p>Every instruction in a Dockerfile adds a read-only layer to the image. Caching checks if the files/commands changed before executing. Put static steps first!</p>
-        <pre><code>FROM node:24        # Base Layer (OS + Node)
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Dockerfile: Build Your Own Images</h1>
+<p class="subtitle handwritten">Day 33: Image Construction &amp; Caching Layers 🐳</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, after changing the copy in the main Dockerfile, the complete npm install started running again! My build time is taking 5 minutes!"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Arey Golu, order matters! Docker caches layers. If you copy the source code before copying the dependency package.json, the cache will be invalidated! Copy the package first and then npm install!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES &amp; WHY SEEKHEIN</h3>
+<p class="handwritten">Dockerfile is 'Infrastructure as Code'. Writing setup instructions in code eliminates manual configuration mistakes and keeps the environment consistent.</p>
+<ul>
+<li>Write standard Dockerfiles with correct layering.</li>
+<li>Understand layering mechanisms and caching behavior.</li>
+<li>Use CMD vs ENTRYPOINT for container boot executables.</li>
+</ul>
+</div>
+</section>
+<section id="concepts">
+<div class="topic-title">🥞 The Dockerfile Layer Cake</div>
+<p>Every instruction in a Dockerfile adds a read-only layer to the image. Caching checks if the files/commands changed before executing. Put static steps first!</p>
+<pre><code>FROM node:24        # Base Layer (OS + Node)
 WORKDIR /app        # Metadata change
 COPY package.json . # Layer Cached (unless dependencies change)
 RUN npm install     # Heavy install cached!
 COPY . .            # Code copy (changes often, placed last)
 CMD ["npm", "start"] # Startup config</code></pre>
-    </section>
-
-    <section id="compare">
-        <div class="topic-title">⚖️ Comparison: ADD vs. COPY & CMD vs. ENTRYPOINT</div>
-        <div class="vs-container">
-            <div class="vs-card danger">
-                <div class="vs-title">ADD vs COPY</div>
-                <p><b>COPY</b> handles simple local files. <br> <b>ADD</b> allows fetching from remote URLs and auto-extracting archives (which is often hidden/insecure).</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="vs-card secure">
-                <div class="vs-title">CMD vs ENTRYPOINT</div>
-                <p><b>ENTRYPOINT</b> makes the container run as an executable. <br> <b>CMD</b> acts as default arguments that can be overridden at runtime.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="realworld">
-        <div class="topic-title">🎬 Real World Troubleshooting: Slow Builds</div>
-        <p class="hinglish">
-            React codebase mein developers direct <code>COPY . .</code> ke baad <code>RUN npm install</code> kar rahe the. Isse har code change pe modules re-download hotey the. DevOps team ne layers divide ki, cache apply kiya, aur build time 10 mins se 12 seconds par le aayi!
-        </p>
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <p>Build and run your image:</p>
-        <pre><code># Build and tag
+</section>
+<section id="compare">
+<div class="topic-title">⚖️ Comparison: ADD vs. COPY &amp; CMD vs. ENTRYPOINT</div>
+<div class="vs-container">
+<div class="vs-card danger">
+<div class="vs-title">ADD vs COPY</div>
+<p><b>COPY</b> handles simple local files. <br/> <b>ADD</b> allows fetching from remote URLs and auto-extracting archives (which is often hidden/insecure).</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="vs-card secure">
+<div class="vs-title">CMD vs ENTRYPOINT</div>
+<p><b>ENTRYPOINT</b> makes the container run as an executable. <br/> <b>CMD</b> acts as default arguments that can be overridden at runtime.</p>
+</div>
+</div>
+</section>
+<section id="realworld">
+<div class="topic-title">🎬 Real World Troubleshooting: Slow Builds</div>
+<p class="handwritten">In the React codebase, developers are doing <code>RUN npm install</code> directly after <code>COPY..</code>. This har code change pe modules re-download hotey the. The DevOps team divided layers, applied cache, and the build time came down from 10 mins to 12 seconds!</p>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<p>Build and run your image:</p>
+<pre><code># Build and tag
 docker build -t my-app:1.0 .
 
 # Run with port mapping
 docker run -p 8080:3000 my-app:1.0</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 33 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. What is the difference between ADD and COPY in a Dockerfile?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) COPY is used for volumes, ADD is for files</span>
-                <span class="quiz-opt">B) ADD can download files from a URL and extract archives; COPY only copies from local filesystem</span>
-                <span class="quiz-opt">C) COPY is deprecated and ADD should always be used</span>
-                <span class="quiz-opt">D) There is no difference; they are aliases</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. If you define both ENTRYPOINT and CMD in a Dockerfile, which one takes priority?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) ENTRYPOINT runs first, and CMD is appended as default arguments to it</span>
-                <span class="quiz-opt">B) CMD takes absolute priority and ignores ENTRYPOINT</span>
-                <span class="quiz-opt">C) They run in parallel</span>
-                <span class="quiz-opt">D) The build throws a parser error</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: B (ADD supports URL/tar), 2: A (ENTRYPOINT with CMD arguments)</p>
-        </div>
-    </section>
-
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 33 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. What is the difference between ADD and COPY in a Dockerfile?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) COPY is used for volumes, ADD is for files</span>
+<span class="quiz-opt">B) ADD can download files from a URL and extract archives; COPY only copies from local filesystem</span>
+<span class="quiz-opt">C) COPY is deprecated and ADD should always be used</span>
+<span class="quiz-opt">D) There is no difference; they are aliases</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. If you define both ENTRYPOINT and CMD in a Dockerfile, which one takes priority?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) ENTRYPOINT runs first, and CMD is appended as default arguments to it</span>
+<span class="quiz-opt">B) CMD takes absolute priority and ignores ENTRYPOINT</span>
+<span class="quiz-opt">C) They run in parallel</span>
+<span class="quiz-opt">D) The build throws a parser error</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: B (ADD supports URL/tar), 2: A (ENTRYPOINT with CMD arguments)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # 🧪 Day 23 Solution: Creating Parallel Realities
 
-**Jagu:** "Shabash Golu! Tune local code ko cloud pe 'Launch' kar diya hai. Multiverse setup successful! Ye raha tera reference report."
+**Jagu:** "Well done Golu! Tune local code has been 'Launched' on the cloud. Multiverse setup successful! This is your reference report."
 
 ---
 
@@ -45,7 +45,7 @@ $ git push origin dev
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, hamesha `git status` check karte rehna. Multiverse mein bhatakna (getting lost) bahut easy hai, status hi tumhara compass hai!"
+"Golu, always keep checking `git status`. Getting lost in the Multiverse is very easy, status is your compass!"
 
 ---
 *#LearnDevOpsIn90Days • Day 23 • Golu & Jagu Edition*

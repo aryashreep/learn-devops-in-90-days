@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 32: Docker Images & Container Lifecycle - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 32: Docker Images &amp; Container Lifecycle - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,101 +113,82 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Docker Images & Container Lifecycle</h1>
-        <p class="subtitle handwritten">Day 32: Container Management & Essential CLI Commands 🐳</p>
-    </header>
-
-    
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, image download to ho gayi, par main iske andar ghus kar files kaise badlu? Aur container band hone par wo files kahan chali jaati hain?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, image read-only hoti hai. Jab container chalta hai, uske upar ek patli temporary writeable layer ban jati hai. Agar container remove kiya to layer gayab! Isiliye hum <code>docker exec</code> aur persistence seekhenge!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES & WHY SEEKHEIN</h3>
-            <p class="hinglish">
-                DevOps engineers terminal mein apna aadha time bitate hain. Container ko background mein chalana, logs monitor karna aur runtime mein check karna troubleshooting ke liye zaroori hai.
-            </p>
-            <ul>
-                <li>Understand difference between image (blueprint) and container (instance).</li>
-                <li>Execute lifecycle commands: run, stop, rm, ps, logs.</li>
-                <li>Open shell inside running containers using <code>docker exec</code>.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="analogy">
-        <div class="topic-title">🍪 Analogy: Recipe vs. Cooked Meal</div>
-        <p class="hinglish">
-            Docker Image ek blueprint ya <b>Recipe Book</b> hai jo write-protected hai. Container us recipe se bana hua <b>Cooked Meal</b> hai jo aap table pe serve karte hain. Aap ek recipe se hazaron meals bana sakte hain.
-        </p>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">⚙️ Container Lifecycle states</div>
-        <div class="diagram-container">
-            <div class="diagram-title">State Transitions</div>
-            <p style="font-family:'Fira Code', monospace; color:var(--chalk-blue);">[Image] --(run)--> [Running] --(stop)--> [Stopped] --(rm)--> [Deleted/Gone]</p>
-        </div>
-    </section>
-
-    <section id="compare">
-        <div class="topic-title">⚖️ Comparison: docker stop vs. docker rm</div>
-        <div class="vs-container">
-            <div class="vs-card danger">
-                <div class="vs-title">docker stop</div>
-                <p>Gracefully halts the container processes (SIGTERM followed by SIGKILL), keeping the container filesystem layer intact for recovery.</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="vs-card secure">
-                <div class="vs-title">docker rm</div>
-                <p>Permanently deletes the container definition and its read-write scratch layer. Cannot be recovered once removed!</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="realworld">
-        <div class="topic-title">🎬 Real World Troubleshooting: Server Down</div>
-        <p class="hinglish">
-            Production environment mein service crash hui. DevOps engineer <code>docker ps -a</code> run karke exits status dekhta hai. Fir <code>docker logs &lt;container&gt;</code> se error find out karta hai aur debugging ke liye <code>docker exec -it</code> run karta hai.
-        </p>
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># Run Nginx in background mapping port 8080:80
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Docker Images &amp; Container Lifecycle</h1>
+<p class="subtitle handwritten">Day 32: Container Management &amp; Essential CLI Commands 🐳</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, the image has been downloaded, but how do I change the files following it? And where do those files go when the container is banded?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, the image is read-only. When the container is moved, a thin temporary writeable layer is created over it. If the container is removed this layer disappears! That's why we look for <code>docker exec</code> and persistence!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES &amp; WHY SEEKHEIN</h3>
+<p class="handwritten">DevOps engineers spend half of their time in the terminal. Running the container in the background, monitoring logs, and checking at runtime is necessary for troubleshooting.</p>
+<ul>
+<li>Understand difference between image (blueprint) and container (instance).</li>
+<li>Execute lifecycle commands: run, stop, rm, ps, logs.</li>
+<li>Open shell inside running containers using <code>docker exec</code>.</li>
+</ul>
+</div>
+</section>
+<section id="analogy">
+<div class="topic-title">🍪 Analogy: Recipe vs. Cooked Meal</div>
+<p class="handwritten">Docker Image is a blueprint or <b>Recipe Book</b> that is write-protected. Container <b>Cooked Meal</b> is made from our recipe which you serve on the table. You can make thousands of meals from one recipe.</p>
+</section>
+<section id="concepts">
+<div class="topic-title">⚙️ Container Lifecycle states</div>
+<div class="diagram-container">
+<div class="diagram-title">State Transitions</div>
+<p style="font-family:'Fira Code', monospace; color:var(--chalk-blue);">[Image] --(run)--&gt; [Running] --(stop)--&gt; [Stopped] --(rm)--&gt; [Deleted/Gone]</p>
+</div>
+</section>
+<section id="compare">
+<div class="topic-title">⚖️ Comparison: docker stop vs. docker rm</div>
+<div class="vs-container">
+<div class="vs-card danger">
+<div class="vs-title">docker stop</div>
+<p>Gracefully halts the container processes (SIGTERM followed by SIGKILL), keeping the container filesystem layer intact for recovery.</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="vs-card secure">
+<div class="vs-title">docker rm</div>
+<p>Permanently deletes the container definition and its read-write scratch layer. Cannot be recovered once removed!</p>
+</div>
+</div>
+</section>
+<section id="realworld">
+<div class="topic-title">🎬 Real World Troubleshooting: Server Down</div>
+<p class="handwritten">Service crashed in production environment. DevOps engineer runs <code>docker ps -a</code> and sees the exits status. Then <code>docker logs &lt;container&gt;</code> finds out the error and runs <code>docker exec -it</code> for debugging.</p>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<pre><code># Run Nginx in background mapping port 8080:80
 docker run -d -p 8080:80 --name my-web nginx
 
 # Check status
@@ -218,39 +200,36 @@ docker exec -it my-web bash
 # Stop and remove the container
 docker stop my-web
 docker rm my-web</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 32 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. Which command download an image from Docker Hub to your local machine without running it?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) docker run</span>
-                <span class="quiz-opt">B) docker load</span>
-                <span class="quiz-opt">C) docker fetch</span>
-                <span class="quiz-opt">D) docker pull</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. What does the docker exec command do?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) Creates a new container from an image</span>
-                <span class="quiz-opt">B) Runs a command inside an already running container</span>
-                <span class="quiz-opt">C) Attaches your terminal to a stopped container</span>
-                <span class="quiz-opt">D) Rebuilds the docker-daemon settings</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: D (docker pull), 2: B (Runs command in running container)</p>
-        </div>
-    </section>
-
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 32 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Which command download an image from Docker Hub to your local machine without running it?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) docker run</span>
+<span class="quiz-opt">B) docker load</span>
+<span class="quiz-opt">C) docker fetch</span>
+<span class="quiz-opt">D) docker pull</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. What does the docker exec command do?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) Creates a new container from an image</span>
+<span class="quiz-opt">B) Runs a command inside an already running container</span>
+<span class="quiz-opt">C) Attaches your terminal to a stopped container</span>
+<span class="quiz-opt">D) Rebuilds the docker-daemon settings</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: D (docker pull), 2: B (Runs command in running container)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

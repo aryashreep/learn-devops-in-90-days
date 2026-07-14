@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 24 — Your First Save Point
 
-**Jagu:** "Beep Boop! Golu, aaj hum Time Machine banayenge! Ab koi bhi change undo kar sakte ho."
+**Jagu:** "Beep Boop! Golu, today we will make a time machine! Now you can undo any change."
 
 ## 🎯 Task Objectives
 - Set up Git with your identity.
@@ -32,7 +32,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, apna kaam save kar lo! Time Machine taiyaar hai!"
+**Jagu:** "Golu, save your life! Time Machine is ready!"
 
 1. Create a file named **`first-savepoint.md`** in the **`solution/`** folder.
 2. Paste your `git log` output showing your commits.

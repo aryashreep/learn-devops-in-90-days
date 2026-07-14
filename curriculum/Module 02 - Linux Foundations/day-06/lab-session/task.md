@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 06 — File I/O Practice
 
-**Jagu:** "Beep Boop! Golu, aaj hum 'Writer' banenge. Linux mein har cheez ek file hai, isliye file ko handle karna seekhna bahut zaroori hai!"
+**Jagu:** "Beep Boop! Golu, today we will become 'Writer'. Everything in Linux is a file, so learning how to handle files is very important!"
 
 ## 🎯 Task Objectives
 - Practice basic file creation and reading.
@@ -21,7 +21,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, apna 'File I/O' report ready karo!"
+**Jagu:** "Golu, prepare your 'File I/O' report!"
 
 1. Create a file named `file-io-practice.md` in the **`solution/`** folder.
 2. Paste the sequence of commands you ran and the final content of your `notes.txt`.

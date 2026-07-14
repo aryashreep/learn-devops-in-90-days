@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 34 — Docker Volumes and Networking
 
-**Jagu:** "Beep Boop! Golu, container temporary hote hain par data permanent hona chahiye. Aaj hum safe storage (Volumes) aur clear talks (Networks) seekhenge!"
+**Jagu:** "Beep Boop! Golu, container is temporary but data should be permanent. Today we seek safe storage (Volumes) and clear talks (Networks)!"
 
 ## 🎯 Task Objectives
 - Create persistent Docker volumes for databases.

@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 18 — The Log Analyzer
 
-**Jagu:** "Beep Boop! Golu, imagine karo tumhare pass 10GB ki log file hai. Kya tum manually errors ginoge? Bilkul nahi! Aaj hum ek 'Intelligence Agent' (Script) banayenge jo ye kaam 1 second mein karega."
+**Jagu:** "Beep Boop! Golu, imagine you have a log file of 10GB. Do you manually count errors? Absolutely not! Today we will create an 'Intelligence Agent' (Script) which will do this work in 1 second."
 
 ## 🎯 Project Objectives
 - Write a script that counts "ERROR" and "WARNING" messages in a log.
@@ -26,7 +26,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ye script real production troubleshooting mein kaam aayegi. Portfolio mein add karle!"
+**Jagu:** "Golu, this script will help in real production troubleshooting. Add it to your portfolio!"
 
 1. Create a file named **`log-analyzer-project.md`** in the **`solution/`** folder.
 2. Paste your `log_analyzer.sh` code and the content of one generated report.

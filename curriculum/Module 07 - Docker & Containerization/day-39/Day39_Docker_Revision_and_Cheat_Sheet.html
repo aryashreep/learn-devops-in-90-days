@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 39: Docker Revision and Cheat Sheet - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 39: Docker Revision and Cheat Sheet - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,65 +113,54 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Docker Revision and Cheat Sheet</h1>
-        <p class="subtitle handwritten">Day 39: Summary & Advanced Debugging Commands 🐳</p>
-    </header>
-
-    
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, main jab images build karta hoon to mera hard drive space full ho jata hai! Aur images secure hain ya nahi, ye kaise check karein?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, build cache aur dangle images disk space le jaate hain! Hum <code>docker system prune</code> se saara garbage clean kar sakte hain. Aur image vulnerability scanning ke liye hum <b>Docker Scout</b> use karenge!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES & DEEP DIVE</h3>
-            <p class="hinglish">
-                Unused container resources, cache, aur dangling layers local registry ko load karti hain. System cleanup process aur security audits seekhna production pipeline maintain karne ke liye necessary hai.
-            </p>
-            <ul>
-                <li>Run container diagnostics using <code>docker diff</code> and <code>docker inspect</code>.</li>
-                <li>Perform security scanning with Docker Scout CLI commands.</li>
-                <li>Execute cleanup operations: volume prune, system prune.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">🔒 Image Security Analysis: Docker Scout</div>
-        <p>Docker Scout scans image dependencies for known CVEs (Common Vulnerabilities and Exposures), giving remediation suggestions for base images:</p>
-        <pre><code># Quick view of image security vulnerability
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Docker Revision and Cheat Sheet</h1>
+<p class="subtitle handwritten">Day 39: Summary &amp; Advanced Debugging Commands 🐳</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, my hard drive space is getting full while main is building images! And is the images secure or not, how to check?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, build cache and dangle images take up disk space! We can clean all the garbage with <code>docker system prune</code>. And we will use <b>Docker Scout</b> for image vulnerability scanning!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES &amp; DEEP DIVE</h3>
+<p class="handwritten">Unused container resources, cache, and dangling layers are loaded into the local registry. Learning the system cleanup process and security audits is necessary to maintain the production pipeline.</p>
+<ul>
+<li>Run container diagnostics using <code>docker diff</code> and <code>docker inspect</code>.</li>
+<li>Perform security scanning with Docker Scout CLI commands.</li>
+<li>Execute cleanup operations: volume prune, system prune.</li>
+</ul>
+</div>
+</section>
+<section id="concepts">
+<div class="topic-title">🔒 Image Security Analysis: Docker Scout</div>
+<p>Docker Scout scans image dependencies for known CVEs (Common Vulnerabilities and Exposures), giving remediation suggestions for base images:</p>
+<pre><code># Quick view of image security vulnerability
 docker scout quickview &lt;image-name&gt;
 
 # Display recommendations for base image updates
@@ -178,33 +168,28 @@ docker scout recommendations &lt;image-name&gt;
 
 # Compare image with a base tag
 docker scout compare --to latest &lt;image-name&gt;</code></pre>
-    </section>
-
-    <section id="compare">
-        <div class="topic-title">⚖️ Comparison: docker volume prune vs. docker system prune -a</div>
-        <div class="vs-container">
-            <div class="vs-card danger">
-                <div class="vs-title">docker volume prune</div>
-                <p>Cleans up only unused volumes. Safe for images and active networks; prevents unintended data deletion.</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="vs-card secure">
-                <div class="vs-title">docker system prune -a --volumes</div>
-                <p>Nuclear option! Cleans up stopped containers, networks, volumes, build cache, and all unused images.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="realworld">
-        <div class="topic-title">🎬 Real World Troubleshooting: Disk Space Exhausted</div>
-        <p class="hinglish">
-            CI/CD Runner virtual machine builds ke time out-of-disk block ho gaya. Disk space check kiya to 80GB cache layers storage block kar rahi thin. Daily cron job setup kiya jo <code>docker system prune -f</code> execute karta hai.
-        </p>
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># Show disk space details for Docker
+</section>
+<section id="compare">
+<div class="topic-title">⚖️ Comparison: docker volume prune vs. docker system prune -a</div>
+<div class="vs-container">
+<div class="vs-card danger">
+<div class="vs-title">docker volume prune</div>
+<p>Cleans up only unused volumes. Safe for images and active networks; prevents unintended data deletion.</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="vs-card secure">
+<div class="vs-title">docker system prune -a --volumes</div>
+<p>Nuclear option! Cleans up stopped containers, networks, volumes, build cache, and all unused images.</p>
+</div>
+</div>
+</section>
+<section id="realworld">
+<div class="topic-title">🎬 Real World Troubleshooting: Disk Space Exhausted</div>
+<p class="handwritten">Out-of-disk block occurred during CI/CD Runner virtual machine builds. Disk space checked to 80GB, cache layers are blocking storage and are thin. Setup daily cron job which executes <code>docker system prune -f</code>.</p>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<pre><code># Show disk space details for Docker
 docker system df
 
 # Analyze container changes
@@ -212,39 +197,36 @@ docker diff my-container
 
 # Clean all unused networks, containers, caches, and images
 docker system prune -a -f</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 39 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. What does the docker diff command show?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) System version gaps between Client and Daemon</span>
-                <span class="quiz-opt">B) Changes (Additions, Deletions, Modifications) made to a container's filesystem</span>
-                <span class="quiz-opt">C) Network latency between host and container</span>
-                <span class="quiz-opt">D) The difference between CMD and ENTRYPOINT configurations</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. Which command is used to clean up all unused local volumes?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) docker volume rmi</span>
-                <span class="quiz-opt">B) docker volume clean</span>
-                <span class="quiz-opt">C) docker volume prune</span>
-                <span class="quiz-opt">D) docker volume clear</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: B (filesystem mutations list), 2: C (delete orphaned volumes)</p>
-        </div>
-    </section>
-
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 39 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. What does the docker diff command show?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) System version gaps between Client and Daemon</span>
+<span class="quiz-opt">B) Changes (Additions, Deletions, Modifications) made to a container's filesystem</span>
+<span class="quiz-opt">C) Network latency between host and container</span>
+<span class="quiz-opt">D) The difference between CMD and ENTRYPOINT configurations</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. Which command is used to clean up all unused local volumes?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) docker volume rmi</span>
+<span class="quiz-opt">B) docker volume clean</span>
+<span class="quiz-opt">C) docker volume prune</span>
+<span class="quiz-opt">D) docker volume clear</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: B (filesystem mutations list), 2: C (delete orphaned volumes)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

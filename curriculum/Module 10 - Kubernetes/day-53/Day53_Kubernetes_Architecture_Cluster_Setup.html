@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 53: Kubernetes Architecture &amp; Cluster Setup - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print {
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; background-color: var(--bg-blackboard) !important; color: var(--chalk-white) !important; }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
+        }
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        .contact-item { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-bottom: 4px; }
+        .contact-icon { color: var(--chalk-green); font-size: 1rem; }
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.2rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-blue { border-color: var(--chalk-blue); }
+        .speech-bubble.bubble-blue::before { border-right-color: var(--chalk-blue); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        .diagram-title { color: var(--chalk-yellow); font-size: 1.4rem; margin-bottom: 20px; text-transform: uppercase; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .vs-card { flex: 1; background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; }
+        .vs-card.vm { border-color: var(--chalk-red); }
+        .vs-card.container { border-color: var(--chalk-green); }
+        .vs-title { font-family: 'Architects Daughter'; font-size: 1.5rem; text-align: center; margin-bottom: 15px; }
+        .vs-card.vm .vs-title { color: var(--chalk-red); }
+        .vs-card.container .vs-title { color: var(--chalk-green); }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        .quiz-item { border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
+        .quiz-question { font-weight: bold; font-size: 1.2rem; color: var(--chalk-white); margin-bottom: 12px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 20px; }
+        .quiz-opt { padding: 8px 12px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
+        .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
+        pre { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--chalk-blue); overflow-x: auto; font-family: 'Fira Code', monospace; }
+        code { font-family: 'Fira Code', monospace; color: var(--chalk-pink); }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid rgba(255,255,255,0.1); padding: 12px; text-align: left; }
+        th { background: rgba(255,255,255,0.05); color: var(--chalk-yellow); font-family: 'Architects Daughter'; font-size: 1.1rem; }
+        .three-col-stats { display: flex; gap: 20px; margin: 30px 0; }
+        .stat-card { flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px; text-align: center; }
+        .stat-num { font-family: 'Architects Daughter'; font-size: 2.2rem; color: var(--chalk-yellow); margin-bottom: 8px; }
+        .stat-label { font-size: 0.9rem; color: #aaa; }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Kubernetes Architecture &amp; Cluster Setup</h1>
+<p class="subtitle handwritten">Day 53: Brain vs Muscle &amp; Setting up Kind ☸️</p>
+</header>
+<section>
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, Docker Compose was running... then what is the need for Kubernetes? And why is this architecture so complex?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, Docker Compose is perfect for a single machine. When you want to run thousands of containers on hundreds of servers, dynamic scaling, high availability, and self-healing are required, then <span class="chalk-text">Kubernetes (K8s)</span> comes in handy. Its architecture is a balance of brain (Control Plane) and muscle (Worker Nodes)!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. Learning Objectives</h3>
+<p class="handwritten">Understand the basic architecture and components of Kubernetes, and setup <strong>Kind (Kubernetes in Docker)</strong> in the local environment.</p>
+<ul>
+<li><strong>Control Plane:</strong> API Server, etcd, Scheduler, Controller Manager.</li>
+<li><strong>Worker Nodes:</strong> Kubelet, Kube-Proxy, Container Runtime (containerd).</li>
+<li><strong>Cluster Setup:</strong> Kind CLI installation aur multinode cluster configuration.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">2. Analogy &amp; Mental Model</div>
+<div class="content-box accent-blue">
+<p>Think of a Kubernetes Cluster as a <strong>large shipping port</strong>:</p>
+<ul>
+<li><strong>Yard Office (Control Plane):</strong> The controllers, planners, and database tracking every box.</li>
+<li><strong>Cranes and Trucks (Worker Nodes):</strong> The physical resources doing the lifting and running.</li>
+<li><strong>Cargo Box (Pod):</strong> The smallest unit of shipping containing our application container.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">3. Did You Know?</div>
+<div class="three-col-stats">
+<div class="stat-card">
+<div class="stat-num">8</div>
+<div class="stat-label">Letters between "K" and "s" in "Kubernetes"</div>
+</div>
+<div class="stat-card">
+<div class="stat-num">Borg</div>
+<div class="stat-label">Google's internal container orchestrator, K8s' predecessor</div>
+</div>
+<div class="stat-card">
+<div class="stat-num">CNCF</div>
+<div class="stat-label">Cloud Native Computing Foundation hosts K8s today</div>
+</div>
+</div>
+</section>
+<section>
+<div class="topic-title">4. Key Directories &amp; Paths</div>
+<div class="content-box accent-green">
+<ul>
+<li>📂 <code>/etc/kubernetes/manifests/</code> - Path on control-plane where static Pod configurations are placed (etcd, apiserver, scheduler, controller-manager).</li>
+<li>📂 <code>/var/lib/kubelet/</code> - Directory holding kubelet state, volume mounts, and pod logs.</li>
+<li>📂 <code>~/.kube/config</code> - Kubeconfig credential file for kubectl client.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">5. Key Concepts</div>
+<div class="content-box">
+<h4 class="handwritten" style="color:var(--chalk-blue);">Control Plane (The Brain)</h4>
+<ul>
+<li><strong>kube-apiserver:</strong> Rest API endpoint of the cluster. Everything connects here.</li>
+<li><strong>etcd:</strong> Highly available key-value store. The cluster's source of truth database.</li>
+<li><strong>kube-scheduler:</strong> Assigns newly created Pods to nodes based on affinity and resource requirements.</li>
+<li><strong>kube-controller-manager:</strong> Manages controllers like replicaset, deployments, and node health.</li>
+</ul>
+<h4 class="handwritten" style="color:var(--chalk-green); margin-top: 20px;">Worker Nodes (The Muscle)</h4>
+<ul>
+<li><strong>kubelet:</strong> Node agent that pulls images and keeps containers running.</li>
+<li><strong>kube-proxy:</strong> Maintains network rules on hosts for Service communication.</li>
+<li><strong>container runtime (containerd):</strong> The engine executing the container processes.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">6. Compare: Control Plane vs Worker Node</div>
+<div class="vs-container">
+<div class="vs-card vm">
+<div class="vs-title">Control Plane</div>
+<ul>
+<li>Decides cluster scheduling</li>
+<li>Monitors and reconciles state</li>
+<li>Tainted by default (no user apps)</li>
+<li>Writes directly to etcd</li>
+</ul>
+</div>
+<div class="vs-circle">VS</div>
+<div class="vs-card container">
+<div class="vs-title">Worker Node</div>
+<ul>
+<li>Runs user application Pods</li>
+<li>Executes container lifecycles</li>
+<li>Reports status to API server</li>
+<li>Uses kube-proxy for routing</li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<div class="topic-title">7. Real-World Troubleshooting Example</div>
+<div class="content-box accent-red">
+<p><strong>Incident:</strong> A worker node crashes physically due to RAM overload.</p>
+<p><strong>Resolution:</strong> The <code>kube-controller-manager</code> detects heartbeat loss. It marks the node as <code>NotReady</code>. The scheduler immediately creates replacement Pods on a remaining healthy node. Traffic is shifted to new nodes automatically, resulting in zero downtime for the users.</p>
+</div>
+</section>
+<section>
+<div class="topic-title">8. Common Misconceptions</div>
+<div class="content-box accent-yellow">
+<ul>
+<li>❌ <strong>Myth:</strong> Kubernetes runs containers directly.</li>
+<li>✔️ <strong>Reality:</strong> K8s uses standard container runtimes like containerd via CRI (Container Runtime Interface).</li>
+<li>❌ <strong>Myth:</strong> Local Kubernetes requires heavy VM resources.</li>
+<li>✔️ <strong>Reality:</strong> Tools like Kind run Kubernetes nodes as lightweight Docker containers on your laptop.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">9. Try It Yourself</div>
+<div class="content-box">
+<p>Install Kind and spin up a 3-node cluster. Create <code>kind-config.yaml</code>:</p>
+<pre>
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+        </pre>
+<p>Run CLI commands:</p>
+<pre>
+# Create cluster
+kind create cluster --config kind-config.yaml --name devops-k8s
+
+# Check status
+kubectl cluster-info
+kubectl get nodes
+        </pre>
+</div>
+</section>
+<section>
+<div class="topic-title">10. Quick Summary</div>
+<div class="content-box accent-green">
+<ul>
+<li>Control Plane acts as the controller, etcd is the cluster state DB.</li>
+<li>Worker Nodes execute workloads, managed by kubelet.</li>
+<li>Kind is perfect for running Kubernetes in Docker containers for dev/test.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">11. Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Which component stores the actual declarative state of the cluster?</div>
+<div class="quiz-options">
+<div class="quiz-opt">A) kube-apiserver</div>
+<div class="quiz-opt font-bold">B) etcd</div>
+<div class="quiz-opt">C) kube-scheduler</div>
+<div class="quiz-opt">D) kubelet</div>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. Which node agent runs on worker nodes to monitor and execute containers?</div>
+<div class="quiz-options">
+<div class="quiz-opt font-bold">A) kubelet</div>
+<div class="quiz-opt">B) kube-proxy</div>
+<div class="quiz-opt">C) kube-apiserver</div>
+<div class="quiz-opt">D) Scheduler</div>
+</div>
+</div>
+<div class="answer-key">
+<h4>🗝️ Answer Key</h4>
+<p>1: B | 2: A</p>
+</div>
+</section>
+<footer class="footer">
+<p>Academy Maintained by <a href="https://github.com/aryashreep">Aryashree Pritikrishna</a> • #LearnDevOpsIn90Days</p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 08: Cloud Setup & Nginx - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 08: Cloud Setup &amp; Nginx - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -94,159 +95,139 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Cloud Setup & Nginx</h1>
-        <p class="subtitle handwritten">Day 08: From Local Terminal to the Global Cloud ☁️</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, mere computer pe toh sab chal raha hai, par duniya ko meri website kaise dikhau? <br> 
-                    Kya mujhe apna laptop 24 ghante on rakhna padega?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Nahi Golu, iske liye hum <span class="chalk-text">Cloud Computing</span> use karte hain. <br> 
-                    Aaj hum AWS/Utho pe apna pehla server 'Launch' karenge!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum real-world deployment karenge. Cloud Instance banana, SSH se connect karna, Nginx install karna, aur server ko public internet ke liye open karna!
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Provision:</strong> Launch a cloud instance (AWS EC2 / Utho).</li>
-                <li><strong>Connect:</strong> Use SSH to manage remote servers securely.</li>
-                <li><strong>Deploy:</strong> Install and verify the Nginx web server.</li>
-                <li><strong>Shield:</strong> Configure Security Groups/Firewalls for Port 80.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Cloud Setup &amp; Nginx</h1>
+<p class="subtitle handwritten">Day 08: From Local Terminal to the Global Cloud ☁️</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, everything is running on my computer, but how can I show my website to the world? <br/> 
+                    Do I have to keep my laptop on 24 hours?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! No Golu, that's why we use <span class="chalk-text">Cloud Computing</span>. <br/> 
+                    Today we will 'Launch' our first server on AWS/Utho!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will do real-world deployment. Create a Cloud Instance, connect to SSH, install Nginx, and open the server to the public internet!</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Provision:</strong> Launch a cloud instance (AWS EC2 / Utho).</li>
+<li><strong>Connect:</strong> Use SSH to manage remote servers securely.</li>
+<li><strong>Deploy:</strong> Install and verify the Nginx web server.</li>
+<li><strong>Shield:</strong> Configure Security Groups/Firewalls for Port 80.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real DevOps work cloud infrastructure ke bina start hi nahi hota!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: Renting a High-Tech Shop</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">On-Premise:</span> Apni dukan kharidna (Hard & Expensive).<br>
-                2. <span class="chalk-text">Cloud Instance:</span> Mall mein dukan kiraye pe lena (Easy & Fast).<br>
-                3. <span class="chalk-text">Security Group:</span> Dukan ka Shutter (Who can enter?).<br>
-                4. <span class="chalk-text">Nginx:</span> Sales person jo customers ko handle karta hai.
-            </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Port 80</div><div class="handwritten" style="color:var(--chalk-blue);">Standard HTTP</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">2 Min</div><div class="handwritten" style="color:var(--chalk-blue);">To Launch EC2</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">Elastic</div><div class="handwritten" style="color:var(--chalk-blue);">Grow/Shrink Fast</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: Security Groups -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: The Inbound Wall</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
-            <p class="hinglish">Security Group ek virtual firewall hai jo decide karti hai ki kaunsa traffic server ke andar aayega.</p>
-            <ul>
-                <li><span class="chalk-text">SSH (Port 22):</span> Sirf aapke liye (Management).</li>
-                <li><span class="chalk-text">HTTP (Port 80):</span> Pure world ke liye (Website).</li>
-                <li><span class="chalk-text">HTTPS (Port 443):</span> Secure world ke liye (SSL).</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: Localhost vs Public IP</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-white);">
-                <h3 class="handwritten">Localhost (127.0.0.1)</h3>
-                <p class="hinglish">"Ghar ka aaina—sirf aap hi khud ko dekh sakte ho."</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">Public IP</h3>
-                <p class="hinglish">"Ghar ka address—pure world se koi bhi dekh sakta hai."</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> Cloud free tier matlab sab kuch free hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Limits check karo! Agar t2.micro se bada server banaya, toh bill aa jayega.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Security Group configure nahi kiya toh bhi website chalegi.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! By default cloud providers sab kuch block rakhte hain. Port 80 manually open karna padta hai.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Nginx server ke liye by default kaunsa port open karna padta hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) 22</span><span class="quiz-opt">b) 443</span><span class="quiz-opt">c) 80</span><span class="quiz-opt">d) 3306</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Remote cloud server pe files download karne ke liye command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) ssh</span><span class="quiz-opt">b) scp</span><span class="quiz-opt">c) cp</span><span class="quiz-opt">d) mv</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-c | 2-b"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: Renting a High-Tech Shop</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">1. <span class="chalk-text">On-Premise:</span> Buying your shop (Hard &amp; Expensive).<br/>
+                2. <span class="chalk-text">Cloud Instance:</span> Renting a shop in the mall (Easy &amp; Fast). <br/>
+                3. <span class="chalk-text">Security Group:</span> Shop Shutter (Who can enter?).<br/>
+                4. <span class="chalk-text">Nginx:</span> Sales person who handles the customers.</p>
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">Port 80</div><div class="handwritten" style="color:var(--chalk-blue);">Standard HTTP</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">2 Min</div><div class="handwritten" style="color:var(--chalk-blue);">To Launch EC2</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">Elastic</div><div class="handwritten" style="color:var(--chalk-blue);">Grow/Shrink Fast</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: Security Groups -->
+<section>
+<div class="topic-title">📌 Key Concepts: The Inbound Wall</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
+<p class="handwritten">Security Group is a virtual firewall that decides what traffic passes through the server.</p>
+<ul>
+<li><span class="chalk-text">SSH (Port 22):</span> Sirf aapke liye (Management).</li>
+<li><span class="chalk-text">HTTP (Port 80):</span> Pure world ke liye (Website).</li>
+<li><span class="chalk-text">HTTPS (Port 443):</span> Secure world ke liye (SSL).</li>
+</ul>
+</div>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: Localhost vs Public IP</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-white);">
+<h3 class="handwritten">Localhost (127.0.0.1)</h3>
+<p class="handwritten">"Ghar ka aina—only you can see yourself."</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">Public IP</h3>
+<p class="handwritten">"Home address—anybody from across the world can see it."</p>
+</div>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> Cloud free tier means everything is free.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Check the limits! If you make a bigger server than t2.micro, then the bill will be higher.</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> The website will run even if the Security Group is not configured.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> No! By default cloud providers keep everything blocked. Port 80 has to be opened manually.</li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Which port has to be opened by default for Nginx server?</p>
+<div class="quiz-options"><span class="quiz-opt">a) 22</span><span class="quiz-opt">b) 443</span><span class="quiz-opt">c) 80</span><span class="quiz-opt">d) 3306</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Command to download files on remote cloud server?</p>
+<div class="quiz-options"><span class="quiz-opt">a) ssh</span><span class="quiz-opt">b) scp</span><span class="quiz-opt">c) cp</span><span class="quiz-opt">d) mv</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goal, halftime: 1-c | 2-b"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 08 • Module 03 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

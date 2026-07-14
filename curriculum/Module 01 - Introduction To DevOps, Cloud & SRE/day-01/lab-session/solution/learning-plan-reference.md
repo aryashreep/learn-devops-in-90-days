@@ -1,6 +1,6 @@
 # 🧪 Day 01 Solution: 90-Day Learning Plan
 
-**Jagu:** "Shabash Golu! Tune apne vision ko paper (ya markdown) pe utaar liya hai. Ye raha ek professional reference plan!"
+**Jagu:** "Well done Golu! You have put your vision on paper (or markdown). This is a professional reference plan!"
 
 ---
 
@@ -26,7 +26,7 @@
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, consistency is better than perfection. Agar kisi din 2 ghante nahi milte, toh sirf 15 min terminal chala le, par gap mat hone dena!"
+"Golu, consistency is better than perfection. If you don't meet within 2 hours on a given day, just run the terminal for 15 minutes to make up for the gap!"
 
 ---
 *#LearnDevOpsIn90Days • Day 01 • Golu & Jagu Edition*

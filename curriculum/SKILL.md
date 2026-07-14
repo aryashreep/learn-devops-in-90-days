@@ -36,7 +36,7 @@ The narrative revolves around two core characters drawn with high-fidelity CSS s
 - **Golu (The Learner):** Human stick-figure, hand-drawn smile, uses White chalk.
 - **Jagu (The Mentor):** Advanced Robot Agent, antenna with orb, glowing yellow eyes, carries a green "bag of knowledge". Uses Blue/Green chalk.
 
-**Narrative Tone:** Conversational **Hinglish** (e.g., *"Bhai Golu, systemd matlab automation ka god hai!"*).
+**Narrative Tone:** Conversational **English** (e.g., *"Golu, systemd is the absolute controller of automation!"*).
 
 ---
 

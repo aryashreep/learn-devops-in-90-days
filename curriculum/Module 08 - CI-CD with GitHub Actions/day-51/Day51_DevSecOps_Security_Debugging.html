@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 51: DevSecOps: Add Security & Debugging - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 51: DevSecOps: Add Security &amp; Debugging - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,172 +113,148 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>DevSecOps: Add Security & Debugging</h1>
-        <p class="subtitle handwritten">Day 51: Lock down workflow permissions, inspect security controls, use debug tools, and output custom job summaries. 🤖</p>
-    </header>
-
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, humare pipeline chal toh rahe hain, par agar koi third-party action hack ho jaye toh kya humara server khatre me hai? Aur errors hone pe deep debugging kaise karein?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, security ke liye hum default token permissions ko read-only set karenge aur actions ko commit SHA pe pin karenge. Aur debug karne ke liye `toJson(github)` dump aur `Job Summaries` use karenge!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
-            <ul>
-                <li>Apply the Principle of Least Privilege using permissions block in YAML</li>\n<li>Pin third-party Actions to specific git commit SHAs for supply chain security</li>\n<li>Enable Step Debug logging on GitHub runners</li>\n<li>Generate custom Job Summaries in markdown format to report test results</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="analogy">
-        <div class="topic-title">💡 Mental Model</div>
-        <p class="hinglish">
-            Least privilege is like giving a service worker a key card that only opens the laundry room (read-only logs), rather than a master key that opens all hotel safes (write access to repo/secrets). Pinning actions to SHAs is like checking a fingerprint (SHA hash) instead of just checking a name badge (version tag) that could be forged.
-        </p>
-    </section>
-
-    <section id="stats">
-        <div class="topic-title">📈 Did You Know?</div>
-        <div class="vs-container">
-            
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Token Hardening</div>
-            <p style="text-align:center;">Restrict GITHUB_TOKEN to read-only permissions to prevent token-theft attacks.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Pin Commit SHAs</div>
-            <p style="text-align:center;">Avoid using loose version tags (like @v4); use exact SHAs (like @8ade21b) to guarantee immutable scripts.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Job Summaries</div>
-            <p style="text-align:center;">Append diagnostic outputs directly to $GITHUB_STEP_SUMMARY to display tables and lists in Actions dashboard.</p>
-        </div>
-        </div>
-    </section>
-
-    <section id="directories">
-        <div class="topic-title">📁 Core Concepts & Directories</div>
-        <ul>
-            <li>Define permissions using the `permissions:` block.</li>\n<li>Write custom summaries: `echo '# Complete!' >> $GITHUB_STEP_SUMMARY`.</li>\n<li>Enable debugging logging by setting secret `ACTIONS_STEP_DEBUG` to `true`.</li>
-        </ul>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">⚙️ Main Content</div>
-        
-        <h3>1. Hardening Workflow Permissions</h3>
-        <p>By default, GitHub tokens can have wide write access. Always restrict permissions to read-only at the top of your YAML:</p>
-        <pre><code>permissions:
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>DevSecOps: Add Security &amp; Debugging</h1>
+<p class="subtitle handwritten">Day 51: Lock down workflow permissions, inspect security controls, use debug tools, and output custom job summaries. 🤖</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, our pipeline is still running, but if any third-party action gets hacked, what is our server at risk? And how to do deep debugging in case of errors?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, for security we will set the default token permissions to read-only and pin actions to commit SHA. And to debug we will use `toJson(github)` dump and `Job Summaries`!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
+<ul>
+<li>Apply the Principle of Least Privilege using permissions block in YAML</li>\n<li>Pin third-party Actions to specific git commit SHAs for supply chain security</li>\n<li>Enable Step Debug logging on GitHub runners</li>\n<li>Generate custom Job Summaries in markdown format to report test results</li>
+</ul>
+</div>
+</section>
+<section id="analogy">
+<div class="topic-title">💡 Mental Model</div>
+<p class="handwritten">Least privilege is like giving a service worker a key card that only opens the laundry room (read-only logs), rather than a master key that opens all hotel safes (write access to repo/secrets). Pinning actions to SHAs is like checking a fingerprint (SHA hash) instead of just checking a name badge (version tag) that could be forged.</p>
+</section>
+<section id="stats">
+<div class="topic-title">📈 Did You Know?</div>
+<div class="vs-container">
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Token Hardening</div>
+<p style="text-align:center;">Restrict GITHUB_TOKEN to read-only permissions to prevent token-theft attacks.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Pin Commit SHAs</div>
+<p style="text-align:center;">Avoid using loose version tags (like @v4); use exact SHAs (like @8ade21b) to guarantee immutable scripts.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Job Summaries</div>
+<p style="text-align:center;">Append diagnostic outputs directly to $GITHUB_STEP_SUMMARY to display tables and lists in Actions dashboard.</p>
+</div>
+</div>
+</section>
+<section id="directories">
+<div class="topic-title">📁 Core Concepts &amp; Directories</div>
+<ul>
+<li>Define permissions using the `permissions:` block.</li>\n<li>Write custom summaries: `echo '# Complete!' &gt;&gt; $GITHUB_STEP_SUMMARY`.</li>\n<li>Enable debugging logging by setting secret `ACTIONS_STEP_DEBUG` to `true`.</li>
+</ul>
+</section>
+<section id="concepts">
+<div class="topic-title">⚙️ Main Content</div>
+<h3>1. Hardening Workflow Permissions</h3>
+<p>By default, GitHub tokens can have wide write access. Always restrict permissions to read-only at the top of your YAML:</p>
+<pre><code>permissions:
   contents: read
   packages: write</code></pre>
-        <h3>2. Pinning Action Versions</h3>
-        <p>Loose tags like <code>@v4</code> can be updated by repository owners to point to malicious code. Pinning to a specific 40-character commit SHA prevents supply chain attacks:</p>
-        <pre><code>- name: Checkout Code
+<h3>2. Pinning Action Versions</h3>
+<p>Loose tags like <code>@v4</code> can be updated by repository owners to point to malicious code. Pinning to a specific 40-character commit SHA prevents supply chain attacks:</p>
+<pre><code>- name: Checkout Code
   uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1</code></pre>
-        <h3>3. Diagnostic Job Summaries</h3>
-        <p>Write to the runner's step summary file to display rich markdown on the run dashboard:</p>
-        <pre><code>- name: Write Summary
+<h3>3. Diagnostic Job Summaries</h3>
+<p>Write to the runner's step summary file to display rich markdown on the run dashboard:</p>
+<pre><code>- name: Write Summary
   run: |
-    echo "### 🚀 CI Summary" >> $GITHUB_STEP_SUMMARY
-    echo "* Code quality check passed!" >> $GITHUB_STEP_SUMMARY</code></pre>
-        
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># Try creating this debugging step in your pipeline:
+    echo "### 🚀 CI Summary" &gt;&gt; $GITHUB_STEP_SUMMARY
+    echo "* Code quality check passed!" &gt;&gt; $GITHUB_STEP_SUMMARY</code></pre>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<pre><code># Try creating this debugging step in your pipeline:
 - name: Dump GitHub context
   env:
     GITHUB_CONTEXT: ${{ toJson(github) }}
   run: echo "$GITHUB_CONTEXT" </code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 51 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. Which practice represents the highest level of supply-chain security when consuming community-created Actions?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) Pinning the action to its main or master branch</span>\n<span class="quiz-opt">B) Pinning the action to a specific commit SHA (hash)</span>\n<span class="quiz-opt">C) Using the latest version tag available</span>\n<span class="quiz-opt">D) Ignoring the uses keyword entirely</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. How do you output custom formatting (like tables or headers) directly onto the workflow's main summary page in GitHub Actions?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) Send a Slack message</span>\n<span class="quiz-opt">B) Append the markdown lines to the file path stored in the GITHUB_STEP_SUMMARY environment variable</span>\n<span class="quiz-opt">C) Run echo 'Hello'</span>\n<span class="quiz-opt">D) Commit a new readme to main</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: B (Commit SHAs are immutable and cannot be altered, ensuring the exact code is executed), 2: B (Append markdown to the path in $GITHUB_STEP_SUMMARY)</p>
-        </div>
-    </section>
-
-    <section id="continue">
-        <div class="topic-title">➡️ Continue Learning — Day 50</div>
-        <div class="doodle-container" style="margin: 0;">
-            <div class="doodle-wrapper">
-                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                <span class="char-name">Golu</span>
-            </div>
-            <div class="speech-bubble">
-                "Jagu, humne permissions harden karna seekh liya. Par kya hum ek pura DevSecOps pipeline bana sakte hain — SAST, DAST, container scan, secret scan sab kuch saath mein?"
-            </div>
-        </div>
-        <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-            <div class="speech-bubble bubble-blue">
-                "Bilkul Golu! <b>Day 50</b> mein hum ek comprehensive DevSecOps pipeline architecture banayenge jisme code lint se lekar deploy tak har stage par security gate hoga. Chalo agle chapter mein milte hain!"
-            </div>
-            <div class="doodle-wrapper">
-                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                <span class="char-name">Jagu</span>
-            </div>
-        </div>
-        <div class="content-box accent-green" style="text-align:center;">
-            <p class="handwritten" style="font-size:1.3rem;">
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 51 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Which practice represents the highest level of supply-chain security when consuming community-created Actions?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) Pinning the action to its main or master branch</span>\n<span class="quiz-opt">B) Pinning the action to a specific commit SHA (hash)</span>\n<span class="quiz-opt">C) Using the latest version tag available</span>\n<span class="quiz-opt">D) Ignoring the uses keyword entirely</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. How do you output custom formatting (like tables or headers) directly onto the workflow's main summary page in GitHub Actions?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) Send a Slack message</span>\n<span class="quiz-opt">B) Append the markdown lines to the file path stored in the GITHUB_STEP_SUMMARY environment variable</span>\n<span class="quiz-opt">C) Run echo 'Hello'</span>\n<span class="quiz-opt">D) Commit a new readme to main</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: B (Commit SHAs are immutable and cannot be altered, ensuring the exact code is executed), 2: B (Append markdown to the path in $GITHUB_STEP_SUMMARY)</p>
+</div>
+</section>
+<section id="continue">
+<div class="topic-title">➡️ Continue Learning — Day 50</div>
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, we learned how to harden permissions. But can we create a complete DevSecOps pipeline — SAST, DAST, container scan, secret scan all in one?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Absolutely Golu! <b>Day 50</b> In this we will create a comprehensive DevSecOps pipeline architecture from code lint to lekar deploy till security gate at every stage. Let's meet in the next chapter!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+<div class="content-box accent-green" style="text-align:center;">
+<p class="handwritten" style="font-size:1.3rem;">
                 🛡️ <a href="../../Module%2008%20-%20DevSecOps/day-50/Day50_DevSecOps_Pipeline_Architecture.html" style="color:var(--chalk-green);">Go to Day 50: DevSecOps Pipeline Architecture →</a>
-            </p>
-            <p style="color:var(--chalk-muted);font-size:0.85rem;">
+</p>
+<p style="color:var(--chalk-muted);font-size:0.85rem;">
                 Topics: SAST, DAST, SCA, Trivy, hadolint, GitLeaks, OWASP ZAP, Severity Gates &amp; Pipeline Orchestration
             </p>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

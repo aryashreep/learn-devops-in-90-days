@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 39 — Docker Revision and Cheat Sheet
 
-**Jagu:** "Beep Boop! Golu, humne image banane se lekar microservices ship karna seekh liya. Aaj hum final tools (Scout/Troubleshooting) aur clean-up commands ko master karenge!"
+**Jagu:** "Beep Boop! Golu, we learned how to ship microservices by creating an image. Today we will master final tools (Scout/Troubleshooting) and clean-up commands!"
 
 ## 🎯 Task Objectives
 - Identify changes in container filesystem with docker diff.

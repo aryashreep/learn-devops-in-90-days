@@ -1,6 +1,6 @@
 # 🧪 Day 02 Solution: Architecture & Processes
 
-**Jagu:** "Shabash Golu! Tune Linux ke brain (Kernel) aur nervous system (systemd) ki functioning samajh li hai. Ye raha tera reference report!"
+**Jagu:** "Well done Golu! Tune includes the functioning of Linux's brain (kernel) and nervous system (systemd). This is your reference report!"
 
 ---
 
@@ -26,7 +26,7 @@ $ systemctl status ssh
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, hamesha yaad rakh: `systemd` hi wo pehla process hai (PID 1) jo baaki sabko uthata hai. Agar systemd down, toh pura server down!"
+"Golu, always remember: `systemd` is the first process (PID 1) which calls all the others. If systemd down, then entire server down!"
 
 ---
 *#LearnDevOpsIn90Days • Day 02 • Golu & Jagu Edition*

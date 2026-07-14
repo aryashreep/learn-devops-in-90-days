@@ -34,4 +34,4 @@ Don't spend a paisa while learning! Start with these:
 - **Follow the Mentor:** **[Aryashree Pritikrishna](https://www.linkedin.com/in/aryashreepritikrishna/)**
 
 ---
-*Jagu: "Bhai Golu, ye resources tumhare arsenal hain. Inhe use karo aur aage badho!"*
+*Jagu: "Golu, these resources are your arsenal. Use these and improve your future!"*

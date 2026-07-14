@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 26 — GitHub Collaboration & CLI Lab
 
-**Jagu:** "Beep Boop! Golu, local repository toh badhiya hai, par jab tak code cloud par nahi jaata, tab tak tu team mein collaborate nahi kar sakta. Aaj hum seekhenge remote repos aur GitHub CLI ka power!"
+**Jagu:** "Beep Boop! Golu, local repository is also hindered, but till the time the code does not go to the cloud, till then you cannot collaborate in the team. Today we will explore the power of remote repos and GitHub CLI!"
 
 ## 🎯 Task Objectives
 - Create a remote repository on GitHub.

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 36: Docker Project: Dockerize a Full Application - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 36: Docker Project: Dockerize a Full Application - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,81 +113,66 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Docker Project: Dockerize a Full Application</h1>
-        <p class="subtitle handwritten">Day 36: Capstone Application Containerization 🐳</p>
-    </header>
-
-    
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, maine Dockerfile and compose write to kiya, par backend aur database link nahi ho rahe! Connection error aa raha hai!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, pehle verify karo: 1. DB port default expose hai? 2. Compose file mein backend aur db ek hi network partition pe hain? 3. Env variables proper match kar rahe hain? Ek baar checklist verify karo!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. PROJECT OBJECTIVES & INSTRUCTIONS</h3>
-            <p class="hinglish">
-                Is capstone project mein real-world environment simulate karenge. Developer stack ko production bundle image mein configure karna, ports secure karna aur state save karna hi project goal hai.
-            </p>
-            <ul>
-                <li>Containerize the entire stack locally.</li>
-                <li>Verify database tables persist after stopping containers.</li>
-                <li>Optimize image size and remove sensitive secrets using env variables.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">🏛️ Three-Tier Application Architecture</div>
-        <p>Your composed services will run isolated in custom networks. Client requests land on the web service, which queries the backend api, fetching data from the database securely.</p>
-        <div class="diagram-container">
-            <div class="diagram-title">System Composition</div>
-            <p style="font-family:'Fira Code', monospace; color:var(--chalk-orange);">[User Browser] --(port 80)--> React Web App (Frontend-Net)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>Node.js API (Backend-Net) &lt;---&gt; PostgreSQL Database (Backend-Net)</p>
-        </div>
-    </section>
-
-    <section id="realworld">
-        <div class="topic-title">🎬 Real World Troubleshooting: The Production Build</div>
-        <p class="hinglish">
-            React app build contexts copy karte time `.git` and `node_modules` folders copy hone se image size double ho rahi thi. `.dockerignore` file configure karke context weight kam kiya aur security risk (unneeded scripts) solve kiya.
-        </p>
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Verification checklist</div>
-        <p>Run these verification commands to ensure the system is operational:</p>
-        <pre><code># Check logs for database connection success
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Docker Project: Dockerize a Full Application</h1>
+<p class="subtitle handwritten">Day 36: Capstone Application Containerization 🐳</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, maine Dockerfile and compose write to kiya, par backend aur database link nahi ho rahe! Connection error aa raha hai!"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, first verify: 1. DB port default exposed? 2. Compose file in backend and DB on one network partition? 3. Env variables are proper match? Verify the checklist once!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. PROJECT OBJECTIVES &amp; INSTRUCTIONS</h3>
+<p class="handwritten">In this capstone project we will simulate real-world environment. The project goal is to configure the developer stack in the production bundle image, secure ports and save state.</p>
+<ul>
+<li>Containerize the entire stack locally.</li>
+<li>Verify database tables persist after stopping containers.</li>
+<li>Optimize image size and remove sensitive secrets using env variables.</li>
+</ul>
+</div>
+</section>
+<section id="concepts">
+<div class="topic-title">🏛️ Three-Tier Application Architecture</div>
+<p>Your composed services will run isolated in custom networks. Client requests land on the web service, which queries the backend api, fetching data from the database securely.</p>
+<div class="diagram-container">
+<div class="diagram-title">System Composition</div>
+<p style="font-family:'Fira Code', monospace; color:var(--chalk-orange);">[User Browser] --(port 80)--&gt; React Web App (Frontend-Net)<br/>                                        |<br/>Node.js API (Backend-Net) &lt;---&gt; PostgreSQL Database (Backend-Net)</p>
+</div>
+</section>
+<section id="realworld">
+<div class="topic-title">🎬 Real World Troubleshooting: The Production Build</div>
+<p class="handwritten">React app build contexts copy karte time `.git` and `node_modules` folders copy hone se image size double ho rahi thi. `.dockerignore` file configure karke context weight kam kiya aur security risk (unneeded scripts) solve kiya.</p>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Verification checklist</div>
+<p>Run these verification commands to ensure the system is operational:</p>
+<pre><code># Check logs for database connection success
 docker compose logs backend
 
 # Verify volumes are active
@@ -194,39 +180,36 @@ docker volume ls
 
 # Verify container running on custom networks
 docker network inspect &lt;network-name&gt;</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 38 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. What is the purpose of a .dockerignore file?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) To ignore compilation errors</span>
-                <span class="quiz-opt">B) To skip container run restrictions</span>
-                <span class="quiz-opt">C) To prevent specific host files/directories from being sent to the daemon context, reducing build size</span>
-                <span class="quiz-opt">D) To disable network firewall constraints</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. When deploying microservices locally, which tool allows starting the entire stack with a single file?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) Dockerfile</span>
-                <span class="quiz-opt">B) Docker Hub</span>
-                <span class="quiz-opt">C) Docker Compose</span>
-                <span class="quiz-opt">D) Hypervisor</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: C (exclude files from build context), 2: C (Docker Compose)</p>
-        </div>
-    </section>
-
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 38 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. What is the purpose of a .dockerignore file?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) To ignore compilation errors</span>
+<span class="quiz-opt">B) To skip container run restrictions</span>
+<span class="quiz-opt">C) To prevent specific host files/directories from being sent to the daemon context, reducing build size</span>
+<span class="quiz-opt">D) To disable network firewall constraints</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. When deploying microservices locally, which tool allows starting the entire stack with a single file?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) Dockerfile</span>
+<span class="quiz-opt">B) Docker Hub</span>
+<span class="quiz-opt">C) Docker Compose</span>
+<span class="quiz-opt">D) Hypervisor</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: C (exclude files from build context), 2: C (Docker Compose)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # 🧪 Day 07 Solution: Networking Fundamentals
 
-**Jagu:** "Shabash Golu! Tune server ki identity aur packet ka rasta dono samajh liya hai. Ye raha tera reference report!"
+**Jagu:** "Well done Golu! The identity of the tune server and the path of the packet are both understood. This is your reference report!"
 
 ---
 
@@ -21,7 +21,7 @@ $ ping -c 5 google.com
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, hamesha yaad rakh: Pehle connectivity check karo, phir application!"
+"Golu, always remember: First check connectivity, then apply!"
 
 ---
 *#LearnDevOpsIn90Days • Day 07 • Golu & Jagu Edition*

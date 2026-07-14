@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 25: Git Branching & GitHub - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 25: Git Branching &amp; GitHub - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -92,188 +93,167 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Git Branching & GitHub</h1>
-        <p class="subtitle handwritten">Day 25: Parallel Worlds in the DevOps Multiverse 🐙✨</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, main ek naya feature add kar raha tha par pura main code crash ho gaya! <br> 
-                    Ab users ko broken site dikh rahi hai. Bachao!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, isliye hum 'Main' branch pe kaam nahi karte. <br> 
-                    Aaj hum seekhenge <span class="chalk-text">Branching</span>—yani ki ek parallel duniya banana jahan tum bina dare kitni bhi galtiyan kar sako!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Git ki asli power discover karenge: <b>Branching</b>. Feature branches banana, parallel development karna, aur apne local code ko <b>GitHub</b> cloud pe push karna.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Isolate:</strong> Create and switch branches for safe development.</li>
-                <li><strong>Synchronize:</strong> Connect your local repo to GitHub via `git remote`.</li>
-                <li><strong>Publish:</strong> Push your code to the cloud for collaboration.</li>
-                <li><strong>Strategy:</strong> Understand the `main` vs `dev` branch workflow.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Git Branching &amp; GitHub</h1>
+<p class="subtitle handwritten">Day 25: Parallel Worlds in the DevOps Multiverse 🐙✨</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble">"Jagu, I was adding a new feature but the entire main code crashed! <br/> 
+                    Now users are seeing a broken site. Save!”</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Golu, that's why we can't come to the 'Main' branch. <br/> 
+                    Today we will learn <span class="chalk-text">Branching</span>—that is, by creating a parallel world, you can make no matter how many mistakes you make!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will discover the real power of Git: <b>Branching</b>. Feature creating branches, doing parallel development, and pushing your local code to <b>GitHub</b> cloud.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Isolate:</strong> Create and switch branches for safe development.</li>
+<li><strong>Synchronize:</strong> Connect your local repo to GitHub via `git remote`.</li>
+<li><strong>Publish:</strong> Push your code to the cloud for collaboration.</li>
+<li><strong>Strategy:</strong> Understand the `main` vs `dev` branch workflow.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real teams mein hazaron log ek hi code pe kaam karte hain—bina branching ke sab mess ho jayega!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Multiverse</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">main:</span> Hamari asli duniya (Production - No bugs allowed!).<br>
-                2. <span class="chalk-text">dev branch:</span> Marvel ki 'What If' series (Experimental world).<br>
-                3. <span class="chalk-text">Merge:</span> Do duniyayein mil gayi aur features transfer ho gaye.<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Multiverse</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">main:</span> Hamari asli duniya (Production - No bugs allowed!).<br/>
+                2. <span class="chalk-text">dev branch:</span> Marvel ki 'What If' series (Experimental world).<br/>
+                3. <span class="chalk-text">Merge:</span> Do duniyayein mil gayi aur features transfer ho gaye.<br/>
                 4. <span class="chalk-text">GitHub:</span> The Multiverse Hub jahan saare worlds store hote hain.
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">HEAD</div><div class="handwritten" style="color:var(--chalk-blue);">Kahan ho tum?</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">Origin</div><div class="handwritten" style="color:var(--chalk-blue);">GitHub's Nickname</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">-b</div><div class="handwritten" style="color:var(--chalk-blue);">Create & Switch</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: Branching Flow -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: The Flow</div>
-        <div class="diagram-container">
-            <div class="branch-diagram">
-                <div class="branch-line"><div class="branch-node"></div><div class="branch-fork"></div></div>
-                <div class="handwritten" style="margin-left: 20px; color: var(--chalk-blue);">dev (Experimental)</div>
-            </div>
-            <div class="handwritten" style="font-size: 1.5rem; text-align: center; color: var(--chalk-yellow);">
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">HEAD</div><div class="handwritten" style="color:var(--chalk-blue);">Kahan ho tum?</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">Origin</div><div class="handwritten" style="color:var(--chalk-blue);">GitHub's Nickname</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">-b</div><div class="handwritten" style="color:var(--chalk-blue);">Create &amp; Switch</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: Branching Flow -->
+<section>
+<div class="topic-title">📌 Key Concepts: The Flow</div>
+<div class="diagram-container">
+<div class="branch-diagram">
+<div class="branch-line"><div class="branch-node"></div><div class="branch-fork"></div></div>
+<div class="handwritten" style="margin-left: 20px; color: var(--chalk-blue);">dev (Experimental)</div>
+</div>
+<div class="handwritten" style="font-size: 1.5rem; text-align: center; color: var(--chalk-yellow);">
                 main (Stable) ➔ ➔ ➔ ➔ ➔
             </div>
-            <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
-                <code>git branch dev</code> ➔ <code>git checkout dev</code> ➔ Hack! ➔ <code>git commit</code>
-            </p>
-        </div>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: git checkout vs git checkout -b</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">git checkout</h3>
-                <p class="hinglish">"Pehle se bani hui duniya mein jaana."</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">git checkout -b</h3>
-                <p class="hinglish">"Nayi duniya banana aur wahan turant shift ho jaana."</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑦ REAL-WORLD EXAMPLE -->
-    <section>
-        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Hotfix</div>
-        <div class="doodle-container">
-            <div class="robot-doodle">
-                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                <div class="robot-body"></div><div class="robot-bag"></div>
-            </div>
-            <span class="char-name">Jagu</span>
-            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
-                "Golu, users Login nahi kar paa rahe! <br> 
-                Jaldi se ek `hotfix` branch banao, bug fix karo aur deploy karo!"
-            </div>
-        </div>
-        <div class="content-box" style="border-color: var(--chalk-blue);">
-            <p><strong>DevOps Secret:</strong> <code>git checkout -b hotfix-login</code> allows you to fix the bug without stopping the ongoing development in the `dev` branch.</p>
-        </div>
-    </section>
-
-    <!-- ⑦.a Branch Management: Naming & Cleaning -->
-    <section>
-        <div class="topic-title">🏷️ Branch Naming & Management</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-pink);">
-            <h3 class="handwritten" style="color:var(--chalk-orange);">1. Naming Conventions — Professional bano!</h3>
-            <p class="hinglish">Random naam mat rakho! Professional teams ye prefixes use karti hain:</p>
-            <ul>
-                <li><code class="chalk-text">feature/add-login</code>: Naya feature banane ke liye.</li>
-                <li><code class="chalk-text">bugfix/fix-header</code>: Chota bug fix karne ke liye.</li>
-                <li><code class="chalk-text">hotfix/server-crash</code>: Urgent production issues ke liye.</li>
-            </ul>
-            <h3 class="handwritten" style="color:var(--chalk-orange); margin-top: 20px;">2. Cleanup — Kuch bhi kachra mat chhodo!</h3>
-            <ul>
-                <li><code class="chalk-text">git branch -m old-name new-name</code>: Branch rename karne ke liye.</li>
-                <li><code class="chalk-text">git branch -d branch-name</code>: Kaam hone ke baad branch delete karne ke liye. <span class="hinglish">(Safai zaruri hai!)</span></li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Nayi branch banakar usme switch karne ka shortcut command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) git switch</span><span class="quiz-opt">b) git checkout -b</span><span class="quiz-opt">c) git branch -new</span><span class="quiz-opt">d) git add branch</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Local repo ko GitHub se link karne ke liye 'origin' kahan set karte hain?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) git push</span><span class="quiz-opt">b) git link</span><span class="quiz-opt">c) git remote add origin</span><span class="quiz-opt">d) git start cloud</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+<p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
+<code>git branch dev</code> ➔ <code>git checkout dev</code> ➔ Hack! ➔ <code>git commit</code>
+</p>
+</div>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: git checkout vs git checkout -b</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
+<h3 class="handwritten">git checkout</h3>
+<p class="handwritten">"Go into the world already created."</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">git checkout -b</h3>
+<p class="handwritten">"The new world must be created and the vehicles must shift immediately."</p>
+</div>
+</div>
+</section>
+<!-- ⑦ REAL-WORLD EXAMPLE -->
+<section>
+<div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Hotfix</div>
+<div class="doodle-container">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<span class="char-name">Jagu</span>
+<div class="speech-bubble" style="border-color: var(--chalk-blue);">"Golu, users are not able to login! <br/> 
+                Quickly create a `hotfix` branch, fix the bug and deploy!"</div>
+</div>
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<p><strong>DevOps Secret:</strong> <code>git checkout -b hotfix-login</code> allows you to fix the bug without stopping the ongoing development in the `dev` branch.</p>
+</div>
+</section>
+<!-- ⑦.a Branch Management: Naming & Cleaning -->
+<section>
+<div class="topic-title">🏷️ Branch Naming &amp; Management</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-pink);">
+<h3 class="handwritten" style="color:var(--chalk-orange);">1. Naming Conventions — Professional bano!</h3>
+<p class="handwritten">Keep the name random! Professional teams use these prefixes:</p>
+<ul>
+<li><code class="chalk-text">feature/add-login</code>: Naya feature banane ke liye.</li>
+<li><code class="chalk-text">bugfix/fix-header</code>: Chota bug fix karne ke liye.</li>
+<li><code class="chalk-text">hotfix/server-crash</code>: Urgent production issues ke liye.</li>
+</ul>
+<h3 class="handwritten" style="color:var(--chalk-orange); margin-top: 20px;">2. Cleanup — Kuch bhi kachra mat chhodo!</h3>
+<ul>
+<li><code class="chalk-text">git branch -m old-name new-name</code>: Branch rename karne ke liye.</li>
+<li><code class="chalk-text">git branch -d branch-name</code>: Kaam hone ke baad branch delete karne ke liye. <span class="handwritten">(Cleaning is necessary!)</span></li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Nayi branch banakar usme switch karne ka shortcut command?</p>
+<div class="quiz-options"><span class="quiz-opt">a) git switch</span><span class="quiz-opt">b) git checkout -b</span><span class="quiz-opt">c) git branch -new</span><span class="quiz-opt">d) git add branch</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Local repo ko GitHub se link karne ke liye 'origin' kahan set karte hain?</p>
+<div class="quiz-options"><span class="quiz-opt">a) git push</span><span class="quiz-opt">b) git link</span><span class="quiz-opt">c) git remote add origin</span><span class="quiz-opt">d) git start cloud</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, halftime: 1-b | 2-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 25 • Phase 3: The Time Machine • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

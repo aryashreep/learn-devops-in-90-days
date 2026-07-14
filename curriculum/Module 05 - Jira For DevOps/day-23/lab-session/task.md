@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 23 — Issues & Hierarchy
 
-**Jagu:** "Beep Boop! Golu, aaj hum tere project ka 'Epic' structure banayenge. Socho ki tum ek e-commerce site bana rahe ho!"
+**Jagu:** "Beep Boop! Golu, today we will create the 'Epic' structure of your project. Imagine you are building an e-commerce site!"
 
 ## 🎯 Task Objectives
 - Create an Epic.
@@ -30,7 +30,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, tune hierarchy bana di hai! Epic view ka screenshot lo."
+**Jagu:** "Golu, tune hierarchy has been created! Take screenshot of Epic view."
 
 1. Create a file named **`jira-hierarchy-log.md`** in the **`solution/`** folder.
 2. List the Issue Keys you created (e.g., DM-2, DM-3).

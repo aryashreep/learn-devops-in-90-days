@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 04 — Searching Mastery
 
-**Jagu:** "Beep Boop! Golu, aaj hum Linux ke 'Detective' banenge. System mein kuch bhi dhundna ho, ye commands tumhare sabse bade dost hain!"
+**Jagu:** "Beep Boop! Golu, today we will become Linux's 'Detective'. Even if you search a little in the system, these commands are your best friends!"
 
 ## 🎯 Task Objectives
 - Master the `find` command for file discovery.
@@ -18,7 +18,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, apna kaam record karna mat bhulna!"
+**Jagu:** "Golu, don't forget to record your work!"
 
 1. Create a file named `searching-report.md` in the **`solution/`** folder.
 2. Paste the commands you used and a small snippet of the output.

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 31: Introduction to Docker - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 31: Introduction to Docker - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -97,95 +98,84 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Introduction to Docker</h1>
-        <p class="subtitle handwritten">Day 31: Containers vs VMs, Docker Architecture & First Container Run 🐳</p>
-    </header>
-
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, sab log Docker Docker kar rahe hain. Ye kya hai? Aur VM se isme kya farak hai? Maine to sirf VirtualBox use kiya hai ab tak!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, Docker ek <span class="chalk-text">containerization platform</span> hai. VM poori OS leta hai, Docker sirf app aur dependencies leta hai—host OS kernel share karta hai. Ye <span class="chalk-text">halka, fast, aur portable</span> hai!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Aaj Kya Seekhenge?</h3>
-            <p class="hinglish">
-                Aaj hum Docker ki foundation samjhenge — Container vs VM ka farak, Docker architecture (Client-Daemon-Registry), aur apna pehla container chalayenge.
-            </p>
-            <ul>
-                <li><strong>Define:</strong> What is Docker and why containers matter.</li>
-                <li><strong>Understand:</strong> Docker architecture — Client, Daemon, Registry, Images, Containers.</li>
-                <li><strong>Run:</strong> Your first container with \`docker run hello-world\`.</li>
-                <li><strong>Compare:</strong> VMs vs Containers — resource usage, boot time, portability.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section>
-        <div class="topic-title">⚖️ VMs vs Containers</div>
-        <div class="vs-container">
-            <div class="vs-card vm">
-                <div class="vs-title">Virtual Machine</div>
-                <ul>
-                    <li>Includes full Guest OS (GBs)</li>
-                    <li>Boot time: minutes</li>
-                    <li>Resource: Heavy (Hypervisor)</li>
-                    <li>Isolation: Strong (separate kernel)</li>
-                    <li>Portability: Slow to transfer</li>
-                </ul>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="vs-card container">
-                <div class="vs-title">Container</div>
-                <ul>
-                    <li>Shares Host OS kernel (MBs)</li>
-                    <li>Boot time: seconds</li>
-                    <li>Resource: Lightweight (Docker Engine)</li>
-                    <li>Isolation: Process-level (namespaces)</li>
-                    <li>Portability: Fast, pull/push layers</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="topic-title">🏗️ Docker Architecture</div>
-        <div class="diagram-container">
-            <div class="diagram-title">How Docker Works</div>
-            <pre style="text-align:left; font-size:0.9rem; line-height:1.6;">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Introduction to Docker</h1>
+<p class="subtitle handwritten">Day 31: Containers vs VMs, Docker Architecture &amp; First Container Run 🐳</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, sab log Docker Docker kar rahe hain. What is this? And what is the difference between VM and VM? I have only used VirtualBox till now!"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, Docker is a <span class="chalk-text">containerization platform</span>. The VM takes the entire OS, Docker just takes the app and dependencies—shares the host OS kernel. This is <span class="chalk-text">light, fast, and portable</span>!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten">Today we will understand the foundation of Docker — the difference between Container vs VM, Docker architecture (Client-Daemon-Registry), and run our first container.</p>
+<ul>
+<li><strong>Define:</strong> What is Docker and why containers matter.</li>
+<li><strong>Understand:</strong> Docker architecture — Client, Daemon, Registry, Images, Containers.</li>
+<li><strong>Run:</strong> Your first container with \`docker run hello-world\`.</li>
+<li><strong>Compare:</strong> VMs vs Containers — resource usage, boot time, portability.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">⚖️ VMs vs Containers</div>
+<div class="vs-container">
+<div class="vs-card vm">
+<div class="vs-title">Virtual Machine</div>
+<ul>
+<li>Includes full Guest OS (GBs)</li>
+<li>Boot time: minutes</li>
+<li>Resource: Heavy (Hypervisor)</li>
+<li>Isolation: Strong (separate kernel)</li>
+<li>Portability: Slow to transfer</li>
+</ul>
+</div>
+<div class="vs-circle">VS</div>
+<div class="vs-card container">
+<div class="vs-title">Container</div>
+<ul>
+<li>Shares Host OS kernel (MBs)</li>
+<li>Boot time: seconds</li>
+<li>Resource: Lightweight (Docker Engine)</li>
+<li>Isolation: Process-level (namespaces)</li>
+<li>Portability: Fast, pull/push layers</li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<div class="topic-title">🏗️ Docker Architecture</div>
+<div class="diagram-container">
+<div class="diagram-title">How Docker Works</div>
+<pre style="text-align:left; font-size:0.9rem; line-height:1.6;">
 +------------+       +--------------+       +--------------+
-|  Docker    |------>|  Docker      |------>|  Docker      |
+|  Docker    |------&gt;|  Docker      |------&gt;|  Docker      |
 |  Client    | REST  |  Daemon      |       |  Registry    |
 |  (CLI)     |  API  |  (dockerd)   |       |  (Hub)       |
 +------------+       +--------------+       +--------------+
@@ -197,29 +187,27 @@
               | (readonly)|   | (rw layer)|
               +-----------+   +-----------+
             </pre>
-            <p class="handwritten" style="color: var(--chalk-blue); margin-top: 15px;">
-                <strong>Client:</strong> CLI commands <span style="color:var(--chalk-white);">|</span>
-                <strong>Daemon:</strong> Background service <span style="color:var(--chalk-white);">|</span>
-                <strong>Registry:</strong> Image storage (Docker Hub)
+<p class="handwritten" style="color: var(--chalk-blue); margin-top: 15px;">
+<strong>Client:</strong> CLI commands <span style="color:var(--chalk-white);">|</span>
+<strong>Daemon:</strong> Background service <span style="color:var(--chalk-white);">|</span>
+<strong>Registry:</strong> Image storage (Docker Hub)
             </p>
-        </div>
-    </section>
-
-    <section>
-        <div class="topic-title">📦 Key Docker Concepts</div>
-        <table>
-            <tr><th>Concept</th><th>Definition</th><th>Analogy</th></tr>
-            <tr><td><strong>Image</strong></td><td>A read-only template with instructions to create a container</td><td>Recipe / Blueprint</td></tr>
-            <tr><td><strong>Container</strong></td><td>A runnable instance of an image</td><td>Cooked meal from recipe</td></tr>
-            <tr><td><strong>Dockerfile</strong></td><td>Text file with instructions to build an image</td><td>Recipe card</td></tr>
-            <tr><td><strong>Registry</strong></td><td>Stores and distributes images (Docker Hub)</td><td>App Store for images</td></tr>
-            <tr><td><strong>Volume</strong></td><td>Persistent storage outside container's writable layer</td><td>External hard drive</td></tr>
-        </table>
-    </section>
-
-    <section>
-        <div class="topic-title">⌨️ Essential Docker Commands</div>
-        <pre><code># Check installation
+</div>
+</section>
+<section>
+<div class="topic-title">📦 Key Docker Concepts</div>
+<table>
+<tr><th>Concept</th><th>Definition</th><th>Analogy</th></tr>
+<tr><td><strong>Image</strong></td><td>A read-only template with instructions to create a container</td><td>Recipe / Blueprint</td></tr>
+<tr><td><strong>Container</strong></td><td>A runnable instance of an image</td><td>Cooked meal from recipe</td></tr>
+<tr><td><strong>Dockerfile</strong></td><td>Text file with instructions to build an image</td><td>Recipe card</td></tr>
+<tr><td><strong>Registry</strong></td><td>Stores and distributes images (Docker Hub)</td><td>App Store for images</td></tr>
+<tr><td><strong>Volume</strong></td><td>Persistent storage outside container's writable layer</td><td>External hard drive</td></tr>
+</table>
+</section>
+<section>
+<div class="topic-title">⌨️ Essential Docker Commands</div>
+<pre><code># Check installation
 docker --version
 docker info
 
@@ -229,7 +217,7 @@ docker images                 # List local images
 docker rmi nginx:alpine       # Remove image
 
 # Running containers
-docker run hello-world        # Run & auto-remove
+docker run hello-world        # Run &amp; auto-remove
 docker run -it ubuntu bash    # Interactive shell
 docker run -d -p 8080:80 nginx # Detached with port
 
@@ -242,50 +230,43 @@ docker rm &lt;container&gt;         # Remove container
 # System
 docker system df              # Disk usage
 docker system prune           # Clean unused</code></pre>
-    </section>
-
-    <section>
-        <div class="topic-title">💡 Real-World: Why Docker?</div>
-        <div class="content-box accent-blue">
-            <p class="hinglish">
-                <strong>Scenario:</strong> Tumne Node.js app likhi jo local machine pe sahi chal rahi hai. Production Ubuntu server pe deploy kiya to \`glibc version\` mismatch ka error aa raha hai. Docker container mein app + dependencies ek saath pack hain — kabi version mismatch nahi hoga!
-            </p>
-            <p style="margin-top: 10px;">
-                <strong style="color: var(--chalk-yellow);">DevOps Mantra:</strong> "It works on my machine" ko "It works everywhere" mein badalna — yahi Docker ka promise hai.
-            </p>
-        </div>
-    </section>
-
-    <section>
-        <div class="topic-title">📝 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. Container VM se kaise alag hai?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) Container poori guest OS leta hai</span>
-                <span class="quiz-opt">B) Container host OS kernel share karta hai</span>
-                <span class="quiz-opt">C) Container hypervisor pe chalta hai</span>
-                <span class="quiz-opt">D) Container sirf Windows pe chalta hai</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. Docker image kaha store hoti hai?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) Docker Client</span>
-                <span class="quiz-opt">B) Docker Registry (e.g., Docker Hub)</span>
-                <span class="quiz-opt">C) Docker Daemon ke andar</span>
-                <span class="quiz-opt">D) GitHub repository</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">✅ Answer Key:</h4>
-            <p>1: B (Container shares host OS kernel) | 2: B (Docker Registry)</p>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section>
+<div class="topic-title">💡 Real-World: Why Docker?</div>
+<div class="content-box accent-blue">
+<p class="handwritten"><strong>Scenario:</strong> You have written a Node.js app which is running correctly on the local machine. Deployed on Production Ubuntu server to \`glibc version\` mismatch ka error is coming. The app + dependencies are packed together in the Docker container — there will be no version mismatch!</p>
+<p style="margin-top: 10px;"><strong style="color: var(--chalk-yellow);">DevOps Mantra:</strong> Changing "It works on my machine" to "It works everywhere" — this is Docker's promise.</p>
+</div>
+</section>
+<section>
+<div class="topic-title">📝 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Container VM se kaise alag hai?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) Container carries pure guest OS</span>
+<span class="quiz-opt">B) Container shares host OS kernel</span>
+<span class="quiz-opt">C) Container runs on hypervisor</span>
+<span class="quiz-opt">D) Container runs only on Windows</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. Docker image kaha store hoti hai?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) Docker Client</span>
+<span class="quiz-opt">B) Docker Registry (e.g., Docker Hub)</span>
+<span class="quiz-opt">C) Docker Daemon ke andar</span>
+<span class="quiz-opt">D) GitHub repository</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">✅ Answer Key:</h4>
+<p>1: B (Container shares host OS kernel) | 2: B (Docker Registry)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

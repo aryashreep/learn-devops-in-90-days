@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 17 — The Backup Project
 
-**Jagu:** "Beep Boop! Golu, aaj hum ek asali 'DevOps Hero' wala kaam karenge. Servers pe logs itne badh jaate hain ki disk full ho jati hai. Aaj hum ek script banayenge jo unhe saaf (cleanup) karegi aur backup legi!"
+**Jagu:** "Beep Boop! Golu, today we will work with an original 'DevOps Hero'. Logs on the servers are flowing so much that the disk becomes full. Today we will create a script that will clean them and take a backup!"
 
 ## 🎯 Project Objectives
 - Build a script that finds files older than X days.
@@ -21,7 +21,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ye script tere resume mein star banegi! Pura code save kar."
+**Jagu:** "Golu, this script will make you a star in your resume! Save the complete code."
 
 1. Create a file named **`backup-project.md`** in the **`solution/`** folder.
 2. Paste the full code of your `backup_manager.sh` and your **Crontab line**.

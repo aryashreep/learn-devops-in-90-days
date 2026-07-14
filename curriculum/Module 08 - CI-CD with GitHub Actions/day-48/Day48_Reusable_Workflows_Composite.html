@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 48: Reusable Workflows and Composite Actions - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 48: Reusable Workflows and Composite Actions - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,98 +113,83 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Reusable Workflows and Composite Actions</h1>
-        <p class="subtitle handwritten">Day 48: Centralize workflow management, write composite actions, and create reusable templates. 🤖</p>
-    </header>
-
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, humare paas 20 alag-alag microservice repositories hain. Sabme same 100-lines ka deployment workflow copy-paste karna pad raha hai. Kya iska koi centralized tareeqa hai?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, iske liye hum write karenge 'Reusable Workflows'! Ek central repo me golden workflow design karo, aur baaki repositories me `uses: org/repo/.github/workflows/reusable.yml@v1` call kar lo!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
-            <ul>
-                <li>Understand the benefits of workflow reusability and DRY principle</li>\n<li>Differentiate between Reusable Workflows and Composite Actions</li>\n<li>Write and configure a reusable workflow file triggered by workflow_call</li>\n<li>Pass inputs and secrets to reusable workflows securely</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="analogy">
-        <div class="topic-title">💡 Mental Model</div>
-        <p class="hinglish">
-            A Composite Action is like creating a custom tool (a multi-tool screwdriver). A Reusable Workflow is like hiring an entire team of contractors to do a job—they come with their own toolboxes (jobs, runners) and carry out a multi-step project based on inputs you provide.
-        </p>
-    </section>
-
-    <section id="stats">
-        <div class="topic-title">📈 Did You Know?</div>
-        <div class="vs-container">
-            
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">DRY Principle</div>
-            <p style="text-align:center;">Don't Repeat Yourself: maintain one template workflow instead of copies in dozens of repos.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">workflow_call</div>
-            <p style="text-align:center;">The special trigger event that registers a workflow as a reusable template.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Central Security</div>
-            <p style="text-align:center;">Update central scripts once, and all microservices instantly inherit the security patches.</p>
-        </div>
-        </div>
-    </section>
-
-    <section id="directories">
-        <div class="topic-title">📁 Core Concepts & Directories</div>
-        <ul>
-            <li>Reusable workflows are triggered by the `on: workflow_call:` event.</li>\n<li>Called workflows reside in either the local repository or a public/private remote repository.</li>\n<li>Pin calling syntax to a specific commit SHA or version tag (e.g. `@v1.0.0`) for safety.</li>
-        </ul>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">⚙️ Main Content</div>
-        
-        <h3>1. Reusable Workflows vs. Composite Actions</h3>
-        <ul>
-            <li><b>Reusable Workflows:</b> Written in YAML, can contain multiple jobs, define their own runners. Triggered by <code>workflow_call</code>.</li>
-            <li><b>Composite Actions:</b> Group multiple shell commands/steps inside a single action block. Cannot define multiple jobs or runners; they execute on the caller's runner.</li>
-        </ul>
-        <h3>2. Declaring a Reusable Workflow</h3>
-        <pre><code>name: Reusable Workflow
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Reusable Workflows and Composite Actions</h1>
+<p class="subtitle handwritten">Day 48: Centralize workflow management, write composite actions, and create reusable templates. 🤖</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, we have 20 different microservice repositories. We all have to copy-paste the same 100-line deployment workflow. Is there any centralized method?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, for this we will write 'Reusable Workflows'! Design the golden workflow in a central repo, and call `uses: org/repo/.github/workflows/reusable.yml@v1` in the other repositories!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
+<ul>
+<li>Understand the benefits of workflow reusability and DRY principle</li>\n<li>Differentiate between Reusable Workflows and Composite Actions</li>\n<li>Write and configure a reusable workflow file triggered by workflow_call</li>\n<li>Pass inputs and secrets to reusable workflows securely</li>
+</ul>
+</div>
+</section>
+<section id="analogy">
+<div class="topic-title">💡 Mental Model</div>
+<p class="handwritten">A Composite Action is like creating a custom tool (a multi-tool screwdriver). A Reusable Workflow is like hiring an entire team of contractors to do a job—they come with their own toolboxes (jobs, runners) and carry out a multi-step project based on inputs you provide.</p>
+</section>
+<section id="stats">
+<div class="topic-title">📈 Did You Know?</div>
+<div class="vs-container">
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">DRY Principle</div>
+<p style="text-align:center;">Don't Repeat Yourself: maintain one template workflow instead of copies in dozens of repos.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">workflow_call</div>
+<p style="text-align:center;">The special trigger event that registers a workflow as a reusable template.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Central Security</div>
+<p style="text-align:center;">Update central scripts once, and all microservices instantly inherit the security patches.</p>
+</div>
+</div>
+</section>
+<section id="directories">
+<div class="topic-title">📁 Core Concepts &amp; Directories</div>
+<ul>
+<li>Reusable workflows are triggered by the `on: workflow_call:` event.</li>\n<li>Called workflows reside in either the local repository or a public/private remote repository.</li>\n<li>Pin calling syntax to a specific commit SHA or version tag (e.g. `@v1.0.0`) for safety.</li>
+</ul>
+</section>
+<section id="concepts">
+<div class="topic-title">⚙️ Main Content</div>
+<h3>1. Reusable Workflows vs. Composite Actions</h3>
+<ul>
+<li><b>Reusable Workflows:</b> Written in YAML, can contain multiple jobs, define their own runners. Triggered by <code>workflow_call</code>.</li>
+<li><b>Composite Actions:</b> Group multiple shell commands/steps inside a single action block. Cannot define multiple jobs or runners; they execute on the caller's runner.</li>
+</ul>
+<h3>2. Declaring a Reusable Workflow</h3>
+<pre><code>name: Reusable Workflow
 on:
   workflow_call:
     inputs:
@@ -215,44 +201,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Deploying to ${{ inputs.env }}"</code></pre>
-        
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># Try calling a reusable workflow inside a caller YAML file:
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<pre><code># Try calling a reusable workflow inside a caller YAML file:
 jobs:
   call-workflow:
     uses: my-org/central-repo/.github/workflows/deploy-template.yml@v1
     with:
       env: staging
     secrets: inherit</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 48 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. Which event trigger must be defined in the 'on' block of a workflow to make it reusable by other workflows?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) workflow_dispatch</span>\n<span class="quiz-opt">B) workflow_call</span>\n<span class="quiz-opt">C) repository_dispatch</span>\n<span class="quiz-opt">D) workflow_run</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. What is the key limitation of a Composite Action compared to a Reusable Workflow?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) Composite Actions cannot run shell scripts.</span>\n<span class="quiz-opt">B) Composite Actions cannot define multiple separate jobs or run on independent runners; they operate within a caller's single job runtime.</span>\n<span class="quiz-opt">C) Composite Actions cannot take inputs.</span>\n<span class="quiz-opt">D) Composite Actions are deprecated.</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: B (workflow_call triggers reusable workflows), 2: B (Composite actions are restricted to a single job/runner context)</p>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 48 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Which event trigger must be defined in the 'on' block of a workflow to make it reusable by other workflows?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) workflow_dispatch</span>\n<span class="quiz-opt">B) workflow_call</span>\n<span class="quiz-opt">C) repository_dispatch</span>\n<span class="quiz-opt">D) workflow_run</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. What is the key limitation of a Composite Action compared to a Reusable Workflow?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) Composite Actions cannot run shell scripts.</span>\n<span class="quiz-opt">B) Composite Actions cannot define multiple separate jobs or run on independent runners; they operate within a caller's single job runtime.</span>\n<span class="quiz-opt">C) Composite Actions cannot take inputs.</span>\n<span class="quiz-opt">D) Composite Actions are deprecated.</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: B (workflow_call triggers reusable workflows), 2: B (Composite actions are restricted to a single job/runner context)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

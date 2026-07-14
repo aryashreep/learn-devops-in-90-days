@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 24: Git Introduction - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 24: Git Introduction - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -92,201 +93,179 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Introduction to Git</h1>
-        <p class="subtitle handwritten">Day 24: Welcome to the Time Machine 🐙⏳</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, maine galti se `nginx.conf` delete kar di! <br> 
-                    Kya koi rasta hai ki main usey wapis la saku? Main toh barbad ho gaya!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Relax Golu. <br> 
-                    DevOps mein hum files 'save' nahi karte, 'commit' karte hain. <br> 
-                    Aaj hum tera pehla <span class="chalk-text">Save Point</span> create karenge!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum **Version Control** ki duniya mein enter karenge. Git kaise install karte hain, identity kaise set karte hain, aur 
-                Working, Staging, aur Repository layers ka logic kya hai.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Understand:</strong> Why Git is the "Safety Net" for DevOps engineers.</li>
-                <li><strong>Configure:</strong> Set up your global Git identity (Name & Email).</li>
-                <li><strong>Blueprint:</strong> Master the 3 Stages of a Git file.</li>
-                <li><strong>Execute:</strong> Learn `git init`, `add`, and `commit`.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Introduction to Git</h1>
+<p class="subtitle handwritten">Day 24: Welcome to the Time Machine 🐙⏳</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Wake up, I accidentally deleted `nginx.conf`! <br/> 
+                    Is there any way I can get it back? I am getting ruined!"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Relax Golu. <br/> 
+                    In DevOps we do not 'save' files, we 'commit' them. <br/> 
+                    Today we will create our first <span class="chalk-text">Save Point</span>!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will enter the world of **Version Control**. How to install Git, how to set identity, and 
+                What is the logic of Working, Staging, and Repository layers?</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Understand:</strong> Why Git is the "Safety Net" for DevOps engineers.</li>
+<li><strong>Configure:</strong> Set up your global Git identity (Name &amp; Email).</li>
+<li><strong>Blueprint:</strong> Master the 3 Stages of a Git file.</li>
+<li><strong>Execute:</strong> Learn `git init`, `add`, and `commit`.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki pure DevOps pipeline ka "Single Source of Truth" sirf Git hi hai!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Video Game Save Point</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Working Directory:</span> Level khel rahe ho (Editing files).<br>
-                2. <span class="chalk-text">Staging Area:</span> Save Point ke pass khade ho (Ready to save).<br>
-                3. <span class="chalk-text">Local Repo:</span> "Save Game" button daba diya! (Commit).<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Video Game Save Point</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Working Directory:</span> Level khel rahe ho (Editing files).<br/>
+                2. <span class="chalk-text">Staging Area:</span> Save Point ke pass khade ho (Ready to save).<br/>
+                3. <span class="chalk-text">Local Repo:</span> "Save Game" button daba diya! (Commit).<br/>
                 4. <span class="chalk-text">Remote (GitHub):</span> Game cloud pe upload kar diya!
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Linus</div><div class="handwritten" style="color:var(--chalk-blue);">Created by Linux Founder</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">2005</div><div class="handwritten" style="color:var(--chalk-blue);">The Year Git was Born</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">Snap</div><div class="handwritten" style="color:var(--chalk-blue);">Git stores Snapshots</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: The 3 Stages -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: The 3 Stages</div>
-        <div class="git-stages">
-            <div class="stage-box" style="border-color: var(--chalk-blue);">
-                <h3 class="handwritten">Working Dir</h3>
-                <p class="hinglish">"File edit kar lo."</p>
-            </div>
-            <div class="stage-arrow">➔</div>
-            <div class="stage-box" style="border-color: var(--chalk-yellow);">
-                <h3 class="handwritten">Staging</h3>
-                <p class="hinglish">"Checklist mein dalo."</p>
-                <code style="font-size: 0.8rem;">git add</code>
-            </div>
-            <div class="stage-arrow">➔</div>
-            <div class="stage-box" style="border-color: var(--chalk-green);">
-                <h3 class="handwritten">Local Repo</h3>
-                <p class="hinglish">"History mein lock karo."</p>
-                <code style="font-size: 0.8rem;">git commit</code>
-            </div>
-        </div>
-        <p class="handwritten" style="margin-top: 40px; font-size: 1.3rem; text-align: center;">
-            <span class="hinglish">Jagu's Rule:</span> Bina `add` kiye `commit` nahi hota!
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">Linus</div><div class="handwritten" style="color:var(--chalk-blue);">Created by Linux Founder</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">2005</div><div class="handwritten" style="color:var(--chalk-blue);">The Year Git was Born</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">Snap</div><div class="handwritten" style="color:var(--chalk-blue);">Git stores Snapshots</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: The 3 Stages -->
+<section>
+<div class="topic-title">📌 Key Concepts: The 3 Stages</div>
+<div class="git-stages">
+<div class="stage-box" style="border-color: var(--chalk-blue);">
+<h3 class="handwritten">Working Dir</h3>
+<p class="handwritten">"Edit the file."</p>
+</div>
+<div class="stage-arrow">➔</div>
+<div class="stage-box" style="border-color: var(--chalk-yellow);">
+<h3 class="handwritten">Staging</h3>
+<p class="handwritten">"Checklist my dalo."</p>
+<code style="font-size: 0.8rem;">git add</code>
+</div>
+<div class="stage-arrow">➔</div>
+<div class="stage-box" style="border-color: var(--chalk-green);">
+<h3 class="handwritten">Local Repo</h3>
+<p class="handwritten">"Lock me in history."</p>
+<code style="font-size: 0.8rem;">git commit</code>
+</div>
+</div>
+<p class="handwritten" style="margin-top: 40px; font-size: 1.3rem; text-align: center;">
+<span class="handwritten">Jagu's Rule:</span> Bina `add` kiye `commit` nahi hota!
         </p>
-    </section>
-
-    <!-- ⑤.a The Trash Can & The Ignore List -->
-    <section>
-        <div class="topic-title">🚫 The Trash Can & The Ignore List</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-red);">
-            <h3 class="handwritten" style="color:var(--chalk-orange);">1. .gitignore — "Mera pecha chhodo!"</h3>
-            <p class="hinglish">
-                Kuch files aisi hoti hain jo hum Git mein nahi daalna chahte (e.g., passwords, heavy logs, `node_modules`). 
-                Hum ek <span class="chalk-text">.gitignore</span> file banate hain aur usmein unka naam likh dete hain. Git unhe ignore kar dega!
-            </p>
-            <h3 class="handwritten" style="color:var(--chalk-orange); margin-top: 20px;">2. git rm — "Hatao isey!"</h3>
-            <ul>
-                <li><code class="chalk-text">git rm file.txt</code>: File ko disk aur Git dono se delete kar deta hai.</li>
-                <li><code class="chalk-text">git rm --cached file.txt</code>: File ko Git history se hata deta hai, par disk pe rehne deta hai. <span class="hinglish">(Galti se password commit ho jaye toh ye kaam aata hai!)</span></li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: Local vs Centralized</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">Centralized (Old)</h3>
-                <p class="hinglish">"Sirf ek server pe data. Server gaya, toh sab gaya."</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">Distributed (Git)</h3>
-                <p class="hinglish">"Har kisi ke pass poori history ki copy hai. Total safe!"</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> Git aur GitHub same hain.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Git 'Software' hai jo aapke computer pe chalta hai, GitHub 'Hosting Service' hai.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Git sirf developers ke liye hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Git DevOps engineers ke liye oxygen hai. Infrastrucure as Code (IaC) iske bina impossible hai!</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>git init my-app</code> <span class="hinglish">(Ek khali killa banao)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>git status</code> <span class="hinglish">(Check karo kya ho raha hai)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>git add . && git commit -m "First Save"</code></p>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Files ko Staging Area mein bhenjne ke liye kaunsa command use hota hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) git push</span><span class="quiz-opt">b) git commit</span><span class="quiz-opt">c) git add</span><span class="quiz-opt">d) git start</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Git history mein 'Save Point' create karne ke liye command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) git save</span><span class="quiz-opt">b) git commit</span><span class="quiz-opt">c) git lock</span><span class="quiz-opt">d) git stage</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-c | 2-b"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</section>
+<!-- ⑤.a The Trash Can & The Ignore List -->
+<section>
+<div class="topic-title">🚫 The Trash Can &amp; The Ignore List</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-red);">
+<h3 class="handwritten" style="color:var(--chalk-orange);">1. .gitignore — "Mera pecha chhodo!"</h3>
+<p class="handwritten">There are some files that we don't want to include in Git (e.g., passwords, heavy logs, `node_modules`). 
+                We create a <span class="chalk-text">.gitignore</span> file and write its name in it. Git will ignore them!</p>
+<h3 class="handwritten" style="color:var(--chalk-orange); margin-top: 20px;">2. git rm — "Hatao isey!"</h3>
+<ul>
+<li><code class="chalk-text">git rm file.txt</code>: File ko disk aur Git dono se delete kar deta hai.</li>
+<li><code class="chalk-text">git rm --cached file.txt</code>: File ko Git history se hata deta hai, par disk pe rehne deta hai. <span class="handwritten">(This is useful if the password is committed by mistake!)</span></li>
+</ul>
+</div>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: Local vs Centralized</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+<h3 class="handwritten">Centralized (Old)</h3>
+<p class="handwritten">"Just data on one server. If the server is gone, everything is gone."</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">Distributed (Git)</h3>
+<p class="handwritten">"Every person has a copy of the entire history. Total safe!"</p>
+</div>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> Git aur GitHub same hain.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Git 'Software' hai jo aapke computer pe chalta hai, GitHub 'Hosting Service' hai.</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Git sirf developers ke liye hai.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Git DevOps engineers ke liye oxygen hai. Infrastrucure as Code (IaC) iske bina impossible hai!</li>
+</ul>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>git init my-app</code> <span class="handwritten">(Make an empty fort)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. <code>git status</code> <span class="handwritten">(Check what's going on)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. <code>git add . &amp;&amp; git commit -m "First Save"</code></p>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Files ko Staging Area mein bhenjne ke liye kaunsa command use hota hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) git push</span><span class="quiz-opt">b) git commit</span><span class="quiz-opt">c) git add</span><span class="quiz-opt">d) git start</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Git history mein 'Save Point' create karne ke liye command?</p>
+<div class="quiz-options"><span class="quiz-opt">a) git save</span><span class="quiz-opt">b) git commit</span><span class="quiz-opt">c) git lock</span><span class="quiz-opt">d) git stage</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goal, halftime: 1-c | 2-b"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 24 • Phase 3: The Time Machine • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 20 — Networking Fundamentals Lab
 
-**Jagu:** "Beep Boop! Welcome to Networking, Golu. Har DevOps engineer ko networking ka basic gyaan hona zaroori hai. Aao aaj hum seekhein ki kaise hum apne server ki identity check karte hain aur connectivity verify karte hain!"
+**Jagu:** "Beep Boop! Welcome to Networking, Golu. Every DevOps engineer must have basic knowledge of networking. Come today let us learn how we can check the identity of our server and verify connectivity!"
 
 ## 🎯 Task Objectives
 - Find your public IP address using command line.
@@ -14,7 +14,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Pehle system ki line check karo, phir packet bhejo! Hamesha yaad rakhna."
+**Jagu:** "First check the system line, then send the packet! Always remember."
 
 1. Create a file named `network-results.md` in the **`solution/`** folder.
 2. Paste the command and output of your public IP identity check and the ping connectivity check.

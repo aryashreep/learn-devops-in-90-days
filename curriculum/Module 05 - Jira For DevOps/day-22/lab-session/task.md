@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 22 — My First Jira Project
 
-**Jagu:** "Beep Boop! Golu, aaj hum tera pehla 'Project' setup karenge. Yaad rakh, bina project ke Jira sirf ek khali killa hai!"
+**Jagu:** "Beep Boop! Golu, today we will setup our first 'Project'. Remember, without a project Jira is just an empty fort!"
 
 ## 🎯 Task Objectives
 - Create a free Atlassian account.
@@ -23,7 +23,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, tune command center setup kar liya hai! Screenshot ya dashboard link save kar."
+**Jagu:** "Golu, tune command center has been set up! Save the screenshot or dashboard link."
 
 1. Create a file named **`jira-setup-log.md`** in the **`solution/`** folder.
 2. Describe your project name and the project key (e.g., DM-1).

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 10: File Permissions & Operations - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 10: File Permissions &amp; Operations - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -91,160 +92,141 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>File Permissions & Operations</h1>
-        <p class="subtitle handwritten">Day 10: Masters of the Access Keys 🔐</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, main script run kar raha hoon par 'Permission Denied' dikha raha hai! <br> 
-                    Kya mujhe root banna padega?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Nahi Golu, har baar root banna dangerous hai. <br> 
-                    Aaj hum `chmod` aur permissions ki 'Mathematics' seekhenge taaki tum khud door open kar sako!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux permissions (rwx) ko decode karenge. UGO model, Octal (4-2-1) calculation, aur 
-                system files pe access control kaise set karte hain.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Interpret:</strong> Decode the 10-character permission string (`-rwxr-xr--`).</li>
-                <li><strong>Calculate:</strong> Convert symbolic permissions to Octal (e.g., 755, 644).</li>
-                <li><strong>Modify:</strong> Use `chmod` to add or remove access securely.</li>
-                <li><strong>Standardize:</strong> Identify industry standards for file and directory permissions.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The House Keys</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">User (u):</span> Ghar ka Malik (Has keys to all rooms).<br>
-                2. <span class="chalk-text">Group (g):</span> Family members (Can enter, but maybe not open the safe).<br>
-                3. <span class="chalk-text">Others (o):</span> Delivery boys/Guests (Can reach the gate, but not enter).<br>
-                4. <span class="chalk-text">rwx:</span> Read (Dekhna), Write (Badalna), Execute (Andar jana/Run karna).
-            </p>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: The Math of 4-2-1 -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: Octal Notation</div>
-        <div class="diagram-container">
-            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-                <div class="content-box" style="border-color: var(--chalk-pink); text-align: center; min-width: 150px;">
-                    <h3 class="handwritten">Read (r)</h3>
-                    <span style="font-size: 3rem; color: var(--chalk-pink);">4</span>
-                </div>
-                <div class="content-box" style="border-color: var(--chalk-green); text-align: center; min-width: 150px;">
-                    <h3 class="handwritten">Write (w)</h3>
-                    <span style="font-size: 3rem; color: var(--chalk-green);">2</span>
-                </div>
-                <div class="content-box" style="border-color: var(--chalk-blue); text-align: center; min-width: 150px;">
-                    <h3 class="handwritten">Exec (x)</h3>
-                    <span style="font-size: 3rem; color: var(--chalk-blue);">1</span>
-                </div>
-            </div>
-            <p class="handwritten" style="margin-top: 35px; font-size: 1.5rem;">
-                <span class="hinglish">Sum karo:</span> r(4) + w(2) + x(1) = <span style="color: var(--chalk-yellow);">7 (Full Access)</span>
-            </p>
-        </div>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: 755 vs 644</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">755 (Executables)</h3>
-                <p class="hinglish">"Owner can do anything. Team & World can only Read & Execute."</p>
-                <p style="font-size: 0.8rem; color: #888;">Standard for Scripts and Directories.</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">644 (Configs)</h3>
-                <p class="hinglish">"Owner can Edit. Team & World can only Read."</p>
-                <p style="font-size: 0.8rem; color: #888;">Standard for Settings and Config files.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> Directory permissions bina 'x' ke cd kar sakte hain.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Directory mein 'cd' karne ke liye Execute (x) power zaroori hai.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> chmod 777 errors fix karne ka best tarika hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Ye security suicide hai! Always give **Least Privilege**.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. String `-rwxr-xr-x` ka numeric value kya hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) 644</span><span class="quiz-opt">b) 777</span><span class="quiz-opt">c) 755</span><span class="quiz-opt">d) 700</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Folder ke liye standard and safe permission kya hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) 755</span><span class="quiz-opt">b) 644</span><span class="quiz-opt">c) 000</span><span class="quiz-opt">d) 444</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-c | 2-a"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>File Permissions &amp; Operations</h1>
+<p class="subtitle handwritten">Day 10: Masters of the Access Keys 🔐</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, while running the main script it is showing 'Permission Denied'! <br/> 
+                    Will I be able to grow a root?</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Nahi Golu, every root banna is dangerous. <br/> 
+                    Today we will seek 'chmod' and 'mathematics' of permissions so that you can open the door yourself!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will decode Linux permissions (rwx). UGO model, Octal (4-2-1) calculation, and 
+                How to set access control on system files.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Interpret:</strong> Decode the 10-character permission string (`-rwxr-xr--`).</li>
+<li><strong>Calculate:</strong> Convert symbolic permissions to Octal (e.g., 755, 644).</li>
+<li><strong>Modify:</strong> Use `chmod` to add or remove access securely.</li>
+<li><strong>Standardize:</strong> Identify industry standards for file and directory permissions.</li>
+</ul>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The House Keys</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">1. <span class="chalk-text">User (u):</span> Ghar ka Malik (Has keys to all rooms).<br/>
+                2. <span class="chalk-text">Group (g):</span> Family members (Can enter, but maybe not open the safe).<br/>
+                3. <span class="chalk-text">Others (o):</span> Delivery boys/Guests (Can reach the gate, but not enter).<br/>
+                4. <span class="chalk-text">rwx:</span> Read (Dekhna), Write (Badalna), Execute (Andar jana/Run karna).</p>
+</div>
+</section>
+<!-- ⑤ Key Concepts: The Math of 4-2-1 -->
+<section>
+<div class="topic-title">📌 Key Concepts: Octal Notation</div>
+<div class="diagram-container">
+<div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+<div class="content-box" style="border-color: var(--chalk-pink); text-align: center; min-width: 150px;">
+<h3 class="handwritten">Read (r)</h3>
+<span style="font-size: 3rem; color: var(--chalk-pink);">4</span>
+</div>
+<div class="content-box" style="border-color: var(--chalk-green); text-align: center; min-width: 150px;">
+<h3 class="handwritten">Write (w)</h3>
+<span style="font-size: 3rem; color: var(--chalk-green);">2</span>
+</div>
+<div class="content-box" style="border-color: var(--chalk-blue); text-align: center; min-width: 150px;">
+<h3 class="handwritten">Exec (x)</h3>
+<span style="font-size: 3rem; color: var(--chalk-blue);">1</span>
+</div>
+</div>
+<p class="handwritten" style="margin-top: 35px; font-size: 1.5rem;">
+<span class="handwritten">Calculate:</span> r(4) + w(2) + x(1) = <span style="color: var(--chalk-yellow);">7 (Full Access)</span>
+</p>
+</div>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: 755 vs 644</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
+<h3 class="handwritten">755 (Executables)</h3>
+<p class="handwritten">"Owner can do anything. Team &amp; World can only Read &amp; Execute."</p>
+<p style="font-size: 0.8rem; color: #888;">Standard for Scripts and Directories.</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">644 (Configs)</h3>
+<p class="handwritten">"Owner can Edit. Team &amp; World can only Read."</p>
+<p style="font-size: 0.8rem; color: #888;">Standard for Settings and Config files.</p>
+</div>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> You can cd to 'x' without Directory permissions.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> No! To 'cd' the directory, Execute (x) power is required.</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> chmod is the best way to fix 777 errors.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Ye security suicide hai! Always give **Least Privilege**.</li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. What is the numeric value of String `-rwxr-xr-x`?</p>
+<div class="quiz-options"><span class="quiz-opt">a) 644</span><span class="quiz-opt">b) 777</span><span class="quiz-opt">c) 755</span><span class="quiz-opt">d) 700</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. What is the standard and safe permission for the folder?</p>
+<div class="quiz-options"><span class="quiz-opt">a) 755</span><span class="quiz-opt">b) 644</span><span class="quiz-opt">c) 000</span><span class="quiz-opt">d) 444</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, mid-match: 1-c | 2-a"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 10 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 22: Intro to Jira - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 22: Intro to Jira - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -87,132 +88,115 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Introduction to Jira</h1>
-        <p class="subtitle handwritten">Day 22: Managing the Chaos with the Command Center 🎫🛠️</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, main bhool gaya ki aaj mujhe kya fix karna tha! <br> 
-                    Excel sheet mein dhundhna bahut mushkil hai. Koi better rasta hai?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, spreadsheets DevOps ke liye nahi hain. <br> 
-                    Aaj hum seekhenge <span class="chalk-text">Jira</span>—jahan har bug, har feature, aur har task ek 'Ticket' hota hai. <br> 
-                    Ab kuch nahi bhoolega!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum **Project Management** ki duniya mein enter karenge. Jira kya hai, Software vs Business projects mein kya farq hai, 
-                aur Cloud vs Data Center ka logic kya hai. Saath hi, Jira ka basic UI bhi explore karenge.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Define:</strong> What is Jira and why is it the industry standard?</li>
-                <li><strong>Choose:</strong> Understand different Jira project templates (Scrum/Kanban).</li>
-                <li><strong>Navigate:</strong> Master the Jira Dashboard and Sidebar.</li>
-                <li><strong>Deployment:</strong> Difference between Jira Cloud and Data Center.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ② WHY JIRA? -->
-    <section>
-        <div class="topic-title">❓ WHY JIRA FOR DEVOPS?</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Transparency:</span> Sabko dikhta hai kaun kya kar raha hai.<br>
-                2. <span class="chalk-text">Integration:</span> GitHub, Jenkins, aur Slack se seedha connect hota hai.<br>
-                3. <span class="chalk-text">Agile:</span> Sprints aur Backlogs manage karna bahut easy hai.<br>
-                4. <span class="chalk-text">History:</span> Har task ki poori history save rehti hai.
-            </p>
-        </div>
-    </section>
-
-    <!-- ③ CLOUD VS DATA CENTER -->
-    <section>
-        <div class="topic-title">☁️ CLOUD VS 🏢 DATA CENTER</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-light-blue);">
-                <h3 class="handwritten">Jira Cloud</h3>
-                <p class="hinglish">"Atlassian manage karta hai. Instant setup, no maintenance."</p>
-                <ul>
-                    <li>Modern UI.</li>
-                    <li>SaaS model.</li>
-                    <li>Best for: Most startups & mid-size teams.</li>
-                </ul>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-orange);">
-                <h3 class="handwritten">Data Center</h3>
-                <p class="hinglish">"Aapke apne server pe chalta hai. Full control!"</p>
-                <ul>
-                    <li>Highly customizable.</li>
-                    <li>Self-managed.</li>
-                    <li>Best for: Giant enterprises with strict security.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-light-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Jira ka main purpose kya hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Code writing</span><span class="quiz-opt">b) Task & Project Tracking</span><span class="quiz-opt">c) Video editing</span><span class="quiz-opt">d) Database management</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Atlassian dwara hosted Jira version ko kya kehte hain?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Jira On-Prem</span><span class="quiz-opt">b) Jira Data Center</span><span class="quiz-opt">c) Jira Cloud</span><span class="quiz-opt">d) Jira Server</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Introduction to Jira</h1>
+<p class="subtitle handwritten">Day 22: Managing the Chaos with the Command Center 🎫🛠️</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Jagu, I forgot what I had to do today! <br/> 
+                    Searching in Excel sheet is very difficult. Is there a better way?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Golu, spreadsheets are not for DevOps. <br/> 
+                    Today we will learn <span class="chalk-text">Yes</span>—where every bug, every feature, and every task has a 'Ticket'. <br/> 
+                    Now I will not forget much!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will enter the world of **Project Management**. What is Jira, what is the difference between Software vs Business projects, 
+                And what is the logic of Cloud vs Data Center? Later, we will also explore the basic UI of Jira.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Define:</strong> What is Jira and why is it the industry standard?</li>
+<li><strong>Choose:</strong> Understand different Jira project templates (Scrum/Kanban).</li>
+<li><strong>Navigate:</strong> Master the Jira Dashboard and Sidebar.</li>
+<li><strong>Deployment:</strong> Difference between Jira Cloud and Data Center.</li>
+</ul>
+</div>
+</section>
+<!-- ② WHY JIRA? -->
+<section>
+<div class="topic-title">❓ WHY JIRA FOR DEVOPS?</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">1. <span class="chalk-text">Transparency:</span> Everyone can see what he is doing.<br/>
+                2. <span class="chalk-text">Integration:</span> Directly connected to GitHub, Jenkins, and Slack. <br/>
+                3. <span class="chalk-text">Agile:</span> It is very easy to manage Sprints and Backlogs.<br/>
+                4. <span class="chalk-text">History:</span> The complete history of every task is saved.</p>
+</div>
+</section>
+<!-- ③ CLOUD VS DATA CENTER -->
+<section>
+<div class="topic-title">☁️ CLOUD VS 🏢 DATA CENTER</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-light-blue);">
+<h3 class="handwritten">Jira Cloud</h3>
+<p class="handwritten">"Atlassian manage karta hai. Instant setup, no maintenance."</p>
+<ul>
+<li>Modern UI.</li>
+<li>SaaS model.</li>
+<li>Best for: Most startups &amp; mid-size teams.</li>
+</ul>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-orange);">
+<h3 class="handwritten">Data Center</h3>
+<p class="handwritten">"You are on your server. Full control!"</p>
+<ul>
+<li>Highly customizable.</li>
+<li>Self-managed.</li>
+<li>Best for: Giant enterprises with strict security.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-light-blue);">
+<div class="quiz-item"><p class="quiz-question">1. What is the main purpose of cumin?</p>
+<div class="quiz-options"><span class="quiz-opt">a) Code writing</span><span class="quiz-opt">b) Task &amp; Project Tracking</span><span class="quiz-opt">c) Video editing</span><span class="quiz-opt">d) Database management</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. What is the Jira version hosted by Atlassian called?</p>
+<div class="quiz-options"><span class="quiz-opt">a) Jira On-Prem</span><span class="quiz-opt">b) Jira Data Center</span><span class="quiz-opt">c) Jira Cloud</span><span class="quiz-opt">d) Jira Server</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, halftime: 1-b | 2-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 22 • Phase 3: Project Management • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

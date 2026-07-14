@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 33 — Dockerfile: Build Your Own Images
 
-**Jagu:** "Beep Boop! Golu, ab hum khud apna Docker image banayenge — ek custom recipe jisme sirf wahi hoga jo humein chahiye!"
+**Jagu:** "Beep Boop! Golu, now let's create our own Docker image — a custom recipe that will contain only what we need!"
 
 ## 🎯 Task Objectives
 - Write a Dockerfile to containerize a simple application.
@@ -34,7 +34,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, apni recipe aur image ka proof save karo!"
+**Jagu:** "Golu, save the proof of your recipe and image!"
 
 1. Create a file named **`dockerfile-basics.md`** in the **`solution/`** folder.
 2. Include your Dockerfile contents and `docker images` output.

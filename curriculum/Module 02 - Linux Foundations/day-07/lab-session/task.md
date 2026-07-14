@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 07 — Networking Basics Lab
 
-**Jagu:** "Golu, ab hum 'Server to Server' baat karenge. Networking ke bina DevOps adhura hai. Chalo, packets ka peecha karte hain!"
+**Jagu:** "Golu, now we will talk 'Server to Server'. DevOps is incomplete without networking. Come on, let's check the packets!"
 
 ## 🎯 Task Objectives
 - Identify network identity (IPs).
@@ -18,7 +18,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Network clear hai Golu! Data save karo."
+**Jagu:** "Network is clear Golu! By saving data."
 
 1. Create `network-results.txt` in the **`solution/`** folder.
 2. Paste your Public IP and the `traceroute` results.

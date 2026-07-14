@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 41 — What is CI/CD?
 
-**Jagu:** "Beep Boop! Golu, CI/CD woh magic hai jo code likhne se lekar deploy karne tak ka automatic safar hai. Aaj hum CI/CD pipeline ka flow samjhenge!"
+**Jagu:** "Beep Boop! Golu, CI/CD is that magic which is an automatic journey from writing the code to deploying it. Today we will understand the flow of CI/CD pipeline!"
 
 ## 🎯 Task Objectives
 - Understand the difference between Continuous Integration, Continuous Delivery, and Continuous Deployment.
@@ -47,7 +47,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, apni CI/CD samajh submit karo!"
+**Jagu:** "Golu, submit your CI/CD community!"
 
 1. Create **`cicd-concepts.md`** in the **`solution/`** folder with your pipeline map.
 2. Include your tool comparisons.

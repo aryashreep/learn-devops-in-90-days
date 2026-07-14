@@ -28,31 +28,33 @@ No endless videos. No passive learning. **This is a discipline + execution chall
 
 ---
 
-## 🗺️ 15-Module Academy Roadmap
+## 🗺️ 17-Module Academy Roadmap
 
 ```
-Foundations (M1-M3)  →  Scripting & Git (M4-M5)  →  Containers (M6)
+Foundations (M1-M4)  →  Jira & Git (M5-M6)  →  Containers (M7)
                                  ↓
-   CI/CD (M7)  →  Orchestration (M8)  →  IaC (M9-M10)
+  CI/CD & DevSecOps (M8-M9)  →  Orchestration (M10)  →  IaC (M11-M12)
                                  ↓
-      Observability (M11)  →  GitOps (M14)  →  🤖 Agentic AI (M15)
+   Observability (M13)  →  Helm & EKS (M14-M15)  →  GitOps & AI (M16-M17)
 ```
 
 1.  **Module 01:** Introduction To DevOps, Cloud & SRE (Day 01)
 2.  **Module 02:** Linux Foundations (Days 02–13)
 3.  **Module 03:** Shell Scripting For DevOps (Days 14–19)
 4.  **Module 04:** Networking & System Design (Days 20–21)
-5.  **Module 05:** Introduction to Git [GitHub & GitLab] (Days 22–28)
-6.  **Module 06:** Docker & Containerization (Days 29–37)
-7.  **Module 07:** CI/CD with GitHub Actions (Days 38–49)
-8.  **Module 08:** Kubernetes [CKA] (Days 50–60)
-9.  **Module 09:** Terraform [IaC] (Days 61–67)
-10. **Module 10:** Ansible [Config Mgmt] (Days 68–72)
-11. **Module 11:** SRE & Observability (Days 73–77)
-12. **Module 12:** Helm [K8s Package Mgmt] (Days 78–80)
-13. **Module 13:** Amazon EKS [Cloud Ops] (Days 81–83)
-14. **Module 14:** GitOps on Kubernetes (Days 84–86)
-15. **Module 15:** Agentic AI for DevOps (Days 87–90)
+5.  **Module 05:** Jira For DevOps (Days 22–23)
+6.  **Module 06:** Introduction to Git [GitHub & GitLab] (Days 24–30)
+7.  **Module 07:** Docker & Containerization (Days 31–39)
+8.  **Module 08:** CI/CD with GitHub Actions (Days 40–51)
+9.  **Module 09:** DevSecOps (Day 52)
+10. **Module 10:** Kubernetes [CKA] (Days 53–63)
+11. **Module 11:** Terraform [IaC] (Days 64–70)
+12. **Module 12:** Ansible [Config Mgmt] (Days 71–75)
+13. **Module 13:** SRE & Observability (Days 76–80)
+14. **Module 14:** Helm [K8s Package Mgmt] (Days 81–83)
+15. **Module 15:** Amazon EKS [Cloud Ops] (Days 84–86)
+16. **Module 16:** GitOps & ArgoCD (Days 87–89)
+17. **Module 17:** Agentic AI for DevOps (Days 90–93)
 
 Full day-by-day breakdown → [📚 TABLE-OF-CONTENTS.md](./TABLE-OF-CONTENTS.md)
 
@@ -75,10 +77,10 @@ Trigger the generation by providing a natural command along with your source mat
 
 | Phase | Modules | Topics | Status |
 |---|---|---|---|
-| 🟢 Phase 1 | M1–M3 | Intro, Linux, Networking | 🚀 In Progress |
-| 🟡 Phase 2 | M4–M6 | Scripting, Git, Docker | 📅 Planned |
-| 🔵 Phase 3 | M7–M10 | CI/CD, K8s, Terraform, Ansible | 📅 Planned |
-| 🟣 Phase 4 | M11–M15 | SRE, Helm, EKS, GitOps, AI | 📅 Planned |
+| 🟢 Phase 1 | M01–M04 | Intro, Linux, Scripting, Networking | 🟢 Done |
+| 🟡 Phase 2 | M05–M07 | Jira, Git, Docker | 🟢 Done |
+| 🔵 Phase 3 | M08–M10 | CI/CD, DevSecOps, Kubernetes | 🚀 In Progress |
+| 🟣 Phase 4 | M11–M17 | IaC, SRE, Helm, EKS, GitOps, AI | 📅 Planned |
 
 ---
 

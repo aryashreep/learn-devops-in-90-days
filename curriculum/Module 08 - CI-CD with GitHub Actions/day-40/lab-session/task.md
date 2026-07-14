@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 40 — YAML Basics
 
-**Jagu:** "Beep Boop! Golu, YAML GitHub Actions ki language hai. Agar YAML nahi aati to workflow nahi likh sakte. Aaj hum YAML seekhenge — indentation se arrays tak!"
+**Jagu:** "Beep Boop! Golu, YAML is the language of GitHub Actions. If YAML does not come to workflow then you cannot write it. Today we'll look at YAML — from indentation to arrays!"
 
 ## 🎯 Task Objectives
 - Understand YAML syntax: key-value pairs, lists, nested structures.
@@ -73,7 +73,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, apni YAML mastery submit karo!"
+**Jagu:** "Golu, submit your YAML mastery!"
 
 1. Create a file named **`yaml-basics.md`** in the **`solution/`** folder.
 2. Include your `hello.yaml` content and the validation output.

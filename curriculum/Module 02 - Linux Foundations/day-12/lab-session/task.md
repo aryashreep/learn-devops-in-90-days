@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 12 — The Broken Server Challenge
 
-**Jagu:** "Bhai Golu, aaj tera asali imtehaan (test) hai! Maine is system mein 5 cheezein jaan-boojh kar kharab ki hain. Agar tune pichle 11 din dhang se padha hai, toh tu ise 20 min mein fix kar lega!"
+**Jagu:** "Brother Golu, today is your real test! I mean there are 5 things in the system which are spoiling the life and soul. If the tune has been playing since last 11 days, then you can fix it in 20 minutes!"
 
 ## 🎯 Task Objectives
 - Perform a full system audit.
@@ -18,7 +18,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Shabash! Tune server ko 'Dead' se 'Alive' kar diya. Final report ready kar!"
+**Jagu:** "Bravo! Changed the Tune server from 'Dead' to 'Alive'. Prepare the final report!"
 
 1. Create a file named `recovery-log.md` in the **`solution/`** folder.
 2. List the 5 fixes you applied and the commands you used.

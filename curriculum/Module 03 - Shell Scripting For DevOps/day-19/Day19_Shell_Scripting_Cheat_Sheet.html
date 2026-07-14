@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 19: Shell Scripting Cheat Sheet - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 19: Shell Scripting Cheat Sheet - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -102,133 +103,117 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Shell Scripting Cheat Sheet</h1>
-        <p class="subtitle handwritten">Day 19: Build Your Own Reference Guide — The Automation Arsenal 📚⚡</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, maine pichle 5 din mein itna kuch seekh liya — variables, loops, functions, cron... <br>
-                    Par yaar, jab main terminal kholta hoon to syntax bhool jaata hoon. Koi 'Ctrl+C, Ctrl+V' wala reference nahi hai?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, yahi toh aaj ka mission hai! <br>
-                    Aapna <span class="chalk-text">Shell Scripting Cheat Sheet</span> banao. Isme saare syntax, special variables, aur reusable template hoga. <br>
-                    Ab kabhi nahi bhoologe! Phir Module 03 ka <span class="chalk-text">Mastery Exam</span> do!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">🎯 Why Build Your Own Cheat Sheet?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Real DevOps engineers ke paas hamesha ek <span class="chalk-text">Personal Runbook</span> hota hai. 
-                Jab production mein alert aata hai, toh aap Google nahi kar sakte — aap apna reference kholte hain aur <span class="chalk-text">muscle memory</span> se commands daalte hain. 
-                Aaj ka kaam kal ke aapko bana dega!
-            </p>
-        </div>
-    </section>
-
-    <!-- QUICK REFERENCE CARDS -->
-    <section>
-        <div class="topic-title">📇 Quick Reference Cards</div>
-
-        <div class="cheat-grid">
-            <div class="topic-card" style="border-color: var(--chalk-blue);">
-                <div class="card-title" style="color: var(--chalk-blue);">🔤 Variables & Strings</div>
-                <ul>
-                    <li><span class="code-inline">name="Golu"</span> — assign variable</li>
-                    <li><span class="code-inline">echo $name</span> — access value</li>
-                    <li><span class="code-inline">read -p "Enter: " var</span> — user input</li>
-                    <li><span class="code-inline">${name:-default}</span> — default value</li>
-                    <li><span class="code-inline">${#name}</span> — string length</li>
-                </ul>
-            </div>
-
-            <div class="topic-card" style="border-color: var(--chalk-green);">
-                <div class="card-title" style="color: var(--chalk-green);">🔄 Conditionals</div>
-                <ul>
-                    <li><span class="code-inline">if [ "$x" = "yes" ]; then</span></li>
-                    <li><span class="code-inline">elif [ -f "$file" ]; then</span></li>
-                    <li><span class="code-inline">else ... fi</span></li>
-                    <li><span class="code-inline">[ -d "$dir" ]</span> — check directory</li>
-                    <li><span class="code-inline">[ $? -eq 0 ]</span> — exit status check</li>
-                </ul>
-            </div>
-
-            <div class="topic-card" style="border-color: var(--chalk-pink);">
-                <div class="card-title" style="color: var(--chalk-pink);">🔁 Loops</div>
-                <ul>
-                    <li><span class="code-inline">for i in {1..5}; do</span></li>
-                    <li><span class="code-inline">for f in *.log; do</span></li>
-                    <li><span class="code-inline">while read line; do</span></li>
-                    <li><span class="code-inline">until [ $x -ge 5 ]; do</span></li>
-                    <li><span class="code-inline">break / continue</span></li>
-                </ul>
-            </div>
-
-            <div class="topic-card" style="border-color: var(--chalk-orange);">
-                <div class="card-title" style="color: var(--chalk-orange);">⚙️ Functions</div>
-                <ul>
-                    <li><span class="code-inline">my_func() { ... }</span></li>
-                    <li><span class="code-inline">log() { echo "[LOG] $1"; }</span></li>
-                    <li><span class="code-inline">local var=5</span> — local scope</li>
-                    <li><span class="code-inline">return 1</span> — explicit exit code</li>
-                    <li><span class="code-inline">my_func "arg1" "arg2"</span> — call</li>
-                </ul>
-            </div>
-
-            <div class="topic-card full-col" style="border-color: var(--chalk-yellow);">
-                <div class="card-title" style="color: var(--chalk-yellow);">🃏 Special Variables Table</div>
-                <table style="width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace;">
-                    <tr><th style="border-bottom: 1px solid var(--chalk-yellow); padding: 10px; text-align: left; color: var(--chalk-yellow);">Variable</th><th style="border-bottom: 1px solid var(--chalk-yellow); padding: 10px; text-align: left; color: var(--chalk-yellow);">Meaning</th><th style="border-bottom: 1px solid var(--chalk-yellow); padding: 10px; text-align: left; color: var(--chalk-yellow);">Example</th></tr>
-                    <tr><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">$0</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">Script filename</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">./my_script.sh</td></tr>
-                    <tr><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">$1, $2...</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">Positional arguments</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">./script.sh arg1 arg2</td></tr>
-                    <tr><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">$#</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">Number of arguments</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">2 (if 2 arguments passed)</td></tr>
-                    <tr><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">$@</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">All arguments as array</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">"arg1" "arg2"</td></tr>
-                    <tr><td style="padding: 8px;">$?</td><td style="padding: 8px;">Last command exit code</td><td style="padding: 8px;">0 = success, 1-255 = error</td></tr>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- MASTER TEMPLATE -->
-    <section>
-        <div class="topic-title">📋 The Master Template</div>
-        <p class="handwritten" style="margin-bottom: 15px; color: var(--chalk-yellow);">
+<!-- AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Shell Scripting Cheat Sheet</h1>
+<p class="subtitle handwritten">Day 19: Build Your Own Reference Guide — The Automation Arsenal 📚⚡</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble">"Jagu, I have learned so much in the last 5 days — variables, loops, functions, cron... <br/>
+                    On the other hand, when the main terminal is opened, the syntax root appears. Is there any reference to 'Ctrl+C, Ctrl+V'?</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Golu, this is today's mission! <br/>
+                    Make your <span class="chalk-text">Shell Scripting Cheat Sheet</span>. It will have simple syntax, special variables, and reusable template. <br/>
+                    Never forget again! Then do <span class="chalk-text">Mastery Exam</span> of Module 03!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">🎯 Why Build Your Own Cheat Sheet?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Real DevOps engineers always have a <span class="chalk-text">Personal Runbook</span>. 
+                When an alert comes in production, you can't Google it — you open your reference and enter commands from <span class="chalk-text">muscle memory</span>. 
+                Today's work will make you tomorrow!</p>
+</div>
+</section>
+<!-- QUICK REFERENCE CARDS -->
+<section>
+<div class="topic-title">📇 Quick Reference Cards</div>
+<div class="cheat-grid">
+<div class="topic-card" style="border-color: var(--chalk-blue);">
+<div class="card-title" style="color: var(--chalk-blue);">🔤 Variables &amp; Strings</div>
+<ul>
+<li><span class="code-inline">name="Golu"</span> — assign variable</li>
+<li><span class="code-inline">echo $name</span> — access value</li>
+<li><span class="code-inline">read -p "Enter: " var</span> — user input</li>
+<li><span class="code-inline">${name:-default}</span> — default value</li>
+<li><span class="code-inline">${#name}</span> — string length</li>
+</ul>
+</div>
+<div class="topic-card" style="border-color: var(--chalk-green);">
+<div class="card-title" style="color: var(--chalk-green);">🔄 Conditionals</div>
+<ul>
+<li><span class="code-inline">if [ "$x" = "yes" ]; then</span></li>
+<li><span class="code-inline">elif [ -f "$file" ]; then</span></li>
+<li><span class="code-inline">else ... fi</span></li>
+<li><span class="code-inline">[ -d "$dir" ]</span> — check directory</li>
+<li><span class="code-inline">[ $? -eq 0 ]</span> — exit status check</li>
+</ul>
+</div>
+<div class="topic-card" style="border-color: var(--chalk-pink);">
+<div class="card-title" style="color: var(--chalk-pink);">🔁 Loops</div>
+<ul>
+<li><span class="code-inline">for i in {1..5}; do</span></li>
+<li><span class="code-inline">for f in *.log; do</span></li>
+<li><span class="code-inline">while read line; do</span></li>
+<li><span class="code-inline">until [ $x -ge 5 ]; do</span></li>
+<li><span class="code-inline">break / continue</span></li>
+</ul>
+</div>
+<div class="topic-card" style="border-color: var(--chalk-orange);">
+<div class="card-title" style="color: var(--chalk-orange);">⚙️ Functions</div>
+<ul>
+<li><span class="code-inline">my_func() { ... }</span></li>
+<li><span class="code-inline">log() { echo "[LOG] $1"; }</span></li>
+<li><span class="code-inline">local var=5</span> — local scope</li>
+<li><span class="code-inline">return 1</span> — explicit exit code</li>
+<li><span class="code-inline">my_func "arg1" "arg2"</span> — call</li>
+</ul>
+</div>
+<div class="topic-card full-col" style="border-color: var(--chalk-yellow);">
+<div class="card-title" style="color: var(--chalk-yellow);">🃏 Special Variables Table</div>
+<table style="width: 100%; border-collapse: collapse; font-family: 'Fira Code', monospace;">
+<tr><th style="border-bottom: 1px solid var(--chalk-yellow); padding: 10px; text-align: left; color: var(--chalk-yellow);">Variable</th><th style="border-bottom: 1px solid var(--chalk-yellow); padding: 10px; text-align: left; color: var(--chalk-yellow);">Meaning</th><th style="border-bottom: 1px solid var(--chalk-yellow); padding: 10px; text-align: left; color: var(--chalk-yellow);">Example</th></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">$0</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">Script filename</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">./my_script.sh</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">$1, $2...</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">Positional arguments</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">./script.sh arg1 arg2</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">$#</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">Number of arguments</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">2 (if 2 arguments passed)</td></tr>
+<tr><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">$@</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">All arguments as array</td><td style="padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05);">"arg1" "arg2"</td></tr>
+<tr><td style="padding: 8px;">$?</td><td style="padding: 8px;">Last command exit code</td><td style="padding: 8px;">0 = success, 1-255 = error</td></tr>
+</table>
+</div>
+</div>
+</section>
+<!-- MASTER TEMPLATE -->
+<section>
+<div class="topic-title">📋 The Master Template</div>
+<p class="handwritten" style="margin-bottom: 15px; color: var(--chalk-yellow);">
             Ye template har naye script project ki foundation hai. Copy, paste, and build!
         </p>
-        <pre><code>#!/bin/bash
+<pre><code>#!/bin/bash
 #=============================================
 # Script:     template.sh
 # Author:     Golu (Aryashree's Student)
@@ -266,123 +251,117 @@ main() {
     log "Starting script execution..."
     
     # Check arguments
-    [[ $# -eq 0 ]] && usage
+    [[ $# -eq 0 ]] &amp;&amp; usage
     
     # Your business logic here
     log "Processing complete!"
 }
 
 main "$@"</code></pre>
-        <p class="handwritten" style="color: var(--chalk-yellow); margin-top: 10px;">
+<p class="handwritten" style="color: var(--chalk-yellow); margin-top: 10px;">
             💡 <span class="chalk-text">set -euo pipefail</span> — ye teen flags bash scripts ko production-ready banate hain
         </p>
-    </section>
-
-    <!-- REDIRECTION & PIPES REFERENCE -->
-    <section>
-        <div class="topic-title">🔀 Redirection & Pipes Cheat Sheet</div>
-        <div class="content-box accent-blue">
-            <div class="cheat-grid" style="margin: 0;">
-                <div><span class="code-inline">cmd > file</span> — stdout to file</div>
-                <div><span class="code-inline">cmd 2> file</span> — stderr to file</div>
-                <div><span class="code-inline">cmd &> file</span> — both to file</div>
-                <div><span class="code-inline">cmd >> file</span> — append</div>
-                <div><span class="code-inline">cmd1 | cmd2</span> — pipe output</div>
-                <div><span class="code-inline">cmd < file</span> — input from file</div>
-                <div><span class="code-inline">2>&1</span> — stderr to stdout</div>
-                <div><span class="code-inline">2>/dev/null</span> — silence errors</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPARISON OPERATORS -->
-    <section>
-        <div class="topic-title">⚖️ Comparison Operators</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 30px 0;">
-            <div class="content-box" style="border-color: var(--chalk-blue);">
-                <h4 class="handwritten" style="color: var(--chalk-blue);">🔢 Numbers</h4>
-                <ul>
-                    <li><span class="code-inline">-eq</span> — equal</li>
-                    <li><span class="code-inline">-ne</span> — not equal</li>
-                    <li><span class="code-inline">-lt</span> — less than</li>
-                    <li><span class="code-inline">-le</span> — less/equal</li>
-                    <li><span class="code-inline">-gt</span> — greater than</li>
-                    <li><span class="code-inline">-ge</span> — greater/equal</li>
-                </ul>
-            </div>
-            <div class="content-box" style="border-color: var(--chalk-pink);">
-                <h4 class="handwritten" style="color: var(--chalk-pink);">🔤 Strings</h4>
-                <ul>
-                    <li><span class="code-inline">=</span> — equal</li>
-                    <li><span class="code-inline">!=</span> — not equal</li>
-                    <li><span class="code-inline">-z</span> — empty string</li>
-                    <li><span class="code-inline">-n</span> — non-empty</li>
-                    <li><span class="code-inline">&lt;</span> — lexicographic less</li>
-                    <li><span class="code-inline">&gt;</span> — lexicographic greater</li>
-                </ul>
-            </div>
-            <div class="content-box" style="border-color: var(--chalk-green);">
-                <h4 class="handwritten" style="color: var(--chalk-green);">📁 File Tests</h4>
-                <ul>
-                    <li><span class="code-inline">-f</span> — file exists</li>
-                    <li><span class="code-inline">-d</span> — directory exists</li>
-                    <li><span class="code-inline">-x</span> — executable</li>
-                    <li><span class="code-inline">-r</span> — readable</li>
-                    <li><span class="code-inline">-w</span> — writable</li>
-                    <li><span class="code-inline">-s</span> — size &gt; 0</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODULE 03 SUMMARY -->
-    <section>
-        <div class="topic-title">📊 Module 03 — What You've Conquered</div>
-        <div class="content-box accent-green">
-            <p class="handwritten" style="font-size: 1.3rem; color: var(--chalk-yellow);">Day 14 → Day 19 Journey:</p>
-            <ul>
-                <li><strong>Day 14:</strong> Shebang, variables, <span class="code-inline">echo</span> — hello world scripts</li>
-                <li><strong>Day 15:</strong> If-else, for/while loops, argument handling (<span class="code-inline">$1, $#</span>)</li>
-                <li><strong>Day 16:</strong> Functions, scope, <span class="code-inline">local</span>, script composition</li>
-                <li><strong>Day 17:</strong> Cron, <span class="code-inline">tar/gzip</span>, backup automation</li>
-                <li><strong>Day 18:</strong> Log Analyzer — <span class="code-inline">grep/c/awk</span>, report generation</li>
-                <li><strong>Day 19:</strong> Cheat Sheet + Master Template — 🏁 Capstone!</li>
-            </ul>
-            <p class="handwritten" style="margin-top: 20px; color: var(--chalk-blue); font-size: 1.2rem;">
+</section>
+<!-- REDIRECTION & PIPES REFERENCE -->
+<section>
+<div class="topic-title">🔀 Redirection &amp; Pipes Cheat Sheet</div>
+<div class="content-box accent-blue">
+<div class="cheat-grid" style="margin: 0;">
+<div><span class="code-inline">cmd &gt; file</span> — stdout to file</div>
+<div><span class="code-inline">cmd 2&gt; file</span> — stderr to file</div>
+<div><span class="code-inline">cmd &amp;&gt; file</span> — both to file</div>
+<div><span class="code-inline">cmd &gt;&gt; file</span> — append</div>
+<div><span class="code-inline">cmd1 | cmd2</span> — pipe output</div>
+<div><span class="code-inline">cmd &lt; file</span> — input from file</div>
+<div><span class="code-inline">2&gt;&amp;1</span> — stderr to stdout</div>
+<div><span class="code-inline">2&gt;/dev/null</span> — silence errors</div>
+</div>
+</div>
+</section>
+<!-- COMPARISON OPERATORS -->
+<section>
+<div class="topic-title">⚖️ Comparison Operators</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin: 30px 0;">
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<h4 class="handwritten" style="color: var(--chalk-blue);">🔢 Numbers</h4>
+<ul>
+<li><span class="code-inline">-eq</span> — equal</li>
+<li><span class="code-inline">-ne</span> — not equal</li>
+<li><span class="code-inline">-lt</span> — less than</li>
+<li><span class="code-inline">-le</span> — less/equal</li>
+<li><span class="code-inline">-gt</span> — greater than</li>
+<li><span class="code-inline">-ge</span> — greater/equal</li>
+</ul>
+</div>
+<div class="content-box" style="border-color: var(--chalk-pink);">
+<h4 class="handwritten" style="color: var(--chalk-pink);">🔤 Strings</h4>
+<ul>
+<li><span class="code-inline">=</span> — equal</li>
+<li><span class="code-inline">!=</span> — not equal</li>
+<li><span class="code-inline">-z</span> — empty string</li>
+<li><span class="code-inline">-n</span> — non-empty</li>
+<li><span class="code-inline">&lt;</span> — lexicographic less</li>
+<li><span class="code-inline">&gt;</span> — lexicographic greater</li>
+</ul>
+</div>
+<div class="content-box" style="border-color: var(--chalk-green);">
+<h4 class="handwritten" style="color: var(--chalk-green);">📁 File Tests</h4>
+<ul>
+<li><span class="code-inline">-f</span> — file exists</li>
+<li><span class="code-inline">-d</span> — directory exists</li>
+<li><span class="code-inline">-x</span> — executable</li>
+<li><span class="code-inline">-r</span> — readable</li>
+<li><span class="code-inline">-w</span> — writable</li>
+<li><span class="code-inline">-s</span> — size &gt; 0</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- MODULE 03 SUMMARY -->
+<section>
+<div class="topic-title">📊 Module 03 — What You've Conquered</div>
+<div class="content-box accent-green">
+<p class="handwritten" style="font-size: 1.3rem; color: var(--chalk-yellow);">Day 14 → Day 19 Journey:</p>
+<ul>
+<li><strong>Day 14:</strong> Shebang, variables, <span class="code-inline">echo</span> — hello world scripts</li>
+<li><strong>Day 15:</strong> If-else, for/while loops, argument handling (<span class="code-inline">$1, $#</span>)</li>
+<li><strong>Day 16:</strong> Functions, scope, <span class="code-inline">local</span>, script composition</li>
+<li><strong>Day 17:</strong> Cron, <span class="code-inline">tar/gzip</span>, backup automation</li>
+<li><strong>Day 18:</strong> Log Analyzer — <span class="code-inline">grep/c/awk</span>, report generation</li>
+<li><strong>Day 19:</strong> Cheat Sheet + Master Template — 🏁 Capstone!</li>
+</ul>
+<p class="handwritten" style="margin-top: 20px; color: var(--chalk-blue); font-size: 1.2rem;">
                 🏆 Next: Pass the <span class="chalk-text">Module 03 Mastery Exam</span> and move to Networking!
             </p>
-        </div>
-    </section>
-
-    <!-- MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ Mini Quiz</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div style="margin-bottom: 25px;">
-                <p class="handwritten" style="font-size: 1.2rem;"><strong>1. Pichle command ka exit code check karne ke liye kaunsa variable use karte hain?</strong></p>
-                <p>A) $1 &nbsp; B) $? &nbsp; C) $! &nbsp; D) $_</p>
-            </div>
-            <div style="margin-bottom: 25px;">
-                <p class="handwritten" style="font-size: 1.2rem;"><strong>2. Script ko safe mode mein chalane ke liye kaunsa set flag sahi nahi hai?</strong></p>
-                <p>A) set -e &nbsp; B) set -u &nbsp; C) set -x &nbsp; D) set -o pipefail</p>
-            </div>
-            <div style="margin-bottom: 25px;">
-                <p class="handwritten" style="font-size: 1.2rem;"><strong>3. Function ke andar variable ko sirf function tak limit karne ke liye kaunsa keyword?</strong></p>
-                <p>A) local &nbsp; B) global &nbsp; C) static &nbsp; D) readonly</p>
-            </div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ Answer Key</h3>
-                <p>1-B ($? = last exit code) &nbsp;|&nbsp; 2-C (-x is debug mode, not safety) &nbsp;|&nbsp; 3-A (local = function scope)</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <p>#LearnDevOpsIn90Days • Day 19 • Project Edition • By Aryashree Pritikrishna</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
 </div>
-
+</section>
+<!-- MINI QUIZ -->
+<section>
+<div class="topic-title">❓ Mini Quiz</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div style="margin-bottom: 25px;">
+<p class="handwritten" style="font-size: 1.2rem;"><strong>1. Pichle command ka exit code check karne ke liye kaunsa variable use karte hain?</strong></p>
+<p>A) $1   B) $?   C) $!   D) $_</p>
+</div>
+<div style="margin-bottom: 25px;">
+<p class="handwritten" style="font-size: 1.2rem;"><strong>2. Script ko safe mode mein chalane ke liye kaunsa set flag sahi nahi hai?</strong></p>
+<p>A) set -e   B) set -u   C) set -x   D) set -o pipefail</p>
+</div>
+<div style="margin-bottom: 25px;">
+<p class="handwritten" style="font-size: 1.2rem;"><strong>3. Function ke andar variable ko sirf function tak limit karne ke liye kaunsa keyword?</strong></p>
+<p>A) local   B) global   C) static   D) readonly</p>
+</div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ Answer Key</h3>
+<p>1-B ($? = last exit code)  |  2-C (-x is debug mode, not safety)  |  3-A (local = function scope)</p>
+</div>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<p>#LearnDevOpsIn90Days • Day 19 • Project Edition • By Aryashree Pritikrishna</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
+</div>
 </body>
 </html>

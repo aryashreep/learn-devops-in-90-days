@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 21 — Web Architecture Lab
 
-**Jagu:** "Beep Boop! Golu, aaj hum internet ke 'Phonebook' aur 'Doors' ko samjhenge. DNS aur Ports ke bina cloud automation impossible hai. Chalo, wires ke andar jhaankte hain!"
+**Jagu:** "Beep Boop! Golu, today we will understand 'Phonebook' and 'Doors' of internet. Cloud automation is impossible without DNS and Ports. Come on, let's see how the wires move!"
 
 ## 🎯 Task Objectives
 - Perform deep DNS lookups.

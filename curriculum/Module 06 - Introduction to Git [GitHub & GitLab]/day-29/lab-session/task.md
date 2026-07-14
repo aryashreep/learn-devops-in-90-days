@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 29 — Collaboration & Safety
 
-**Jagu:** "Beep Boop! Golu, team collaboration mein 'Merge Conflict' aana toh normal baat hai. Lekin real-world DevOps projects mein log tab panic karte hain jab unhe conflicts resolve karna nahi aata ya wo `--force` push karke doosre ka code delete kar dete hain! Aaj hum seekhenge conflicts resolve karna aur safety force push seekhna."
+**Jagu:** "Beep Boop! Golu, 'Merge Conflict' in team collaboration is a normal thing. But in real-world DevOps projects, the log then causes panic when it fails to resolve conflicts or deletes other's code by pushing `--force`! Today we seek to resolve conflicts and seek security force push."
 
 ## 🎯 Task Objectives
 - Intentionally create and resolve a merge conflict.

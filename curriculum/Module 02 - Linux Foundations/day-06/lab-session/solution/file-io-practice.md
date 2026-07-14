@@ -1,6 +1,6 @@
 # 🧪 Day 06 Solution: File I/O Mastery
 
-**Jagu:** "Shabash Golu! Tune File I/O ke commands master kar liye hain. Ye raha tera 'Proof of Work' report!"
+**Jagu:** "Well done Golu! Tune File I/O commands have been mastered. This is your 'Proof of Work' report!"
 
 ---
 
@@ -57,7 +57,7 @@ Line 3: Today is Day 06
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, hamesha yaad rakh: `>` matlab 'Deewar tod ke naya banao' aur `>>` matlab 'Deewar mein ek aur eint jodo'. Log files ke liye hamesha `>>` use karna!"
+"Golu, always remember: `>` means 'make a new one by breaking the wall' and `>>` means 'add one more to the wall'. Always use `>>` for log files!"
 
 ---
 *#LearnDevOpsIn90Days • Day 06 • Golu & Jagu Edition*

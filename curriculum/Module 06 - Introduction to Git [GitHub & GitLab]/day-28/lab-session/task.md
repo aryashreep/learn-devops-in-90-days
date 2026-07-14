@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 28 — Undoing & Surgical Edits
 
-**Jagu:** "Beep Boop! Git mein 'Oops' moments sabhi ke saath aate hain, Golu. Lekin real DevOps engineer wahi hai jo system bina crash kiye history ko operation theater (surgery) mein le jaakar thik kar sake! Aaj hum reset, revert, cherry-pick aur invisible time recorder 'reflog' ka use karenge."
+**Jagu:** "Beep Boop! 'Oops' moments happen with everyone in Git, Golu. But the real DevOps engineer is the one who can make history in the operation theater (surgery) without crashing the system! Today we will use reset, revert, cherry-pick and invisible time recorder 'reflog'."
 
 ## 🎯 Task Objectives
 - Learn how to safely undo commits using `git reset` (soft) and `git revert`.

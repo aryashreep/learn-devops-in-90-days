@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 52 — DevSecOps Pipeline Architecture
 
-**Jagu:** "Beep Boop! Golu, aaj hum apna khud ka DevSecOps pipeline blueprint banayenge! SAST se lekar DAST tak — har security layer ko ek master workflow mein integrate karna hai!"
+**Jagu:** "Beep Boop! Golu, today we will create our own DevSecOps pipeline blueprint! From SAST to DAST — each security layer has to be integrated into a master workflow!"
 
 ## 🎯 Task Objectives
 - Design a master `devsecops.yml` workflow that orchestrates security checks

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 30: Git Mastery (Advanced Tools) - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 30: Git Mastery (Advanced Tools) - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -88,159 +89,141 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Git Mastery (Advanced Tools)</h1>
-        <p class="subtitle handwritten">Day 30: Becoming a Git Ninja 🐙🥷</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, main ek bug dhund raha hoon jo 10 commits pehle aaya tha, par mujhe pata nahi kaunsa! <br> 
-                    Aur har baar branch switch karne pe files change ho jati hain, kya koi rasta hai do branches pe ek saath kaam karne ka?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, tum basic Git se aage badh chuke ho. <br> 
-                    Aaj hum advanced tools seekhenge: <span class="chalk-text">Bisect</span> bug dhundne ke liye, <span class="chalk-text">Worktree</span> parallel branches ke liye, aur <span class="chalk-text">Hooks</span> automation ke liye. <br> 
-                    Ab tum sirf user nahi, Power User ho!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Git ke advanced power-ups explore karenge. **git bisect** se bugs ka post-mortem, 
-                **git tag** se releases manage karna, **git hooks** se commits ko auto-validate karna, aur 
-                **git worktree** se ek saath multiple branches pe kaam karna.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Debug:</strong> Use Binary Search (`git bisect`) to find the exact commit that broke the code.</li>
-                <li><strong>Version:</strong> Create Lightweight and Annotated tags for releases.</li>
-                <li><strong>Automate:</strong> Set up pre-commit hooks to check linting/tests.</li>
-                <li><strong>Multitask:</strong> Use Worktrees to manage multiple working directories.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Git Mastery (Advanced Tools)</h1>
+<p class="subtitle handwritten">Day 30: Becoming a Git Ninja 🐙🥷</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Wake up, I'm hunting a bug that came 10 commits ago, but I don't know how! <br/> 
+                    And when files change every time I switch branches, is there any way to work together on both branches?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Golu, you have finished basic Git. <br/> 
+                    Today we will look at advanced tools: <span class="chalk-text">Bisect</span> for bug finding, <span class="chalk-text">Worktree</span> for parallel branches, and <span class="chalk-text">Hooks</span> for automation. <br/> 
+                    Now you are not just a user, you are a power user!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will explore advanced power-ups of Git. Post-mortem of bugs from **git bisect**, 
+                Managing releases with **git tags**, auto-validating commits with **git hooks**, and 
+                Working on multiple branches at once with **git worktree**.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Debug:</strong> Use Binary Search (`git bisect`) to find the exact commit that broke the code.</li>
+<li><strong>Version:</strong> Create Lightweight and Annotated tags for releases.</li>
+<li><strong>Automate:</strong> Set up pre-commit hooks to check linting/tests.</li>
+<li><strong>Multitask:</strong> Use Worktrees to manage multiple working directories.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real senior DevOps role mein aap sirf code push nahi karte, poora development workflow optimize karte ho!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Superpowers</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Bisect:</span> Detective work—Commit history ka "Aadha-Aadha" karke chor pakadna.<br>
-                2. <span class="chalk-text">Tag:</span> Milestone marker—"Version 1.0 yahan hai."<br>
-                3. <span class="chalk-text">Hooks:</span> Security guard—"Bina ID card (linting) ke entry nahi."<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Superpowers</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Bisect:</span> Detective work—Commit history ka "Aadha-Aadha" karke chor pakadna.<br/>
+                2. <span class="chalk-text">Tag:</span> Milestone marker—"Version 1.0 yahan hai."<br/>
+                3. <span class="chalk-text">Hooks:</span> Security guard—"Bina ID card (linting) ke entry nahi."<br/>
                 4. <span class="chalk-text">Worktree:</span> Parallel Dimensions—Ek hi repo, do folders, do branches!
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Binary</div><div class="handwritten" style="color:var(--chalk-blue);">Bisect Logic</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">v1.0</div><div class="handwritten" style="color:var(--chalk-blue);">Release Tag</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">.git</div><div class="handwritten" style="color:var(--chalk-blue);">Hooks live here</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: git worktree -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: Git Worktree</div>
-        <div class="content-box" style="border-color: var(--chalk-blue);">
-            <h3 class="handwritten">Stop Switching, Start Spreading!</h3>
-            <p class="hinglish">"Golu, branch switch karne mein context loss hota hai. Worktree use karo!"</p>
-            <div class="bash-box" style="background: #000; color: #48dbfb; padding: 15px; border-radius: 10px; font-family: 'Fira Code', monospace;">
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">Binary</div><div class="handwritten" style="color:var(--chalk-blue);">Bisect Logic</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">v1.0</div><div class="handwritten" style="color:var(--chalk-blue);">Release Tag</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">.git</div><div class="handwritten" style="color:var(--chalk-blue);">Hooks live here</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: git worktree -->
+<section>
+<div class="topic-title">📌 Key Concepts: Git Worktree</div>
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<h3 class="handwritten">Stop Switching, Start Spreading!</h3>
+<p class="handwritten">"Golu, there is context loss while switching branches. Use Worktree!"</p>
+<div class="bash-box" style="background: #000; color: #48dbfb; padding: 15px; border-radius: 10px; font-family: 'Fira Code', monospace;">
                 git worktree add ../hotfix-folder hotfix-branch
             </div>
-            <p class="handwritten" style="margin-top: 15px;">
+<p class="handwritten" style="margin-top: 15px;">
                 Ab aapke pass do folders honge, dono alag branch pe. Ek mein feature develop karo, doosre mein bug fix!
             </p>
-        </div>
-    </section>
-
-    <!-- ⑥ Git Hooks -->
-    <section>
-        <div class="topic-title">⚓ Git Hooks</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <h3 class="handwritten">Pre-commit Safety</h3>
-            <p class="hinglish">"Senior gussa na ho, isliye commit se pehle hi check karlo!"</p>
-            <ul>
-                <li>Check for secrets (API keys)</li>
-                <li>Run unit tests</li>
-                <li>Check code formatting (Prettier/Lint)</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>git tag -a v1.0 -m "Stable Release"</code></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>git bisect start && git bisect bad</code></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>git worktree list</code></p>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Bug dhundne ke liye kaunsa advanced command binary search use karta hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) git find</span><span class="quiz-opt">b) git bisect</span><span class="quiz-opt">c) git search</span><span class="quiz-opt">d) git debug</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Ek hi repo ki multiple branches pe simultaneously alag folders mein kaam karne ke liye?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) git branch -m</span><span class="quiz-opt">b) git worktree</span><span class="quiz-opt">c) git clone --multi</span><span class="quiz-opt">d) git switch --parallel</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-b"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</div>
+</section>
+<!-- ⑥ Git Hooks -->
+<section>
+<div class="topic-title">⚓ Git Hooks</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<h3 class="handwritten">Pre-commit Safety</h3>
+<p class="handwritten">"Senior, don't be angry, so please check before committing!"</p>
+<ul>
+<li>Check for secrets (API keys)</li>
+<li>Run unit tests</li>
+<li>Check code formatting (Prettier/Lint)</li>
+</ul>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>git tag -a v1.0 -m "Stable Release"</code></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. <code>git bisect start &amp;&amp; git bisect bad</code></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. <code>git worktree list</code></p>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Bug dhundne ke liye kaunsa advanced command binary search use karta hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) git find</span><span class="quiz-opt">b) git bisect</span><span class="quiz-opt">c) git search</span><span class="quiz-opt">d) git debug</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Ek hi repo ki multiple branches pe simultaneously alag folders mein kaam karne ke liye?</p>
+<div class="quiz-options"><span class="quiz-opt">a) git branch -m</span><span class="quiz-opt">b) git worktree</span><span class="quiz-opt">c) git clone --multi</span><span class="quiz-opt">d) git switch --parallel</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Golu, match kar lo: 1-b | 2-b"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 30 • Phase 3: The Time Machine • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

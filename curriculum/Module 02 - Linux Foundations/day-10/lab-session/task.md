@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 10 — SSH Key Mastery Lab
 
-**Jagu:** "Golu, passwords are old-school and dangerous. Aaj hum 'Keys' use karke servers ke taale kholenge. Ye DevOps ka 'Front Door' mastery hai!"
+**Jagu:** "Golu, passwords are old-school and dangerous. Today we will open the locks of servers using 'Keys'. This is the 'Front Door' mastery of DevOps!"
 
 ## 🎯 Task Objectives
 - Generate and manage SSH Key pairs.
@@ -10,7 +10,7 @@
 ## 🛠️ Hands-on Challenges
 
 1.  **Key Gen:** Run `ssh-keygen -t ed25519`. (Do NOT use a passphrase for this lab to keep it simple).
-2.  **Key Anatomy:** Locate your `id_ed25519` (Private) and `id_ed25519.pub` (Public) files. **Jagu says:** "Private key ko kabhi share mat karna!"
+2.  **Key Anatomy:** Locate your `id_ed25519` (Private) and `id_ed25519.pub` (Public) files. **Jagu says:** "Never share the private key!"
 3.  **The Speed Dial:** Create/Edit `~/.ssh/config`. Add a fake host entry:
     ```text
     Host myserver

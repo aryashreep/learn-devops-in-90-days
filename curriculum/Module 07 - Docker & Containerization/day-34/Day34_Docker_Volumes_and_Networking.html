@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 34: Docker Volumes and Networking - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 34: Docker Volumes and Networking - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,93 +113,75 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Docker Volumes and Networking</h1>
-        <p class="subtitle handwritten">Day 34: Data Persistence & Bridge Communication 🐳</p>
-    </header>
-
-    
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, main database container stop/delete karta hoon to sara tables delete ho jata hai! Aur database container doosre app container se baat kaise kare?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, default storage temporary hoti hai! Data ko USB drive ki tarah <b>Volume</b> mein store karna padega. Aur dono container ko hum ek custom network bridge pe bhejenge takki DNS ke zariye baat ho sake!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES & WHY SEEKHEIN</h3>
-            <p class="hinglish">
-                Database updates ke liye purane container ko destroy karke new image deploy karna padta hai. Volumes bina data loss ke databases deploy karne mein help karte hain. Networks container boundaries ko bypass karte hain.
-            </p>
-            <ul>
-                <li>Create and manage Named Volumes and Bind Mounts.</li>
-                <li>Understand default Bridge vs custom Bridge network drivers.</li>
-                <li>Explain Port mapping (<code>-p host:container</code>).</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="analogy">
-        <div class="topic-title">🔌 Analogy: USB Drive & Walkie-Talkie</div>
-        <p class="hinglish">
-            <b>Volume</b> ek external USB drive hai jo container ke destroy hone ke baad bhi data safe rakhta hai. <b>Networking</b> containers ke walkie-talkie ki tarah hai. Agar dono container ek hi network channel pe hain, tabhi wo ek doosre se coordinate kar sakte hain.
-        </p>
-    </section>
-
-    <section id="compare">
-        <div class="topic-title">⚖️ Comparison: Named Volume vs. Bind Mount</div>
-        <div class="vs-container">
-            <div class="vs-card danger">
-                <div class="vs-title">Bind Mount</div>
-                <p>Maps a specific directory on your laptop host directly to the container (e.g. mounting code folder during development for live reload).</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="vs-card secure">
-                <div class="vs-title">Named Volume</div>
-                <p>Storage fully managed by Docker inside <code>/var/lib/docker/volumes/</code>. Recommended for persistent DB files in production.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="realworld">
-        <div class="topic-title">🎬 Real World Troubleshooting: Lost Customer Data</div>
-        <p class="hinglish">
-            PostgreSQL update ke time bina volume configuration ke container replace kar diya aur saara product data ud gaya. Volume persistence implementation se upgrades aur data safety automate hoti hai.
-        </p>
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># Create custom network and volume
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Docker Volumes and Networking</h1>
+<p class="subtitle handwritten">Day 34: Data Persistence &amp; Bridge Communication 🐳</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, when I stop/delete the main database container, all the tables seem to be deleted! And how does the database container talk to the other app containers?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, the default storage is temporary! The data will have to be stored in <b>Volume</b> like a USB drive. And we will send both containers over a custom network bridge so that they can be accessed through DNS!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES &amp; WHY SEEKHEIN</h3>
+<p class="handwritten">For database updates, one has to destroy the old container and deploy a new image. Volumes help in deploying databases without data loss. Networks bypass container boundaries.</p>
+<ul>
+<li>Create and manage Named Volumes and Bind Mounts.</li>
+<li>Understand default Bridge vs custom Bridge network drivers.</li>
+<li>Explain Port mapping (<code>-p host:container</code>).</li>
+</ul>
+</div>
+</section>
+<section id="analogy">
+<div class="topic-title">🔌 Analogy: USB Drive &amp; Walkie-Talkie</div>
+<p class="handwritten"><b>Volume</b> is an external USB drive that keeps data safe even if the container is destroyed. <b>Networking</b> Containers are like walkie-talkies. If both containers are on the same network channel, they can coordinate with each other.</p>
+</section>
+<section id="compare">
+<div class="topic-title">⚖️ Comparison: Named Volume vs. Bind Mount</div>
+<div class="vs-container">
+<div class="vs-card danger">
+<div class="vs-title">Bind Mount</div>
+<p>Maps a specific directory on your laptop host directly to the container (e.g. mounting code folder during development for live reload).</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="vs-card secure">
+<div class="vs-title">Named Volume</div>
+<p>Storage fully managed by Docker inside <code>/var/lib/docker/volumes/</code>. Recommended for persistent DB files in production.</p>
+</div>
+</div>
+</section>
+<section id="realworld">
+<div class="topic-title">🎬 Real World Troubleshooting: Lost Customer Data</div>
+<p class="handwritten">At the time of PostgreSQL update, the container was replaced without volume configuration and all product data was deleted. Volume persistence implementation automates upgrades and data security.</p>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<pre><code># Create custom network and volume
 docker network create my-net
 docker volume create db-data
 
@@ -207,39 +190,36 @@ docker run -d --name postgres-db --network my-net -v db-data:/var/lib/postgresql
 
 # Run application connecting to the DB using container name
 docker run -d --name app-service --network my-net -p 8080:80 nginx</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 34 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. Which network driver is the default when running a Docker container if no network is specified?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) host</span>
-                <span class="quiz-opt">B) bridge</span>
-                <span class="quiz-opt">C) none</span>
-                <span class="quiz-opt">D) overlay</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. What happens if you "expose" a port in a Dockerfile but do not publish it with -p at runtime?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) The container fails to start</span>
-                <span class="quiz-opt">B) The port is published on a random host port automatically</span>
-                <span class="quiz-opt">C) The service is accessible only from inside the container or by other linked containers</span>
-                <span class="quiz-opt">D) Security scanner blocks the image</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: B (bridge), 2: C (internal network access only)</p>
-        </div>
-    </section>
-
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 34 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Which network driver is the default when running a Docker container if no network is specified?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) host</span>
+<span class="quiz-opt">B) bridge</span>
+<span class="quiz-opt">C) none</span>
+<span class="quiz-opt">D) overlay</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. What happens if you "expose" a port in a Dockerfile but do not publish it with -p at runtime?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) The container fails to start</span>
+<span class="quiz-opt">B) The port is published on a random host port automatically</span>
+<span class="quiz-opt">C) The service is accessible only from inside the container or by other linked containers</span>
+<span class="quiz-opt">D) Security scanner blocks the image</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: B (bridge), 2: C (internal network access only)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

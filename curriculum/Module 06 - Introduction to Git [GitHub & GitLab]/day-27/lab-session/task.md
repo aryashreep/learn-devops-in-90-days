@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 27 — Integrating Work (Merge vs Rebase)
 
-**Jagu:** "Beep Boop! Golu, do developers jab parallel kaam karte hain, toh unki history ko main branch mein jodna hota hai. Par isko karne ke do tareeqe hain: Git Merge (jo merge commit banata hai) aur Git Rebase (jo linear history banata hai). Chalo dono ka magic dekhte hain!"
+**Jagu:** "Beep Boop! Golu, when developers work in parallel, their history is added to the main branch. There are two ways to do this: Git Merge (which creates a merge commit) and Git Rebase (which creates a linear history). Let's see the magic of these two!"
 
 ## 🎯 Task Objectives
 - Practice branching and parallel development.

@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 25 — Creating Parallel Realities
 
-**Jagu:** "Beep Boop! Golu, imagine karo tum ek naya button bana rahe ho jo system crash kar sakta hai. Kya tum ye 'Live' server pe karoge? Bilkul nahi! Aaj hum ek 'Parallel World' (Branch) banayenge."
+**Jagu:** "Beep Boop! Golu, imagine you are creating a new button which can crash the system. Will you do this on 'Live' server? Absolutely not! Today we will create a 'Parallel World' (Branch)."
 
 ## 🎯 Task Objectives
 - Create and switch between local branches.
@@ -18,7 +18,7 @@
     - Add and commit it: `git commit -m "feat: added new experimental feature"`.
 3.  **The Multiverse Check:**
     - Switch back to `main`: `git checkout main`.
-    - **Jagu says:** "Dekh Golu, `new_feature.txt` gayab ho gayi! Wo sirf `dev` world mein hai."
+    - **Jagu says:** "See Golu, `new_feature.txt` is gone! He is the only 'dev' in the world."
 4.  **GitHub Connection:**
     - Create a new public repository on GitHub named `90-days-devops-practice`.
     - Copy the remote URL and run: `git remote add origin <url>`.
@@ -29,7 +29,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ab tera code pure world ke liye cloud pe hai! GitHub link save kar."
+**Jagu:** "Golu, now your code is on the cloud for the pure world! Save the GitHub link."
 
 1. Create a file named **`git-github-link.md`** in the **`solution/`** folder.
 2. Paste the link to your GitHub repository and a screenshot of your two branches on GitHub.

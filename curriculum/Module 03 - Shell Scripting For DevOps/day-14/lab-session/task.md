@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 14 — My First Automation
 
-**Jagu:** "Beep Boop! Golu, manually commands chalana toh thik hai, par real engineer wo hai jo 'Scripts' likhta hai. Aaj hum tumhara pehla 'Robot' (Script) banayenge!"
+**Jagu:** "Beep Boop! Golu, it is fine to run commands manually, but the real engineer is the one who writes the 'Scripts'. Today we will create your first 'Robot' (Script)!"
 
 ## 🎯 Task Objectives
 - Create a functional `.sh` script with a proper Shebang.
@@ -12,7 +12,7 @@
 1.  **The Greeting Bot:** 
     - Create a file `greet.sh`. 
     - Add `#!/bin/bash` at the top.
-    - Ask for the user's name: `read -p "Aapka naam kya hai? " name`.
+    - Ask for the user's name: `read -p "What is your name?" name`.
     - Print: "Welcome to the DevOps Journey, $name!"
 2.  **Variable Magic:** Create a script `vars.sh` that stores your "Favorite Tool" (e.g., Docker) in a variable and prints "I am excited to learn $TOOL."
 3.  **Math Assistant:** Write a script that takes two numbers from the user and prints their **Sum**.
@@ -22,7 +22,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, automation ki pehli seedi par kadam rakh diya hai! Scripts save kar."
+**Jagu:** "Golu, you have stepped on the first step of automation! Save scripts."
 
 1. Create a file named **`first-scripts-report.md`** in the **`solution/`** folder.
 2. Paste the code for your `greet.sh` and a screenshot of it running.

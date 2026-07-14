@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 44 — Runners: GitHub-Hosted and Self-Hosted
 
-**Jagu:** "Beep Boop! Golu, runner wo worker hai jo tumhare workflow ko execute karta hai. Aaj hum samjhenge kaun si runner kab use karni hai!"
+**Jagu:** "Beep Boop! Golu, runner is the worker that executes your workflow. Today we will understand which runner to use when!"
 
 ## 🎯 Task Objectives
 - Understand the difference between GitHub-hosted and self-hosted runners.

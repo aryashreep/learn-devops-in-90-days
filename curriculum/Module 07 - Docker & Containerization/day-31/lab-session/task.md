@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 31 — Introduction to Docker
 
-**Jagu:** "Beep Boop! Golu, aaj hum Docker ki duniya mein kadam rakh rahe hain. Ye woh magic hai jo 'mere machine mein to kaam kar raha tha' wali problem khatam kar deta hai!"
+**Jagu:** "Beep Boop! Golu, today we are entering the world of Docker. This is the magic that has solved the problem of 'my machine is not working'!"
 
 ## 🎯 Task Objectives
 - Understand Docker's architecture: Daemon, CLI, Images, Containers, Registry.

@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 09 — User & Group Management Challenge
 
-**Jagu:** "Golu, production servers pe har koi 'Root' nahi hota. Aaj hum seekhenge ki kaise multiple users (Tokyo, Berlin, Professor) ko manage karte hain aur permissions dete hain!"
+**Jagu:** "Golu, there is no 'Root' on production servers. Today we will learn how to manage multiple users (Tokyo, Berlin, Professor) and give permissions!"
 
 ## 🎯 Task Objectives
 - Create and manage system users.

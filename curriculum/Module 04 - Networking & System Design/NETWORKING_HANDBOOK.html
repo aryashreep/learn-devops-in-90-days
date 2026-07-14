@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Networking Handbook - Master Guide for DevOps</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Networking Handbook - Master Guide for DevOps</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0f172a;
             --chalk-white: #f8fafc;
@@ -48,151 +49,120 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <div class="header">
-        <div>
-            <h2>Aryashree Pritikrishna</h2>
-            <small>DevOps Training Series • 2026</small>
-        </div>
-        <div style="text-align: right">
+<div class="header">
+<div>
+<h2>Aryashree Pritikrishna</h2>
+<small>DevOps Training Series • 2026</small>
+</div>
+<div style="text-align: right">
             #LearnDevOpsIn90Days
         </div>
-    </div>
-
-    <h1>The Networking Handbook</h1>
-    <p class="subtitle">From Bits and Frames to VPCs and Load Balancers</p>
-
-    <section id="what-is-networking">
-        <h2 class="topic-title">1. What is Networking?</h2>
-        <div class="bubble">
-            A network is formed when two or more systems connect to communicate. Think of it like a <span class="chalk-highlight">Postal Service</span> for computers. You need roads (cables), addresses (IPs), and envelopes (packets).
-        </div>
-        <div class="analogy-box">
-            <span class="analogy-title">Why it matters:</span>
+</div>
+<h1>The Networking Handbook</h1>
+<p class="subtitle">From Bits and Frames to VPCs and Load Balancers</p>
+<section id="what-is-networking">
+<h2 class="topic-title">1. What is Networking?</h2>
+<div class="bubble">A network is formed when two or more systems connect to communicate. Think of it like a <span class="chalk-highlight">Postal Service</span> for computers. You need roads (cables), addresses (IPs), and envelopes (packets).</div>
+<div class="analogy-box">
+<span class="analogy-title">Why it matters:</span>
             In DevOps, "Infrastructure as Code" means defining networks using software. If the network fails, your app is unreachable, no matter how good your code is!
         </div>
-        <ul>
-            <li><strong>Nodes:</strong> Any device (server, laptop, router) on the network.</li>
-            <li><strong>Links:</strong> The physical or wireless connections.</li>
-            <li><strong>Protocol:</strong> The rules of the conversation (e.g., TCP/IP).</li>
-            <li><strong>Topology:</strong> The layout (Star, Bus, Mesh).</li>
-        </ul>
-    </section>
-
-    <section id="osi-model">
-        <h2 class="topic-title">2. OSI vs. TCP/IP (Practical View)</h2>
-        <div class="bubble">
-            Models split networking into layers, like an <span class="chalk-highlight">Assembly Line</span>. Each layer has a specific job.
-        </div>
-        <ul>
-            <li><strong>Layer 7 (Application):</strong> HTTP, FTP, SSH (Where apps live).</li>
-            <li><strong>Layer 4 (Transport):</strong> TCP/UDP ports (Reliability).</li>
-            <li><strong>Layer 3 (Network):</strong> IP addresses and Routing.</li>
-            <li><strong>Layer 2 (Data Link):</strong> MAC addresses and Switches.</li>
-            <li><strong>Layer 1 (Physical):</strong> Cables and electricity.</li>
-        </ul>
-        <div class="bash-box"># Layer 3 Check (Can I see the machine?)
+<ul>
+<li><strong>Nodes:</strong> Any device (server, laptop, router) on the network.</li>
+<li><strong>Links:</strong> The physical or wireless connections.</li>
+<li><strong>Protocol:</strong> The rules of the conversation (e.g., TCP/IP).</li>
+<li><strong>Topology:</strong> The layout (Star, Bus, Mesh).</li>
+</ul>
+</section>
+<section id="osi-model">
+<h2 class="topic-title">2. OSI vs. TCP/IP (Practical View)</h2>
+<div class="bubble">Models split networking into layers, like an <span class="chalk-highlight">Assembly Line</span>. Each layer has a specific job.</div>
+<ul>
+<li><strong>Layer 7 (Application):</strong> HTTP, FTP, SSH (Where apps live).</li>
+<li><strong>Layer 4 (Transport):</strong> TCP/UDP ports (Reliability).</li>
+<li><strong>Layer 3 (Network):</strong> IP addresses and Routing.</li>
+<li><strong>Layer 2 (Data Link):</strong> MAC addresses and Switches.</li>
+<li><strong>Layer 1 (Physical):</strong> Cables and electricity.</li>
+</ul>
+<div class="bash-box"># Layer 3 Check (Can I see the machine?)
 ping 8.8.8.8
 
 # Layer 4 Check (Is the door open?)
 telnet google.com 80</div>
-    </section>
-
-    <section id="ip-addressing">
-        <h2 class="topic-title">3. IP Addresses & Subnetting</h2>
-        <div class="analogy-box">
-            <span class="analogy-title">The Building Analogy:</span>
+</section>
+<section id="ip-addressing">
+<h2 class="topic-title">3. IP Addresses &amp; Subnetting</h2>
+<div class="analogy-box">
+<span class="analogy-title">The Building Analogy:</span>
             An IP address is the building's street address. A <strong>Public IP</strong> is the front door (routable on the internet). A <strong>Private IP</strong> is like an internal extension (e.g., 10.x.x.x).
         </div>
-        <div class="bubble">
-            <strong>Subnetting</strong> is slicing a large network into smaller slices. <strong>CIDR</strong> notation (like /24) tells you how big the slice is.
-        </div>
-        <ul>
-            <li><strong>/32:</strong> Just 1 single IP.</li>
-            <li><strong>/24:</strong> 254 usable IPs.</li>
-            <li><strong>/16:</strong> 65,000+ usable IPs.</li>
-        </ul>
-        <div class="hinglish">Lower CIDR = More IPs. Higher CIDR = Fewer IPs. Confusion mat paalo!</div>
-    </section>
-
-    <section id="dns">
-        <h2 class="topic-title">4. DNS: The Internet's Phonebook</h2>
-        <div class="bubble">
-            Computers only know IPs. DNS translates "google.com" into 142.250.x.x. <span class="chalk-highlight">"It's always DNS"</span> is a meme because when it breaks, everything feels broken!
-        </div>
-        <ul>
-            <li><strong>A Record:</strong> Name to IPv4.</li>
-            <li><strong>CNAME:</strong> Name to another Name (Alias).</li>
-            <li><strong>TTL (Time to Live):</strong> How long the record is cached.</li>
-        </ul>
-        <div class="bash-box"># DNS Lookup
+<div class="bubble"><strong>Subnetting</strong> is slicing a large network into smaller slices. <strong>CIDR</strong> notation (like /24) tells you how big the slice is.</div>
+<ul>
+<li><strong>/32:</strong> Just 1 single IP.</li>
+<li><strong>/24:</strong> 254 usable IPs.</li>
+<li><strong>/16:</strong> 65,000+ usable IPs.</li>
+</ul>
+<div class="handwritten">Lower CIDR = More IPs. Higher CIDR = Fewer IPs. Confusion mat paalo!</div>
+</section>
+<section id="dns">
+<h2 class="topic-title">4. DNS: The Internet's Phonebook</h2>
+<div class="bubble">Computers only know IPs. DNS translates "google.com" into 142.250.x.x. <span class="chalk-highlight">"It's always DNS"</span> is a meme because when it breaks, everything feels broken!</div>
+<ul>
+<li><strong>A Record:</strong> Name to IPv4.</li>
+<li><strong>CNAME:</strong> Name to another Name (Alias).</li>
+<li><strong>TTL (Time to Live):</strong> How long the record is cached.</li>
+</ul>
+<div class="bash-box"># DNS Lookup
 nslookup google.com
 dig google.com</div>
-    </section>
-
-    <section id="tcp-udp">
-        <h2 class="topic-title">5. TCP vs. UDP</h2>
-        <div class="analogy-box">
-            <span class="analogy-title">Communication Styles:</span>
-            <strong>TCP:</strong> Like a Phone Call. Reliable, ordered, and acknowledged (3-Way Handshake).<br>
-            <strong>UDP:</strong> Like a P.A. System. Fast, but unreliable. Use for streaming or gaming.
+</section>
+<section id="tcp-udp">
+<h2 class="topic-title">5. TCP vs. UDP</h2>
+<div class="analogy-box">
+<span class="analogy-title">Communication Styles:</span>
+<strong>TCP:</strong> Like a Phone Call. Reliable, ordered, and acknowledged (3-Way Handshake).<br/>
+<strong>UDP:</strong> Like a P.A. System. Fast, but unreliable. Use for streaming or gaming.
         </div>
-        <div class="bash-box"># Test connection with netcat
-nc -zv <host> <port></div>
-    </section>
-
-    <section id="firewalls">
-        <h2 class="topic-title">6. Firewalls & NAT</h2>
-        <div class="bubble">
-            A <strong>Firewall</strong> is a security guard. It follows Inbound/Outbound rules. In the cloud, we call them <span class="chalk-highlight">Security Groups</span>.
-        </div>
-        <div class="bubble">
-            <strong>NAT (Network Address Translation):</strong> Allows private servers to share one Public IP to access the internet. Like an office receptionist handing out mail.
-        </div>
-    </section>
-
-    <section id="load-balancing">
-        <h2 class="topic-title">7. Load Balancing & Proxies</h2>
-        <ul>
-            <li><strong>L4 Load Balancer:</strong> Distributes based on IP/Port (Fast).</li>
-            <li><strong>L7 Load Balancer:</strong> Distributes based on content/URL (Smart).</li>
-            <li><strong>Reverse Proxy:</strong> Sits in front of your server to handle SSL and Caching (Bodyguard).</li>
-        </ul>
-    </section>
-
-    <section id="cloud-k8s">
-        <h2 class="topic-title">8. VPC & Kubernetes Networking</h2>
-        <div class="bubble">
-            <strong>VPC:</strong> Your own private slice of the cloud data center.
-        </div>
-        <div class="bubble">
-            <strong>K8s Networking:</strong> Pods are ephemeral! Never use Pod IPs; always talk via <span class="chalk-highlight">Services</span> (Stable DNS names).
-        </div>
-    </section>
-
-    <section id="system-design">
-        <h2 class="topic-title">10. System Design & Scalability</h2>
-        <div class="bubble">
-            System Design is the process of defining the architecture, components, and interfaces for a system to satisfy specific requirements. In DevOps, this means building for <span class="chalk-highlight">High Availability</span> and <span class="chalk-highlight">Fault Tolerance</span>.
-        </div>
-        <ul>
-            <li><strong>Vertical Scaling (Scale Up):</strong> Adding more power (CPU/RAM) to an existing machine.</li>
-            <li><strong>Horizontal Scaling (Scale Out):</strong> Adding more machines to your network pool.</li>
-            <li><strong>High Availability (HA):</strong> Ensuring the system remains operational even if a component fails (Multi-AZ).</li>
-            <li><strong>Monolith:</strong> A single, unified unit of software.</li>
-            <li><strong>Microservices:</strong> A collection of small, independent services communicating over a network.</li>
-        </ul>
-        <div class="analogy-box">
-            <span class="analogy-title">The Restaurant Analogy:</span>
+<div class="bash-box"># Test connection with netcat
+nc -zv <host> <port></port></host></div>
+</section>
+<section id="firewalls">
+<h2 class="topic-title">6. Firewalls &amp; NAT</h2>
+<div class="bubble">A <strong>Firewall</strong> is a security guard. It follows Inbound/Outbound rules. In the cloud, we call them <span class="chalk-highlight">Security Groups</span>.</div>
+<div class="bubble"><strong>NAT (Network Address Translation):</strong> Allows private servers to share one Public IP to access the internet. Like an office receptionist handing out mail.</div>
+</section>
+<section id="load-balancing">
+<h2 class="topic-title">7. Load Balancing &amp; Proxies</h2>
+<ul>
+<li><strong>L4 Load Balancer:</strong> Distributes based on IP/Port (Fast).</li>
+<li><strong>L7 Load Balancer:</strong> Distributes based on content/URL (Smart).</li>
+<li><strong>Reverse Proxy:</strong> Sits in front of your server to handle SSL and Caching (Bodyguard).</li>
+</ul>
+</section>
+<section id="cloud-k8s">
+<h2 class="topic-title">8. VPC &amp; Kubernetes Networking</h2>
+<div class="bubble"><strong>VPC:</strong> Your own private slice of the cloud data center.</div>
+<div class="bubble"><strong>K8s Networking:</strong> Pods are ephemeral! Never use Pod IPs; always talk via <span class="chalk-highlight">Services</span> (Stable DNS names).</div>
+</section>
+<section id="system-design">
+<h2 class="topic-title">10. System Design &amp; Scalability</h2>
+<div class="bubble">System Design is the process of defining the architecture, components, and interfaces for a system to satisfy specific requirements. In DevOps, this means building for <span class="chalk-highlight">High Availability</span> and <span class="chalk-highlight">Fault Tolerance</span>.</div>
+<ul>
+<li><strong>Vertical Scaling (Scale Up):</strong> Adding more power (CPU/RAM) to an existing machine.</li>
+<li><strong>Horizontal Scaling (Scale Out):</strong> Adding more machines to your network pool.</li>
+<li><strong>High Availability (HA):</strong> Ensuring the system remains operational even if a component fails (Multi-AZ).</li>
+<li><strong>Monolith:</strong> A single, unified unit of software.</li>
+<li><strong>Microservices:</strong> A collection of small, independent services communicating over a network.</li>
+</ul>
+<div class="analogy-box">
+<span class="analogy-title">The Restaurant Analogy:</span>
             A <strong>Monolith</strong> is one chef doing everything. If he gets sick, the restaurant closes. <strong>Microservices</strong> are a team: one for salads, one for mains, one for desserts. If the salad chef is sick, you still get your main course!
         </div>
-    </section>
-
-    <footer>
-        <p>#LearnDevOpsIn90Days • Created with ❤️ by Aryashree Pritikrishna</p>
-    </footer>
+</section>
+<footer>
+<p>#LearnDevOpsIn90Days • Created with ❤️ by Aryashree Pritikrishna</p>
+</footer>
 </div>
-
 </body>
 </html>

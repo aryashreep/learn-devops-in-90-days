@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 38 — Docker Project: Dockerize a Full Application
 
-**Jagu:** "Beep Boop! Golu, aaj tumhara final test hai containerization ka. Ek complete web application (Frontend + Backend + DB) ko deploy karo!"
+**Jagu:** "Beep Boop! Golu, today is your final test of containerization. Deploy a complete web application (Frontend + Backend + DB)!"
 
 ## 🎯 Task Objectives
 - Write optimized multi-stage Dockerfiles.

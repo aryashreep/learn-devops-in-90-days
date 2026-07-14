@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 02: Linux Command Cheat Sheet - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 02: Linux Command Cheat Sheet - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -101,271 +102,242 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- BRANDED AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item"><span class="contact-icon">🔗</span> <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
-            <div class="contact-item"><span class="contact-icon">💼</span> <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
-            <div class="contact-item"><span class="contact-icon">📺</span> <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
-            <div class="contact-item"><span class="contact-icon">📧</span> <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item"><span class="contact-icon">📞</span> <span>+91 8147450705</span></div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Linux Command Cheat Sheet</h1>
-        <p class="subtitle handwritten">Day 02: Talking to the Shell Like a Pro ⌨️</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle">
-                        <div class="malik-head"><div class="malik-smile"></div></div>
-                        <div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
-                    </div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Yaar Jagu, itne saare commands hain, kaise yaad rakhun? Kuch <span class="chalk-text">Shortcuts</span> batao na!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">
-                    "Bhai Golu, commands ratna nahi, use karna seekho! <br> 
-                    Aaj hum essential <span class="chalk-text">DevOps Commands</span> ka dashboard banayenge."
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle">
-                        <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                        <div class="robot-body"></div><div class="robot-bag"></div>
-                    </div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux CLI ke <b>Top Commands</b> ko categorize karenge. 
-                Navigation se lekar File operations aur System info tak, sab yahan milega!
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Navigate:</strong> Moving between directories like a pro.</li>
-                <li><strong>Manipulate:</strong> Creating, copying, and deleting files/folders.</li>
-                <li><strong>Inspect:</strong> Checking system health and current identity.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<!-- BRANDED AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item"><span class="contact-icon">🔗</span> <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+<div class="contact-item"><span class="contact-icon">💼</span> <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+<div class="contact-item"><span class="contact-icon">📺</span> <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+<div class="contact-item"><span class="contact-icon">📧</span> <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item"><span class="contact-icon">📞</span> <span>+91 8147450705</span></div>
+</div>
+</header>
+<header>
+<h1>Linux Command Cheat Sheet</h1>
+<p class="subtitle handwritten">Day 02: Talking to the Shell Like a Pro ⌨️</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle">
+<div class="malik-head"><div class="malik-smile"></div></div>
+<div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
+</div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Friend Jagu, there are so many commands, how do you remember them? Tell me a few <span class="chalk-text">Shortcuts</span>!"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">"Golu, do not ratna commands, seek to use them! <br/> 
+                    Today we will create a dashboard of essential <span class="chalk-text">DevOps Commands</span>.”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will categorize <b>Top Commands</b> of Linux CLI. 
+                From Navigation to File operations and System info, everything will be found everywhere!</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Navigate:</strong> Moving between directories like a pro.</li>
+<li><strong>Manipulate:</strong> Creating, copying, and deleting files/folders.</li>
+<li><strong>Inspect:</strong> Checking system health and current identity.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki DevOps mein Automation tabhi shuru hoti hai jab aap CLI mein fast hote ho!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The TV Remote</div>
-        <div class="doodle-container">
-            <div class="doodle-wrapper">
-                <div class="malik-doodle">
-                    <div class="malik-head"><div class="malik-smile"></div></div>
-                    <div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
-                </div>
-                <span class="char-name">Golu</span>
-            </div>
-            <div class="speech-bubble">
-                "CLI bilkul <span class="chalk-text">TV Remote</span> jaisa hai! Aap button dabate ho (command type karte ho) aur TV channel badalta hai (action hota hai)."
-            </div>
-        </div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Button:</span> Command (e.g., `ls`).<br>
-                2. <span class="chalk-text">Signal:</span> Shell interprets it.<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The TV Remote</div>
+<div class="doodle-container">
+<div class="doodle-wrapper">
+<div class="malik-doodle">
+<div class="malik-head"><div class="malik-smile"></div></div>
+<div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
+</div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble">"CLI is exactly <span class="chalk-text">TV Remote</span> as is! You press the button (type the command) and change the TV channel (action is performed)."</div>
+</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Button:</span> Command (e.g., `ls`).<br/>
+                2. <span class="chalk-text">Signal:</span> Shell interprets it.<br/>
                 3. <span class="chalk-text">Action:</span> Kernel executes (e.g., shows files).
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Tab</div><div class="handwritten" style="color:var(--chalk-blue);">Autocomplete Friend</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">Up</div><div class="handwritten" style="color:var(--chalk-blue);">Command History</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">Ctrl+C</div><div class="handwritten" style="color:var(--chalk-blue);">Emergency Exit</div></div>
-        </div>
-    </section>
-
-    <!-- ④ Key Categories -->
-    <section>
-        <div class="topic-title">📂 The Big Three: Navigation, Files, System</div>
-        
-        <h3>1. Moving Around (Navigation)</h3>
-        <table class="cmd-table">
-            <thead><tr><th>Command</th><th>What It Does</th><th>DevOps Tip</th></tr></thead>
-            <tbody>
-                <tr><td><span class="cmd-code">pwd</span></td><td>Print Working Directory</td><td>Kahan ho bhai? Yeh batayega.</td></tr>
-                <tr><td><span class="cmd-code">ls -la</span></td><td>List all files (hidden too)</td><td>-l=Long, -a=All. Must use!</td></tr>
-                <tr><td><span class="cmd-code">cd ..</span></td><td>Go back one folder</td><td>Parent directory mein jump.</td></tr>
-                <tr><td><span class="cmd-code">cd ~</span></td><td>Go to Home</td><td>Ghar wapsi!</td></tr>
-            </tbody>
-        </table>
-
-        <h3>2. Managing Stuff (File Ops)</h3>
-        <table class="cmd-table">
-            <thead><tr><th>Command</th><th>What It Does</th><th>DevOps Tip</th></tr></thead>
-            <tbody>
-                <tr><td><span class="cmd-code">mkdir -p</span></td><td>Make nested folders</td><td>Parents bhi bana dega automatically.</td></tr>
-                <tr><td><span class="cmd-code">touch</span></td><td>Create empty file</td><td>Quick testing file creation.</td></tr>
-                <tr><td><span class="cmd-code">cp -r</span></td><td>Copy (Recursive)</td><td>Folders ke liye -r zaroori hai.</td></tr>
-                <tr><td><span class="cmd-code">rm -rf</span></td><td>Force Delete (DANGER)</td><td>Bhai, sambhal ke! Sab uda dega.</td></tr>
-            </tbody>
-        </table>
-
-        <h3>3. System Check (Identity & Health)</h3>
-        <table class="cmd-table">
-            <thead><tr><th>Command</th><th>What It Does</th><th>DevOps Tip</th></tr></thead>
-            <tbody>
-                <tr><td><span class="cmd-code">whoami</span></td><td>Current user name</td><td>Aap kaun ho?</td></tr>
-                <tr><td><span class="cmd-code">hostname</span></td><td>Machine name</td><td>Server ka naam kya hai?</td></tr>
-                <tr><td><span class="cmd-code">uname -a</span></td><td>System Info</td><td>Kernel version aur architecture.</td></tr>
-                <tr><td><span class="cmd-code">df -h</span></td><td>Disk Usage</td><td>Space full toh nahi ho gayi?</td></tr>
-            </tbody>
-        </table>
-    </section>
-
-    <!-- ⑤ Key Concepts: Absolute vs Relative -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: Paths</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">Absolute Path</h3>
-                <p class="hinglish">Starts from root (/). Pure raste ka map.</p>
-                <code>/etc/nginx/nginx.conf</code>
-            </div>
-            <div class="vs-circle">OR</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">Relative Path</h3>
-                <p class="hinglish">Starts from where you are. Shortcut!</p>
-                <code>./config.txt</code>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: ls vs ls -la</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-white);">
-                <h3 class="handwritten">ls</h3>
-                <p class="hinglish">"Sirf upar upar se dikhayega (Normal files)."</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">ls -la</h3>
-                <p class="hinglish">"Andar ki baat! Permissions, Size, Hidden files (.env) sab dikhega."</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑦ REAL-WORLD EXAMPLE -->
-    <section>
-        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Log Hunt</div>
-        <div class="doodle-container">
-            <div class="robot-doodle">
-                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                <div class="robot-body"></div><div class="robot-bag"></div>
-            </div>
-            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
-                "Bhai, server hang ho raha hai! Check karo logs kahan hain?" <br>
-                <span class="chalk-text">Fix:</span> <code>cd /var/log && ls -lh</code>
-            </div>
-        </div>
-        <div class="content-box" style="border-color: var(--chalk-blue);">
-            <p>DevOps Engineers daily use: <code>tail -f /var/log/syslog</code> (Live log monitoring).</p>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> Commands yaad karna mushkil hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Sirf 10-15 commands 90% kaam kar dete hain. <code>history</code> check karo!</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> `rm -rf` file recovery possible hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Linux CLI mein "Recycle Bin" nahi hota. Ek baar gaya toh gaya!</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF: Practice Drill</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>mkdir -p devops/day02</code> <span class="hinglish">(Foldero ka khandaan!)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>cd devops/day02 && touch notes.txt</code></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>ls -la</code> <span class="hinglish">(Check hidden folders like `.` and `..`)</span></p>
-        </div>
-    </section>
-
-    <!-- ⑩ QUICK SUMMARY -->
-    <section>
-        <div class="topic-title">✓ QUICK SUMMARY</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
-            <ul>
-                <li><strong>Navigation:</strong> pwd, cd, ls.</li>
-                <li><strong>Creation:</strong> mkdir, touch.</li>
-                <li><strong>Identity:</strong> whoami, hostname.</li>
-                <li><strong>Cleanup:</strong> rm -rf (Dangerous but useful).</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Folder ke andar jane ke liye kaunsa command hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) touch</span><span class="quiz-opt">b) cd</span><span class="quiz-opt">c) ls</span><span class="quiz-opt">d) mv</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">2. Hidden files dekhne ke liye "ls" ke saath kaunsa flag use karenge?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) -l</span><span class="quiz-opt">b) -h</span><span class="quiz-opt">c) -a</span><span class="quiz-opt">d) -x</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">3. Home directory ka shortcut symbol kya hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) /</span><span class="quiz-opt">b) .</span><span class="quiz-opt">c) ..</span><span class="quiz-opt">d) ~</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">4. Ek naya folder banane ka command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) mkfile</span><span class="quiz-opt">b) mkdir</span><span class="quiz-opt">c) newdir</span><span class="quiz-opt">d) create</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">5. "whoami" command kya batata hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Machine IP</span><span class="quiz-opt">b) Current User</span><span class="quiz-opt">c) RAM Status</span><span class="quiz-opt">d) OS Version</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">6. Nested folders (folder ke andar folder) banane ke liye flag?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) -r</span><span class="quiz-opt">b) -f</span><span class="quiz-opt">c) -p</span><span class="quiz-opt">d) -a</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">7. Force delete command "rm -rf" mein -r ka matlab?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Real</span><span class="quiz-opt">b) Recursive</span><span class="quiz-opt">c) Remove</span><span class="quiz-opt">d) Reset</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, check kar lo: 1-b | 2-c | 3-d | 4-b | 5-b | 6-c | 7-b"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>DevOps & Cloud — 90-Day Learning Journey • Day 02</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
 </div>
-
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">Tab</div><div class="handwritten" style="color:var(--chalk-blue);">Autocomplete Friend</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">Up</div><div class="handwritten" style="color:var(--chalk-blue);">Command History</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">Ctrl+C</div><div class="handwritten" style="color:var(--chalk-blue);">Emergency Exit</div></div>
+</div>
+</section>
+<!-- ④ Key Categories -->
+<section>
+<div class="topic-title">📂 The Big Three: Navigation, Files, System</div>
+<h3>1. Moving Around (Navigation)</h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>What It Does</th><th>DevOps Tip</th></tr></thead>
+<tbody>
+<tr><td><span class="cmd-code">pwd</span></td><td>Print Working Directory</td><td>Where are you brother? This will happen.</td></tr>
+<tr><td><span class="cmd-code">ls -la</span></td><td>List all files (hidden too)</td><td>-l=Long, -a=All. Must use!</td></tr>
+<tr><td><span class="cmd-code">cd ..</span></td><td>Go back one folder</td><td>Parent directory mein jump.</td></tr>
+<tr><td><span class="cmd-code">cd ~</span></td><td>Go to Home</td><td>Ghar wapsi!</td></tr>
+</tbody>
+</table>
+<h3>2. Managing Stuff (File Ops)</h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>What It Does</th><th>DevOps Tip</th></tr></thead>
+<tbody>
+<tr><td><span class="cmd-code">mkdir -p</span></td><td>Make nested folders</td><td>Parents will also create it automatically.</td></tr>
+<tr><td><span class="cmd-code">touch</span></td><td>Create empty file</td><td>Quick testing file creation.</td></tr>
+<tr><td><span class="cmd-code">cp -r</span></td><td>Copy (Recursive)</td><td>-r is required for folders.</td></tr>
+<tr><td><span class="cmd-code">rm -rf</span></td><td>Force Delete (DANGER)</td><td>Brother, take care! Everything will dry up.</td></tr>
+</tbody>
+</table>
+<h3>3. System Check (Identity &amp; Health)</h3>
+<table class="cmd-table">
+<thead><tr><th>Command</th><th>What It Does</th><th>DevOps Tip</th></tr></thead>
+<tbody>
+<tr><td><span class="cmd-code">whoami</span></td><td>Current user name</td><td>Who are you?</td></tr>
+<tr><td><span class="cmd-code">hostname</span></td><td>Machine name</td><td>What is the name of the server?</td></tr>
+<tr><td><span class="cmd-code">uname -a</span></td><td>System Info</td><td>Kernel version aur architecture.</td></tr>
+<tr><td><span class="cmd-code">df -h</span></td><td>Disk Usage</td><td>Is the space full?</td></tr>
+</tbody>
+</table>
+</section>
+<!-- ⑤ Key Concepts: Absolute vs Relative -->
+<section>
+<div class="topic-title">📌 Key Concepts: Paths</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
+<h3 class="handwritten">Absolute Path</h3>
+<p class="handwritten">Starts from root (/). Pure raste ka map.</p>
+<code>/etc/nginx/nginx.conf</code>
+</div>
+<div class="vs-circle">OR</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+<h3 class="handwritten">Relative Path</h3>
+<p class="handwritten">Starts from where you are. Shortcut!</p>
+<code>./config.txt</code>
+</div>
+</div>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: ls vs ls -la</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-white);">
+<h3 class="handwritten">ls</h3>
+<p class="handwritten">"Will show only from above (Normal files)."</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">ls -la</h3>
+<p class="handwritten">"Andar ki baat! Permissions, Size, Hidden files (.env) everything will be visible."</p>
+</div>
+</div>
+</section>
+<!-- ⑦ REAL-WORLD EXAMPLE -->
+<section>
+<div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Log Hunt</div>
+<div class="doodle-container">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-blue);">"Brother, the server is hanging! Check where the logs are?" <br/>
+<span class="chalk-text">Fix:</span> <code>cd /var/log &amp;&amp; ls -lh</code></div>
+</div>
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<p>DevOps Engineers daily use: <code>tail -f /var/log/syslog</code> (Live log monitoring).</p>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> Commands yaad karna mushkil hai.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Sirf 10-15 commands 90% kaam kar dete hain. <code>history</code> check karo!</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> `rm -rf` file recovery possible hai.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Linux CLI mein "Recycle Bin" nahi hota. Ek baar gaya toh gaya!</li>
+</ul>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF: Practice Drill</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>mkdir -p devops/day02</code> <span class="handwritten">(Foldero's family!)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. <code>cd devops/day02 &amp;&amp; touch notes.txt</code></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. <code>ls -la</code> <span class="handwritten">(Check hidden folders like `.` and `..`)</span></p>
+</div>
+</section>
+<!-- ⑩ QUICK SUMMARY -->
+<section>
+<div class="topic-title">✓ QUICK SUMMARY</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
+<ul>
+<li><strong>Navigation:</strong> pwd, cd, ls.</li>
+<li><strong>Creation:</strong> mkdir, touch.</li>
+<li><strong>Identity:</strong> whoami, hostname.</li>
+<li><strong>Cleanup:</strong> rm -rf (Dangerous but useful).</li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Folder ke andar jane ke liye kaunsa command hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) touch</span><span class="quiz-opt">b) cd</span><span class="quiz-opt">c) ls</span><span class="quiz-opt">d) mv</span></div></div>
+<div class="quiz-item"><p class="quiz-question">2. Hidden files dekhne ke liye "ls" ke saath kaunsa flag use karenge?</p>
+<div class="quiz-options"><span class="quiz-opt">a) -l</span><span class="quiz-opt">b) -h</span><span class="quiz-opt">c) -a</span><span class="quiz-opt">d) -x</span></div></div>
+<div class="quiz-item"><p class="quiz-question">3. Home directory ka shortcut symbol kya hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) /</span><span class="quiz-opt">b) .</span><span class="quiz-opt">c) ..</span><span class="quiz-opt">d) ~</span></div></div>
+<div class="quiz-item"><p class="quiz-question">4. Ek naya folder banane ka command?</p>
+<div class="quiz-options"><span class="quiz-opt">a) mkfile</span><span class="quiz-opt">b) mkdir</span><span class="quiz-opt">c) newdir</span><span class="quiz-opt">d) create</span></div></div>
+<div class="quiz-item"><p class="quiz-question">5. "whoami" command kya batata hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) Machine IP</span><span class="quiz-opt">b) Current User</span><span class="quiz-opt">c) RAM Status</span><span class="quiz-opt">d) OS Version</span></div></div>
+<div class="quiz-item"><p class="quiz-question">6. Nested folders (folder ke andar folder) banane ke liye flag?</p>
+<div class="quiz-options"><span class="quiz-opt">a) -r</span><span class="quiz-opt">b) -f</span><span class="quiz-opt">c) -p</span><span class="quiz-opt">d) -a</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">7. Force delete command "rm -rf" mein -r ka matlab?</p>
+<div class="quiz-options"><span class="quiz-opt">a) Real</span><span class="quiz-opt">b) Recursive</span><span class="quiz-opt">c) Remove</span><span class="quiz-opt">d) Reset</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Golu, check kar lo: 1-b | 2-c | 3-d | 4-b | 5-b | 6-c | 7-b"</p>
+</div>
+</div>
+</section>
+<div class="footer">
+<p>DevOps &amp; Cloud — 90-Day Learning Journey • Day 02</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
+</div>
 </body>
 </html>

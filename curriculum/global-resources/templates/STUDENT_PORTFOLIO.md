@@ -45,7 +45,7 @@
 ---
 
 ## 📜 Letter of Recommendation (The Jagu Guarantee)
-*"Bhai, tune 90 days ki mehnat ki hai aur real-world problems solve kiye hain. Golu is now officially a Pro DevOps Engineer!" — Jagu, Academy Mentor*
+*"Brother, you have worked for 90 days and solved real-world problems. Golu is now officially a Pro DevOps Engineer!" — Jagu, Academy Mentor*
 
 ---
 *Generated using the #LearnDevOpsIn90Days Curriculum maintained by [Aryashree Pritikrishna](https://github.com/aryashreep)*

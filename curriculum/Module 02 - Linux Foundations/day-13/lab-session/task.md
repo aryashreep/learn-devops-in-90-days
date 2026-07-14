@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 13 — LVM Hands-on
 
-**Jagu:** "Golu, imagine karo server ki disk full ho gayi aur production chal raha hai! Aaj hum seekhenge LVM ka 'Elastic' magic taaki hum live server ki disk expand kar sakein."
+**Jagu:** "Golu, imagine that the server disk is full and production is going on! Today we will explore the 'Elastic' magic of LVM so that we can expand the disk of a live server."
 
 ## 🎯 Task Objectives
 - Understand the LVM hierarchy (PV -> VG -> LV).
@@ -21,7 +21,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Disk management pro level skill hai Golu! Apna LVM map save karo."
+**Jagu:** "Disk management is pro level skill Golu! Save your LVM map."
 
 1. Create a file named `lvm-check.md` in the **`solution/`** folder.
 2. Paste the output of `lsblk` and your 3-command "What If" answers.

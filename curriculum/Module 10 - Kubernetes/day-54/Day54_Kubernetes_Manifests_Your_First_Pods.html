@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 54: Kubernetes Manifests &amp; Your First Pods - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print {
+            body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; background-color: var(--bg-blackboard) !important; color: var(--chalk-white) !important; }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
+        }
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        .contact-item { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-bottom: 4px; }
+        .contact-icon { color: var(--chalk-green); font-size: 1rem; }
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.2rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-blue { border-color: var(--chalk-blue); }
+        .speech-bubble.bubble-blue::before { border-right-color: var(--chalk-blue); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .hinglish { color: var(--chalk-green); font-style: italic; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        .diagram-title { color: var(--chalk-yellow); font-size: 1.4rem; margin-bottom: 20px; text-transform: uppercase; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .vs-card { flex: 1; background: rgba(255,255,255,0.03); border: 2px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 20px; }
+        .vs-card.vm { border-color: var(--chalk-red); }
+        .vs-card.container { border-color: var(--chalk-green); }
+        .vs-title { font-family: 'Architects Daughter'; font-size: 1.5rem; text-align: center; margin-bottom: 15px; }
+        .vs-card.vm .vs-title { color: var(--chalk-red); }
+        .vs-card.container .vs-title { color: var(--chalk-green); }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        .quiz-item { border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 20px; }
+        .quiz-question { font-weight: bold; font-size: 1.2rem; color: var(--chalk-white); margin-bottom: 12px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 20px; }
+        .quiz-opt { padding: 8px 12px; background: rgba(255,255,255,0.02); border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .footer a { color: var(--chalk-blue); text-decoration: none; font-family: 'Fira Code'; font-size: 0.9rem; }
+        .intro-banner { border: 4px solid var(--chalk-yellow); padding: 30px; border-radius: 20px; margin-bottom: 50px; background: rgba(254, 202, 87, 0.05); }
+        pre { background: #000; padding: 15px; border-radius: 10px; border: 1px solid var(--chalk-blue); overflow-x: auto; font-family: 'Fira Code', monospace; }
+        code { font-family: 'Fira Code', monospace; color: var(--chalk-pink); }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid rgba(255,255,255,0.1); padding: 12px; text-align: left; }
+        th { background: rgba(255,255,255,0.05); color: var(--chalk-yellow); font-family: 'Architects Daughter'; font-size: 1.1rem; }
+        .three-col-stats { display: flex; gap: 20px; margin: 30px 0; }
+        .stat-card { flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 20px; text-align: center; }
+        .stat-num { font-family: 'Architects Daughter'; font-size: 2.2rem; color: var(--chalk-yellow); margin-bottom: 8px; }
+        .stat-label { font-size: 0.9rem; color: #aaa; }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Kubernetes Manifests &amp; Your First Pods</h1>
+<p class="subtitle handwritten">Day 54: Declarative YAML &amp; kubectl Basics ☸️</p>
+</header>
+<section>
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, what is this Pod? You are running a direct container in Docker, but why is it not running a direct container in K8s?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu is the <span class="chalk-text">Pod</span> smallest deployable unit of Kubernetes. It is a wrapper that wraps one or multiple containers. All containers in a Pod share the network namespace and volumes. It is just like a hotel room that shares multiple logs (containers)!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. Learning Objectives</h3>
+<p class="handwritten">You will understand the K8s declarative system, check the YAML manifests, and launch your first Pod.</p>
+<ul>
+<li><strong>Imperative vs Declarative:</strong> `kubectl run` vs `kubectl apply -f`.</li>
+<li><strong>Pod Manifest Structure:</strong> apiVersion, kind, metadata, spec.</li>
+<li><strong>Pod operations:</strong> logs checking, port-forwarding, execution.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">2. Analogy &amp; Mental Model</div>
+<div class="content-box accent-blue">
+<p>Think of a Pod as a <strong>Pea Pod</strong>:</p>
+<ul>
+<li>The Pod is the outer shell.</li>
+<li>The containers inside are the peas.</li>
+<li>All peas inside share the same water and environment inside the shell.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">3. Did You Know?</div>
+<div class="three-col-stats">
+<div class="stat-card">
+<div class="stat-num">IP</div>
+<div class="stat-label">Every Pod gets its own unique IP address in the cluster</div>
+</div>
+<div class="stat-card">
+<div class="stat-num">pause</div>
+<div class="stat-label">A special pause container manages networking namespaces in Pods</div>
+</div>
+<div class="stat-card">
+<div class="stat-num">localhost</div>
+<div class="stat-label">Containers inside the same Pod communicate via localhost</div>
+</div>
+</div>
+</section>
+<section>
+<div class="topic-title">4. Key YAML Structure (The 4 Pillars)</div>
+<div class="content-box accent-green">
+<p>Every Kubernetes manifest contains 4 root fields:</p>
+<ul>
+<li>📝 <code>apiVersion</code> - API version of the object (e.g., <code>v1</code> for Pods).</li>
+<li>📝 <code>kind</code> - Type of resource (e.g., <code>Pod</code>).</li>
+<li>📝 <code>metadata</code> - Identification (name, labels, namespace).</li>
+<li>📝 <code>spec</code> - Desired configuration state (containers, volumes).</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">5. Key Concepts &amp; Pod Specification</div>
+<div class="content-box">
+<p>Here is a basic Pod manifest: <code>pod.yaml</code></p>
+<pre>
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: web
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+        </pre>
+</div>
+</section>
+<section>
+<div class="topic-title">6. Compare: Imperative vs. Declarative</div>
+<div class="vs-container">
+<div class="vs-card vm">
+<div class="vs-title">Imperative (Tell K8s WHAT to do)</div>
+<pre>kubectl run nginx --image=nginx</pre>
+<ul>
+<li>Fast, quick testing in CLI</li>
+<li>Hard to track changes over time</li>
+<li>Not suited for production pipelines</li>
+</ul>
+</div>
+<div class="vs-circle">VS</div>
+<div class="vs-card container">
+<div class="vs-title">Declarative (Declare the STATE)</div>
+<pre>kubectl apply -f pod.yaml</pre>
+<ul>
+<li>Stored in version control (Git)</li>
+<li>Self-documenting infrastructure</li>
+<li>Allows easy rolling updates/audits</li>
+</ul>
+</div>
+</div>
+</section>
+<section>
+<div class="topic-title">7. Real-World Troubleshooting Example</div>
+<div class="content-box accent-red">
+<p><strong>Incident:</strong> A pod goes into <code>CrashLoopBackOff</code> state.</p>
+<p><strong>Debugging Process:</strong></p>
+<pre>
+# Check status details
+kubectl get pods
+
+# View events to find configuration problems
+kubectl describe pod nginx-pod
+
+# View container output logs
+kubectl logs nginx-pod
+        </pre>
+<p>Often, it is due to an application script exiting immediately or a missing environment variable.</p>
+</div>
+</section>
+<section>
+<div class="topic-title">8. Common Misconceptions</div>
+<div class="content-box accent-yellow">
+<ul>
+<li>❌ <strong>Myth:</strong> Pods are permanent VM-like instances.</li>
+<li>✔️ <strong>Reality:</strong> Pods are ephemeral. They are destroyed and recreated with new IPs on reschedule events. Do not write state inside them.</li>
+<li>❌ <strong>Myth:</strong> You should deploy bare (naked) pods.</li>
+<li>✔️ <strong>Reality:</strong> Always wrap Pods in controllers like Deployments so they are replaced if they fail.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">9. Try It Yourself</div>
+<div class="content-box">
+<p>Run a test Pod, check logs, and forward port 8080 to test locally:</p>
+<pre>
+# Apply manifest
+kubectl apply -f pod.yaml
+
+# Check logs
+kubectl logs nginx-pod
+
+# Port forward to local port 8080
+kubectl port-forward nginx-pod 8080:80
+
+# Clean up
+kubectl delete pod nginx-pod
+        </pre>
+</div>
+</section>
+<section>
+<div class="topic-title">10. Quick Summary</div>
+<div class="content-box accent-green">
+<ul>
+<li>Pods are the basic execution unit wrapping containers.</li>
+<li>A Pod gets a cluster-wide unique IP.</li>
+<li>Declarative manifests are standard practice in DevOps.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="topic-title">11. Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Which command should you run to view events and diagnose why a Pod failed to schedule?</div>
+<div class="quiz-options">
+<div class="quiz-opt">A) kubectl logs podname</div>
+<div class="quiz-opt font-bold">B) kubectl describe pod podname</div>
+<div class="quiz-opt">C) kubectl get pods</div>
+<div class="quiz-opt">D) kubectl exec podname -- sh</div>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. How do containers inside the same Pod communicate with each other?</div>
+<div class="quiz-options">
+<div class="quiz-opt">A) Via their external Pod IP</div>
+<div class="quiz-opt font-bold">B) Via localhost on containerPort</div>
+<div class="quiz-opt">C) Through Docker bridge networks</div>
+<div class="quiz-opt">D) They cannot communicate directly</div>
+</div>
+</div>
+<div class="answer-key">
+<h4>🗝️ Answer Key</h4>
+<p>1: B | 2: B</p>
+</div>
+</section>
+<footer class="footer">
+<p>Academy Maintained by <a href="https://github.com/aryashreep">Aryashree Pritikrishna</a> • #LearnDevOpsIn90Days</p>
+</footer>
+</div>
+</body>
+</html>

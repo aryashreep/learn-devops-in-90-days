@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 30 — Git Mastery (Advanced Tools)
 
-**Jagu:** "Beep Boop! Congratulations Golu, hum Git module ke aakhri din par hain! Aaj hum seekhenge advanced Git techniques jo standard developers ko nahi pata hoti. Bisect se bug dhundhna, Git hooks script se automatic validation run karna, annotations ke saath release tagging karna, aur multi-tasking ke liye Git Worktrees ka use karna!"
+**Jagu:** "Beep Boop! Congratulations Golu, we are on the last day of Git module! Today we will seek advanced Git techniques that standard developers would not know. Finding bugs with Bisect, running automatic validation from a Git hooks script, tagging releases with annotations, and using Git Worktrees for multi-tasking!"
 
 ## 🎯 Task Objectives
 - Debug history by running a binary search using `git bisect`.

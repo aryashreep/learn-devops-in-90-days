@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 14: Shell Scripting Basics - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 14: Shell Scripting Basics - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -91,175 +92,156 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- BRANDED AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Shell Scripting Basics</h1>
-        <p class="subtitle handwritten">Day 14: Building Your First Automation Robot 🐚🤖</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, main roz subah server update aur clean karne ke liye same 5 commands chalata hoon. <br> 
-                    Thak gaya hoon yaar! Koi automatic rasta nahi hai?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Bilkul hai Golu. <br> 
-                    Aaj hum commands ko 'Shell Script' mein pack karenge. <br> 
-                    Ab tumhara kaam ye <span class="chalk-text">Robot</span> karega!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum manual CLI se <b>Automation</b> ki taraf move karenge. Shell script kya hoti hai, `Shebang` kyu zaroori hai, aur variables kaise use karte hain.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Understand:</strong> What is a .sh file and how the Shell reads it.</li>
-                <li><strong>Blueprint:</strong> Master the mandatory Shebang (`#!/bin/bash`) line.</li>
-                <li><strong>Variables:</strong> Learn to store and reuse data dynamically.</li>
-                <li><strong>Interact:</strong> Take user input using the `read` command.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<!-- BRANDED AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Shell Scripting Basics</h1>
+<p class="subtitle handwritten">Day 14: Building Your First Automation Robot 🐚🤖</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Jagu, I run the same 5 commands every morning to update and clean the server. <br/> 
+                    Thank you so much friend! Is there no automatic route?</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Absolutely hai Golu. <br/> 
+                    Today we will pack the commands in 'Shell Script'. <br/> 
+                    Now you will do this <span class="chalk-text">Robot</span>!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will move to <b>Automation</b> from the manual CLI. What is Shell script, why is `Shebang` necessary, and how are variables used.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Understand:</strong> What is a .sh file and how the Shell reads it.</li>
+<li><strong>Blueprint:</strong> Master the mandatory Shebang (`#!/bin/bash`) line.</li>
+<li><strong>Variables:</strong> Learn to store and reuse data dynamically.</li>
+<li><strong>Interact:</strong> Take user input using the `read` command.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real DevOps engineer repetitive kaam se nafrat karta hai aur automation se pyar!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Chef's Robot</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Manual:</span> Chef roz khud kitchen mein sabzi kat-ta hai (CLI commands).<br>
-                2. <span class="chalk-text">Script:</span> Chef ek 'Recipe Card' (Script) likhta hai aur Robot ko de deta hai.<br>
-                3. <span class="chalk-text">Shebang:</span> Card pe likha hai ki Robot "Hindi" ya "English" (Bash or Python) bolega.<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Chef's Robot</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Manual:</span> Chef roz khud kitchen mein sabzi kat-ta hai (CLI commands).<br/>
+                2. <span class="chalk-text">Script:</span> Chef ek 'Recipe Card' (Script) likhta hai aur Robot ko de deta hai.<br/>
+                3. <span class="chalk-text">Shebang:</span> Card pe likha hai ki Robot "Hindi" ya "English" (Bash or Python) bolega.<br/>
                 4. <span class="chalk-text">Automation:</span> Robot card padhta hai aur sabzi kat-ta hai bina Chef ke!
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">#!</div><div class="handwritten" style="color:var(--chalk-blue);">Called a 'Hash-Bang'</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">.sh</div><div class="handwritten" style="color:var(--chalk-blue);">The Standard Extension</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">$USER</div><div class="handwritten" style="color:var(--chalk-blue);">Global Environment Var</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: The Script Anatomy -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: Script Anatomy</div>
-        <div class="bash-box">
-            <span style="color:var(--chalk-yellow);">#!/bin/bash</span> <span style="color:#666;"># I am the Shebang (Interpreter path)</span><br><br>
-            <span style="color:var(--chalk-pink);">NAME</span>="Golu" <span style="color:#666;"># Defining a Variable</span><br>
-            echo "Hello $NAME" <span style="color:#666;"># Accessing a Variable</span><br><br>
-            read -p "Topic? " TOPIC <span style="color:#666;"># Taking User Input</span><br>
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">#!</div><div class="handwritten" style="color:var(--chalk-blue);">Called a 'Hash-Bang'</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">.sh</div><div class="handwritten" style="color:var(--chalk-blue);">The Standard Extension</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">$USER</div><div class="handwritten" style="color:var(--chalk-blue);">Global Environment Var</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: The Script Anatomy -->
+<section>
+<div class="topic-title">📌 Key Concepts: Script Anatomy</div>
+<div class="bash-box">
+<span style="color:var(--chalk-yellow);">#!/bin/bash</span> <span style="color:#666;"># I am the Shebang (Interpreter path)</span><br/><br/>
+<span style="color:var(--chalk-pink);">NAME</span>="Golu" <span style="color:#666;"># Defining a Variable</span><br/>
+            echo "Hello $NAME" <span style="color:#666;"># Accessing a Variable</span><br/><br/>
+            read -p "Topic? " TOPIC <span style="color:#666;"># Taking User Input</span><br/>
             echo "Learning $TOPIC with Jagu!"
         </div>
-        <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
-            <span class="hinglish">Rule No 1:</span> Variable assign karte waqt `=` ke aage-piche spaces mat dena!
+<p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
+<span class="handwritten">Rule No 1:</span> Variable assign karte waqt `=` ke aage-piche spaces mat dena!
         </p>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: Local vs Env Variables</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">Local Variable</h3>
-                <p class="hinglish">"Sirf isi script ke andar chalega."</p>
-                <code>MY_NAME="Golu"</code>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">Env Variable</h3>
-                <p class="hinglish">"System ke har corner ko pata hai."</p>
-                <code>echo $PATH</code>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> `.sh` file banate hi run ho jayegi.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Linux usey by default 'Text' manta hai. `chmod +x` se 'Power' deni padti hai.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Script sirf boring tasks ke liye hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Scripts cloud servers khade kar sakti hain, backups le sakti hain, aur hack bhi rok sakti hain!</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>vim backup.sh</code> <span class="hinglish">(Ek file banao)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. Add: <code>#!/bin/bash</code> + <code>echo "Backing up..."</code></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>chmod +x backup.sh && ./backup.sh</code> <span class="hinglish">(Robot ko life do!)</span></p>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Shell script ki pehli line (Shebang) kya honi chahiye?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) #!bash</span><span class="quiz-opt">b) #!/bin/bash</span><span class="quiz-opt">c) #/bin/sh</span><span class="quiz-opt">d) // bash</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. User se interactive input lene ke liye command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) write</span><span class="quiz-opt">b) echo</span><span class="quiz-opt">c) read</span><span class="quiz-opt">d) input</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: Local vs Env Variables</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
+<h3 class="handwritten">Local Variable</h3>
+<p class="handwritten">"Only this script will continue."</p>
+<code>MY_NAME="Golu"</code>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">Env Variable</h3>
+<p class="handwritten">"Every corner of the system is known."</p>
+<code>echo $PATH</code>
+</div>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> `.sh` file banate hi run ho jayegi.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Linux usey by default 'Text' manta hai. `chmod +x` se 'Power' deni padti hai.</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Script sirf boring tasks ke liye hai.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Scripts cloud servers khade kar sakti hain, backups le sakti hain, aur hack bhi rok sakti hain!</li>
+</ul>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>vim backup.sh</code> <span class="handwritten">(create a file)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. Add: <code>#!/bin/bash</code> + <code>echo "Backing up..."</code></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. <code>chmod +x backup.sh &amp;&amp; ./backup.sh</code> <span class="handwritten">(Robot ko life do!)</span></p>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Shell script ki pehli line (Shebang) kya honi chahiye?</p>
+<div class="quiz-options"><span class="quiz-opt">a) #!bash</span><span class="quiz-opt">b) #!/bin/bash</span><span class="quiz-opt">c) #/bin/sh</span><span class="quiz-opt">d) // bash</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. User se interactive input lene ke liye command?</p>
+<div class="quiz-options"><span class="quiz-opt">a) write</span><span class="quiz-opt">b) echo</span><span class="quiz-opt">c) read</span><span class="quiz-opt">d) input</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, halftime: 1-b | 2-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 14 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

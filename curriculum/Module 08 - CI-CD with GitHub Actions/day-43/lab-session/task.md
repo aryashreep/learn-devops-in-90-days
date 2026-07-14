@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 43 — Triggers and Matrix Builds
 
-**Jagu:** "Beep Boop! Golu, aaj hum workflow triggers aur matrix builds seekhenge — push, PR, schedule, aur ek saath multiple versions pe test!"
+**Jagu:** "Beep Boop! Golu, today we will seek workflow triggers and matrix builds — push, PR, schedule, and test on multiple versions!"
 
 ## 🎯 Task Objectives
 - Configure different workflow triggers: push, pull_request, schedule, workflow_dispatch.
@@ -82,7 +82,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, trigger aur matrix build ka proof submit karo!"
+**Jagu:** "Please submit proof of Golu, trigger and matrix build!"
 
 1. Create **`triggers-matrix.md`** in the **`solution/`** folder.
 2. Include your workflow YAMLs and screenshots from the Actions tab.

@@ -1,6 +1,6 @@
 # 🧪 Day 08 Solution: Cloud Deployment & Nginx
 
-**Jagu:** "Shabash Golu! Tune local computer ki boundary tod di hai. Ab teri website pure world mein live hai! Ye raha tera reference deployment report."
+**Jagu:** "Well done Golu! Tune local computer's boundary has been crossed. Now your website is live in the pure world! Here is your reference deployment report."
 
 ---
 
@@ -45,7 +45,7 @@ $ scp -i my-devops-key.pem ubuntu@3.144.20.12:~/nginx-logs.txt ./solutions/
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, agar website access nahi ho rahi, toh pehle Cloud Console mein jaakar **Security Group** check karo. Port 80 (HTTP) khula hona zaroori hai!"
+"Golu, if the website is not accessible, first check **Security Group** in Cloud Console. It is necessary to open Port 80 (HTTP)!"
 
 ---
 *#LearnDevOpsIn90Days • Day 08 • Golu & Jagu Edition*

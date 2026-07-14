@@ -1,21 +1,21 @@
 # 🧪 Day 03 Solution: Command Toolkit Challenge
 
-**Jagu:** "Shabash Golu! Tera arsenal (Cheat Sheet) ready hai. Ab tu kisi bhi production issue se ladne ke liye taiyaar hai!"
+**Jagu:** "Well done Golu! Your arsenal (Cheat Sheet) is ready. Now you are ready to tackle any production issue!"
 
 ---
 
-## 🛠️ Top 5 "Jagu Approved" Commands
+## 🛠️ Top 5 "Approved section" Commands
 
-1.  **`ls -la`**: "Bhai, hamesha pura sach dekho, hidden files ke saath!"
-2.  **`pwd`**: "Jab rasta bhatak jao, toh ye hi batayega kahan ho."
-3.  **`ip addr`**: "Network connectivity ki pehli seedi."
-4.  **`tail -f`**: "Live logs dekhne ka SRE secret."
-5.  **`history`**: "Bhul gaye ki kal kya command chalaya tha? Isse pooch lo."
+1.  **`ls -la`**: "Brother, always see the complete truth, including hidden files!"
+2.  **`pwd`**: "When you go on the path, you will tell me where you are."
+3.  **`ip addr`**: "The first seed of network connectivity."
+4.  **`tail -f`**: "SRE secret to view live logs."
+5.  **`history`**: "Have you forgotten what command you ran yesterday? Take this pooch."
 
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, command line pe faster banne ke liye `alias` use kar. `alias ll='ls -la'` kar le, 3 characters ki mehnat bachegi!"
+"Golu, use `alias` to make it faster on command line. Do `alias ll='ls -la'`, you will save the effort of 3 characters!"
 
 ---
 *#LearnDevOpsIn90Days • Day 03 • Golu & Jagu Edition*

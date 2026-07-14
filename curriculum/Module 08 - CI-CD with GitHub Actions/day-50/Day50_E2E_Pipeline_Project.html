@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 50: GitHub Actions Project: End-to-End CI/CD Pipeline - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 50: GitHub Actions Project: End-to-End CI/CD Pipeline - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,139 +113,120 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>GitHub Actions Project: End-to-End CI/CD Pipeline</h1>
-        <p class="subtitle handwritten">Day 50: Construct a full enterprise-grade CI/CD pipeline featuring code compilation, Docker packaging, and environment approval gates. 🤖</p>
-    </header>
-
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, humne saare components seekh liye! Kya hum inhe jod kar ek full-fledged production-grade deployment pipeline bana sakte hain jisme dynamic gates aur check points ho?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Bilkul Golu! Aaj hum ek absolute real-world pipeline design karenge: Build -> Lint -> Test -> Compile -> Docker Push -> Deploy (Production with Environment Approval Rules). Ye tumhare portfolio ka heera hoga!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
-            <ul>
-                <li>Integrate multiple sequential jobs (Build, Test, Release, Deploy)</li>\n<li>Configure GitHub Environments (Staging and Production)</li>\n<li>Add Manual Approval Gates to environments</li>\n<li>Simulate secure containerized applications shipping to hosting targets</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="analogy">
-        <div class="topic-title">💡 Mental Model</div>
-        <p class="hinglish">
-            This project integrates all modules. Think of it as a security checkpoint at an airport. The passenger (code) must pass metal detection (linting), luggage check (testing), passport stamp (Docker registry push), and supervisor approval (Environment Gate) before boarding the plane (Production).
-        </p>
-    </section>
-
-    <section id="stats">
-        <div class="topic-title">📈 Did You Know?</div>
-        <div class="vs-container">
-            
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Multi-Environment</div>
-            <p style="text-align:center;">Configure separated rules and secrets for 'staging' and 'production' targets.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Approval Gates</div>
-            <p style="text-align:center;">Pauses deployment and sends notifications to engineers for visual approval before pushing to production.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Zero Leaks</div>
-            <p style="text-align:center;">Ensures testing jobs don't access production secrets, maintaining strict blast isolation.</p>
-        </div>
-        </div>
-    </section>
-
-    <section id="directories">
-        <div class="topic-title">📁 Core Concepts & Directories</div>
-        <ul>
-            <li>Create environments under Repository Settings -> Environments.</li>\n<li>Configure 'Required reviewers' to define manual gates.</li>\n<li>Map job environments in YAML: `environment: production`.</li>
-        </ul>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">⚙️ Main Content</div>
-        
-        <h3>1. Designing the E2E Pipeline</h3>
-        <p>Our project will consist of three key phases:</p>
-        <ul>
-            <li><b>Phase 1: Integration (Lint & Test):</b> Run code analysis and verify code correctness on push or pull requests.</li>
-            <li><b>Phase 2: Registry Release:</b> Build a Docker container and push it with the Git SHA tag to a registry.</li>
-            <li><b>Phase 3: Controlled Deploy:</b> Deploy to Staging immediately. Trigger a pause gate for Production, resuming only when approved by a reviewer.</li>
-        </ul>
-        <h3>2. Job Environment Definition</h3>
-        <pre><code>deploy-prod:
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>GitHub Actions Project: End-to-End CI/CD Pipeline</h1>
+<p class="subtitle handwritten">Day 50: Construct a full enterprise-grade CI/CD pipeline featuring code compilation, Docker packaging, and environment approval gates. 🤖</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, we've learned all the components! Can we connect them to create a full-fledged production-grade deployment pipeline with dynamic gates and checkpoints?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Absolutely Golu! Today we will design an absolute real-world pipeline: Build -&gt; Lint -&gt; Test -&gt; Compile -&gt; Docker Push -&gt; Deploy (Production with Environment Approval Rules). This will be the gem of your portfolio!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
+<ul>
+<li>Integrate multiple sequential jobs (Build, Test, Release, Deploy)</li>\n<li>Configure GitHub Environments (Staging and Production)</li>\n<li>Add Manual Approval Gates to environments</li>\n<li>Simulate secure containerized applications shipping to hosting targets</li>
+</ul>
+</div>
+</section>
+<section id="analogy">
+<div class="topic-title">💡 Mental Model</div>
+<p class="handwritten">This project integrates all modules. Think of it as a security checkpoint at an airport. The passenger (code) must pass metal detection (linting), luggage check (testing), passport stamp (Docker registry push), and supervisor approval (Environment Gate) before boarding the plane (Production).</p>
+</section>
+<section id="stats">
+<div class="topic-title">📈 Did You Know?</div>
+<div class="vs-container">
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Multi-Environment</div>
+<p style="text-align:center;">Configure separated rules and secrets for 'staging' and 'production' targets.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Approval Gates</div>
+<p style="text-align:center;">Pauses deployment and sends notifications to engineers for visual approval before pushing to production.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Zero Leaks</div>
+<p style="text-align:center;">Ensures testing jobs don't access production secrets, maintaining strict blast isolation.</p>
+</div>
+</div>
+</section>
+<section id="directories">
+<div class="topic-title">📁 Core Concepts &amp; Directories</div>
+<ul>
+<li>Create environments under Repository Settings -&gt; Environments.</li>\n<li>Configure 'Required reviewers' to define manual gates.</li>\n<li>Map job environments in YAML: `environment: production`.</li>
+</ul>
+</section>
+<section id="concepts">
+<div class="topic-title">⚙️ Main Content</div>
+<h3>1. Designing the E2E Pipeline</h3>
+<p>Our project will consist of three key phases:</p>
+<ul>
+<li><b>Phase 1: Integration (Lint &amp; Test):</b> Run code analysis and verify code correctness on push or pull requests.</li>
+<li><b>Phase 2: Registry Release:</b> Build a Docker container and push it with the Git SHA tag to a registry.</li>
+<li><b>Phase 3: Controlled Deploy:</b> Deploy to Staging immediately. Trigger a pause gate for Production, resuming only when approved by a reviewer.</li>
+</ul>
+<h3>2. Job Environment Definition</h3>
+<pre><code>deploy-prod:
   needs: [build-and-push]
   runs-on: ubuntu-latest
   environment:
     name: production
     url: https://my-app.com</code></pre>
-        
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># Verify your complete workflow structure:
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<pre><code># Verify your complete workflow structure:
 # Ensure you create the environment "production" in repository settings before running!
 # Path: .github/workflows/production-pipeline.yml</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 50 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. Where in the GitHub repository settings do you configure manual approval rules for deployment jobs?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) Branches settings</span>\n<span class="quiz-opt">B) Actions -> Runners settings</span>\n<span class="quiz-opt">C) Environments settings</span>\n<span class="quiz-opt">D) Secrets and variables settings</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. Why should testing and building be isolated from deployment jobs using 'needs' dependencies?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) To ensure only verified code is packaged and deployed, preventing broken builds from pushing to servers.</span>\n<span class="quiz-opt">B) To make YAML look longer.</span>\n<span class="quiz-opt">C) Because runners do not support multiple jobs.</span>\n<span class="quiz-opt">D) To save electricity.</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: C (Environments settings enable manual reviewer rules), 2: A (Ensures pipeline integrity and prevents broken deployments)</p>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 50 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Where in the GitHub repository settings do you configure manual approval rules for deployment jobs?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) Branches settings</span>\n<span class="quiz-opt">B) Actions -&gt; Runners settings</span>\n<span class="quiz-opt">C) Environments settings</span>\n<span class="quiz-opt">D) Secrets and variables settings</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. Why should testing and building be isolated from deployment jobs using 'needs' dependencies?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) To ensure only verified code is packaged and deployed, preventing broken builds from pushing to servers.</span>\n<span class="quiz-opt">B) To make YAML look longer.</span>\n<span class="quiz-opt">C) Because runners do not support multiple jobs.</span>\n<span class="quiz-opt">D) To save electricity.</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: C (Environments settings enable manual reviewer rules), 2: A (Ensures pipeline integrity and prevents broken deployments)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

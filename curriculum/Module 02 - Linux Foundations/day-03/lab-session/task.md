@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 03 — Command Toolkit Challenge
 
-**Jagu:** "Golu, DevOps engineer ka sabse bada hathyaar 'Terminal' hota hai. Aaj hum tumhara toolkit (Cheat Sheet) taiyaar karenge!"
+**Jagu:** "Golu, the biggest weapon of a DevOps engineer is 'Terminal'. Today we will prepare your toolkit (Cheat Sheet)!"
 
 ## 🎯 Task Objectives
 - Categorize 20+ essential commands.
@@ -21,7 +21,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ye cheat sheet tere dashboard pe honi chahiye!"
+**Jagu:** "Golu, this cheat sheet should be on your dashboard!"
 
 1. Create a file named **`linux-commands-cheatsheet.md`** in the **`solution/`** folder.
 2. List 20+ commands with a 1-line description for each.

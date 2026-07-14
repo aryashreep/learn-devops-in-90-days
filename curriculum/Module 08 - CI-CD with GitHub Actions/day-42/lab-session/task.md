@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 42 — Your First GitHub Actions Workflow
 
-**Jagu:** "Beep Boop! Golu, aaj hum .github/workflows folder mein apna pehla YAML file banayenge jo push pe automatically run hoga!"
+**Jagu:** "Beep Boop! Golu, today we will create our first YAML file in.github/workflows folder which will run automatically on push!"
 
 ## 🎯 Task Objectives
 - Create a GitHub Actions workflow file.
@@ -69,7 +69,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Apna pehla workflow sach me chalta dekhna — ye DevOps ka 'Hello World' hai!"
+**Jagu:** "Seeing your first workflow really live — this is the 'Hello World' of DevOps!"
 
 1. Create **`first-workflow.md`** in the **`solution/`** folder.
 2. Include your workflow YAML and a screenshot/link of the successful run.

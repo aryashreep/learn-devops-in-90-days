@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 28: Undoing & Surgical Edits - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 28: Undoing &amp; Surgical Edits - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -88,177 +89,155 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Undoing & Surgical Edits</h1>
-        <p class="subtitle handwritten">Day 28: The Git Emergency Room 🐙🏥</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, maine galti se `git reset --hard` kar diya aur mera poora hafte ka kaam udd gaya! <br> 
-                    Kya main ise wapis la sakta hoon? Plz help!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, Git mein kuch bhi 'permanent' nahi hota jab tak tumhare pass <span class="chalk-text">Reflog</span> hai. <br> 
-                    Aaj hum surgery seekhenge—commits ko edit karna, reset karna, aur doosre branch se cherry-pick karna!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Git ke "Panic Buttons" master karenge. **Reset** (Hard/Soft/Mixed) ka real difference, 
-                **Revert** vs Reset, aur deleted commits ko wapis lane ka magic tool: **git reflog**. 
-                Saath hi, **Cherry-pick** aur **Stash** jaise surgical tools bhi explore karenge.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Recover:</strong> Use `git reflog` to rescue "lost" commits.</li>
-                <li><strong>Undo:</strong> Master `reset` vs `revert` for local and public fixes.</li>
-                <li><strong>Surgical:</strong> Cherry-pick specific commits from one branch to another.</li>
-                <li><strong>Save:</strong> Temporarily store messy work with `git stash`.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Undoing &amp; Surgical Edits</h1>
+<p class="subtitle handwritten">Day 28: The Git Emergency Room 🐙🏥</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Jagu, I accidentally did `git reset --hard` and all my hard work went to waste! <br/> 
+                    How can I get it back? Plz help!”</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Golu, nothing in Git is 'permanent' until you pass <span class="chalk-text">Relog</span>. <br/> 
+                    Today we will seek surgery—edit the commits, reset them, and cherry-pick from another branch!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will master Git's "Panic Buttons". **Reset** real difference of (Hard/Soft/Mixed), 
+                **Revert** vs Reset, and magic tool to bring back deleted commits: **git reflog**. 
+                Saath Hi, will also explore surgical tools like **Cherry-pick** and **Stash**.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Recover:</strong> Use `git reflog` to rescue "lost" commits.</li>
+<li><strong>Undo:</strong> Master `reset` vs `revert` for local and public fixes.</li>
+<li><strong>Surgical:</strong> Cherry-pick specific commits from one branch to another.</li>
+<li><strong>Save:</strong> Temporarily store messy work with `git stash`.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real world mein galtiyan hongi. Ek pro DevOps engineer wahi hai jo system ko recover kar sake!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Time Machine vs The Undo Button</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Reset:</span> Time machine mein baith kar peeche chale gaye (History badal di).<br>
-                2. <span class="chalk-text">Revert:</span> Ek naya commit kiya jo purani galti ko theek karta hai (History intact).<br>
-                3. <span class="chalk-text">Reflog:</span> CCTv footage—tumne kahan-kahan pair rakha, sabka record!<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Time Machine vs The Undo Button</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Reset:</span> Time machine mein baith kar peeche chale gaye (History badal di).<br/>
+                2. <span class="chalk-text">Revert:</span> Ek naya commit kiya jo purani galti ko theek karta hai (History intact).<br/>
+                3. <span class="chalk-text">Reflog:</span> CCTv footage—tumne kahan-kahan pair rakha, sabka record!<br/>
                 4. <span class="chalk-text">Stash:</span> Kapde (code) cupboard mein thodi der ke liye rakh diye.
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Reflog</div><div class="handwritten" style="color:var(--chalk-blue);">The Ultimate Savior</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">Amend</div><div class="handwritten" style="color:var(--chalk-blue);">Last Commit Fix</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">Pop</div><div class="handwritten" style="color:var(--chalk-blue);">Stash se wapis lana</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: Reset vs Revert -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: Reset vs Revert</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
-                <h3 class="handwritten">Reset</h3>
-                <p class="hinglish">"Commit ko history se mita dena. Dangerous!"</p>
-                <ul>
-                    <li>--soft: Files staging mein rahengi.</li>
-                    <li>--hard: Sab kuch saaf!</li>
-                    <li>Best for: Private/Local work.</li>
-                </ul>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">Revert</h3>
-                <p class="hinglish">"Galti ko opposite commit se theek karna. Safe!"</p>
-                <ul>
-                    <li>History delete nahi hoti.</li>
-                    <li>New commit create hota hai.</li>
-                    <li>Best for: Public/Shared branches.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑥ Surgical Tools -->
-    <section>
-        <div class="topic-title">✂ Surgical Tools</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
-            <h3 class="handwritten">1. git commit --amend — "Choti si galti"</h3>
-            <p class="hinglish">
-                Agar commit karne ke baad yaad aaye ki message galat hai ya koi ek file bhool gaye, toh naya commit mat banao! 
-                Bas file add karo aur <code class="chalk-text">git commit --amend</code> chala do. Last commit update ho jayega.
-            </p>
-            <h3 class="handwritten" style="margin-top: 20px;">2. Cherry-Pick & Stash</h3>
-            <ul>
-                <li><strong>git cherry-pick [SHA]:</strong> Kisi doosri branch se ek specific fruit (commit) utha kar apni branch pe lana.</li>
-                <li><strong>git stash:</strong> "Arey koi guest aa gaya!"—Messy code chhupao, clean slate pe kaam karo, baad mein `stash pop` karlo.</li>
-            </ul>
-            <h3 class="handwritten" style="margin-top: 20px;">3. Reverting a Merge — "The -m 1 trick"</h3>
-            <p class="hinglish">
-                Merge commit ko normal `git revert` nahi kar sakte kyunki uske do parents hote hain. 
-                Hume batana padta hai: <code class="chalk-text">git revert -m 1 [Merge-SHA]</code>. Iska matlab "Main line pe wapis chalo!"
-            </p>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>git commit --amend -m "Sahi Message"</code> <span class="hinglish">(Last commit fix)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>git reflog</code> <span class="hinglish">(History of your HEAD!)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>git stash save "kaam baki hai"</code></p>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Agar shared branch pe galti ho jaye, toh kya use karna chahiye?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) git reset --hard</span><span class="quiz-opt">b) git revert</span><span class="quiz-opt">c) git rm</span><span class="quiz-opt">d) git delete</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Messy code ko temporarily save karke branch saaf karne ke liye command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) git save</span><span class="quiz-opt">b) git store</span><span class="quiz-opt">c) git stash</span><span class="quiz-opt">d) git hide</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">Reflog</div><div class="handwritten" style="color:var(--chalk-blue);">The Ultimate Savior</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">Amend</div><div class="handwritten" style="color:var(--chalk-blue);">Last Commit Fix</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">Pop</div><div class="handwritten" style="color:var(--chalk-blue);">Stash se wapis lana</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: Reset vs Revert -->
+<section>
+<div class="topic-title">📌 Key Concepts: Reset vs Revert</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
+<h3 class="handwritten">Reset</h3>
+<p class="handwritten">"I commit history se mita dena. Dangerous!"</p>
+<ul>
+<li>--soft: Files staging mein rahengi.</li>
+<li>--hard: Sab kuch saaf!</li>
+<li>Best for: Private/Local work.</li>
+</ul>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">Revert</h3>
+<p class="handwritten">"Correcting a mistake from the opposite commit. Safe!"</p>
+<ul>
+<li>History delete nahi hoti.</li>
+<li>New commit create hota hai.</li>
+<li>Best for: Public/Shared branches.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- ⑥ Surgical Tools -->
+<section>
+<div class="topic-title">✂ Surgical Tools</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
+<h3 class="handwritten">1. git commit --amend — "Choti si galti"</h3>
+<p class="handwritten">If after committing you remember that the message is wrong or you forgot a file, then make a new commit! 
+                Just add the file and run <code class="chalk-text">git commit --amend</code>. Last commit will be updated.</p>
+<h3 class="handwritten" style="margin-top: 20px;">2. Cherry-Pick &amp; Stash</h3>
+<ul>
+<li><strong>git cherry-pick [SHA]:</strong> Kisi doosri branch se ek specific fruit (commit) utha kar apni branch pe lana.</li>
+<li><strong>git stash:</strong> "Arey koi guest aa gaya!"—Messy code chhupao, clean slate pe kaam karo, baad mein `stash pop` karlo.</li>
+</ul>
+<h3 class="handwritten" style="margin-top: 20px;">3. Reverting a Merge — "The -m 1 trick"</h3>
+<p class="handwritten">You cannot do a normal `git revert` on a merge commit because it has two parents. 
+                We have to say: <code class="chalk-text">git revert -m 1 [Merge-SHA]</code>. Its meaning is "Go back to the main line!"</p>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>git commit --amend -m "Sahi Message"</code> <span class="handwritten">(Last commit fix)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. <code>git reflog</code> <span class="handwritten">(History of your HEAD!)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. <code>git stash save "kaam baki hai"</code></p>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Agar shared branch pe galti ho jaye, toh kya use karna chahiye?</p>
+<div class="quiz-options"><span class="quiz-opt">a) git reset --hard</span><span class="quiz-opt">b) git revert</span><span class="quiz-opt">c) git rm</span><span class="quiz-opt">d) git delete</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Messy code ko temporarily save karke branch saaf karne ke liye command?</p>
+<div class="quiz-options"><span class="quiz-opt">a) git save</span><span class="quiz-opt">b) git store</span><span class="quiz-opt">c) git stash</span><span class="quiz-opt">d) git hide</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, halftime: 1-b | 2-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 28 • Phase 3: The Time Machine • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

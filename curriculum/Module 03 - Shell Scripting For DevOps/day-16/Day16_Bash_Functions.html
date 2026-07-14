@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 16: Bash Functions - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 16: Bash Functions - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -90,179 +91,160 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- BRANDED AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Bash Functions & Scope</h1>
-        <p class="subtitle handwritten">Day 16: Organizing Your Code Like a Pro Engineer 🧱🐚</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, meri script itni badi ho gayi hai ki main khud confuse ho raha hoon! <br> 
-                    Same code har line pe copy-paste karna pad raha hai."
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, isse 'Spaghetti Code' kehte hain. <br> 
-                    Aaj hum <span class="chalk-text">Functions</span> seekhenge. <br> 
-                    Code ko blocks mein divide karo aur modular engineer bano!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Bash Functions ki power samjhenge. Local vs Global variables ka difference, 
-                reusable blocks banana, aur return codes se error handling karna.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Modularity:</strong> Group multiple commands into a single named block.</li>
-                <li><strong>Privacy:</strong> Use the `local` keyword to protect your function variables.</li>
-                <li><strong>Communication:</strong> Pass arguments into functions and use return codes.</li>
-                <li><strong>Efficiency:</strong> Write code once, use it everywhere (Don't Repeat Yourself - DRY).</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<!-- BRANDED AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Bash Functions &amp; Scope</h1>
+<p class="subtitle handwritten">Day 16: Organizing Your Code Like a Pro Engineer 🧱🐚</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Jagu, my script has become so after that I am confusing myself! <br/> 
+                    "The same code is being copied and pasted on every line."</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Golu, this is called 'Spaghetti Code'. <br/> 
+                    Today we <span class="chalk-text">Functions</span> seek. <br/> 
+                    Divide the code into blocks and become a modular engineer!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will understand the power of Bash Functions. Difference between Local vs Global variables, 
+                Creating reusable blocks, and doing error handling with return codes.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Modularity:</strong> Group multiple commands into a single named block.</li>
+<li><strong>Privacy:</strong> Use the `local` keyword to protect your function variables.</li>
+<li><strong>Communication:</strong> Pass arguments into functions and use return codes.</li>
+<li><strong>Efficiency:</strong> Write code once, use it everywhere (Don't Repeat Yourself - DRY).</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real DevOps scripts hazaron lines ki hoti hain—bina functions ke unhe maintain karna namumkin hai!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Lego Bricks</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Normal Script:</span> Ek badi clay ki murti (Poori ek piece, todna mushkil).<br>
-                2. <span class="chalk-text">Function:</span> Lego bricks (Chote-chote reusable blocks).<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Lego Bricks</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Normal Script:</span> Ek badi clay ki murti (Poori ek piece, todna mushkil).<br/>
+                2. <span class="chalk-text">Function:</span> Lego bricks (Chote-chote reusable blocks).<br/>
                 3. <span class="chalk-text">Library:</span> Lego set (In blocks ko jodo aur kuch bhi bada bana lo!).
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">()</div><div class="handwritten" style="color:var(--chalk-blue);">The Function Marker</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">local</div><div class="handwritten" style="color:var(--chalk-blue);">Scope Shield</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">return</div><div class="handwritten" style="color:var(--chalk-blue);">The Exit Signal</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: Function Anatomy -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: Function Anatomy</div>
-        <div class="bash-box">
-            <span style="color:var(--chalk-yellow);"># 1. Defining a function</span><br>
-            function say_hello() {<br>
-            &nbsp;&nbsp;echo "Namaste $1!"<br>
-            }<br><br>
-            <span style="color:var(--chalk-yellow);"># 2. Calling with arguments</span><br>
-            say_hello "Golu"<br><br>
-            <span style="color:var(--chalk-yellow);"># 3. Local Variable Example</span><br>
-            my_func() {<br>
-            &nbsp;&nbsp;<span style="color:var(--chalk-pink);">local</span> SECRET="Hidden"<br>
-            &nbsp;&nbsp;echo $SECRET<br>
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">()</div><div class="handwritten" style="color:var(--chalk-blue);">The Function Marker</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">local</div><div class="handwritten" style="color:var(--chalk-blue);">Scope Shield</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">return</div><div class="handwritten" style="color:var(--chalk-blue);">The Exit Signal</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: Function Anatomy -->
+<section>
+<div class="topic-title">📌 Key Concepts: Function Anatomy</div>
+<div class="bash-box">
+<span style="color:var(--chalk-yellow);"># 1. Defining a function</span><br/>
+            function say_hello() {<br/>
+              echo "Namaste $1!"<br/>
+            }<br/><br/>
+<span style="color:var(--chalk-yellow);"># 2. Calling with arguments</span><br/>
+            say_hello "Golu"<br/><br/>
+<span style="color:var(--chalk-yellow);"># 3. Local Variable Example</span><br/>
+            my_func() {<br/>
+              <span style="color:var(--chalk-pink);">local</span> SECRET="Hidden"<br/>
+              echo $SECRET<br/>
             }
         </div>
-        <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
-            <span class="hinglish">Logic:</span> Functions ko script ke TOP pe define karna zaroori hai!
+<p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
+<span class="handwritten">Logic:</span> Functions ko script ke TOP pe define karna zaroori hai!
         </p>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: Global vs Local</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">Global Variable</h3>
-                <p class="hinglish">"Ghar ki TV jaisa—room ke bahar bhi sab dekh sakte hain."</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">Local Variable</h3>
-                <p class="hinglish">"Aapka mobile phone—sirf aapke pocket (function) mein hi dikhega."</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> Bash functions value return kar sakte hain (like Python).</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Bash functions sirf **Exit Status (0-255)** return karte hain. Data return karne ke liye `echo` use karo!</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Function ke arguments script ke arguments ke same hain.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Function ka `$1` alag hota hai aur Script ka `$1` alag.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>hello() { echo "Bhai $1!"; }</code> <span class="hinglish">(Terminal pe function banao)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>hello Golu</code> <span class="hinglish">(Usey call karo!)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. Write a script that uses a function to check if a folder exists.</p>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Variable ko function ke andar 'Private' rakhne ke liye kaunsa keyword use hota hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) private</span><span class="quiz-opt">b) local</span><span class="quiz-opt">c) static</span><span class="quiz-opt">d) hidden</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Bash function max kitni value return kar sakta hai (Exit Status)?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) 10</span><span class="quiz-opt">b) 100</span><span class="quiz-opt">c) 255</span><span class="quiz-opt">d) Unlimited</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: Global vs Local</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
+<h3 class="handwritten">Global Variable</h3>
+<p class="handwritten">"Like a TV at home - everyone can watch even outside the room."</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+<h3 class="handwritten">Local Variable</h3>
+<p class="handwritten">"Your mobile phone—only visible in your pocket (function)."</p>
+</div>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> Bash functions value return kar sakte hain (like Python).</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Bash functions sirf **Exit Status (0-255)** return karte hain. Data return karne ke liye `echo` use karo!</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Function ke arguments script ke arguments ke same hain.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Nahi! Function ka `$1` alag hota hai aur Script ka `$1` alag.</li>
+</ul>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>hello() { echo "Bhai $1!"; }</code> <span class="handwritten">(Terminal on banao function)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. <code>hello Golu</code> <span class="handwritten">(Usey call!)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. Write a script that uses a function to check if a folder exists.</p>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Variable ko function ke andar 'Private' rakhne ke liye kaunsa keyword use hota hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) private</span><span class="quiz-opt">b) local</span><span class="quiz-opt">c) static</span><span class="quiz-opt">d) hidden</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Bash function max kitni value return kar sakta hai (Exit Status)?</p>
+<div class="quiz-options"><span class="quiz-opt">a) 10</span><span class="quiz-opt">b) 100</span><span class="quiz-opt">c) 255</span><span class="quiz-opt">d) Unlimited</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, halftime: 1-b | 2-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 16 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

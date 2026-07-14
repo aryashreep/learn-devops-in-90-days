@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 05: Linux Troubleshooting Runbook - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 05: Linux Troubleshooting Runbook - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -97,248 +98,222 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- BRANDED AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item"><span class="contact-icon">🔗</span> <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
-            <div class="contact-item"><span class="contact-icon">💼</span> <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
-            <div class="contact-item"><span class="contact-icon">📺</span> <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
-            <div class="contact-item"><span class="contact-icon">📧</span> <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item"><span class="contact-icon">📞</span> <span>+91 8147450705</span></div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Linux Troubleshooting Runbook</h1>
-        <p class="subtitle handwritten">Day 05: Diagnosing System Health Like a Senior SRE 🩺</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle">
-                        <div class="malik-head"><div class="malik-smile"></div></div>
-                        <div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
-                    </div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, manager khade hain aur server 'slow' hai bol rahe hain! <br> 
-                    Mere pass koi plan nahi hai, main panic kar raha hoon!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">
-                    "Beep Boop! Panic mat karo Golu. <br> 
-                    Panic se service fix nahi hoti, <span class="chalk-text">Runbook</span> se hoti hai! Chalo checkup karte hain."
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle">
-                        <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                        <div class="robot-body"></div><div class="robot-bag"></div>
-                    </div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux troubleshooting ka <b>Systematic Approach</b> seekhenge. 
-                CPU, RAM, Disk aur Logs ka snapshot kaise lete hain aur ek repeatable 'Runbook' kaise likhte hain.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Monitor:</strong> CPU and RAM health using `top` and `htop`.</li>
-                <li><strong>Analyze:</strong> Disk space and I/O with `df` and `du`.</li>
-                <li><strong>Trace:</strong> Deep-dive into system logs in `/var/log`.</li>
-                <li><strong>Repeat:</strong> Learn what a 'Runbook' is and how to create one.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<!-- BRANDED AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item"><span class="contact-icon">🔗</span> <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+<div class="contact-item"><span class="contact-icon">💼</span> <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+<div class="contact-item"><span class="contact-icon">📺</span> <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+<div class="contact-item"><span class="contact-icon">📧</span> <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item"><span class="contact-icon">📞</span> <span>+91 8147450705</span></div>
+</div>
+</header>
+<header>
+<h1>Linux Troubleshooting Runbook</h1>
+<p class="subtitle handwritten">Day 05: Diagnosing System Health Like a Senior SRE 🩺</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle">
+<div class="malik-head"><div class="malik-smile"></div></div>
+<div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
+</div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Jagu, the manager is eating and the server is 'slow' he is saying! <br/> 
+                    I don't have any plan, I'm panicking!"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">"Beep Boop! Panic with Golu. <br/> 
+                    Service is not fixed by panic, it is by <span class="chalk-text">Runbook</span>! Let's get checked."</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will look for Linux troubleshooting. 
+                How to take snapshot of CPU, RAM, Disk and Logs and write a repeatable 'Runbook'.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Monitor:</strong> CPU and RAM health using `top` and `htop`.</li>
+<li><strong>Analyze:</strong> Disk space and I/O with `df` and `du`.</li>
+<li><strong>Trace:</strong> Deep-dive into system logs in `/var/log`.</li>
+<li><strong>Repeat:</strong> Learn what a 'Runbook' is and how to create one.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki on-call incidents mein ek checklist hone se aap 10x fast problems solve kar sakte ho!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Doctor's Checklist</div>
-        <div class="doodle-container">
-            <div class="malik-doodle">
-                <div class="malik-head"><div class="malik-smile"></div></div>
-                <div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
-            </div>
-            <span class="char-name">Golu</span>
-            <div class="speech-bubble">
-                "Troubleshooting bilkul <span class="chalk-text">Doctor ke Checkup</span> jaisa hai! Doctor direct surgery nahi karta, pehle BP, Pulse, aur X-ray (Snapshots) check karta hai."
-            </div>
-        </div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Snapshots:</span> System ke vitals (CPU/RAM).<br>
-                2. <span class="chalk-text">X-Ray:</span> Detailed logs check karna.<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Doctor's Checklist</div>
+<div class="doodle-container">
+<div class="malik-doodle">
+<div class="malik-head"><div class="malik-smile"></div></div>
+<div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
+</div>
+<span class="char-name">Golu</span>
+<div class="speech-bubble">"Troubleshooting is exactly <span class="chalk-text">Doctor's Checkup</span> like! Doctor does not do direct surgery, first checks BP, Pulse, and X-ray (Snapshots)."</div>
+</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Snapshots:</span> System ke vitals (CPU/RAM).<br/>
+                2. <span class="chalk-text">X-Ray:</span> Detailed logs check karna.<br/>
                 3. <span class="chalk-text">Runbook:</span> Standard treatment plan (Surgery steps).
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Z</div><div class="handwritten" style="color:var(--chalk-blue);">Zombie Processes</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">100%</div><div class="handwritten" style="color:var(--chalk-blue);">Disk Full = System Down</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">/var/log</div><div class="handwritten" style="color:var(--chalk-blue);">Source of Truth</div></div>
-        </div>
-    </section>
-
-    <!-- ④ Key Directories -->
-    <section>
-        <div class="topic-title">📂 The SRE's Radar — Where to Monitor</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
-            <ul>
-                <li><span class="dir-icon">🔍</span> <span class="chalk-text">/var/log/syslog</span> → Overall system health and errors.</li>
-                <li><span class="dir-icon">🌐</span> <span class="chalk-text">/var/log/nginx/</span> → Web server specific access and error logs.</li>
-                <li><span class="dir-icon">⚙️</span> <span class="chalk-text">/proc</span> → Virtual filesystem for real-time kernel info.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: The Troubleshooting Flow -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: Vitals Check</div>
-        <div class="diagram-container">
-            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-                <div class="content-box" style="border-color: var(--chalk-pink); flex: 1; min-width: 200px;">
-                    <h3 class="handwritten">CPU / RAM</h3>
-                    <code>top</code> / <code>free -h</code>
-                </div>
-                <div class="content-box" style="border-color: var(--chalk-green); flex: 1; min-width: 200px;">
-                    <h3 class="handwritten">Disk Space</h3>
-                    <code>df -h</code> / <code>du -sh</code>
-                </div>
-                <div class="content-box" style="border-color: var(--chalk-blue); flex: 1; min-width: 200px;">
-                    <h3 class="handwritten">Logs</h3>
-                    <code>tail -n 50</code> / <code>journalctl</code>
-                </div>
-            </div>
-            <p class="handwritten" style="margin-top: 35px; font-size: 1.4rem;">
-                <span class="hinglish">Strategy:</span> Capture evidence BEFORE taking action!
-            </p>
-        </div>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: Reactive vs Proactive</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
-                <h3 class="handwritten">Reactive (Panic)</h3>
-                <p class="hinglish">"Restart everything! Kuch toh fix ho jayega."</p>
-                <p style="font-size: 0.8rem; color: #888;">Risk: Problem temporary hide hota hai, solve nahi.</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">Proactive (SRE)</h3>
-                <p class="hinglish">"Check Vitals ➔ Read Logs ➔ Fix Root Cause."</p>
-                <p style="font-size: 0.8rem; color: #888;">Benefit: Permanent fix and data for post-mortem.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑦ REAL-WORLD EXAMPLE -->
-    <section>
-        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Slow Server</div>
-        <div class="doodle-container">
-            <div class="robot-doodle">
-                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                <div class="robot-body"></div><div class="robot-bag"></div>
-            </div>
-            <span class="char-name">Jagu</span>
-            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
-                "Bhai, users keh rahe hain website respond nahi kar rahi. <br> 
-                Jaldi se vitals check karo!"
-            </div>
-        </div>
-        <div class="content-box" style="border-color: var(--chalk-blue);">
-            <p><strong>Step 1:</strong> <code>top</code> shows CPU at 99%. Culprit: `ffmpeg` backup script.</p>
-            <p><strong>Step 2:</strong> <code>kill -9 <pid></code> immediately restores website speed.</p>
-            <p class="hinglish" style="margin-top: 10px;">"Evidence ke bina fixing andhera teer chalane jaisa hai!"</p>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> Restart fix is always the best fix.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Restarts destroy evidence (logs in /tmp or RAM). Only restart if you know why.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Troubleshooting is only for 'Experts'.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Simple commands + a solid Runbook (checklist) can make anyone an expert.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>df -h</code> <span class="hinglish">(Disk ka temperature check karo)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>free -h</code> <span class="hinglish">(RAM kitni baki hai?)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>ps aux --sort=-%mem | head -10</code> <span class="hinglish">(Kaunsa app memory kha raha hai?)</span></p>
-        </div>
-    </section>
-
-    <!-- ⑩ QUICK SUMMARY -->
-    <section>
-        <div class="topic-title">✓ QUICK SUMMARY</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
-            <ul>
-                <li><strong>Snapshots:</strong> Get the system vitals first.</li>
-                <li><strong>Logs:</strong> They never lie—read them!</li>
-                <li><strong>Runbook:</strong> Your battle-tested checklist.</li>
-                <li><strong>Evidence:</strong> Document everything before you fix.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Disk space check karne ke liye human-readable command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) du</span><span class="quiz-opt">b) df -h</span><span class="quiz-opt">c) ls -la</span><span class="quiz-opt">d) top</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">2. Live resource monitoring ke liye kaunsa interactive tool use hota hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) cat</span><span class="quiz-opt">b) grep</span><span class="quiz-opt">c) htop</span><span class="quiz-opt">d) find</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">3. Incident ke waqt follow hone wali checklist ko kya kehte hain?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Diary</span><span class="quiz-opt">b) Storybook</span><span class="quiz-opt">c) Runbook</span><span class="quiz-opt">d) Logbook</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c | 3-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>DevOps & Cloud — 90-Day Learning Journey • Day 05</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">Explore the Repo: github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
 </div>
-
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">Z</div><div class="handwritten" style="color:var(--chalk-blue);">Zombie Processes</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">100%</div><div class="handwritten" style="color:var(--chalk-blue);">Disk Full = System Down</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">/var/log</div><div class="handwritten" style="color:var(--chalk-blue);">Source of Truth</div></div>
+</div>
+</section>
+<!-- ④ Key Directories -->
+<section>
+<div class="topic-title">📂 The SRE's Radar — Where to Monitor</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
+<ul>
+<li><span class="dir-icon">🔍</span> <span class="chalk-text">/var/log/syslog</span> → Overall system health and errors.</li>
+<li><span class="dir-icon">🌐</span> <span class="chalk-text">/var/log/nginx/</span> → Web server specific access and error logs.</li>
+<li><span class="dir-icon">⚙️</span> <span class="chalk-text">/proc</span> → Virtual filesystem for real-time kernel info.</li>
+</ul>
+</div>
+</section>
+<!-- ⑤ Key Concepts: The Troubleshooting Flow -->
+<section>
+<div class="topic-title">📌 Key Concepts: Vitals Check</div>
+<div class="diagram-container">
+<div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+<div class="content-box" style="border-color: var(--chalk-pink); flex: 1; min-width: 200px;">
+<h3 class="handwritten">CPU / RAM</h3>
+<code>top</code> / <code>free -h</code>
+</div>
+<div class="content-box" style="border-color: var(--chalk-green); flex: 1; min-width: 200px;">
+<h3 class="handwritten">Disk Space</h3>
+<code>df -h</code> / <code>du -sh</code>
+</div>
+<div class="content-box" style="border-color: var(--chalk-blue); flex: 1; min-width: 200px;">
+<h3 class="handwritten">Logs</h3>
+<code>tail -n 50</code> / <code>journalctl</code>
+</div>
+</div>
+<p class="handwritten" style="margin-top: 35px; font-size: 1.4rem;">
+<span class="handwritten">Strategy:</span> Capture evidence BEFORE taking action!
+            </p>
+</div>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: Reactive vs Proactive</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
+<h3 class="handwritten">Reactive (Panic)</h3>
+<p class="handwritten">"Restart everything! Everything will be fixed."</p>
+<p style="font-size: 0.8rem; color: #888;">Risk: Problem temporary hide hota hai, solve nahi.</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">Proactive (SRE)</h3>
+<p class="handwritten">"Check Vitals ➔ Read Logs ➔ Fix Root Cause."</p>
+<p style="font-size: 0.8rem; color: #888;">Benefit: Permanent fix and data for post-mortem.</p>
+</div>
+</div>
+</section>
+<!-- ⑦ REAL-WORLD EXAMPLE -->
+<section>
+<div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Slow Server</div>
+<div class="doodle-container">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<span class="char-name">Jagu</span>
+<div class="speech-bubble" style="border-color: var(--chalk-blue);">"Brother, users are saying that the website is not responding. <br/> 
+                Check vitals quickly!”</div>
+</div>
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<p><strong>Step 1:</strong> <code>top</code> shows CPU at 99%. Culprit: `ffmpeg` backup script.</p>
+<p><strong>Step 2:</strong> <code>kill -9 <pid></pid></code> immediately restores website speed.</p>
+<p class="handwritten" style="margin-top: 10px;">"Fixing without evidence is like driving away darkness!"</p>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> Restart fix is always the best fix.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Restarts destroy evidence (logs in /tmp or RAM). Only restart if you know why.</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Troubleshooting is only for 'Experts'.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Simple commands + a solid Runbook (checklist) can make anyone an expert.</li>
+</ul>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>df -h</code> <span class="handwritten">(Disk temperature check car)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. <code>free -h</code> <span class="handwritten">(How much RAM is left?)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. <code>ps aux --sort=-%mem | head -10</code> <span class="handwritten">(Which app is eating memory?)</span></p>
+</div>
+</section>
+<!-- ⑩ QUICK SUMMARY -->
+<section>
+<div class="topic-title">✓ QUICK SUMMARY</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
+<ul>
+<li><strong>Snapshots:</strong> Get the system vitals first.</li>
+<li><strong>Logs:</strong> They never lie—read them!</li>
+<li><strong>Runbook:</strong> Your battle-tested checklist.</li>
+<li><strong>Evidence:</strong> Document everything before you fix.</li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Disk space check karne ke liye human-readable command?</p>
+<div class="quiz-options"><span class="quiz-opt">a) du</span><span class="quiz-opt">b) df -h</span><span class="quiz-opt">c) ls -la</span><span class="quiz-opt">d) top</span></div></div>
+<div class="quiz-item"><p class="quiz-question">2. Live resource monitoring ke liye kaunsa interactive tool use hota hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) cat</span><span class="quiz-opt">b) grep</span><span class="quiz-opt">c) htop</span><span class="quiz-opt">d) find</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">3. Incident ke waqt follow hone wali checklist ko kya kehte hain?</p>
+<div class="quiz-options"><span class="quiz-opt">a) Diary</span><span class="quiz-opt">b) Storybook</span><span class="quiz-opt">c) Runbook</span><span class="quiz-opt">d) Logbook</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, no match: 1-b | 2-c | 3-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
+<p>DevOps &amp; Cloud — 90-Day Learning Journey • Day 05</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">Explore the Repo: github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
+</div>
 </body>
 </html>

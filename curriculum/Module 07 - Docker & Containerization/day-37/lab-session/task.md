@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 37 — Multi-Stage Builds & Docker Hub
 
-**Jagu:** "Beep Boop! Golu, production mein 1GB ki image deploy karna paap hai. Aaj hum builders aur templates ko use karke image ko sleek aur secure banayenge!"
+**Jagu:** "Beep Boop! Golu, it is a sin to deploy 1GB image in production. Today we will make the image sleek and secure by using builders and templates!"
 
 ## 🎯 Task Objectives
 - Implement multi-stage builds in a Dockerfile.

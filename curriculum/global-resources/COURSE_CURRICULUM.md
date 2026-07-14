@@ -32,20 +32,20 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 ## 🐚 Module 03 - Shell Scripting For DevOps (Days 14-19)
 | Day | Topic |
 |---|---|
-| Day 20 | [Shell Scripting Basics](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/README.md) |
-| Day 21 | [Shell Scripting: Loops, Arguments and Error Handling](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/README.md) |
-| Day 16 | [Shell Scripting: Functions and Intermediate Concepts](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/README.md) |
-| Day 17 | [Shell Scripting Project: Log Rotation, Backup and Crontab](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/README.md) |
-| Day 18 | [Bash Scripting Challenge: Log Analyzer and Report Generator](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-20/README.md) |
-| Day 19 | [Shell Scripting Handbook: Complete Master Guide](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-21/README.md) |
+| [Day 14](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/README.md) | Shell Scripting Basics |
+| [Day 15](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-15/README.md) | Shell Scripting: Loops, Arguments and Error Handling |
+| [Day 16](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/README.md) | Shell Scripting: Functions and Intermediate Concepts |
+| [Day 17](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/README.md) | Shell Scripting Project: Log Rotation, Backup and Crontab |
+| [Day 18](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/README.md) | Bash Scripting Challenge: Log Analyzer and Report Generator |
+| [Day 19](../Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/README.md) | Shell Scripting Handbook: Complete Master Guide |
 
 ---
 
 ## 🌐 Module 04 - Networking & System Design (Days 20-21)
 | Day | Topic |
 |---|---|
-| [Day 20](../Module%2004%20-%20Networking%20&%20System%20Design/day-14/README.md) | Networking Fundamentals and Hands-on Checks |
-| [Day 21](../Module%2004%20-%20Networking%20&%20System%20Design/day-15/README.md) | Networking Concepts: DNS, IP, Subnets and Ports |
+| [Day 20](../Module%2004%20-%20Networking%20&%20System%20Design/day-20/README.md) | Networking Fundamentals and Hands-on Checks |
+| [Day 21](../Module%2004%20-%20Networking%20&%20System%20Design/day-21/README.md) | Networking Concepts: DNS, IP, Subnets and Ports |
 
 ---
 
@@ -65,8 +65,8 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 | [Day 26](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-26/README.md) | Advanced Git: Merge, Rebase, Stash and Cherry Pick |
 | [Day 27](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-27/README.md) | Git Reset vs Revert and Branching Strategies |
 | [Day 28](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-28/README.md) | GitHub CLI: Manage GitHub from Your Terminal |
-| [Day 31](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-29/README.md) | GitHub Profile Makeover: Build Your Developer Identity |
-| [Day 32](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-30/README.md) | **Revision Day:** Everything from Day 1 to Day 29 |
+| [Day 29](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-29/README.md) | GitHub Profile Makeover: Build Your Developer Identity |
+| [Day 30](../Module%2006%20-%20Introduction%20to%20Git%20[GitHub%20&%20GitLab]/day-30/README.md) | **Revision Day:** Everything from Day 1 to Day 29 |
 
 ---
 
@@ -82,8 +82,8 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 | [Day 35](../Module%2007%20-%20Docker%20&%20Containerization/day-35/README.md) | Docker Compose: Multi-Container Basics |
 | [Day 36](../Module%2007%20-%20Docker%20&%20Containerization/day-36/README.md) | Docker Compose: Real-World Multi-Container Apps |
 | [Day 37](../Module%2007%20-%20Docker%20&%20Containerization/day-37/README.md) | Multi-Stage Builds and Docker Hub |
-| [Day 40](../Module%2007%20-%20Docker%20&%20Containerization/day-38/README.md) | Docker Project: Dockerize a Full Application |
-| [Day 41](../Module%2007%20-%20Docker%20&%20Containerization/day-39/README.md) | **Docker Revision and Cheat Sheet** |
+| [Day 38](../Module%2007%20-%20Docker%20&%20Containerization/day-38/README.md) | Docker Project: Dockerize a Full Application |
+| [Day 39](../Module%2007%20-%20Docker%20&%20Containerization/day-39/README.md) | **Docker Revision and Cheat Sheet** |
 
 ---
 
@@ -116,92 +116,93 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 
 ---
 
-## ☸️ Module 10 - Kubernetes [CKA] (Days 53-62)
+## ☸️ Module 10 - Kubernetes [CKA] (Days 53-63)
 | Day | Topic |
 |---|---|
-| Day 50 | Kubernetes Architecture and Cluster Setup |
-| Day 53 | Kubernetes Manifests and Your First Pods |
-| Day 54 | Kubernetes Namespaces and Deployments |
-| Day 55 | Kubernetes Services |
-| Day 56 | Kubernetes ConfigMaps and Secrets |
-| Day 57 | Persistent Volumes (PV) and PVC |
-| Day 58 | Kubernetes StatefulSets |
-| Day 59 | Resource Requests, Limits, and Probes |
-| Day 60 | Metrics Server and Horizontal Pod Autoscaler (HPA) |
-| Day 61 | Helm -- Kubernetes Package Manager |
-| Day 62 | **Capstone:** Deploy WordPress + MySQL on Kubernetes |
+| [Day 53](../Module%2010%20-%20Kubernetes/day-53/README.md) | Kubernetes Architecture and Cluster Setup |
+| [Day 54](../Module%2010%20-%20Kubernetes/day-54/README.md) | Kubernetes Manifests and Your First Pods |
+| [Day 55](../Module%2010%20-%20Kubernetes/day-55/README.md) | Kubernetes Namespaces and Deployments |
+| [Day 56](../Module%2010%20-%20Kubernetes/day-56/README.md) | Kubernetes Services & Gateway API |
+| [Day 57](../Module%2010%20-%20Kubernetes/day-57/README.md) | Kubernetes ConfigMaps and Secrets |
+| [Day 58](../Module%2010%20-%20Kubernetes/day-58/README.md) | Persistent Volumes (PV) and PVC |
+| [Day 59](../Module%2010%20-%20Kubernetes/day-59/README.md) | Kubernetes StatefulSets & DaemonSets |
+| [Day 60](../Module%2010%20-%20Kubernetes/day-60/README.md) | Resource Requests, Limits, QoS, and Probes |
+| [Day 61](../Module%2010%20-%20Kubernetes/day-61/README.md) | Metrics Server and Horizontal Pod Autoscaler (HPA) & Scheduling |
+| [Day 62](../Module%2010%20-%20Kubernetes/day-62/README.md) | Helm -- Kubernetes Package Manager |
+| [Day 63](../Module%2010%20-%20Kubernetes/day-63/README.md) | **Capstone:** Deploy WordPress + MySQL on Kubernetes |
+
 
 ---
 
 ## ☁️ Module 11 - Terraform [IaC] (Days 64-70)
 | Day | Topic |
 |---|---|
-| Day 63 | Introduction to Terraform and First AWS Infra |
-| Day 64 | Providers, Resources and Dependencies |
-| Day 65 | Variables, Outputs, Data Sources and Expressions |
-| Day 66 | Terraform State Management and Remote Backends |
-| Day 67 | Terraform Modules: Build Reusable Infrastructure |
-| Day 68 | Provision an EKS Cluster with Terraform Modules |
-| Day 69 | **Capstone:** Multi-Environment Infrastructure with Workspaces |
+| Day 64 | Introduction to Terraform and First AWS Infra |
+| Day 65 | Providers, Resources and Dependencies |
+| Day 66 | Variables, Outputs, Data Sources and Expressions |
+| Day 67 | Terraform State Management and Remote Backends |
+| Day 68 | Terraform Modules: Build Reusable Infrastructure |
+| Day 69 | Provision an EKS Cluster with Terraform Modules |
+| Day 70 | **Capstone:** Multi-Environment Infrastructure with Workspaces |
 
 ---
 
 ## ⚙️ Module 12 - Ansible [Config Mgmt] (Days 71-75)
 | Day | Topic |
 |---|---|
-| Day 70 | Introduction to Ansible and Inventory Setup |
-| Day 71 | Ansible Playbooks and Modules |
-| Day 72 | Variables, Facts, Conditionals and Loops |
-| Day 73 | Roles, Galaxy, Templates and Vault |
-| Day 74 | **Project:** Automate Docker and Nginx Deployment |
+| Day 71 | Introduction to Ansible and Inventory Setup |
+| Day 72 | Ansible Playbooks and Modules |
+| Day 73 | Variables, Facts, Conditionals and Loops |
+| Day 74 | Roles, Galaxy, Templates and Vault |
+| Day 75 | **Project:** Automate Docker and Nginx Deployment |
 
 ---
 
 ## 📊 Module 13 - SRE & Observability (Days 76-80)
 | Day | Topic |
 |---|---|
-| Day 75 | Introduction to Observability and Prometheus |
-| Day 76 | Node Exporter, cAdvisor, and Grafana Dashboards |
-| Day 77 | Log Management with Loki and Promtail |
-| Day 78 | OpenTelemetry and Alerting |
-| Day 79 | **Project:** Full Stack with Docker Compose |
+| Day 76 | Introduction to Observability and Prometheus |
+| Day 77 | Node Exporter, cAdvisor, and Grafana Dashboards |
+| Day 78 | Log Management with Loki and Promtail |
+| Day 79 | OpenTelemetry and Alerting |
+| Day 80 | **Project:** Full Stack with Docker Compose |
 
 ---
 
 ## 🏷️ Module 14 - Helm [K8s Package Mgmt] (Days 81-83)
 | Day | Topic |
 |---|---|
-| Day 80 | Introduction to Helm and Chart Basics |
-| Day 81 | Creating a Custom Helm Chart for AI-BankApp |
-| Day 82 | **Project:** Multi-Environment Deployment and CI/CD |
+| Day 81 | Introduction to Helm and Chart Basics |
+| Day 82 | Creating a Custom Helm Chart for AI-BankApp |
+| Day 83 | **Project:** Multi-Environment Deployment and CI/CD |
 
 ---
 
 ## 🏗️ Module 15 - Amazon EKS [Cloud Ops] (Days 84-86)
 | Day | Topic |
 |---|---|
-| Day 83 | Introduction to Amazon EKS with Terraform |
-| Day 84 | EKS Networking and Persistent Storage |
-| Day 85 | **Project:** Production Deployment of AI-BankApp |
+| Day 84 | Introduction to Amazon EKS with Terraform |
+| Day 85 | EKS Networking and Persistent Storage |
+| Day 86 | **Project:** Production Deployment of AI-BankApp |
 
 ---
 
 ## 🚀 Module 16 - GitOps & ArgoCD (Days 87-89)
 | Day | Topic |
 |---|---|
-| Day 86 | Introduction to GitOps and ArgoCD |
-| Day 87 | ArgoCD Deep Dive: Sync Strategies and Rollbacks |
-| Day 88 | **Capstone:** End-to-End GitOps Pipeline with AI-BankApp |
+| Day 87 | Introduction to GitOps and ArgoCD |
+| Day 88 | ArgoCD Deep Dive: Sync Strategies and Rollbacks |
+| Day 89 | **Capstone:** End-to-End GitOps Pipeline with AI-BankApp |
 
 ---
 
-## 🤖 Module 17 - Agentic AI for DevOps (Days 90-92)
+## 🤖 Module 17 - Agentic AI for DevOps (Days 90-93)
 | Day | Topic |
 |---|---|
-| Day 89 | Introduction to Agentic AI for DevOps |
-| Day 90 | Multi-Tool Agents, MCP, and CI/CD Analyzer |
-| Day 91 | **GRAND CAPSTONE:** KubeHealer and Self-Healing AI Ops |
-| Day 92 | **Grand Finale:** The Complete DevOps Journey Portfolio |
+| Day 90 | Introduction to Agentic AI for DevOps |
+| Day 91 | Multi-Tool Agents, MCP, and CI/CD Analyzer |
+| Day 92 | **GRAND CAPSTONE:** KubeHealer and Self-Healing AI Ops |
+| Day 93 | **Grand Finale:** The Complete DevOps Journey Portfolio |
 
 ---
 Maintainer: **[Aryashree Pritikrishna](https://www.linkedin.com/in/aryashreepritikrishna/)**

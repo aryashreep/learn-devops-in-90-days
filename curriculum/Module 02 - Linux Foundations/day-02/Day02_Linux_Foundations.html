@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 02: Linux Architecture & systemd - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 02: Linux Architecture &amp; systemd - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -99,144 +100,127 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Linux Architecture & systemd</h1>
-        <p class="subtitle handwritten">Day 02: Understanding the Soul of DevOps Infrastructure 🐧</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, sab kehte hain ki DevOps matlab Linux hai. Par ye Linux actually hai kya? Bas ek kala (black) screen?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Haha! Nahi Golu, Linux sirf screen nahi, pura <span class="chalk-text">Operating System ka Engine</span> hai! <br> 
-                    Aaj hum iska system breakdown karenge."
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux ke <b>Core Architecture</b> samjhenge. Kernel kisse baat karta hai, Shell aapse kya poochti hai, aur `systemd` pure server ko kaise manage karta hai.
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Understand:</strong> Kernel vs User Space components.</li>
-                <li><strong>Master:</strong> Process states and life cycles (Running, Zombie, Sleep).</li>
-                <li><strong>Command:</strong> Control services with the mighty `systemd` and `systemctl`.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Linux Architecture &amp; systemd</h1>
+<p class="subtitle handwritten">Day 02: Understanding the Soul of DevOps Infrastructure 🐧</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble">"Jagu, everyone says that DevOps means Linux. But what is Linux actually? Just a black screen?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Haha! Nahi Golu, Linux sirf screen nahi, pura <span class="chalk-text">Operating System ka Engine</span> hai! <br/> 
+                    Today we will breakdown our system."</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will understand <b>Core Architecture</b> of Linux. What does the kernel talk to, what does the shell ask itself, and how does `systemd` manage the pure server.</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Understand:</strong> Kernel vs User Space components.</li>
+<li><strong>Master:</strong> Process states and life cycles (Running, Zombie, Sleep).</li>
+<li><strong>Command:</strong> Control services with the mighty `systemd` and `systemctl`.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real server troubleshooting mein apko 'systemd' se dosti karni hi padegi!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Body System</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Kernel:</span> Brain (Controls heart, lungs, and muscles).<br>
-                2. <span class="chalk-text">Shell:</span> Mouth (Talks to you and sends orders to brain).<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Body System</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Kernel:</span> Brain (Controls heart, lungs, and muscles).<br/>
+                2. <span class="chalk-text">Shell:</span> Mouth (Talks to you and sends orders to brain).<br/>
                 3. <span class="chalk-text">Systemd:</span> Nervous System (Tells every organ when to start/stop).
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">PID 1</div><div class="handwritten" style="color:var(--chalk-blue);">Systemd is Always First</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">33yr</div><div class="handwritten" style="color:var(--chalk-blue);">Legacy since 1991</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">Open</div><div class="handwritten" style="color:var(--chalk-blue);">Anyone can read the code</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: The Onion Model -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: The Layers</div>
-        <div class="diagram-container">
-            <div class="onion-ring ring-apps">
-                <div class="onion-ring ring-shell">
-                    <div class="onion-ring ring-kernel">
-                        <div class="onion-ring ring-hardware"></div>
-                    </div>
-                </div>
-            </div>
-            <p class="handwritten" style="margin-top: 35px; font-size: 1.3rem;">
-                <span class="hinglish">Flow:</span> You ➔ Shell ➔ Kernel ➔ Hardware ➔ Action!
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">PID 1</div><div class="handwritten" style="color:var(--chalk-blue);">Systemd is Always First</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">33yr</div><div class="handwritten" style="color:var(--chalk-blue);">Legacy since 1991</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">Open</div><div class="handwritten" style="color:var(--chalk-blue);">Anyone can read the code</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: The Onion Model -->
+<section>
+<div class="topic-title">📌 Key Concepts: The Layers</div>
+<div class="diagram-container">
+<div class="onion-ring ring-apps">
+<div class="onion-ring ring-shell">
+<div class="onion-ring ring-kernel">
+<div class="onion-ring ring-hardware"></div>
+</div>
+</div>
+</div>
+<p class="handwritten" style="margin-top: 35px; font-size: 1.3rem;">
+<span class="handwritten">Flow:</span> You ➔ Shell ➔ Kernel ➔ Hardware ➔ Action!
             </p>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> A 'Zombie' process eats RAM.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> It's just a dead process record. It eats 'Process Table' space, not RAM.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Kill -9 is the only way to stop an app.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> It's like an emergency brake. Pehle normal `kill` try karo!</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. Linux ka 'Brain' kaun hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Shell</span><span class="quiz-opt">b) User</span><span class="quiz-opt">c) Kernel</span><span class="quiz-opt">d) Screen</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">2. systemd ka PID (Process ID) kya hota hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) 0</span><span class="quiz-opt">b) 1</span><span class="quiz-opt">c) 99</span><span class="quiz-opt">d) 100</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-c | 2-b"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> A 'Zombie' process eats RAM.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> It's just a dead process record. It eats 'Process Table' space, not RAM.</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> Kill -9 is the only way to stop an app.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> It's like an emergency brake. Pehle normal `kill` try karo!</li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Linux ka 'Brain' kaun hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) Shell</span><span class="quiz-opt">b) User</span><span class="quiz-opt">c) Kernel</span><span class="quiz-opt">d) Screen</span></div></div>
+<div class="quiz-item"><p class="quiz-question">2. systemd ka PID (Process ID) kya hota hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) 0</span><span class="quiz-opt">b) 1</span><span class="quiz-opt">c) 99</span><span class="quiz-opt">d) 100</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goal, halftime: 1-c | 2-b"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 02 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

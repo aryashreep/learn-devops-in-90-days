@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 36 — Compose in Real-World
 
-**Jagu:** "Beep Boop! Golu, microservices ka matlab team work. Aaj hum frontend, backend aur database ko ek doosre se connect karna seekhenge bina hardcoded IPs ke!"
+**Jagu:** "Beep Boop! Golu, microservices means team work. Today we will look to connect frontend, backend and database to each other without hardcoded IPs!"
 
 ## 🎯 Task Objectives
 - Establish name-based resolution among services.

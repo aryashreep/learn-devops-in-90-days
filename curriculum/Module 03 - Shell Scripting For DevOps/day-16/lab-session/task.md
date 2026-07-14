@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 16 — Building with Blocks
 
-**Jagu:** "Beep Boop! Golu, ek hi code baar-baar likhna band karo. Aaj hum 'Custom Stamps' (Functions) banayenge taaki tum ek bar design karo aur hazaron baar use karo!"
+**Jagu:** "Beep Boop! Golu, stop writing the same code again and again. Today we will create 'Custom Stamps' (Functions) so that you can design once and use it thousands of times!"
 
 ## 🎯 Task Objectives
 - Define and execute custom Bash functions.
@@ -28,7 +28,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, modular code hi maintainable code hota hai. Apni library save kar!"
+**Jagu:** "Golu, modular code is maintainable code. Save your library!"
 
 1. Create a file named **`function-library.md`** in the **`solution/`** folder.
 2. Paste the code for your `logger.sh` and the 'Scope Detective' script.

@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 35 — Docker Compose Basics
 
-**Jagu:** "Beep Boop! Golu, har container ko alag alag command se chalana ek nightmare hai. Aaj hum YAML file se ek click pe poora system chalana seekhenge!"
+**Jagu:** "Beep Boop! Golu, running each container with different commands is a nightmare. Today we will learn to run the entire system on one click from YAML file!"
 
 ## 🎯 Task Objectives
 - Define a multi-service config inside docker-compose.yml.

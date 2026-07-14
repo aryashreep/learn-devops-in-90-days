@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 44: Runners: GitHub-Hosted and Self-Hosted - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 44: Runners: GitHub-Hosted and Self-Hosted - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,134 +113,115 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Runners: GitHub-Hosted and Self-Hosted</h1>
-        <p class="subtitle handwritten">Day 44: Understand runner environments, differences between GitHub-hosted and self-hosted, and setup basics. 🤖</p>
-    </header>
-
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, humare project me ek aisi internal database use hoti hai jo firewall ke peeche hai. GitHub-hosted runner usse connect nahi kar pa raha. Ab kya karein?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, iske liye hum use karenge 'Self-Hosted Runner'! Ek machine apni private network ke andar spin-up karo, usme GitHub runner agent daalo, aur target label `runs-on: self-hosted` use karo!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
-            <ul>
-                <li>Understand the definition and role of a Runner in GitHub Actions</li>\n<li>Differentiate between GitHub-hosted and self-hosted runners</li>\n<li>Understand runner security best practices (e.g. public repositories warnings)</li>\n<li>Explain ARC (Actions Runner Controller) for scaling self-hosted runners</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="analogy">
-        <div class="topic-title">💡 Mental Model</div>
-        <p class="hinglish">
-            GitHub-hosted runners are like rental cars—you get a clean, fresh car every time, use it, and return it. Self-hosted runners are like your own car—you have to wash it, service it, and pay for fuel, but you can customize it and park it inside your locked garage.
-        </p>
-    </section>
-
-    <section id="stats">
-        <div class="topic-title">📈 Did You Know?</div>
-        <div class="vs-container">
-            
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Zero Setup</div>
-            <p style="text-align:center;">GitHub-hosted runners require no server configuration or maintenance.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Full Isolation</div>
-            <p style="text-align:center;">GitHub-hosted VMs are immediately destroyed after the job finishes.</p>
-        </div>
-        <div class="vs-card secure">
-            <div class="vs-title" style="color:var(--chalk-blue);">Persistent State</div>
-            <p style="text-align:center;">Self-hosted runners keep files on disk between jobs, speeding up cache but requiring cleanup.</p>
-        </div>
-        </div>
-    </section>
-
-    <section id="directories">
-        <div class="topic-title">📁 Core Concepts & Directories</div>
-        <ul>
-            <li>GitHub-hosted runners run on virtual machines in Microsoft Azure cloud.</li>\n<li>Self-hosted runners require downloading a runner package and running the background listener.</li>\n<li>You route jobs to self-hosted runners using the `runs-on: self-hosted` label.</li>
-        </ul>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">⚙️ Main Content</div>
-        
-        <h3>1. GitHub-Hosted Runners</h3>
-        <p>Managed by GitHub, ephemeral, clean environments. Available for Linux, Windows, and macOS. CPU and memory configurations are pre-defined. Charged by the minute for private repositories (free for public repos).</p>
-        <h3>2. Self-Hosted Runners</h3>
-        <p>Configured on your own hardware or cloud instance. Persistent file storage enables faster builds (like locally cached tools) but carries security risks: if someone opens a malicious PR on a public repo, they can run arbitrary code inside your network. <b>Never use self-hosted runners for public repositories!</b></p>
-        <h3>3. Setup Concepts</h3>
-        <p>To register a runner, go to repository Settings -> Actions -> Runners -> New self-hosted runner, and run the configuration script on the host server.</p>
-        
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <pre><code># YAML snippet for routing to a custom self-hosted runner:
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Runners: GitHub-Hosted and Self-Hosted</h1>
+<p class="subtitle handwritten">Day 44: Understand runner environments, differences between GitHub-hosted and self-hosted, and setup basics. 🤖</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, our project uses an internal database that is behind the firewall. The GitHub-hosted runner can't connect to it. What to do now?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, for this we will use 'Self-Hosted Runner'! Spin-up a machine under your private network, add GitHub runner agent to it, and use the target label `runs-on: self-hosted`!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES</h3>
+<ul>
+<li>Understand the definition and role of a Runner in GitHub Actions</li>\n<li>Differentiate between GitHub-hosted and self-hosted runners</li>\n<li>Understand runner security best practices (e.g. public repositories warnings)</li>\n<li>Explain ARC (Actions Runner Controller) for scaling self-hosted runners</li>
+</ul>
+</div>
+</section>
+<section id="analogy">
+<div class="topic-title">💡 Mental Model</div>
+<p class="handwritten">GitHub-hosted runners are like rental cars—you get a clean, fresh car every time, use it, and return it. Self-hosted runners are like your own car—you have to wash it, service it, and pay for fuel, but you can customize it and park it inside your locked garage.</p>
+</section>
+<section id="stats">
+<div class="topic-title">📈 Did You Know?</div>
+<div class="vs-container">
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Zero Setup</div>
+<p style="text-align:center;">GitHub-hosted runners require no server configuration or maintenance.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Full Isolation</div>
+<p style="text-align:center;">GitHub-hosted VMs are immediately destroyed after the job finishes.</p>
+</div>
+<div class="vs-card secure">
+<div class="vs-title" style="color:var(--chalk-blue);">Persistent State</div>
+<p style="text-align:center;">Self-hosted runners keep files on disk between jobs, speeding up cache but requiring cleanup.</p>
+</div>
+</div>
+</section>
+<section id="directories">
+<div class="topic-title">📁 Core Concepts &amp; Directories</div>
+<ul>
+<li>GitHub-hosted runners run on virtual machines in Microsoft Azure cloud.</li>\n<li>Self-hosted runners require downloading a runner package and running the background listener.</li>\n<li>You route jobs to self-hosted runners using the `runs-on: self-hosted` label.</li>
+</ul>
+</section>
+<section id="concepts">
+<div class="topic-title">⚙️ Main Content</div>
+<h3>1. GitHub-Hosted Runners</h3>
+<p>Managed by GitHub, ephemeral, clean environments. Available for Linux, Windows, and macOS. CPU and memory configurations are pre-defined. Charged by the minute for private repositories (free for public repos).</p>
+<h3>2. Self-Hosted Runners</h3>
+<p>Configured on your own hardware or cloud instance. Persistent file storage enables faster builds (like locally cached tools) but carries security risks: if someone opens a malicious PR on a public repo, they can run arbitrary code inside your network. <b>Never use self-hosted runners for public repositories!</b></p>
+<h3>3. Setup Concepts</h3>
+<p>To register a runner, go to repository Settings -&gt; Actions -&gt; Runners -&gt; New self-hosted runner, and run the configuration script on the host server.</p>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<pre><code># YAML snippet for routing to a custom self-hosted runner:
 jobs:
   deploy:
     runs-on: [self-hosted, linux, internal-network]
     steps:
       - run: echo "Running on private internal infrastructure!" </code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 44 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. Why is it highly recommended NOT to use self-hosted runners for public repositories?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) It is slower than GitHub-hosted runners.</span>\n<span class="quiz-opt">B) Attackers can submit malicious pull requests that run code accessing your private network.</span>\n<span class="quiz-opt">C) GitHub charges extra for self-hosted runners.</span>\n<span class="quiz-opt">D) The runner agent only installs on Windows.</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. What happens to a GitHub-hosted runner VM after a job finishes execution?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) It goes into sleep mode to save energy.</span>\n<span class="quiz-opt">B) It is shut down and immediately destroyed, wiping all state.</span>\n<span class="quiz-opt">C) It remains active for the next job of the same user.</span>\n<span class="quiz-opt">D) It copies all data to the developer's laptop.</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: B (Forked pull requests can execute malicious code on your private server), 2: B (The runner VM is ephemeral and completely destroyed after one job)</p>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 44 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. Why is it highly recommended NOT to use self-hosted runners for public repositories?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) It is slower than GitHub-hosted runners.</span>\n<span class="quiz-opt">B) Attackers can submit malicious pull requests that run code accessing your private network.</span>\n<span class="quiz-opt">C) GitHub charges extra for self-hosted runners.</span>\n<span class="quiz-opt">D) The runner agent only installs on Windows.</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. What happens to a GitHub-hosted runner VM after a job finishes execution?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) It goes into sleep mode to save energy.</span>\n<span class="quiz-opt">B) It is shut down and immediately destroyed, wiping all state.</span>\n<span class="quiz-opt">C) It remains active for the next job of the same user.</span>\n<span class="quiz-opt">D) It copies all data to the developer's laptop.</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: B (Forked pull requests can execute malicious code on your private server), 2: B (The runner VM is ephemeral and completely destroyed after one job)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

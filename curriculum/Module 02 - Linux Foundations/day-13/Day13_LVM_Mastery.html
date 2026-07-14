@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 13: Linux Volume Management (LVM) - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 13: Linux Volume Management (LVM) - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -91,160 +92,140 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Linux Volume Management (LVM)</h1>
-        <p class="subtitle handwritten">Day 13: Elastic Disks for Production Servers 💾</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, server ka disk full ho gaya hai! <br> 
-                    Kya mujhe naya server banana padega ya pura data format karna hoga?"
-                </div>
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Linux Volume Management (LVM)</h1>
+<p class="subtitle handwritten">Day 13: Elastic Disks for Production Servers 💾</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Wake up, the server's disk is full! <br/> 
+                    Will I have to create a new server or format the entire data?"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! No Golu, that's why we use <span class="chalk-text">LVM (Logical Volume Management)</span>. <br/> 
+                    Today we will seek 'Elastic' banana on the disk!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will understand the magic of disk storage in Linux. What are PV, VG, and LV hosted and on live server? 
+                How to extend disk space without any downtime!</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Understand:</strong> The hierarchy of Physical Volumes (PV) to Logical Volumes (LV).</li>
+<li><strong>Command:</strong> Use `pvdisplay`, `vgdisplay`, and `lvdisplay` to inspect storage.</li>
+<li><strong>Elasticity:</strong> Learn how to extend a volume on the fly.</li>
+<li><strong>DevOps Use-case:</strong> Why LVM is mandatory for Databases and Docker storage.</li>
+</ul>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Clay Modeling</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">1. <span class="chalk-text">Physical Volume (PV):</span> Raw mitti (The physical hard drive).<br/>
+                2. <span class="chalk-text">Volume Group (VG):</span> Mitti ka dher (A pool of storage from multiple disks).<br/>
+                3. <span class="chalk-text">Logical Volume (LV):</span> Mitti se bani hui murti (The usable partition you can resize!).</p>
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">Snapshot</div><div class="handwritten" style="color:var(--chalk-blue);">Backup on the fly</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">Online</div><div class="handwritten" style="color:var(--chalk-blue);">Resize without reboot</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">Striping</div><div class="handwritten" style="color:var(--chalk-blue);">Boost Disk Speed</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: LVM Layers -->
+<section>
+<div class="topic-title">📌 Key Concepts: The Hierarchy</div>
+<div class="diagram-container">
+<div class="handwritten" style="font-size: 1.5rem;">
+<span style="color: var(--chalk-pink);">Logical Volume (LV)</span> ➔ File System (mount /data)<br/>
+                ↑<br/>
+<span style="color: var(--chalk-green);">Volume Group (VG)</span> ➔ The Big Pool<br/>
+                ↑<br/>
+<span style="color: var(--chalk-blue);">Physical Volume (PV)</span> ➔ sda1, sdb1 (Raw Disks)
             </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Nahi Golu, iske liye hum <span class="chalk-text">LVM (Logical Volume Management)</span> use karte hain. <br> 
-                    Aaj hum disk ko 'Elastic' banana seekhenge!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux ke disk storage ka magic samjhenge. PV, VG, aur LV kya hote hain aur live server pe 
-                disk space kaise extend karte hain bina kisi downtime ke!
+<p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
+<span class="handwritten">Logic:</span> Combine disks into a pool, and slice them into logical parts!
             </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Understand:</strong> The hierarchy of Physical Volumes (PV) to Logical Volumes (LV).</li>
-                <li><strong>Command:</strong> Use `pvdisplay`, `vgdisplay`, and `lvdisplay` to inspect storage.</li>
-                <li><strong>Elasticity:</strong> Learn how to extend a volume on the fly.</li>
-                <li><strong>DevOps Use-case:</strong> Why LVM is mandatory for Databases and Docker storage.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Clay Modeling</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Physical Volume (PV):</span> Raw mitti (The physical hard drive).<br>
-                2. <span class="chalk-text">Volume Group (VG):</span> Mitti ka dher (A pool of storage from multiple disks).<br>
-                3. <span class="chalk-text">Logical Volume (LV):</span> Mitti se bani hui murti (The usable partition you can resize!).
-            </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">Snapshot</div><div class="handwritten" style="color:var(--chalk-blue);">Backup on the fly</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">Online</div><div class="handwritten" style="color:var(--chalk-blue);">Resize without reboot</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">Striping</div><div class="handwritten" style="color:var(--chalk-blue);">Boost Disk Speed</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: LVM Layers -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: The Hierarchy</div>
-        <div class="diagram-container">
-            <div class="handwritten" style="font-size: 1.5rem;">
-                <span style="color: var(--chalk-pink);">Logical Volume (LV)</span> ➔ File System (mount /data)<br>
-                ↑<br>
-                <span style="color: var(--chalk-green);">Volume Group (VG)</span> ➔ The Big Pool<br>
-                ↑<br>
-                <span style="color: var(--chalk-blue);">Physical Volume (PV)</span> ➔ sda1, sdb1 (Raw Disks)
-            </div>
-            <p class="handwritten" style="margin-top: 30px; font-size: 1.3rem;">
-                <span class="hinglish">Logic:</span> Combine disks into a pool, and slice them into logical parts!
-            </p>
-        </div>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: Standard vs LVM</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
-                <h3 class="handwritten">Standard Partition</h3>
-                <p class="hinglish">"Fix deewar jaisa—ek baar ban gayi toh change karna mushkil hai."</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">LVM (Logical)</h3>
-                <p class="hinglish">"Elastic rubber jaisa—zaroorat padne par khench lo (Expand)!"</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> LVM se disk ki speed slow ho jati hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Overhead negligible hai, par flexibility 100x milti hai.</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> LVM sirf servers ke liye hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> Modern Linux distros (like Ubuntu) by default installation mein LVM use karte hain.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. LVM hierarchy mein sabse base layer kaunsi hoti hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) Volume Group</span><span class="quiz-opt">b) Physical Volume</span><span class="quiz-opt">c) Logical Volume</span><span class="quiz-opt">d) File System</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Logical Volumes ki information dekhne ke liye command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) pvdisplay</span><span class="quiz-opt">b) vgdisplay</span><span class="quiz-opt">c) lvdisplay</span><span class="quiz-opt">d) lsblk</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</div>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: Standard vs LVM</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-red);">
+<h3 class="handwritten">Standard Partition</h3>
+<p class="handwritten">"Once the wall is fixed, it is difficult to change it."</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">LVM (Logical)</h3>
+<p class="handwritten">"Elastic like rubber—pull when needed (Expand)!"</p>
+</div>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> Disk speed seems to slow down due to LVM.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Overhead negligible hai, par flexibility 100x milti hai.</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> LVM is only for servers.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> Modern Linux distros (like Ubuntu) by default installation mein LVM use karte hain.</li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. Which is the lowest base layer in the LVM hierarchy?</p>
+<div class="quiz-options"><span class="quiz-opt">a) Volume Group</span><span class="quiz-opt">b) Physical Volume</span><span class="quiz-opt">c) Logical Volume</span><span class="quiz-opt">d) File System</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Command to view information about Logical Volumes?</p>
+<div class="quiz-options"><span class="quiz-opt">a) pvdisplay</span><span class="quiz-opt">b) vgdisplay</span><span class="quiz-opt">c) lvdisplay</span><span class="quiz-opt">d) lsblk</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, halftime: 1-b | 2-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 13 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

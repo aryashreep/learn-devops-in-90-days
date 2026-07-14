@@ -38,23 +38,23 @@
 | 🗓️ Day 09 | User & Group Management | [🎓 Day 09 Pro](./curriculum/Module%2002%20-%20Linux%20Foundations/day-09/Day09_User_Group_Management.html) | [🧪 Lab 09](./curriculum/Module%2002%20-%20Linux%20Foundations/day-09/lab-session/task.md) |
 | 🗓️ Day 10 | File Permissions & Operations | [🎓 Day 10 Pro](./curriculum/Module%2002%20-%20Linux%20Foundations/day-10/Day10_Permissions_Operations.html) | [🧪 Lab 10](./curriculum/Module%2002%20-%20Linux%20Foundations/day-10/lab-session/task.md) |
 | 🗓️ Day 11 | Ownership (chown/chgrp) | [🎓 Day 11 Pro](./curriculum/Module%2002%20-%20Linux%20Foundations/day-11/Day11_Ownership_Mastery.html) | [🧪 Lab 11](./curriculum/Module%2002%20-%20Linux%20Foundations/day-11/lab-session/task.md) |
-| 🗓️ Day 12 | **Revision & Recovery Lab** | ⚔️ Battle Test | [🧪 Lab 12](./curriculum/Module%2002%20-%20Linux%20Foundations/day-12/lab-session/task.md) |
+| 🗓️ Day 12 | **Revision & Recovery Lab** | [🎓 Day 12 Pro](./curriculum/Module%2002%20-%20Linux%20Foundations/day-12/Day12_Milestone_Recovery_Lab.html) | [🧪 Lab 12](./curriculum/Module%2002%20-%20Linux%20Foundations/day-12/lab-session/task.md) |
 | 🗓️ Day 13 | Volume Management (LVM) | [🎓 Day 13 Pro](./curriculum/Module%2002%20-%20Linux%20Foundations/day-13/Day13_LVM_Mastery.html) | [🧪 Lab 13](./curriculum/Module%2002%20-%20Linux%20Foundations/day-13/lab-session/task.md) |
 | 🏆 **Exam** | **Module 02 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2002%20-%20Linux%20Foundations/mastery-exam/README.md) | -- |
 
 ---
 
-## 🐚 Module 03 - Shell Scripting (Days 14-19)
+## 🐚 Module 03 - Shell Scripting For DevOps (Days 14-19)
 > *Automate the boring stuff with Bash.*
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 20 | Shell Scripting Basics | [🎓 Day 20 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/Day14_Scripting_Basics.html) | [🧪 Lab 16](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/lab-session/task.md) |
-| 🗓️ Day 21 | Logic, Loops & Arguments | [🎓 Day 21 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/Day15_Logic_and_Arguments.html) | [🧪 Lab 17](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/lab-session/task.md) |
-| 🗓️ Day 16 | Bash Functions & Scope | [🎓 Day 16 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/Day16_Bash_Functions.html) | [🧪 Lab 18](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/lab-session/task.md) |
-| 🗓️ Day 17 | Log Rotation & Backup | [🎓 Day 17 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/Day17_Backup_and_Cron.html) | [🧪 Lab 19](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/lab-session/task.md) |
-| 🗓️ Day 18 | Log Analyzer Challenge | 🚧 Pro Module Coming | [🧪 Lab 20](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-20/lab-session/task.md) |
-| 🗓️ Day 19 | Scripting Cheat Sheet | 🚧 Pro Module Coming | [🧪 Lab 21](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-21/lab-session/task.md) |
+| 🗓️ Day 14 | Shell Scripting Basics | [🎓 Day 14 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/Day14_Scripting_Basics.html) | [🧪 Lab 14](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/lab-session/task.md) |
+| 🗓️ Day 15 | Logic, Loops & Arguments | [🎓 Day 15 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-15/Day15_Logic_and_Arguments.html) | [🧪 Lab 15](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-15/lab-session/task.md) |
+| 🗓️ Day 16 | Bash Functions & Scope | [🎓 Day 16 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/Day16_Bash_Functions.html) | [🧪 Lab 16](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-16/lab-session/task.md) |
+| 🗓️ Day 17 | Log Rotation & Backup | [🎓 Day 17 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/Day17_Backup_and_Cron.html) | [🧪 Lab 17](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-17/lab-session/task.md) |
+| 🗓️ Day 18 | Log Analyzer Challenge | [🎓 Day 18 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/Day18_Log_Analyzer_Project.html) | [🧪 Lab 18](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-18/lab-session/task.md) |
+| 🗓️ Day 19 | Scripting Cheat Sheet | [🎓 Day 19 Pro](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/Day19_Shell_Scripting_Cheat_Sheet.html) | [🧪 Lab 19](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-19/lab-session/task.md) |
 | 🏆 **Exam** | **Module 03 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/mastery-exam/README.md) | -- |
 
 ---
@@ -67,6 +67,16 @@
 | 🗓️ Day 20 | Networking Fundamentals | [🎓 Day 20 Pro](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/Day20_Networking_Basics.html) | [🧪 Lab 20](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/lab-session/task.md) |
 | 🗓️ Day 21 | DNS, IP, Subnets & Ports | [🎓 Day 21 Pro](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/Day21_Networking_Deep_Dive.html) | [🧪 Lab 21](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/lab-session/task.md) |
 | 🏆 **Exam** | **Module 04 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2004%20-%20Networking%20&%20System%20Design/mastery-exam/README.md) | -- |
+
+---
+
+## 🎫 Module 05 - Jira For DevOps (Days 22-23)
+> *Track and manage your DevOps workflows using Jira.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 22 | Introduction to Jira | [🎓 Day 22 Pro](./curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/Day22_Jira_Introduction.html) | [🧪 Lab 22](./curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/lab-session/task.md) |
+| 🗓️ Day 23 | Issues & Hierarchy | [🎓 Day 23 Pro](./curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-23/Day23_Issues_Hierarchy.html) | [🧪 Lab 23](./curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-23/lab-session/task.md) |
 
 ---
 
@@ -136,51 +146,108 @@
 | 🗓️ Day 52 | DevSecOps Pipeline Architecture | [🎓 Day 52 Pro](./curriculum/Module%2009%20-%20DevSecOps/day-52/Day52_DevSecOps_Pipeline_Architecture.html) | [🧪 Lab 52](./curriculum/Module%2009%20-%20DevSecOps/day-52/lab-session/task.md) |
 
 ## ☸️ Module 10 - Kubernetes (Days 53-63)
-| Day 63 | **K8s Capstone** | 🏆 WordPress + MySQL |
-|---|---|---|
+> *Orchestrate containerized applications at scale.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 53 | Kubernetes Architecture & Cluster Setup | [🎓 Day 53 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-53/Day53_Kubernetes_Architecture_Cluster_Setup.html) | [🧪 Lab 53](./curriculum/Module%2010%20-%20Kubernetes/day-53/lab-session/task.md) |
+| 🗓️ Day 54 | Kubernetes Manifests & Your First Pods | [🎓 Day 54 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-54/Day54_Kubernetes_Manifests_Your_First_Pods.html) | [🧪 Lab 54](./curriculum/Module%2010%20-%20Kubernetes/day-54/lab-session/task.md) |
+| 🗓️ Day 55 | Namespaces, ReplicaSets & Deployments | [🎓 Day 55 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-55/Day55_Namespaces_ReplicaSets_Deployments.html) | [🧪 Lab 55](./curriculum/Module%2010%20-%20Kubernetes/day-55/lab-session/task.md) |
+| 🗓️ Day 56 | Kubernetes Services & Gateway API | [🎓 Day 56 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-56/Day56_Kubernetes_Services_Gateway_API.html) | [🧪 Lab 56](./curriculum/Module%2010%20-%20Kubernetes/day-56/lab-session/task.md) |
+| 🗓️ Day 57 | ConfigMaps & Secrets | [🎓 Day 57 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-57/Day57_ConfigMaps_Secrets.html) | [🧪 Lab 57](./curriculum/Module%2010%20-%20Kubernetes/day-57/lab-session/task.md) |
+| 🗓️ Day 58 | Volumes, PV, PVC & Storage Classes | [🎓 Day 58 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-58/Day58_Volumes_PV_PVC_Storage_Classes.html) | [🧪 Lab 58](./curriculum/Module%2010%20-%20Kubernetes/day-58/lab-session/task.md) |
+| 🗓️ Day 59 | StatefulSets & DaemonSets | [🎓 Day 59 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-59/Day59_StatefulSets_DaemonSets.html) | [🧪 Lab 59](./curriculum/Module%2010%20-%20Kubernetes/day-59/lab-session/task.md) |
+| 🗓️ Day 60 | Resource Limits, QoS & Probes | [🎓 Day 60 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-60/Day60_Resource_Limits_QoS_Probes.html) | [🧪 Lab 60](./curriculum/Module%2010%20-%20Kubernetes/day-60/lab-session/task.md) |
+| 🗓️ Day 61 | HPA & Advanced Scheduling | [🎓 Day 61 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-61/Day61_HPA_Advanced_Scheduling.html) | [🧪 Lab 61](./curriculum/Module%2010%20-%20Kubernetes/day-61/lab-session/task.md) |
+| 🗓️ Day 62 | Helm Package Manager | [🎓 Day 62 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-62/Day62_Helm_Package_Manager.html) | [🧪 Lab 62](./curriculum/Module%2010%20-%20Kubernetes/day-62/lab-session/task.md) |
+| 🗓️ Day 63 | **K8s Capstone:** WordPress + MySQL | [🎓 Day 63 Pro](./curriculum/Module%2010%20-%20Kubernetes/day-63/Day63_Capstone_WordPress_MySQL_on_K8s.html) | [🧪 Lab 63](./curriculum/Module%2010%20-%20Kubernetes/day-63/lab-session/task.md) |
+| 🏆 **Exam** | **Module 10 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2010%20-%20Kubernetes/mastery-exam/README.md) | -- |
 
 ---
 
-## ☁️ Module 11 - Terraform (Days 64-70)
-| Day 70 | **TerraWeek Capstone** | 🏆 Multi-Environment IaC |
-|---|---|---|
+## ☁️ Module 11 - Terraform [IaC] (Days 64-70)
+> *Provision infrastructure safely and predictably as code.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 64 | Intro & First AWS Infra | 🚧 Pro Module Coming | 🧪 Lab 64 |
+| 🗓️ Day 65 | Providers & Dependencies | 🚧 Pro Module Coming | 🧪 Lab 65 |
+| 🗓️ Day 66 | Vars, Outputs & Expressions | 🚧 Pro Module Coming | 🧪 Lab 66 |
+| 🗓️ Day 67 | State & Remote Backends | 🚧 Pro Module Coming | 🧪 Lab 67 |
+| 🗓️ Day 68 | Reusable Modules | 🚧 Pro Module Coming | 🧪 Lab 68 |
+| 🗓️ Day 69 | Provisioning EKS Cluster | 🚧 Pro Module Coming | 🧪 Lab 69 |
+| 🗓️ Day 70 | **Capstone:** Multi-Env Workspaces | 🚧 Pro Module Coming | 🧪 Lab 70 |
 
 ---
 
-## ⚙️ Module 12 - Ansible (Days 71-75)
-| Day 75 | Automation Project | 🏆 Docker/Nginx Automation |
-|---|---|---|
+## ⚙️ Module 12 - Ansible [Config Mgmt] (Days 71-75)
+> *Automate configuration management and application deployment.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 71 | Intro & Inventory Setup | 🚧 Pro Module Coming | 🧪 Lab 71 |
+| 🗓️ Day 72 | Playbooks & Modules | 🚧 Pro Module Coming | 🧪 Lab 72 |
+| 🗓️ Day 73 | Vars, Facts & Conditionals | 🚧 Pro Module Coming | 🧪 Lab 73 |
+| 🗓️ Day 74 | Roles, Templates & Vault | 🚧 Pro Module Coming | 🧪 Lab 74 |
+| 🗓️ Day 75 | **Project:** Docker & Nginx | 🚧 Pro Module Coming | 🧪 Lab 75 |
 
 ---
 
-## 📊 Module 13 - Observability (Days 76-80)
-| Day 80 | Monitoring Project | 🏆 Full Stack Observability |
-|---|---|---|
+## 📊 Module 13 - SRE & Observability (Days 76-80)
+> *Gain visibility into your systems through metrics, logs, and alerts.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 76 | Intro & Prometheus Setup | 🚧 Pro Module Coming | 🧪 Lab 76 |
+| 🗓️ Day 77 | Exporters & Grafana Dashboards | 🚧 Pro Module Coming | 🧪 Lab 77 |
+| 🗓️ Day 78 | Loki & Promtail Log Management | 🚧 Pro Module Coming | 🧪 Lab 78 |
+| 🗓️ Day 79 | OpenTelemetry & Alerting | 🚧 Pro Module Coming | 🧪 Lab 79 |
+| 🗓️ Day 80 | **Project:** Full Stack Observability | 🚧 Pro Module Coming | 🧪 Lab 80 |
 
 ---
 
-## 🏷️ Module 14 - Helm (Days 81-83)
-| Day 83 | Helm Project | 🏆 Multi-Env CI/CD |
-|---|---|---|
+## 🏷️ Module 14 - Helm [K8s Package Mgmt] (Days 81-83)
+> *Package, configure, and deploy applications on Kubernetes.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 81 | Intro & Helm Chart Basics | 🚧 Pro Module Coming | 🧪 Lab 81 |
+| 🗓️ Day 82 | Custom Chart for AI-BankApp | 🚧 Pro Module Coming | 🧪 Lab 82 |
+| 🗓️ Day 83 | **Project:** Multi-Env CI/CD | 🚧 Pro Module Coming | 🧪 Lab 83 |
 
 ---
 
-## 🏗️ Module 15 - Amazon EKS (Days 84-86)
-| Day 86 | EKS Project | 🏆 Production AI-BankApp |
-|---|---|---|
+## 🏗️ Module 15 - Amazon EKS [Cloud Ops] (Days 84-86)
+> *Run production-grade Kubernetes workloads in the AWS Cloud.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 84 | EKS Setup with Terraform | 🚧 Pro Module Coming | 🧪 Lab 84 |
+| 🗓️ Day 85 | EKS Networking & Storage | 🚧 Pro Module Coming | 🧪 Lab 85 |
+| 🗓️ Day 86 | **Project:** Deploying AI-BankApp | 🚧 Pro Module Coming | 🧪 Lab 86 |
 
 ---
 
 ## 🚀 Module 16 - GitOps & ArgoCD (Days 87-89)
-| Day 89 | **GitOps Capstone** | 🏆 AI-BankApp Sync |
-|---|---|---|
+> *Declare the state of your Kubernetes cluster using Git.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 87 | Intro to GitOps & ArgoCD | 🚧 Pro Module Coming | 🧪 Lab 87 |
+| 🗓️ Day 88 | Sync Strategies & Rollbacks | 🚧 Pro Module Coming | 🧪 Lab 88 |
+| 🗓️ Day 89 | **Capstone:** E2E AI-BankApp GitOps | 🚧 Pro Module Coming | 🧪 Lab 89 |
 
 ---
 
-## 🤖 Module 17 - Agentic AI (Days 90-93)
-| Day 92 | **GRAND CAPSTONE** | 🏆 Self-Healing KubeHealer |
-| Day 93 | **Final Portfolio** | 🏆 Complete Journey Record |
-|---|---|---|
+## 🤖 Module 17 - Agentic AI for DevOps (Days 90-93)
+> *Integrate AI agents to analyze, build, and heal your systems.*
+
+| Day | Topic | Pro Module (Blackboard) | Task / Lab |
+|---|---|---|---|
+| 🗓️ Day 90 | Intro to Agentic AI for DevOps | 🚧 Pro Module Coming | 🧪 Lab 90 |
+| 🗓️ Day 91 | Multi-Tool Agents, MCP & CI/CD | 🚧 Pro Module Coming | 🧪 Lab 91 |
+| 🗓️ Day 92 | **GRAND CAPSTONE:** KubeHealer | 🚧 Pro Module Coming | 🧪 Lab 92 |
+| 🗓️ Day 93 | **Grand Finale:** Final Portfolio | 🚧 Pro Module Coming | 🧪 Lab 93 |
 
 ---
 

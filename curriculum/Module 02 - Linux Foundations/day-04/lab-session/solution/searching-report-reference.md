@@ -1,6 +1,6 @@
 # 🧪 Day 04 Solution: Searching Mastery
 
-**Jagu:** "Shabash Golu! Tune Linux ke 'Search Engines' master kar liye hain. Ye raha tera 'Proof of Work' reference report!"
+**Jagu:** "Well done Golu! Tune has mastered Linux's 'Search Engines'. Here is your 'Proof of Work' reference report!"
 
 ---
 
@@ -36,12 +36,12 @@ $ which python3
 
 ### Top Search Pattern
 `find . -name "*.conf" | xargs grep -i "port"`
-> "Bhai Golu, ye pipeline command sabse useful hai configurations dhundne ke liye!" — Jagu
+> "Golu, this pipeline command is most useful for finding configurations!" — Jagu
 
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, agar file turant nahi mil rahi, toh `locate` use kar, par `sudo updatedb` chalana mat bhulna pehle. `find` fresh hai, `locate` fast hai!"
+"Golu, if the file is not found immediately, use `locate`, but don't forget to run `sudo updatedb` first. `find` is fresh, `locate` is fast!"
 
 ---
 *#LearnDevOpsIn90Days • Day 04 • Golu & Jagu Edition*

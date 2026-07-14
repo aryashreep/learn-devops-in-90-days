@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 45 — Jobs, Steps, Env Vars and Conditionals
 
-**Jagu:** "Beep Boop! Golu, aaj hum workflow mein logic dalenge — jobs ka order, variables, aur if-else conditions!"
+**Jagu:** "Beep Boop! Golu, today we will add logic in workflow — order of jobs, variables, and if-else conditions!"
 
 ## 🎯 Task Objectives
 - Define multiple jobs with dependencies using `needs`.
@@ -62,7 +62,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, apna workflow proof submit karo!"
+**Jagu:** "Golu, please submit your workflow proof!"
 
 1. Create a file named **`sequence.yml`** and **`conditional-logic.md`** in the **`solution/`** folder.
 2. Include your workflow YAML and describe how conditionals work.

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 11: File Ownership Mastery - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 11: File Ownership Mastery - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -93,159 +94,140 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- BRANDED AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>File Ownership Mastery</h1>
-        <p class="subtitle handwritten">Day 11: Changing the Malik of your Linux System 👑</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, maine permission toh 777 kar di, par file abhi bhi delete nahi ho rahi! <br> 
-                    Ye kya 'Operation not permitted' hai?"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, permission sirf aadha sach hai. <br> 
-                    Asali power <span class="chalk-text">Ownership</span> mein hai. Chalo `chown` seekhte hain!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux security ka final piece master karenge: **File Ownership**. 
-                `chown` aur `chgrp` commands se hum User aur Group change karna seekhenge!
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Define:</strong> What is User and Group Ownership.</li>
-                <li><strong>Command:</strong> Master `chown` to transfer file ownership.</li>
-                <li><strong>Team:</strong> Use `chgrp` to change group assignments.</li>
-                <li><strong>Scale:</strong> Perform recursive ownership changes with `-R`.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<!-- BRANDED AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>File Ownership Mastery</h1>
+<p class="subtitle handwritten">Day 11: Changing the Malik of your Linux System 👑</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble">"Jagu, I set the permission to 777, but the file is still not deleted! <br/> 
+                    What is this 'Operation not permitted'?</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Golu, permission is only allowed. <br/> 
+                    The real power is in <span class="chalk-text">Ownership</span>. Let's look at the 'chown'!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will master the final piece of Linux security: **File Ownership**. 
+                We will seek to change User and Group using `chown` and `chgrp` commands!</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Define:</strong> What is User and Group Ownership.</li>
+<li><strong>Command:</strong> Master `chown` to transfer file ownership.</li>
+<li><strong>Team:</strong> Use `chgrp` to change group assignments.</li>
+<li><strong>Scale:</strong> Perform recursive ownership changes with `-R`.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki real DevOps deployment mein Nginx ya Docker ko files 'gift' karni padti hain taaki wo unhe read kar sakein!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Land Registry</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">Permission:</span> Ghar ke andar kaun kya kar sakta hai.<br>
-                2. <span class="chalk-text">Ownership:</span> Registry paper pe kiska naam hai (The Malik).<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Land Registry</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">Permission:</span> Ghar ke andar kaun kya kar sakta hai.<br/>
+                2. <span class="chalk-text">Ownership:</span> Registry paper pe kiska naam hai (The Malik).<br/>
                 3. <span class="chalk-text">chown:</span> Naam badalne wala registrar!
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">u:g</div><div class="handwritten" style="color:var(--chalk-blue);">The Colon Shortcut</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">-R</div><div class="handwritten" style="color:var(--chalk-blue);">Recursive Change</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">root</div><div class="handwritten" style="color:var(--chalk-blue);">The Ultimate Malik</div></div>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: chown vs chgrp -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: Command Duel</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">chown (User)</h3>
-                <p class="hinglish">"Naya malik declare karo."</p>
-                <code>sudo chown golu file.txt</code>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">chgrp (Group)</h3>
-                <p class="hinglish">"Team ki assignment badlo."</p>
-                <code>sudo chgrp dev file.txt</code>
-            </div>
-        </div>
-        <p class="handwritten" style="text-align: center; font-size: 1.2rem; color: var(--chalk-yellow);">
+</div>
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">u:g</div><div class="handwritten" style="color:var(--chalk-blue);">The Colon Shortcut</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">-R</div><div class="handwritten" style="color:var(--chalk-blue);">Recursive Change</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">root</div><div class="handwritten" style="color:var(--chalk-blue);">The Ultimate Malik</div></div>
+</div>
+</section>
+<!-- ⑤ Key Concepts: chown vs chgrp -->
+<section>
+<div class="topic-title">📌 Key Concepts: Command Duel</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
+<h3 class="handwritten">chown (User)</h3>
+<p class="handwritten">"Declare the new owner."</p>
+<code>sudo chown golu file.txt</code>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+<h3 class="handwritten">chgrp (Group)</h3>
+<p class="handwritten">"Change team's assignment."</p>
+<code>sudo chgrp dev file.txt</code>
+</div>
+</div>
+<p class="handwritten" style="text-align: center; font-size: 1.2rem; color: var(--chalk-yellow);">
             Pro Tip: <code>chown golu:dev file.txt</code> does both at once!
         </p>
-    </section>
-
-    <!-- ⑦ REAL-WORLD EXAMPLE -->
-    <section>
-        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: Web Root Crisis</div>
-        <div class="doodle-container">
-            <div class="robot-doodle">
-                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                <div class="robot-body"></div><div class="robot-bag"></div>
-            </div>
-            <span class="char-name">Jagu</span>
-            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
-                "Bhai, Nginx error de raha hai. <br> 
-                Root ne files upload ki thi, isliye Nginx (`www-data`) unhe read nahi kar paa raha!"
-            </div>
-        </div>
-        <div class="content-box" style="border-color: var(--chalk-blue);">
-            <p><strong>The DevOps Fix:</strong> <code>sudo chown -R www-data:www-data /var/www/html</code></p>
-            <p class="hinglish" style="margin-top: 10px;">"Ab Nginx asali malik ban gaya aur website chalne lagi!"</p>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. User aur Group dono ek saath change karne ke liye separator kya hai?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) -</span><span class="quiz-opt">b) /</span><span class="quiz-opt">c) :</span><span class="quiz-opt">d) |</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">2. Pura folder (subfiles ke saath) ownership badalne ka flag?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) -r</span><span class="quiz-opt">b) -R</span><span class="quiz-opt">c) -a</span><span class="quiz-opt">d) -f</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-c | 2-b"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
+</section>
+<!-- ⑦ REAL-WORLD EXAMPLE -->
+<section>
+<div class="topic-title">🏢 REAL-WORLD EXAMPLE: Web Root Crisis</div>
+<div class="doodle-container">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<span class="char-name">Jagu</span>
+<div class="speech-bubble" style="border-color: var(--chalk-blue);">"Brother, Nginx is having an error. <br/> 
+                Root did not upload the files, so Nginx (`www-data`) could not read them!</div>
+</div>
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<p><strong>The DevOps Fix:</strong> <code>sudo chown -R www-data:www-data /var/www/html</code></p>
+<p class="handwritten" style="margin-top: 10px;">"Now Nginx has become the original owner and the website is running!"</p>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. User aur Group dono ek saath change karne ke liye separator kya hai?</p>
+<div class="quiz-options"><span class="quiz-opt">a) -</span><span class="quiz-opt">b) /</span><span class="quiz-opt">c) :</span><span class="quiz-opt">d) |</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">2. Pura folder (subfiles ke saath) ownership badalne ka flag?</p>
+<div class="quiz-options"><span class="quiz-opt">a) -r</span><span class="quiz-opt">b) -R</span><span class="quiz-opt">c) -a</span><span class="quiz-opt">d) -f</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goal, halftime: 1-c | 2-b"</p>
+</div>
+</div>
+</section>
+<div class="footer">
         #LearnDevOpsIn90Days • Day 11 • Pro Edition • By Aryashree Pritikrishna
     </div>
 </div>
-
 </body>
 </html>

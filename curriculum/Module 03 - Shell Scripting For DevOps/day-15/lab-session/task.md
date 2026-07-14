@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 15 — The Smart Automation
 
-**Jagu:** "Beep Boop! Golu, manually ek-ek file banana toh baccho ka khel hai. Aaj hum seekhenge ki kaise ek single script se hazaron files ya users 'automatic' banaye jaate hain!"
+**Jagu:** "Beep Boop! Golu, creating each file manually is like child's play. Today we will learn how to make thousands of files or users 'automatic' with a single script!"
 
 ## 🎯 Task Objectives
 - Use positional arguments to make scripts dynamic.
@@ -19,12 +19,12 @@
 3.  **The Safe Script:**
     - Create a script that checks if a directory exists before creating it.
     - Use: `if [ -d "$DIR" ]; then echo "Already exists"; else mkdir $DIR; fi`.
-4.  **Arg Count Check:** Write a script that checks if the user has provided EXACTLY 2 arguments. If not, print: "Bhai, 2 arguments dena zaroori hai!"
+4.  **Arg Count Check:** Write a script that checks if the user has provided EXACTLY 2 arguments. If not, print: "Brother, it is necessary to give 2 arguments!"
 
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, ab tu 'Bulk Operations' ka king ban gaya hai! Apne scripts save kar."
+**Jagu:** "Golu, now you have become the king of 'Bulk Operations'! Save your scripts."
 
 1. Create a file named **`logic-scripts-report.md`** in the **`solution/`** folder.
 2. Paste the code for your `create_folders.sh` and the 'Safe Script'.

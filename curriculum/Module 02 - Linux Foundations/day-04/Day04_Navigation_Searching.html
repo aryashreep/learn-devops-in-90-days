@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 04: Advanced Navigation & Searching - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 04: Advanced Navigation &amp; Searching - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -98,242 +99,216 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- BRANDED AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item"><span class="contact-icon">🔗</span> <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
-            <div class="contact-item"><span class="contact-icon">💼</span> <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
-            <div class="contact-item"><span class="contact-icon">📺</span> <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
-            <div class="contact-item"><span class="contact-icon">📧</span> <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item"><span class="contact-icon">📞</span> <span>+91 8147450705</span></div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Advanced Navigation & Searching</h1>
-        <p class="subtitle handwritten">Day 04: The Art of Linux Discovery 🔍</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle">
-                        <div class="malik-head"><div class="malik-smile"></div></div>
-                        <div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
-                    </div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
-                    "Jagu, itni badi system mein config file kahan kho gayi, kaise dhundun? <br> 
-                    Har folder manually check karna impossible hai!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">
-                    "Beep Boop! Golu, manually dhundna DevOps ka kaam nahi hai. <br> 
-                    Aaj hum Linux ke <span class="chalk-text">'Search Engines'</span> seekhenge!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle">
-                        <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                        <div class="robot-body"></div><div class="robot-bag"></div>
-                    </div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">Bhai, Aaj Kya Seekhenge?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                Aaj hum Linux ke powerful searching tools master karenge: `find` for files, `grep` for text, aur piping techniques. 
-                Ab system mein kuch bhi gum nahi hoga!
-            </p>
-        </div>
-    </section>
-
-    <!-- ① LEARNING OBJECTIVES -->
-    <section>
-        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
-            <ul>
-                <li><strong>Discover:</strong> Use `find` to locate files by name, size, and date.</li>
-                <li><strong>Filter:</strong> Master `grep` to search text inside any file.</li>
-                <li><strong>Identify:</strong> Learn `locate`, `which`, and `whereis`.</li>
-                <li><strong>Automate:</strong> Use Pipes (|) to chain search results.</li>
-            </ul>
-            <p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
+<!-- BRANDED AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item"><span class="contact-icon">🔗</span> <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a></div>
+<div class="contact-item"><span class="contact-icon">💼</span> <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreepritikrishna</a></div>
+<div class="contact-item"><span class="contact-icon">📺</span> <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashreepritikrishna</a></div>
+<div class="contact-item"><span class="contact-icon">📧</span> <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item"><span class="contact-icon">📞</span> <span>+91 8147450705</span></div>
+</div>
+</header>
+<header>
+<h1>Advanced Navigation &amp; Searching</h1>
+<p class="subtitle handwritten">Day 04: The Art of Linux Discovery 🔍</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle">
+<div class="malik-head"><div class="malik-smile"></div></div>
+<div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
+</div>
+<span class="char-name">Golu</span>
+</div>
+<div class="speech-bubble" style="border-color: var(--chalk-yellow);">"Jagu, where to save this big system config file, how to run it? <br/> 
+                    It is impossible to check every folder manually!”</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue" style="border-color: var(--chalk-blue);">"Beep Boop! Golu, manually typing DevOps is of no use. <br/> 
+                    Today we will seek <span class="chalk-text">'Search Engines'</span> Linux!”</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<span class="char-name">Jagu</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">What will we learn today?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">Today we will master Linux's powerful searching tools: `find` for files, `grep` for text, and piping techniques. 
+                Now there will not be any gum in the system!</p>
+</div>
+</section>
+<!-- ① LEARNING OBJECTIVES -->
+<section>
+<div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+<ul>
+<li><strong>Discover:</strong> Use `find` to locate files by name, size, and date.</li>
+<li><strong>Filter:</strong> Master `grep` to search text inside any file.</li>
+<li><strong>Identify:</strong> Learn `locate`, `which`, and `whereis`.</li>
+<li><strong>Automate:</strong> Use Pipes (|) to chain search results.</li>
+</ul>
+<p class="handwritten" style="color: var(--chalk-red); margin-top: 15px; font-size: 1.2rem;">
                 💡 <span class="chalk-text">Kyu Seekhein?</span> Kyunki server par hazaron log files hoti hain—correct information jaldi dhundna hi real skill hai!
             </p>
-        </div>
-    </section>
-
-    <!-- ② ANALOGY -->
-    <section>
-        <div class="topic-title">💡 ANALOGY: The Huge Library</div>
-        <div class="doodle-container">
-            <div class="malik-doodle">
-                <div class="malik-head"><div class="malik-smile"></div></div>
-                <div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
-            </div>
-            <span class="char-name">Golu</span>
-            <div class="speech-bubble">
-                "Linux ek <span class="chalk-text">Huge Library</span> jaisa hai! `find` librarian hai jo book dhundta hai, aur `grep` wo index hai jo book ke andar ka content dhundta hai."
-            </div>
-        </div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
-            <p class="handwritten" style="font-size: 1.3rem;">
-                1. <span class="chalk-text">find:</span> "Mujhe 2024 ki Red cover wali book chahiye." (File location)<br>
-                2. <span class="chalk-text">grep:</span> "Is book mein 'DevOps' kahan likha hai?" (Inner content)<br>
+</div>
+</section>
+<!-- ② ANALOGY -->
+<section>
+<div class="topic-title">💡 ANALOGY: The Huge Library</div>
+<div class="doodle-container">
+<div class="malik-doodle">
+<div class="malik-head"><div class="malik-smile"></div></div>
+<div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div>
+</div>
+<span class="char-name">Golu</span>
+<div class="speech-bubble">"Linux is like a <span class="chalk-text">Huge Library</span>! `find` is the librarian that finds the book, and `grep` is the index that finds the contents of the book."</div>
+</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-white);">
+<p class="handwritten" style="font-size: 1.3rem;">
+                1. <span class="chalk-text">find:</span> "Mujhe 2024 ki Red cover wali book chahiye." (File location)<br/>
+                2. <span class="chalk-text">grep:</span> "Is book mein 'DevOps' kahan likha hai?" (Inner content)<br/>
                 3. <span class="chalk-text">which:</span> "Ye 'Python' ki original shelf kahan hai?" (Binary path)
             </p>
-        </div>
-    </section>
-
-    <!-- ③ DID YOU KNOW? -->
-    <section>
-        <div class="topic-title">❓ DID YOU KNOW?</div>
-        <div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
-            <div><div style="font-size: 3rem; color: var(--chalk-yellow);">find /</div><div class="handwritten" style="color:var(--chalk-blue);">Scans EVERYTHING</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-pink);">grep -r</div><div class="handwritten" style="color:var(--chalk-blue);">Recursive Search</div></div>
-            <div><div style="font-size: 3rem; color: var(--chalk-green);">locate</div><div class="handwritten" style="color:var(--chalk-blue);">Database Search (Fast)</div></div>
-        </div>
-    </section>
-
-    <!-- ④ Key Directories -->
-    <section>
-        <div class="topic-title">📂 Search Anchors — Where to Look</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
-            <ul>
-                <li><span class="dir-icon">🔍</span> <span class="chalk-text">/var/log</span> → Search here for Errors and System messages.</li>
-                <li><span class="dir-icon">⚙️</span> <span class="chalk-text">/etc</span> → Search here for Configuration files.</li>
-                <li><span class="dir-icon">📦</span> <span class="chalk-text">/usr/bin</span> → Search here for Command binaries.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑤ Key Concepts: find vs grep -->
-    <section>
-        <div class="topic-title">📌 Key Concepts: The Power Duo</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
-                <h3 class="handwritten">find (The Scout)</h3>
-                <p class="hinglish">"File ka address dhundta hai."</p>
-                <code>find /var/log -name "*.log"</code>
-            </div>
-            <div class="vs-circle">AND</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
-                <h3 class="handwritten">grep (The X-Ray)</h3>
-                <p class="hinglish">"File ke andar jhaankta hai."</p>
-                <code>grep "error" syslog</code>
-            </div>
-        </div>
-        <p class="handwritten" style="text-align: center; font-size: 1.2rem; color: var(--chalk-yellow);">
-            Piping them together: <code>find . -name "*.conf" | xargs grep "port"</code>
-        </p>
-    </section>
-
-    <!-- ⑥ Compare -->
-    <section>
-        <div class="topic-title">🔄 Compare: find vs locate</div>
-        <div class="vs-container">
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-white);">
-                <h3 class="handwritten">find</h3>
-                <p class="hinglish">"Live scan karta hai. Thoda slow par accurate (Fresh data)."</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
-                <h3 class="handwritten">locate</h3>
-                <p class="hinglish">"Database check karta hai. Super fast par purana data ho sakta hai."</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ⑦ REAL-WORLD EXAMPLE -->
-    <section>
-        <div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Heavy Log File</div>
-        <div class="doodle-container">
-            <div class="robot-doodle">
-                <div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
-                <div class="robot-body"></div><div class="robot-bag"></div>
-            </div>
-            <span class="char-name">Jagu</span>
-            <div class="speech-bubble" style="border-color: var(--chalk-blue);">
-                "Bhai, disk space full ho gayi! <br> 
-                Jaldi se dhundo kaunsi log file 100MB se upar hai."
-            </div>
-        </div>
-        <div class="content-box" style="border-color: var(--chalk-blue);">
-            <p><strong>The Fix:</strong> <code>find /var/log -type f -size +100M</code></p>
-            <p class="hinglish" style="margin-top: 10px;">"Scout Jagu ne turant culprit file pakad li!"</p>
-        </div>
-    </section>
-
-    <!-- ⑧ COMMON MISCONCEPTIONS -->
-    <section>
-        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
-            <ul>
-                <li><span style="color:var(--chalk-red);">Myth:</span> `grep` sirf text files ke liye hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> `grep` kisi bhi command output ko filter karne ke liye best hai (e.g. `ps aux | grep nginx`).</li>
-                <li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> `find` sirf name se dhundta hai.</li>
-                <li><span style="color:var(--chalk-green);">Reality:</span> It can find by user, permissions, size, and last modified date!</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑨ TRY IT YOURSELF -->
-    <section>
-        <div class="topic-title">▶ TRY IT YOURSELF</div>
-        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
-            <p class="handwritten" style="font-size: 1.2rem;">1. <code>find ~ -name "notes.txt"</code> <span class="hinglish">(Golu apni note dhundo)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">2. <code>grep -i "error" /var/log/syslog</code> <span class="hinglish">(System ke dukh-dard dekho)</span></p>
-            <p class="handwritten" style="font-size: 1.2rem;">3. <code>which docker</code> <span class="hinglish">(Check karo docker kahan chupa hai)</span></p>
-        </div>
-    </section>
-
-    <!-- ⑩ QUICK SUMMARY -->
-    <section>
-        <div class="topic-title">✓ QUICK SUMMARY</div>
-        <div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
-            <ul>
-                <li><strong>find:</strong> Discover file locations.</li>
-                <li><strong>grep:</strong> Search text patterns.</li>
-                <li><strong>locate:</strong> Ultra-fast indexed search.</li>
-                <li><strong>which:</strong> Find executable paths.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- ⑪ MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div class="quiz-item"><p class="quiz-question">1. 50MB se badi file dhundne ke liye kaunsa flag use karenge?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) -name</span><span class="quiz-opt">b) -size</span><span class="quiz-opt">c) -type</span><span class="quiz-opt">d) -user</span></div></div>
-            <div class="quiz-item"><p class="quiz-question">2. grep mein 'case-insensitive' search ke liye flag?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) -r</span><span class="quiz-opt">b) -v</span><span class="quiz-opt">c) -i</span><span class="quiz-opt">d) -l</span></div></div>
-            <div class="quiz-item" style="border:none;"><p class="quiz-question">3. 'nginx' command ka actual path dekhne ke liye command?</p>
-                <div class="quiz-options"><span class="quiz-opt">a) locate</span><span class="quiz-opt">b) find</span><span class="quiz-opt">c) which</span><span class="quiz-opt">d) search</span></div></div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="hinglish">"Golu, match kar lo: 1-b | 2-c | 3-c"</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>DevOps & Cloud — 90-Day Learning Journey • Day 04</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">Explore the Repo: github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
 </div>
-
+</section>
+<!-- ③ DID YOU KNOW? -->
+<section>
+<div class="topic-title">❓ DID YOU KNOW?</div>
+<div style="grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center;">
+<div><div style="font-size: 3rem; color: var(--chalk-yellow);">find /</div><div class="handwritten" style="color:var(--chalk-blue);">Scans EVERYTHING</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-pink);">grep -r</div><div class="handwritten" style="color:var(--chalk-blue);">Recursive Search</div></div>
+<div><div style="font-size: 3rem; color: var(--chalk-green);">locate</div><div class="handwritten" style="color:var(--chalk-blue);">Database Search (Fast)</div></div>
+</div>
+</section>
+<!-- ④ Key Directories -->
+<section>
+<div class="topic-title">📂 Search Anchors — Where to Look</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-blue);">
+<ul>
+<li><span class="dir-icon">🔍</span> <span class="chalk-text">/var/log</span> → Search here for Errors and System messages.</li>
+<li><span class="dir-icon">⚙️</span> <span class="chalk-text">/etc</span> → Search here for Configuration files.</li>
+<li><span class="dir-icon">📦</span> <span class="chalk-text">/usr/bin</span> → Search here for Command binaries.</li>
+</ul>
+</div>
+</section>
+<!-- ⑤ Key Concepts: find vs grep -->
+<section>
+<div class="topic-title">📌 Key Concepts: The Power Duo</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-blue);">
+<h3 class="handwritten">find (The Scout)</h3>
+<p class="handwritten">"Looking for the address of the file."</p>
+<code>find /var/log -name "*.log"</code>
+</div>
+<div class="vs-circle">AND</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+<h3 class="handwritten">grep (The X-Ray)</h3>
+<p class="handwritten">"The file's contents are visible."</p>
+<code>grep "error" syslog</code>
+</div>
+</div>
+<p class="handwritten" style="text-align: center; font-size: 1.2rem; color: var(--chalk-yellow);">
+            Piping them together: <code>find . -name "*.conf" | xargs grep "port"</code>
+</p>
+</section>
+<!-- ⑥ Compare -->
+<section>
+<div class="topic-title">🔄 Compare: find vs locate</div>
+<div class="vs-container">
+<div class="content-box" style="flex: 1; border-color: var(--chalk-white);">
+<h3 class="handwritten">find</h3>
+<p class="handwritten">"Does live scan. Slightly slow but accurate (Fresh data)."</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+<h3 class="handwritten">locate</h3>
+<p class="handwritten">"Database is checked. Old data can be recovered at super fast."</p>
+</div>
+</div>
+</section>
+<!-- ⑦ REAL-WORLD EXAMPLE -->
+<section>
+<div class="topic-title">🏢 REAL-WORLD EXAMPLE: The Heavy Log File</div>
+<div class="doodle-container">
+<div class="robot-doodle">
+<div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div>
+<div class="robot-body"></div><div class="robot-bag"></div>
+</div>
+<span class="char-name">Jagu</span>
+<div class="speech-bubble" style="border-color: var(--chalk-blue);">"Brother, the disk space is full! <br/> 
+                Quickly find which log file is larger than 100MB."</div>
+</div>
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<p><strong>The Fix:</strong> <code>find /var/log -type f -size +100M</code></p>
+<p class="handwritten" style="margin-top: 10px;">"Scout Jagu immediately grabbed the culprit file!"</p>
+</div>
+</section>
+<!-- ⑧ COMMON MISCONCEPTIONS -->
+<section>
+<div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+<ul>
+<li><span style="color:var(--chalk-red);">Myth:</span> `grep` sirf text files ke liye hai.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> `grep` kisi bhi command output ko filter karne ke liye best hai (e.g. `ps aux | grep nginx`).</li>
+<li style="margin-top:10px;"><span style="color:var(--chalk-red);">Myth:</span> `find` sirf name se dhundta hai.</li>
+<li><span style="color:var(--chalk-green);">Reality:</span> It can find by user, permissions, size, and last modified date!</li>
+</ul>
+</div>
+</section>
+<!-- ⑨ TRY IT YOURSELF -->
+<section>
+<div class="topic-title">▶ TRY IT YOURSELF</div>
+<div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+<p class="handwritten" style="font-size: 1.2rem;">1. <code>find ~ -name "notes.txt"</code> <span class="handwritten">(Golu apni note dhundo)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">2. <code>grep -i "error" /var/log/syslog</code> <span class="handwritten">(See the pain of the system)</span></p>
+<p class="handwritten" style="font-size: 1.2rem;">3. <code>which docker</code> <span class="handwritten">(Check where the docker is sucked)</span></p>
+</div>
+</section>
+<!-- ⑩ QUICK SUMMARY -->
+<section>
+<div class="topic-title">✓ QUICK SUMMARY</div>
+<div class="content-box" style="border-left: 5px solid var(--chalk-yellow);">
+<ul>
+<li><strong>find:</strong> Discover file locations.</li>
+<li><strong>grep:</strong> Search text patterns.</li>
+<li><strong>locate:</strong> Ultra-fast indexed search.</li>
+<li><strong>which:</strong> Find executable paths.</li>
+</ul>
+</div>
+</section>
+<!-- ⑪ MINI QUIZ -->
+<section>
+<div class="topic-title">❓ MINI QUIZ — Test Your Understanding</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div class="quiz-item"><p class="quiz-question">1. 50MB se badi file dhundne ke liye kaunsa flag use karenge?</p>
+<div class="quiz-options"><span class="quiz-opt">a) -name</span><span class="quiz-opt">b) -size</span><span class="quiz-opt">c) -type</span><span class="quiz-opt">d) -user</span></div></div>
+<div class="quiz-item"><p class="quiz-question">2. grep mein 'case-insensitive' search ke liye flag?</p>
+<div class="quiz-options"><span class="quiz-opt">a) -r</span><span class="quiz-opt">b) -v</span><span class="quiz-opt">c) -i</span><span class="quiz-opt">d) -l</span></div></div>
+<div class="quiz-item" style="border:none;"><p class="quiz-question">3. 'nginx' command ka actual path dekhne ke liye command?</p>
+<div class="quiz-options"><span class="quiz-opt">a) locate</span><span class="quiz-opt">b) find</span><span class="quiz-opt">c) which</span><span class="quiz-opt">d) search</span></div></div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+<p class="handwritten">"Goals, no match: 1-b | 2-c | 3-c"</p>
+</div>
+</div>
+</section>
+<div class="footer">
+<p>DevOps &amp; Cloud — 90-Day Learning Journey • Day 04</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">Explore the Repo: github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
+</div>
 </body>
 </html>

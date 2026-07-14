@@ -1,6 +1,6 @@
 # 🗓️ Day 05 — System Diagnosis Drill
 
-> **Jagu:** "Golu, imagine karo server slow hai aur Manager sir khade hain! Aaj hum seekhenge ki pressure mein system health kaise check karte hain." 🚀
+> **Jagu:** "Golu, imagine that the server is slow and the manager is eating! Today we will see how to check system health under pressure." 🚀
 
 ---
 

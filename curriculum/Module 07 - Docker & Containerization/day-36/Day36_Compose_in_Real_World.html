@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 36: Compose in Real-World - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 36: Compose in Real-World - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -112,96 +113,80 @@
 </head>
 <body>
 <div class="blackboard">
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Compose in Real-World</h1>
-        <p class="subtitle handwritten">Day 36: Microservices Communication & Networking DNS 🐳</p>
-    </header>
-
-    
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, main code mein MongoDB database ko <code>localhost:27017</code> de raha hoon to connect nahi ho raha! Par mere laptop par database chal raha hai!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Golu, container ke andar <code>localhost</code> ka matlab 'vahi container' hai! Doosre service se baat karne ke liye Compose network DNS use karo. MongoDB service ka naam <code>mongodb</code> hai to connection string <code>mongodb://mongodb:27017</code> hogi!"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES & WHY SEEKHEIN</h3>
-            <p class="hinglish">
-                Microservices communication setup mein manual configuration complex hai. Docker Compose network parameters automatically coordinate karta hai. Is model ko seekhna scalable app deployment ke liye essential hai.
-            </p>
-            <ul>
-                <li>Understand dynamic name-based DNS resolution in Docker Compose.</li>
-                <li>Utilize <code>depends_on</code> and connection retry configs.</li>
-                <li>Setup isolated multi-tier networks (e.g. backend-db separated from public frontend).</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="concepts">
-        <div class="topic-title">🌐 DNS Resolution in Docker Compose</div>
-        <p>When you start a Compose file, Docker creates a default network. Every service uses its service name as the hostname. Docker's internal DNS resolver handles mapping dynamically!</p>
-        <div class="diagram-container">
-            <div class="diagram-title">Network Isolation Setup</div>
-            <p style="font-family:'Fira Code', monospace; color:var(--chalk-pink);">[Public Traffic] -> Web App (frontend-net) <br> Web App (backend-net) <---> Database (backend-net) [No Public Access]</p>
-        </div>
-    </section>
-
-    <section id="compare">
-        <div class="topic-title">⚖️ Comparison: Shared default network vs. Isolated custom networks</div>
-        <div class="vs-container">
-            <div class="vs-card danger">
-                <div class="vs-title">Default Network</div>
-                <p>All services are on one bridge. Database is accessible by frontend and potentially exposed if port mapping is misconfigured.</p>
-            </div>
-            <div class="vs-circle">VS</div>
-            <div class="vs-card secure">
-                <div class="vs-title">Isolated custom networks</div>
-                <p>Database is on a private backend network. Only backend application can talk to it, securing database queries from external breaches.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="realworld">
-        <div class="topic-title">🎬 Real World Troubleshooting: DB Startup Lag</div>
-        <p class="hinglish">
-            Backend start hote hi crash ho raha tha kyuki database boot-up complete hone mein 5 seconds le raha tha. <code>depends_on</code> use kiya par wo sirf container status check karta hai, internal health nahi. Healthcheck configure karne se problem solve ho gayi!
-        </p>
-    </section>
-
-    <section id="tryit">
-        <div class="topic-title">⌨️ Try It Yourself</div>
-        <p>In Compose, define custom networks for security:</p>
-        <pre><code>services:
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+</div>
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Compose in Real-World</h1>
+<p class="subtitle handwritten">Day 36: Microservices Communication &amp; Networking DNS 🐳</p>
+</header>
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, in the main code the MongoDB database <code>localhost:27017</code> is still not connecting! But the database is running on my laptop!"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Golu, container end <code>localhost</code> means 'that container'! Use Compose network DNS to talk to another service. MongoDB service name is <code>mongodb</code> to connection string <code>mongodb://mongodb:27017</code>!"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">1. LEARNING OBJECTIVES &amp; WHY SEEKHEIN</h3>
+<p class="handwritten">Microservices communication setup mein manual configuration complex hai. Docker Compose network parameters automatically coordinate karta hai. Is model ko seekhna scalable app deployment ke liye essential hai.</p>
+<ul>
+<li>Understand dynamic name-based DNS resolution in Docker Compose.</li>
+<li>Utilize <code>depends_on</code> and connection retry configs.</li>
+<li>Setup isolated multi-tier networks (e.g. backend-db separated from public frontend).</li>
+</ul>
+</div>
+</section>
+<section id="concepts">
+<div class="topic-title">🌐 DNS Resolution in Docker Compose</div>
+<p>When you start a Compose file, Docker creates a default network. Every service uses its service name as the hostname. Docker's internal DNS resolver handles mapping dynamically!</p>
+<div class="diagram-container">
+<div class="diagram-title">Network Isolation Setup</div>
+<p style="font-family:'Fira Code', monospace; color:var(--chalk-pink);">[Public Traffic] -&gt; Web App (frontend-net) <br/> Web App (backend-net) &lt;---&gt; Database (backend-net) [No Public Access]</p>
+</div>
+</section>
+<section id="compare">
+<div class="topic-title">⚖️ Comparison: Shared default network vs. Isolated custom networks</div>
+<div class="vs-container">
+<div class="vs-card danger">
+<div class="vs-title">Default Network</div>
+<p>All services are on one bridge. Database is accessible by frontend and potentially exposed if port mapping is misconfigured.</p>
+</div>
+<div class="vs-circle">VS</div>
+<div class="vs-card secure">
+<div class="vs-title">Isolated custom networks</div>
+<p>Database is on a private backend network. Only backend application can talk to it, securing database queries from external breaches.</p>
+</div>
+</div>
+</section>
+<section id="realworld">
+<div class="topic-title">🎬 Real World Troubleshooting: DB Startup Lag</div>
+<p class="handwritten">The backend start hote was crashing because the database boot-up was taking 5 seconds to complete. When <code>depends_on</code> is used it only checks the container status, not the internal health. The problem was solved by configuring Healthcheck!</p>
+</section>
+<section id="tryit">
+<div class="topic-title">⌨️ Try It Yourself</div>
+<p>In Compose, define custom networks for security:</p>
+<pre><code>services:
   web:
     image: nginx
     networks:
@@ -214,39 +199,36 @@
 networks:
   frontend:
   backend:</code></pre>
-    </section>
-
-    <section id="quiz">
-        <div class="topic-title">📝 Day 36 Mini Quiz</div>
-        <div class="quiz-item">
-            <div class="quiz-question">1. When using Docker Compose, how are services connected by default?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) They cannot communicate unless links parameter is used</span>
-                <span class="quiz-opt">B) They share the host network directly</span>
-                <span class="quiz-opt">C) Compose automatically sets up a single default bridge network for the application</span>
-                <span class="quiz-opt">D) They are attached to the None network driver</span>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <div class="quiz-question">2. What is the purpose of the health-check instruction in Docker Compose?</div>
-            <div class="quiz-options">
-                <span class="quiz-opt">A) To check server memory limits</span>
-                <span class="quiz-opt">B) To scan container code for security flaws</span>
-                <span class="quiz-opt">C) To determine if the service inside the container is ready and running correctly</span>
-                <span class="quiz-opt">D) To check the internet ping speed</span>
-            </div>
-        </div>
-        <div class="answer-key">
-            <h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
-            <p>1: C (default bridge network), 2: C (ready and functioning check)</p>
-        </div>
-    </section>
-
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+</section>
+<section id="quiz">
+<div class="topic-title">📝 Day 36 Mini Quiz</div>
+<div class="quiz-item">
+<div class="quiz-question">1. When using Docker Compose, how are services connected by default?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) They cannot communicate unless links parameter is used</span>
+<span class="quiz-opt">B) They share the host network directly</span>
+<span class="quiz-opt">C) Compose automatically sets up a single default bridge network for the application</span>
+<span class="quiz-opt">D) They are attached to the None network driver</span>
+</div>
+</div>
+<div class="quiz-item">
+<div class="quiz-question">2. What is the purpose of the health-check instruction in Docker Compose?</div>
+<div class="quiz-options">
+<span class="quiz-opt">A) To check server memory limits</span>
+<span class="quiz-opt">B) To scan container code for security flaws</span>
+<span class="quiz-opt">C) To determine if the service inside the container is ready and running correctly</span>
+<span class="quiz-opt">D) To check the internet ping speed</span>
+</div>
+</div>
+<div class="answer-key">
+<h4 class="handwritten" style="margin:0 0 10px 0; color:var(--chalk-green);">Answer Key:</h4>
+<p>1: C (default bridge network), 2: C (ready and functioning check)</p>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
 </div>
 </body>
 </html>

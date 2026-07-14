@@ -1,6 +1,6 @@
 # 🧪 Day 09 Solution: User & Group Management
 
-**Jagu:** "Shabash Golu! Tune team access control master kar liya hai. Ab 'Professor' ki team secure hai! Ye raha tera reference user report."
+**Jagu:** "Well done Golu! Tune team has mastered access control. Now 'Professor's team is secure! Here is your reference user report."
 
 ---
 
@@ -51,7 +51,7 @@ admins:x:1002:berlin,professor
 ---
 
 ## 💡 Jagu's Pro Tip:
-"Golu, hamesha `usermod` ke saath `-a` (append) flag use karna. Agar bhul gaya, toh purane saare groups se user nikal jayega!"
+"Golu, always use `-a` (append) flag with `usermod`. If you forget, the user will be removed from all the old groups!"
 
 ---
 *#LearnDevOpsIn90Days • Day 09 • Golu & Jagu Edition*

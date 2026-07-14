@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 02 — Architecture & Processes
 
-**Jagu:** "Beep Boop! Golu, aaj hum Linux ke 'Brain' aur 'Heart' ko dekhenge. System kaise chalta hai aur processes kaise manage hote hain, ye seekhna bahut zaroori hai!"
+**Jagu:** "Beep Boop! Golu, today we will look at the 'Brain' and 'Heart' of Linux. It is very important to learn how the system works and how the processes are managed!"
 
 ## 🎯 Task Objectives
 - Explain core Linux components.

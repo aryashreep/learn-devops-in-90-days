@@ -1,6 +1,6 @@
 # 🧪 Lab Session: Day 08 — Cloud Server Setup & Nginx
 
-**Jagu:** "Beep Boop! Golu, ab hum 'Ground' se 'Cloud' pe move karenge. Aaj hum apna pehla web server live karenge AWS/Utho pe!"
+**Jagu:** "Beep Boop! Golu, now we will move from 'Ground' to 'Cloud'. Today we will make our first web server live on AWS/Utho!"
 
 ## 🎯 Task Objectives
 - Launch and connect to a Cloud Instance via SSH.
@@ -30,7 +30,7 @@
 ---
 
 ### ✅ Proof of Work
-**Jagu:** "Golu, teri website live hai! Proof save kar."
+**Jagu:** "Golu, your website is live! Save the proof."
 
 1. Create a file named **`day-08-cloud-deployment.md`** in the **`solution/`** folder.
 2. Add screenshots of your **Nginx Welcome Page** and the **`nginx-logs.txt`** file.

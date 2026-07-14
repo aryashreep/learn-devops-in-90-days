@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 12: Milestone Recovery Lab - Golu & Jagu Pro Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Day 12: Milestone Recovery Lab - Golu &amp; Jagu Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<style>
         :root {
             --bg-blackboard: #0a0e14;
             --chalk-white: #f1f2f6;
@@ -106,170 +107,150 @@
     </style>
 </head>
 <body>
-
 <div class="blackboard">
-    <!-- AUTHOR HEADER -->
-    <header class="author-header">
-        <div class="author-info">
-            <h2>Aryashree Pritikrishna</h2>
-            <p>DevOps & Cloud Training Series • 2026 Edition</p>
-        </div>
-        <div class="author-contact">
-            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
-            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
-            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
-            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
-            <div class="contact-item">📞 +91 8147450705</div>
-        </div>
-    </header>
-
-    <header>
-        <h1>Milestone Recovery Lab</h1>
-        <p class="subtitle handwritten">Day 12: Battle Test — The Broken Server Challenge 🛠️</p>
-    </header>
-
-    <!-- INTRO SECTION -->
-    <section id="intro">
-        <div class="intro-banner">
-            <div class="doodle-container" style="margin: 0;">
-                <div class="doodle-wrapper">
-                    <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
-                    <span class="char-name">Golu</span>
-                </div>
-                <div class="speech-bubble">
-                    "Jagu, pichle 11 din mein maine sab kuch seekh liya — navigation, permissions, ownership, processes... Par mujhe lagta hai main abhi bhi 'real' server handle karne ke liye ready nahi hoon!"
-                </div>
-            </div>
-            <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
-                <div class="speech-bubble bubble-blue">
-                    "Beep Boop! Golu, theory alag cheez hai,实战 (real combat) alag. Maine intentionally ek server tod diya hai. Tujhe 5 problems fix karni hain. Time limit: 20 minutes. Ready ho?"
-                </div>
-                <div class="doodle-wrapper">
-                    <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
-                    <span class="char-name">Jagu</span>
-                </div>
-            </div>
-        </div>
-        <div class="content-box accent-yellow">
-            <h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">🎯 Why a Battle Test?</h3>
-            <p class="hinglish" style="font-size: 1.2rem;">
-                DevOps engineers ko production mein kabhi bhi alert aata hai. Koi service down hai, permissions galat hain, process hang hai — 
-                aapko terminal mein bina panic kare fix karna hota hai. Yeh lab wahi simulate karta hai!
-            </p>
-        </div>
-    </section>
-
-    <!-- REVISION DOMAINS -->
-    <section>
-        <div class="topic-title">📚 Revision Domains (Days 1-11)</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
-            <div class="content-box" style="border-color: var(--chalk-blue);">
-                <h4 class="handwritten" style="color: var(--chalk-blue);">🔍 Navigation & Searching</h4>
-                <p><span class="badge badge-nav">find</span> <span class="badge badge-nav">locate</span> <span class="badge badge-nav">grep</span> <span class="badge badge-nav">ls</span></p>
-                <p class="hinglish">Files dhundhna, patterns match karna, directory tree explore karna.</p>
-            </div>
-            <div class="content-box" style="border-color: var(--chalk-green);">
-                <h4 class="handwritten" style="color: var(--chalk-green);">📝 File I/O & Redirection</h4>
-                <p><span class="badge badge-io">cat</span> <span class="badge badge-io">tee</span> <span class="badge badge-io">&gt;</span> <span class="badge badge-io">tail</span> <span class="badge badge-io">head</span></p>
-                <p class="hinglish">Files padhna, output redirect karna, logs inspect karna.</p>
-            </div>
-            <div class="content-box" style="border-color: var(--chalk-pink);">
-                <h4 class="handwritten" style="color: var(--chalk-pink);">🔐 Users, Groups & Permissions</h4>
-                <p><span class="badge badge-perm">chmod</span> <span class="badge badge-perm">chown</span> <span class="badge badge-perm">chgrp</span> <span class="badge badge-perm">umask</span></p>
-                <p class="hinglish">Permissions fix karna, ownership transfer, security hardening.</p>
-            </div>
-            <div class="content-box" style="border-color: var(--chalk-red);">
-                <h4 class="handwritten" style="color: var(--chalk-red);">⚙️ Process & Service Management</h4>
-                <p><span class="badge badge-proc">ps</span> <span class="badge badge-proc">kill</span> <span class="badge badge-proc">systemctl</span> <span class="badge badge-proc">top</span></p>
-                <p class="hinglish">Processes identify karna, zombie cleanup, services restart karna.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- THE 5 SCENARIOS -->
-    <section>
-        <div class="topic-title">🔧 The 5 Broken Scenarios</div>
-        
-        <div class="scenario-card">
-            <div class="scenario-num">1. 🕵️ The Ghost File</div>
-            <p>Kahin <code>/etc</code> mein ek file <code>.hidden_key</code> chhupi hai. Jagu ko uska exact path dhunda hai.</p>
-            <p class="hinglish">Skill: find / locate commands</p>
-            <div class="scenario-fix">$ find /etc -name ".hidden_key" -type f 2>/dev/null</div>
-        </div>
-
-        <div class="scenario-card">
-            <div class="scenario-num">2. 🔒 Permission Hell</div>
-            <p><code>/tmp/fix_me.sh</code> exists but won't execute. <strong>No 777 allowed!</strong></p>
-            <p class="hinglish">Skill: chmod with specific permissions</p>
-            <div class="scenario-fix">$ chmod 755 /tmp/fix_me.sh</div>
-        </div>
-
-        <div class="scenario-card">
-            <div class="scenario-num">3. 👑 Ownership Crisis</div>
-            <p><code>/opt/app-data</code> is owned by <code>nobody</code>. Wrong owner!</p>
-            <p class="hinglish">Skill: chown / chgrp</p>
-            <div class="scenario-fix">$ sudo chown -R $(whoami):$(id -gn) /opt/app-data</div>
-        </div>
-
-        <div class="scenario-card">
-            <div class="scenario-num">4. 🧟 The Resource Hog</div>
-            <p>Ek <code>sleep 9999</code> process zombie ban raha hai. PID dhundho aur maaro!</p>
-            <p class="hinglish">Skill: ps, grep, kill</p>
-            <div class="scenario-fix">$ ps aux | grep "sleep 9999" | grep -v grep | awk '{print $2}' | xargs kill</div>
-        </div>
-
-        <div class="scenario-card">
-            <div class="scenario-num">5. 📋 The Log Overflow</div>
-            <p><code>/var/log/dummy.log</code> mein 1000 lines of junk. Sirf last 10 lines dikhao.</p>
-            <p class="hinglish">Skill: tail</p>
-            <div class="scenario-fix">$ tail -10 /var/log/dummy.log</div>
-        </div>
-    </section>
-
-    <!-- TROUBLESHOOTING MINDSET -->
-    <section>
-        <div class="topic-title">🧠 Troubleshooting Mindset</div>
-        <div class="content-box accent-green">
-            <p class="handwritten" style="font-size: 1.3rem; color: var(--chalk-yellow);">The DevOps Debug Flow:</p>
-            <ol style="list-style: none; padding: 0;">
-                <li style="padding: 10px 0;">1️⃣ <span class="chalk-text">READ</span> — Error message carefully padho (loga, stderr)</li>
-                <li style="padding: 10px 0;">2️⃣ <span class="chalk-text">INVESTIGATE</span> — Status check karo (ls -la, ps, df -h)</li>
-                <li style="padding: 10px 0;">3️⃣ <span class="chalk-text">ANALYZE</span> — Root cause identify karo (grep, journalctl)</li>
-                <li style="padding: 10px 0;">4️⃣ <span class="chalk-text">FIX</span> — Minimal change apply karo (chmod, kill, rm)</li>
-                <li style="padding: 10px 0;">5️⃣ <span class="chalk-text">VERIFY</span> — Confirm the fix works (test again)</li>
-            </ol>
-        </div>
-    </section>
-
-    <!-- MINI QUIZ -->
-    <section>
-        <div class="topic-title">❓ Battle Test Mini Quiz</div>
-        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
-            <div style="margin-bottom: 25px;">
-                <p class="handwritten" style="font-size: 1.2rem;"><strong>1. Find command mein "2>/dev/null" kyun use karte hain?</strong></p>
-                <p>A) Output ko fast karne ke liye &nbsp; B) Permission denied errors hide karne ke liye &nbsp; C) File delete karne ke liye &nbsp; D) Network request bhejne ke liye</p>
-            </div>
-            <div style="margin-bottom: 25px;">
-                <p class="handwritten" style="font-size: 1.2rem;"><strong>2. Kill command se process terminate nahi ho raha — next step?</strong></p>
-                <p>A) kill -9 &nbsp; B) rm -rf &nbsp; C) systemctl restart &nbsp; D) reboot</p>
-            </div>
-            <div style="margin-bottom: 25px;">
-                <p class="handwritten" style="font-size: 1.2rem;"><strong>3. Script execute nahi ho rahi despite 755 permissions. Kya check karein?</strong></p>
-                <p>A) File content &nbsp; B) Shebang (#!) line &nbsp; C) Network &nbsp; D) Disk space</p>
-            </div>
-            <div class="answer-key">
-                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ Answer Key</h3>
-                <p>1-B (Hide permission denied noise while searching) &nbsp;|&nbsp; 2-A (SIGKILL — force terminate) &nbsp;|&nbsp; 3-B (Missing or wrong interpreter path)</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
-        <p>#LearnDevOpsIn90Days • Day 12 • Pro Edition • By Aryashree Pritikrishna</p>
-        <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
-    </div>
+<!-- AUTHOR HEADER -->
+<header class="author-header">
+<div class="author-info">
+<h2>Aryashree Pritikrishna</h2>
+<p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
 </div>
-
+<div class="author-contact">
+<div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+<div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+<div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+<div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+<div class="contact-item">📞 +91 8147450705</div>
+</div>
+</header>
+<header>
+<h1>Milestone Recovery Lab</h1>
+<p class="subtitle handwritten">Day 12: Battle Test — The Broken Server Challenge 🛠️</p>
+</header>
+<!-- INTRO SECTION -->
+<section id="intro">
+<div class="intro-banner">
+<div class="doodle-container" style="margin: 0;">
+<div class="doodle-wrapper">
+<div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+<span class="char-name">Naked</span>
+</div>
+<div class="speech-bubble">"Jagu, I've learned everything in the last 11 days — navigation, permissions, ownership, processes... but I feel like I'm still not ready to handle a 'real' server!"</div>
+</div>
+<div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+<div class="speech-bubble bubble-blue">"Beep Boop! Golu, theory is a different thing, real combat is different. I have intentionally broken a server. You have to fix 5 problems. Time limit: 20 minutes. Ready ho?"</div>
+<div class="doodle-wrapper">
+<div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+<span class="char-name">Section</span>
+</div>
+</div>
+</div>
+<div class="content-box accent-yellow">
+<h3 class="handwritten" style="color:var(--chalk-yellow); margin-bottom: 15px;">🎯 Why a Battle Test?</h3>
+<p class="handwritten" style="font-size: 1.2rem;">DevOps engineers are alerted anytime in production. Any service is down, permissions are incorrect, process is hanging — 
+                You have to fix it without panic in the terminal. This simulates a lab!</p>
+</div>
+</section>
+<!-- REVISION DOMAINS -->
+<section>
+<div class="topic-title">📚 Revision Domains (Days 1-11)</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
+<div class="content-box" style="border-color: var(--chalk-blue);">
+<h4 class="handwritten" style="color: var(--chalk-blue);">🔍 Navigation &amp; Searching</h4>
+<p><span class="badge badge-nav">find</span> <span class="badge badge-nav">locate</span> <span class="badge badge-nav">grep</span> <span class="badge badge-nav">ls</span></p>
+<p class="handwritten">Searching files, matching patterns, exploring directory tree.</p>
+</div>
+<div class="content-box" style="border-color: var(--chalk-green);">
+<h4 class="handwritten" style="color: var(--chalk-green);">📝 File I/O &amp; Redirection</h4>
+<p><span class="badge badge-io">cat</span> <span class="badge badge-io">tee</span> <span class="badge badge-io">&gt;</span> <span class="badge badge-io">tail</span> <span class="badge badge-io">head</span></p>
+<p class="handwritten">Reading files, redirecting output, inspecting logs.</p>
+</div>
+<div class="content-box" style="border-color: var(--chalk-pink);">
+<h4 class="handwritten" style="color: var(--chalk-pink);">🔐 Users, Groups &amp; Permissions</h4>
+<p><span class="badge badge-perm">chmod</span> <span class="badge badge-perm">chown</span> <span class="badge badge-perm">chgrp</span> <span class="badge badge-perm">umask</span></p>
+<p class="handwritten">Permissions fix karna, ownership transfer, security hardening.</p>
+</div>
+<div class="content-box" style="border-color: var(--chalk-red);">
+<h4 class="handwritten" style="color: var(--chalk-red);">⚙️ Process &amp; Service Management</h4>
+<p><span class="badge badge-proc">ps</span> <span class="badge badge-proc">kill</span> <span class="badge badge-proc">systemctl</span> <span class="badge badge-proc">top</span></p>
+<p class="handwritten">Processes identify karna, zombie cleanup, services restart karna.</p>
+</div>
+</div>
+</section>
+<!-- THE 5 SCENARIOS -->
+<section>
+<div class="topic-title">🔧 The 5 Broken Scenarios</div>
+<div class="scenario-card">
+<div class="scenario-num">1. 🕵️ The Ghost File</div>
+<p>A file <code>.hidden_key</code> is hidden somewhere <code>/etc</code>. Jagu's exact path is unknown.</p>
+<p class="handwritten">Skill: find / locate commands</p>
+<div class="scenario-fix">$ find /etc -name ".hidden_key" -type f 2&gt;/dev/null</div>
+</div>
+<div class="scenario-card">
+<div class="scenario-num">2. 🔒 Permission Hell</div>
+<p><code>/tmp/fix_me.sh</code> exists but won't execute. <strong>No 777 allowed!</strong></p>
+<p class="handwritten">Skill: chmod with specific permissions</p>
+<div class="scenario-fix">$ chmod 755 /tmp/fix_me.sh</div>
+</div>
+<div class="scenario-card">
+<div class="scenario-num">3. 👑 Ownership Crisis</div>
+<p><code>/opt/app-data</code> is owned by <code>nobody</code>. Wrong owner!</p>
+<p class="handwritten">Skill: chown / chgrp</p>
+<div class="scenario-fix">$ sudo chown -R $(whoami):$(id -gn) /opt/app-data</div>
+</div>
+<div class="scenario-card">
+<div class="scenario-num">4. 🧟 The Resource Hog</div>
+<p>One <code>sleep 9999</code> process is zombie ban. PID dhundho aur maaro!</p>
+<p class="handwritten">Skill: ps, grep, kill</p>
+<div class="scenario-fix">$ ps aux | grep "sleep 9999" | grep -v grep | awk '{print $2}' | xargs kill</div>
+</div>
+<div class="scenario-card">
+<div class="scenario-num">5. 📋 The Log Overflow</div>
+<p><code>/var/log/dummy.log</code> mein 1000 lines of junk. Sirf last 10 lines dikhao.</p>
+<p class="handwritten">Skill: tail</p>
+<div class="scenario-fix">$ tail -10 /var/log/dummy.log</div>
+</div>
+</section>
+<!-- TROUBLESHOOTING MINDSET -->
+<section>
+<div class="topic-title">🧠 Troubleshooting Mindset</div>
+<div class="content-box accent-green">
+<p class="handwritten" style="font-size: 1.3rem; color: var(--chalk-yellow);">The DevOps Debug Flow:</p>
+<ol style="list-style: none; padding: 0;">
+<li style="padding: 10px 0;">1️⃣ <span class="chalk-text">READ</span> — Error message carefully padho (loga, stderr)</li>
+<li style="padding: 10px 0;">2️⃣ <span class="chalk-text">INVESTIGATE</span> — Status check karo (ls -la, ps, df -h)</li>
+<li style="padding: 10px 0;">3️⃣ <span class="chalk-text">ANALYZE</span> — Root cause identify karo (grep, journalctl)</li>
+<li style="padding: 10px 0;">4️⃣ <span class="chalk-text">FIX</span> — Minimal change apply karo (chmod, kill, rm)</li>
+<li style="padding: 10px 0;">5️⃣ <span class="chalk-text">VERIFY</span> — Confirm the fix works (test again)</li>
+</ol>
+</div>
+</section>
+<!-- MINI QUIZ -->
+<section>
+<div class="topic-title">❓ Battle Test Mini Quiz</div>
+<div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+<div style="margin-bottom: 25px;">
+<p class="handwritten" style="font-size: 1.2rem;"><strong>1. Why use Find command mein "2&gt;/dev/null"?</strong></p>
+<p>A) To speed up the output B) To hide permission denied errors C) To delete the file D) To send network request</p>
+</div>
+<div style="margin-bottom: 25px;">
+<p class="handwritten" style="font-size: 1.2rem;"><strong>2. Kill command se process terminate nahi ho raha — next step?</strong></p>
+<p>A) kill -9   B) rm -rf   C) systemctl restart   D) reboot</p>
+</div>
+<div style="margin-bottom: 25px;">
+<p class="handwritten" style="font-size: 1.2rem;"><strong>3. Script is not executing despite 755 permissions. What to check?</strong></p>
+<p>A) File content   B) Shebang (#!) line   C) Network   D) Disk space</p>
+</div>
+<div class="answer-key">
+<h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ Answer Key</h3>
+<p>1-B (Hide permission denied noise while searching)  |  2-A (SIGKILL — force terminate)  |  3-B (Missing or wrong interpreter path)</p>
+</div>
+</div>
+</section>
+<div class="footer">
+<p>Built with ❤️ for the DevOps Community. Follow the journey on GitHub.</p>
+<p>#LearnDevOpsIn90Days • Day 12 • Pro Edition • By Aryashree Pritikrishna</p>
+<a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/learn-devops-in-90-days</a>
+</div>
+</div>
 </body>
 </html>
