@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Certificate of Completion — Learn DevOps in 90 Days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,600&display=swap"/>
+<style>
+:root {
+  --navy:    #0B0F1A;
+  --surface: #131929;
+  --surface2:#1A2236;
+  --border:  rgba(255,255,255,0.07);
+  --text:    #E8EDF5;
+  --muted:   #7B8BA8;
+  --amber:   #F5A623;
+  --blue:    #4A9EF5;
+  --teal:    #2DD4BF;
+  --green:   #4ADE80;
+  --purple:  #A78BFA;
+  --coral:   #FB7185;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Page shell ── */
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ── Back / Nav bar ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--blue); text-decoration: none; }
+.topbar-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-left: auto;
+}
+
+/* ─────────────────────────────────────────────
+   GENERATOR FORM (shown when no URL params)
+───────────────────────────────────────────── */
+#generator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.gen-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.gen-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+.gen-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.gen-title span { color: var(--amber); }
+.gen-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 500px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 32px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.field input,
+.field select {
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+}
+
+.field input::placeholder { color: var(--muted); }
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(74,158,245,0.12);
+}
+
+.field select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237B8BA8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+}
+
+.field select option {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+.btn-generate {
+  width: 100%;
+  margin-top: 28px;
+  padding: 13px 24px;
+  background: var(--amber);
+  color: #0B0F1A;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn-generate:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-generate:active { transform: translateY(0); }
+
+/* ─────────────────────────────────────────────
+   CERTIFICATE VIEW
+───────────────────────────────────────────── */
+#cert-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cert-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-print {
+  padding: 11px 24px;
+  background: var(--amber);
+  color: #0B0F1A;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn-print:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-print svg { flex-shrink: 0; }
+
+.btn-back-cert {
+  padding: 11px 20px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+.btn-back-cert:hover { color: var(--text); border-color: rgba(255,255,255,0.25); text-decoration: none; }
+
+/* ── The A4 certificate ── */
+.cert-wrapper {
+  width: 100%;
+  max-width: 680px;
+}
+
+/* A4 aspect ratio: 210:297 → height = width * (297/210) */
+.cert-paper {
+  width: 100%;
+  aspect-ratio: 210 / 297;
+  background: #FDFAF4;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 7%;
+  color: #1A1A2E;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* Double border with amber corners */
+.cert-paper::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border: 1.5px solid rgba(245,166,35,0.35);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.cert-paper::after {
+  content: '';
+  position: absolute;
+  inset: 24px;
+  border: 0.5px solid rgba(245,166,35,0.18);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+/* Amber corner accents */
+.cert-corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+.cert-corner--tl { top: 10px; left: 10px; border-top: 3px solid var(--amber); border-left: 3px solid var(--amber); }
+.cert-corner--tr { top: 10px; right: 10px; border-top: 3px solid var(--amber); border-right: 3px solid var(--amber); }
+.cert-corner--bl { bottom: 10px; left: 10px; border-bottom: 3px solid var(--amber); border-left: 3px solid var(--amber); }
+.cert-corner--br { bottom: 10px; right: 10px; border-bottom: 3px solid var(--amber); border-right: 3px solid var(--amber); }
+
+/* Watermark background text */
+.cert-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.cert-watermark-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+  color: rgba(245,166,35,0.04);
+  white-space: nowrap;
+  transform: rotate(-30deg);
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+/* Certificate content layout */
+.cert-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  gap: 0;
+}
+
+.cert-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.cert-logo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F5A623;
+}
+.cert-logo-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5A6A7E;
+}
+
+.cert-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 3.5vw, 1.7rem);
+  font-weight: 700;
+  color: #F5A623;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.cert-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #F5A623, transparent);
+  margin: 0 auto 20px;
+}
+
+.cert-presents {
+  font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+  color: #5A6A7E;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.cert-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 5vw, 2.4rem);
+  font-weight: 700;
+  color: #2A6FD6;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.cert-completed-line {
+  font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+  color: #5A6A7E;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cert-module {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(0.85rem, 2.4vw, 1.15rem);
+  font-weight: 700;
+  color: #1A1A2E;
+  margin-bottom: 6px;
+}
+
+.cert-course {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(0.8rem, 2.2vw, 1.05rem);
+  color: #5A6A7E;
+  margin-bottom: 28px;
+}
+
+.cert-date-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+.cert-date-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.55rem, 1.4vw, 0.65rem);
+  color: #8A9AB8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.cert-date-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+  color: #3A4A62;
+  font-weight: 500;
+}
+
+.cert-sig-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: 180px;
+}
+.cert-sig-line {
+  width: 100%;
+  height: 1px;
+  background: rgba(26,26,46,0.2);
+  margin-bottom: 8px;
+}
+.cert-sig-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: clamp(0.6rem, 1.5vw, 0.72rem);
+  color: #1A1A2E;
+  margin-bottom: 2px;
+}
+.cert-sig-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.5rem, 1.2vw, 0.58rem);
+  color: #8A9AB8;
+  letter-spacing: 0.06em;
+}
+
+/* ── Print styles ── */
+@media print {
+  body {
+    background: white !important;
+    color: black;
+    margin: 0;
+    padding: 0;
+  }
+
+  .topbar,
+  .cert-actions,
+  #generator { display: none !important; }
+
+  #cert-view {
+    display: flex !important;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cert-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .cert-paper {
+    width: 210mm;
+    height: 297mm;
+    aspect-ratio: unset;
+    box-shadow: none !important;
+    border-radius: 0;
+    margin: 0;
+    page-break-inside: avoid;
+  }
+
+  .page { padding: 0; max-width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Top navigation bar -->
+  <div class="topbar" id="topbar">
+    <a href="index.html" class="back-link" id="back-home-link">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Course
+    </a>
+    <span class="topbar-title">Certificate Generator</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       GENERATOR FORM (shown when no URL params)
+  ═══════════════════════════════════════════ -->
+  <div id="generator">
+    <div class="gen-hero">
+      <div class="gen-eyebrow">Learn DevOps in 90 Days</div>
+      <h1 class="gen-title">Generate Your <span>Certificate</span></h1>
+      <p class="gen-sub">Fill in your details to create a printable completion certificate.</p>
+    </div>
+
+    <div class="form-card">
+      <div class="field-group">
+
+        <div class="field">
+          <label for="inp-name">Your Full Name</label>
+          <input
+            type="text"
+            id="inp-name"
+            placeholder="e.g. Priya Sharma"
+            autocomplete="name"
+            spellcheck="false"
+          />
+        </div>
+
+        <div class="field">
+          <label for="inp-module">Module Completed</label>
+          <select id="inp-module">
+            <option value="" disabled selected>Select a module…</option>
+            <option value="M01 — Introduction to DevOps, Cloud &amp; SRE">M01 — Introduction to DevOps, Cloud &amp; SRE</option>
+            <option value="M02 — Linux Foundations">M02 — Linux Foundations</option>
+            <option value="M03 — Shell Scripting for DevOps">M03 — Shell Scripting for DevOps</option>
+            <option value="M04 — Networking &amp; System Design">M04 — Networking &amp; System Design</option>
+            <option value="M05 — Jira for DevOps">M05 — Jira for DevOps</option>
+            <option value="M06 — Introduction to Git (GitHub &amp; GitLab)">M06 — Introduction to Git (GitHub &amp; GitLab)</option>
+            <option value="M07 — Docker &amp; Containerization">M07 — Docker &amp; Containerization</option>
+            <option value="M08 — CI/CD with GitHub Actions">M08 — CI/CD with GitHub Actions</option>
+            <option value="M09 — DevSecOps">M09 — DevSecOps</option>
+            <option value="M10 — Kubernetes">M10 — Kubernetes</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="inp-date">Date Issued</label>
+          <input type="date" id="inp-date"/>
+        </div>
+
+      </div>
+
+      <button class="btn-generate" id="btn-generate">
+        Generate Certificate →
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       CERTIFICATE VIEW (shown when URL has params)
+  ═══════════════════════════════════════════ -->
+  <div id="cert-view" style="display:none;">
+
+    <div class="cert-actions">
+      <button class="btn-print" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M4 5V2h7v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="2" y="5" width="11" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M4 9h7M4 11.5h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="11" cy="7.5" r="0.7" fill="currentColor"/>
+        </svg>
+        Print / Save as PDF
+      </button>
+      <a href="certificate.html" class="btn-back-cert" id="btn-new-cert">Generate Another</a>
+    </div>
+
+    <div class="cert-wrapper">
+      <div class="cert-paper">
+        <!-- Corner accents -->
+        <div class="cert-corner cert-corner--tl"></div>
+        <div class="cert-corner cert-corner--tr"></div>
+        <div class="cert-corner cert-corner--bl"></div>
+        <div class="cert-corner cert-corner--br"></div>
+
+        <!-- Watermark -->
+        <div class="cert-watermark">
+          <span class="cert-watermark-text">DEVOPS</span>
+        </div>
+
+        <div class="cert-content">
+
+          <div class="cert-logo-row">
+            <div class="cert-logo-dot"></div>
+            <span class="cert-logo-text">Learn DevOps in 90 Days</span>
+            <div class="cert-logo-dot"></div>
+          </div>
+
+          <h1 class="cert-heading">Certificate of Completion</h1>
+
+          <div class="cert-divider"></div>
+
+          <p class="cert-presents">This certifies that</p>
+
+          <p class="cert-name" id="cert-learner-name">—</p>
+
+          <p class="cert-completed-line">has successfully completed</p>
+
+          <p class="cert-module" id="cert-module-name">—</p>
+
+          <p class="cert-course">Learn DevOps in 90 Days</p>
+
+          <div class="cert-date-row">
+            <span class="cert-date-label">Date Issued</span>
+            <span class="cert-date-value" id="cert-date-value">—</span>
+          </div>
+
+          <div class="cert-sig-area">
+            <div class="cert-sig-line"></div>
+            <span class="cert-sig-name">Aryashree Pritikrishna</span>
+            <span class="cert-sig-title">DevOps Educator</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /#cert-view -->
+
+</div>
+<!-- /.page -->
+
+<script>
+(function () {
+  /* ── Helpers ── */
+  function qs(id) { return document.getElementById(id); }
+
+  /* ── Read URL params ── */
+  var params = new URLSearchParams(window.location.search);
+  var pName   = (params.get('name')   || '').trim();
+  var pModule = (params.get('module') || '').trim();
+  var pDate   = (params.get('date')   || '').trim();
+
+  /* ── Decide which view to show ── */
+  if (pName && pModule) {
+    /* Show certificate */
+    qs('generator').style.display = 'none';
+    qs('cert-view').style.display = 'flex';
+
+    /* Populate fields */
+    qs('cert-learner-name').textContent = pName;
+    qs('cert-module-name').textContent  = pModule;
+
+    if (pDate) {
+      /* Parse YYYY-MM-DD and format nicely */
+      var parts = pDate.split('-');
+      if (parts.length === 3) {
+        var d = new Date(
+          parseInt(parts[0], 10),
+          parseInt(parts[1], 10) - 1,
+          parseInt(parts[2], 10)
+        );
+        if (!isNaN(d.getTime())) {
+          qs('cert-date-value').textContent = d.toLocaleDateString('en-US', {
+            year: 'numeric', month: 'long', day: 'numeric'
+          });
+        } else {
+          qs('cert-date-value').textContent = pDate;
+        }
+      } else {
+        qs('cert-date-value').textContent = pDate;
+      }
+    } else {
+      qs('cert-date-value').textContent = new Date().toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+    }
+
+    /* Update page title */
+    document.title = 'Certificate — ' + pName + ' | Learn DevOps in 90 Days';
+
+  } else {
+    /* Show generator form */
+    qs('generator').style.display = 'flex';
+    qs('cert-view').style.display = 'none';
+
+    /* Pre-fill today's date */
+    var today = new Date();
+    var yyyy  = today.getFullYear();
+    var mm    = String(today.getMonth() + 1).padStart(2, '0');
+    var dd    = String(today.getDate()).padStart(2, '0');
+    qs('inp-date').value = yyyy + '-' + mm + '-' + dd;
+
+    /* Generate button handler */
+    qs('btn-generate').addEventListener('click', function () {
+      var name   = qs('inp-name').value.trim();
+      var module = qs('inp-module').value;
+      var date   = qs('inp-date').value;
+
+      if (!name) {
+        qs('inp-name').focus();
+        qs('inp-name').style.borderColor = 'var(--coral)';
+        setTimeout(function () {
+          qs('inp-name').style.borderColor = '';
+        }, 2000);
+        return;
+      }
+      if (!module) {
+        qs('inp-module').focus();
+        qs('inp-module').style.borderColor = 'var(--coral)';
+        setTimeout(function () {
+          qs('inp-module').style.borderColor = '';
+        }, 2000);
+        return;
+      }
+
+      var url = 'certificate.html?name=' +
+        encodeURIComponent(name) +
+        '&module=' + encodeURIComponent(module) +
+        '&date=' + encodeURIComponent(date || yyyy + '-' + mm + '-' + dd);
+
+      window.open(url, '_blank');
+    });
+
+    /* Live validation: red border reset on input */
+    qs('inp-name').addEventListener('input', function () {
+      this.style.borderColor = '';
+    });
+    qs('inp-module').addEventListener('change', function () {
+      this.style.borderColor = '';
+    });
+  }
+})();
+</script>
+</body>
+</html>

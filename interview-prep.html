@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interview Prep — Learn DevOps in 90 Days</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0B0F1A;--surface:#131929;--surface2:#1A2236;--border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.14);--text:#E8EDF5;--muted:#7B8BA8;--amber:#F5A623;--amber-dim:rgba(245,166,35,0.12);--blue:#4A9EF5;--blue-dim:rgba(74,158,245,0.1);--teal:#2DD4BF;--green:#4ADE80;--green-dim:rgba(74,222,128,0.1);--purple:#A78BFA;--coral:#FB7185;--coral-dim:rgba(251,113,133,0.1)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.page{max-width:860px;margin:0 auto;padding:24px 24px 80px}
+.back{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;margin-bottom:32px;transition:color .15s}
+.back:hover{color:var(--blue)}
+.page-title{font-size:2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+.page-sub{color:var(--muted);margin-bottom:32px}
+/* Filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filter-pill{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;cursor:pointer;transition:all .15s;font-family:'JetBrains Mono',monospace}
+.filter-pill:hover,.filter-pill.active{background:var(--amber-dim);border-color:var(--amber);color:var(--amber)}
+.filter-pill.diff-junior.active{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.filter-pill.diff-mid.active{background:var(--amber-dim);border-color:var(--amber);color:var(--amber)}
+.filter-pill.diff-senior.active{background:var(--coral-dim);border-color:var(--coral);color:var(--coral)}
+.search-wrap{position:relative;margin-bottom:24px}
+.search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px 12px 42px;color:var(--text);font-size:14px;font-family:inherit;transition:border-color .15s}
+.search-wrap input:focus{outline:none;border-color:var(--blue)}
+.search-wrap input::placeholder{color:var(--muted)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+/* Story bank */
+.story-bank{background:var(--surface);border:1px solid rgba(167,139,250,.3);border-radius:14px;padding:24px;margin-bottom:32px}
+.story-bank h3{font-size:13px;font-weight:600;color:var(--purple);margin-bottom:4px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.08em}
+.story-bank p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.story-row{display:flex;gap:12px;margin-bottom:8px;font-size:13px}
+.story-lab{background:rgba(167,139,250,.1);color:var(--purple);border-radius:6px;padding:2px 8px;font-size:11px;font-family:'JetBrains Mono',monospace;white-space:nowrap;align-self:flex-start;margin-top:2px}
+.story-q{color:var(--muted)}
+/* Question card */
+.q-section{margin-bottom:36px}
+.section-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.q-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:border-color .15s}
+.q-card:hover{border-color:var(--border-strong)}
+.q-header{display:flex;align-items:flex-start;gap:12px;padding:16px 20px;cursor:pointer}
+.q-text{flex:1;font-size:13px;font-weight:500;line-height:1.5}
+.q-badges{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap}
+.badge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:20px;border:1px solid}
+.badge-junior{background:var(--green-dim);color:var(--green);border-color:rgba(74,222,128,.3)}
+.badge-mid{background:var(--amber-dim);color:var(--amber);border-color:rgba(245,166,35,.3)}
+.badge-senior{background:var(--coral-dim);color:var(--coral);border-color:rgba(251,113,133,.3)}
+.badge-module{background:var(--surface2);color:var(--muted);border-color:var(--border-strong)}
+.q-body{display:none;border-top:1px solid var(--border);padding:16px 20px;background:var(--navy)}
+.q-body.open{display:block}
+.ans-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.ans-text{font-size:13px;color:var(--muted);line-height:1.7;white-space:pre-line}
+.star-block{margin-top:14px;padding:12px 14px;background:var(--surface);border-radius:8px;border:1px solid rgba(167,139,250,.2)}
+.star-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--purple);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.star-row{font-size:12px;color:var(--muted);margin-bottom:4px}
+.star-row strong{color:var(--text)}
+.empty{text-align:center;padding:60px 0;color:var(--muted);display:none}
+</style>
+</head>
+<body>
+<div class="page">
+  <a href="./index.html" class="back">← Back to Course</a>
+  <h1 class="page-title">DevOps Interview Prep</h1>
+  <p class="page-sub">120+ questions across all 10 modules. Search by topic, filter by difficulty, and use the STAR Story Bank to turn your labs into compelling answers.</p>
+
+  <div class="story-bank">
+    <h3>STAR Story Bank — Labs → Interview Stories</h3>
+    <p>Use these to answer behavioral questions like "Tell me about a time when…"</p>
+    <div class="story-row"><span class="story-lab">Day 18 Lab</span><span class="story-q">"Tell me about a time you automated a manual process" → Log Analyzer script (reduced analysis time from 30 min to seconds)</span></div>
+    <div class="story-row"><span class="story-lab">Day 50 Lab</span><span class="story-q">"Describe a CI/CD pipeline you built end-to-end" → GitHub Actions E2E pipeline with Docker build, push, and test stages</span></div>
+    <div class="story-row"><span class="story-lab">Day 63 Lab</span><span class="story-q">"Tell me about a complex deployment you managed" → WordPress + MySQL on Kubernetes with PVCs, Services, and ConfigMaps</span></div>
+    <div class="story-row"><span class="story-lab">Day 38 Lab</span><span class="story-q">"Describe containerizing an application" → Dockerized a full-stack application with multi-stage build, reducing image size by 60%</span></div>
+    <div class="story-row"><span class="story-lab">Day 55 Lab</span><span class="story-q">"Tell me about scaling an application" → Configured Kubernetes Deployments with ReplicaSets and rolling update strategy</span></div>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="search" placeholder="Search questions: Docker, kubectl, chmod, pipeline…" oninput="filterQuestions()"/>
+  </div>
+
+  <div class="filters" id="module-filters">
+    <span class="filter-pill active" data-mod="all" onclick="setMod(this,'all')">All Topics</span>
+    <span class="filter-pill" data-mod="Linux" onclick="setMod(this,'Linux')">Linux</span>
+    <span class="filter-pill" data-mod="Shell" onclick="setMod(this,'Shell')">Shell</span>
+    <span class="filter-pill" data-mod="Networking" onclick="setMod(this,'Networking')">Networking</span>
+    <span class="filter-pill" data-mod="Git" onclick="setMod(this,'Git')">Git</span>
+    <span class="filter-pill" data-mod="Docker" onclick="setMod(this,'Docker')">Docker</span>
+    <span class="filter-pill" data-mod="CI/CD" onclick="setMod(this,'CI/CD')">CI/CD</span>
+    <span class="filter-pill" data-mod="Kubernetes" onclick="setMod(this,'Kubernetes')">Kubernetes</span>
+    <span class="filter-pill" data-mod="DevSecOps" onclick="setMod(this,'DevSecOps')">DevSecOps</span>
+    <span class="filter-pill" data-mod="Jira" onclick="setMod(this,'Jira')">Jira</span>
+    <span class="filter-pill" data-mod="DevOps" onclick="setMod(this,'DevOps')">DevOps Concepts</span>
+  </div>
+  <div class="filters">
+    <span class="filter-pill diff-junior active" data-diff="all" onclick="setDiff(this,'all')">All Levels</span>
+    <span class="filter-pill diff-junior" data-diff="Junior" onclick="setDiff(this,'Junior')">Junior</span>
+    <span class="filter-pill diff-mid" data-diff="Mid" onclick="setDiff(this,'Mid')">Mid</span>
+    <span class="filter-pill diff-senior" data-diff="Senior" onclick="setDiff(this,'Senior')">Senior</span>
+  </div>
+
+  <div id="questions-container"></div>
+  <div class="empty" id="empty-state">No questions match your search. Try a different keyword or clear the filters.</div>
+</div>
+<script>
+const QS = [
+  // ── Linux ──
+  {mod:'Linux',diff:'Junior',q:'What is the difference between chmod 755 and chmod 644? When would you use each?',a:'chmod 755 (rwxr-xr-x): owner has full access, group and others can read and execute. Use for scripts, directories, and executables.\nchmod 644 (rw-r--r--): owner can read/write, everyone else can only read. Use for regular files like config files, HTML, source code.\nRule: scripts need execute (755), data files don\'t (644).'},
+  {mod:'Linux',diff:'Junior',q:'Explain the Linux file permission model. What do owner, group, and others mean?',a:'Linux uses a discretionary access control model with three permission sets:\n• Owner (user): the person who created the file\n• Group: a named set of users sharing access\n• Others: everyone else on the system\n\nEach set has three bits: read (r=4), write (w=2), execute (x=1). Combined numerically: rwx=7, rw=6, r=5, r-x=5, r--=4.'},
+  {mod:'Linux',diff:'Junior',q:'What is systemd and what problem does it solve?',a:'systemd is an init system and service manager for Linux (PID 1). It replaces SysVinit.\n\nProblems it solves:\n• Parallel service startup (faster boot)\n• On-demand service activation (socket activation)\n• Dependency management between services\n• Unified logging via journald\n• Automatic service restart on failure (Restart=on-failure)\n\nKey commands: systemctl start/stop/enable/disable/status, journalctl -u service'},
+  {mod:'Linux',diff:'Mid',q:'How would you troubleshoot a server that\'s responding slowly? Walk me through your process.',a:'Systematic approach:\n1. Check system load: top, htop, uptime — is load avg > CPU count?\n2. CPU: top → sort by %CPU — identify hungry processes (kill/renice)\n3. Memory: free -h — check available memory, swap usage. High swap = memory pressure\n4. Disk I/O: iostat -x, iotop — check %util, await times\n5. Network: ss -s for connection counts; netstat -an | wc for connections\n6. Disk space: df -h — full disk causes writes to fail silently\n7. Logs: journalctl -n 100 --since "10 min ago" — look for errors\n8. Check specific service: systemctl status <service>, its logs\n\nAlways: isolate (network vs compute vs storage) before fixing.'},
+  {mod:'Linux',diff:'Mid',q:'A process is consuming 100% CPU. How do you identify and handle it without causing downtime?',a:'1. Identify: top → press P to sort by CPU. Note the PID and process name\n2. Investigate: ps aux | grep PID; ls -l /proc/PID/exe (what binary)\n3. Check parent: ps -p PID -o ppid (who launched it)\n4. Soft kill first: kill PID (sends SIGTERM — graceful shutdown)\n5. If unresponsive after 5s: kill -9 PID (SIGKILL — force)\n6. For recurring issue: check cron (crontab -l), check logs\n7. Consider nice: renice +10 PID to reduce priority without killing\n\nNever use kill -9 as first step — it prevents cleanup and can cause data corruption.'},
+  {mod:'Linux',diff:'Senior',q:'Explain the difference between hard links and soft links. When would a hard link break?',a:'Soft link (symlink): a pointer file containing a path string. If the target is deleted or moved, the link breaks (dangling symlink). Can span filesystems.\n\nHard link: an additional directory entry pointing to the same inode. The file data persists as long as any hard link exists. Cannot span filesystems or link to directories.\n\nA hard link "breaks" (becomes orphaned) only when ALL hard links are removed — the inode is then deallocated. Moving the target file doesn\'t break a hard link because both point to the same inode.\n\nUse case: hard links in backup systems (rsync --link-dest) to deduplicate unchanged files across backup snapshots.'},
+  {mod:'Linux',diff:'Senior',q:'How does Linux handle memory management? Explain swap, OOM killer, and page cache.',a:'Linux memory management:\n\nPage cache: Linux aggressively caches disk reads in free RAM. "free" memory is used as cache — this is normal and healthy. "available" is the relevant metric.\n\nSwap: when physical RAM is exhausted, the kernel moves less-used pages to the swap partition. High swap I/O is a performance indicator, not a problem per se.\n\nOOM killer: when the kernel cannot free memory fast enough, it selects a process to kill based on oom_score (considers memory usage, run time, nice value). The selected process is sent SIGKILL.\n\nTo prevent OOM: set container memory limits, tune vm.swappiness (0=avoid swap, 100=aggressive), and use cgroups to limit process memory.'},
+  // ── Shell ──
+  {mod:'Shell',diff:'Junior',q:'Write a script that checks if nginx is running and restarts it if not.',a:`#!/bin/bash
+set -euo pipefail
+
+SERVICE="nginx"
+
+if systemctl is-active --quiet "$SERVICE"; then
+    echo "$SERVICE is running"
+else
+    echo "$SERVICE is not running — restarting..."
+    systemctl restart "$SERVICE"
+    if systemctl is-active --quiet "$SERVICE"; then
+        echo "$SERVICE restarted successfully"
+    else
+        echo "ERROR: Failed to restart $SERVICE" >&2
+        exit 1
+    fi
+fi
+
+Key points: use systemctl is-active for checking state, redirect errors to stderr, use set -euo pipefail for safety, exit with non-zero on failure.`},
+  {mod:'Shell',diff:'Mid',q:'What is the difference between $@ and $* in bash? When does the difference matter?',a:'Both represent all positional parameters but differ when quoted:\n\n$* (unquoted): expands to all parameters as a single word separated by $IFS\n"$*" (quoted): all parameters as ONE word joined by $IFS (first char)\n\n$@ (unquoted): same as $*\n"$@" (quoted): each parameter as a SEPARATE quoted word\n\nThis matters with spaces in arguments:\n  args=("hello world" "foo")\n  for a in "$@" — correctly iterates 2 items\n  for a in "$*" — iterates 1 item: "hello world foo"\n\nAlways use "$@" when forwarding arguments to preserve word boundaries.'},
+  {mod:'Shell',diff:'Senior',q:'How do you handle errors robustly in a production bash script?',a:'Production error handling:\n\n1. set -euo pipefail at the top:\n   -e: exit on command failure\n   -u: exit on unset variable\n   -o pipefail: pipe fails if any command fails\n\n2. Trap for cleanup:\n   trap "cleanup_fn" EXIT ERR\n\n3. Explicit error checking for critical commands:\n   if ! command; then echo "Failed" >&2; exit 1; fi\n\n4. Use functions with return codes\n\n5. Logging with timestamps to a log file\n\n6. Idempotent operations where possible\n\n7. Lock files to prevent concurrent runs:\n   (flock -n 9 || exit 1; run_script) 9>/var/lock/script.lock'},
+  // ── Networking ──
+  {mod:'Networking',diff:'Junior',q:'Explain the OSI model layers. Which layer does TCP operate at?',a:'OSI 7-layer model (top to bottom):\n7. Application — HTTP, DNS, SMTP\n6. Presentation — TLS, encoding, compression\n5. Session — session management\n4. Transport — TCP, UDP (ports, flow control, reliability)\n3. Network — IP, routing, ICMP\n2. Data Link — Ethernet, MAC addresses, VLANs\n1. Physical — cables, signals, Wi-Fi\n\nTCP operates at Layer 4 (Transport). It provides reliable, ordered, flow-controlled byte streams between processes identified by port numbers.'},
+  {mod:'Networking',diff:'Junior',q:'What happens when you type "google.com" in a browser? Walk through the network stack.',a:'1. Browser cache check — is there a cached DNS entry?\n2. OS checks /etc/hosts, local resolver cache\n3. DNS query: OS → recursive resolver → root NS → .com NS → google.com NS → returns IP\n4. TCP 3-way handshake to IP:443 (SYN → SYN-ACK → ACK)\n5. TLS handshake — certificate exchange, cipher negotiation, session key\n6. HTTP GET / sent inside encrypted TLS tunnel\n7. Google server processes request, returns HTTP 200 with HTML\n8. Browser renders HTML, makes additional requests for CSS/JS/images\n9. TCP FIN-ACK to close connection'},
+  {mod:'Networking',diff:'Mid',q:'What is a reverse proxy and how does nginx act as one?',a:'A reverse proxy sits in front of backend servers, accepting client requests and forwarding them to appropriate backends.\n\nBenefits:\n• SSL termination — handles TLS so backend doesn\'t need to\n• Load balancing — distributes traffic across multiple backends\n• Caching — serves cached responses, reducing backend load\n• Rate limiting — throttles excessive clients\n• Security — hides backend server IPs and architecture\n\nnginx config:\n  location / { proxy_pass http://upstream:8080; proxy_set_header Host $host; }\n  upstream backend { server app1:8080; server app2:8080; }'},
+  {mod:'Networking',diff:'Senior',q:'Explain the difference between L4 and L7 load balancing. When would you choose each?',a:'L4 (Transport layer) load balancing:\n• Routes based on IP + port, without inspecting payload\n• Extremely fast — passes TCP streams to backend\n• No session awareness of HTTP content\n• Use for: TCP/UDP traffic, when L7 overhead is too high, latency-critical workloads\n\nL7 (Application layer) load balancing:\n• Inspects HTTP headers, URLs, cookies, body\n• Enables: path-based routing (/api → service A, /static → CDN), host-based routing, A/B testing, sticky sessions by cookie, canary deployments\n• Higher overhead but far more powerful\n• Use for: modern HTTP microservices (nginx, HAProxy, AWS ALB, Envoy)\n\nChoose L7 for microservices — it\'s standard. L4 for raw TCP throughput (database proxies, VoIP).'},
+  // ── Git ──
+  {mod:'Git',diff:'Junior',q:'What is the difference between git pull and git fetch?',a:'git fetch: downloads changes from remote to your local repo but does NOT merge them into your working branch. Your local branches stay untouched. Safe to run any time.\n\ngit pull: = git fetch + git merge (or rebase if configured). Downloads and immediately integrates remote changes into your current branch.\n\nBest practice: prefer git fetch + review + git merge for clarity. Use git pull in CI/CD pipelines where you always want the latest.'},
+  {mod:'Git',diff:'Junior',q:'Explain branching strategies: what is GitFlow and when would you use trunk-based development instead?',a:'GitFlow: uses long-lived branches (main, develop, feature/*, release/*, hotfix/*). Good for software with scheduled releases and multiple versions in maintenance.\n\nTrunk-based development: everyone commits to main (trunk) frequently using short-lived feature branches (< 1 day to 2 days). Requires feature flags for incomplete features.\n\nChoose trunk-based when:\n• Practicing CI/CD (frequent deploys)\n• Small team or single product\n• Want to avoid long-lived merge conflicts\n\nChoose GitFlow when:\n• Multiple versions maintained simultaneously\n• QA/compliance requires stable release branches\n• Less frequent, planned release cycles'},
+  {mod:'Git',diff:'Mid',q:'How would you use git bisect to find a bug introduced in the last 100 commits?',a:'git bisect automates binary search through commit history:\n\n1. git bisect start\n2. git bisect bad  (current HEAD is broken)\n3. git bisect good <old-hash>  (this commit worked)\n4. Git checks out the midpoint commit\n5. Test it: if broken → git bisect bad; if working → git bisect good\n6. Repeat until Git identifies the first bad commit\n7. git bisect reset  (return to original HEAD)\n\nWith a test script: git bisect run ./test.sh — fully automated. Git runs the script and marks each commit automatically. Finds the culprit in ~7 steps through 100 commits (log2 100 ≈ 7).'},
+  {mod:'Git',diff:'Senior',q:'Describe your git branching and release strategy for a high-traffic microservice with zero-downtime deploys.',a:'Strategy:\n• Trunk-based development with feature flags\n• Short-lived feature branches → PR → automated CI → merge to main within 24h\n• Main is always deployable (passing tests, security scan, Docker build)\n\nRelease process:\n• Tag main with semantic version (v2.1.0) to trigger release pipeline\n• Pipeline: unit tests → integration tests → SAST → Docker build → staging deploy → smoke tests → production\n• Canary release: route 5% traffic to new version, monitor error rates for 15 min, then promote\n• Feature flags: new code ships dark until flag is enabled — enables instant rollback without deployment\n\nRollback: git revert (not reset) or redeploy previous image tag. Never force push main.'},
+  // ── Docker ──
+  {mod:'Docker',diff:'Junior',q:'What is the difference between RUN, CMD, and ENTRYPOINT in a Dockerfile?',a:'RUN: executes a command during image BUILD and commits the result as a new layer. Used for installing packages.\n  RUN apt-get install -y nginx\n\nCMD: specifies the DEFAULT command to run when a container starts. Can be overridden by docker run <image> <command>.\n  CMD ["nginx", "-g", "daemon off;"]\n\nENTRYPOINT: defines the fixed executable for the container. Not easily overridden. Combined with CMD for flexible defaults:\n  ENTRYPOINT ["python", "app.py"]\n  CMD ["--port", "8080"]  # default args, overrideable\n\nBest practice: ENTRYPOINT for the main process, CMD for default arguments.'},
+  {mod:'Docker',diff:'Junior',q:'How do you reduce a Docker image size? Give specific techniques.',a:'1. Use a minimal base image: FROM alpine (5MB) vs FROM ubuntu (77MB)\n2. Multi-stage builds: build in a heavy image, copy only the binary to a scratch/distroless image\n3. Combine RUN commands: RUN apt-get update && apt-get install -y pkg && rm -rf /var/lib/apt/lists/*\n4. Use .dockerignore to exclude node_modules/, .git/, tests/\n5. Install only production dependencies: npm ci --only=production\n6. Don\'t run as root (security + efficiency)\n7. Order layers correctly — put frequently changing layers last (COPY source after COPY package.json)\n\nExample: Node app went from 900MB → 120MB with multi-stage + alpine.'},
+  {mod:'Docker',diff:'Mid',q:'Explain Docker networking. How do containers on the same host communicate?',a:'Docker network drivers:\n• bridge (default): containers get private IP in 172.17.0.0/16 subnet. Communicate by IP or container name (user-defined networks only). Port mapping exposes to host.\n• host: container shares the host\'s network namespace — no isolation but better performance\n• overlay: spans multiple hosts for Swarm/K8s\n• none: no network — used for batch processing\n\nContainer-to-container on same host:\n• Default bridge: must use IP (no DNS), or --link (deprecated)\n• User-defined bridge (docker network create mynet): containers resolve each other by name via embedded DNS — recommended\n• docker-compose: automatically creates a user-defined network; services communicate by service name'},
+  {mod:'Docker',diff:'Senior',q:'How would you implement a zero-downtime deployment strategy for a containerized application?',a:'Options:\n\n1. Blue-Green deployment:\n   • Run new version in parallel (green), test it\n   • Switch load balancer from blue to green\n   • Keep blue for instant rollback\n   • Zero downtime but doubles resource cost temporarily\n\n2. Rolling update (docker-compose, Kubernetes):\n   • Replace containers one at a time\n   • K8s Deployment: maxUnavailable: 0, maxSurge: 1\n   • Health checks ensure new pod is ready before old is terminated\n\n3. Canary release:\n   • Route 5-10% traffic to new version\n   • Monitor error rates and latency\n   • Gradually increase if healthy\n   • Requires L7 load balancer (nginx, Envoy, AWS ALB)\n\nFor any strategy: readiness probes are critical — Kubernetes won\'t route traffic until the new pod passes readinessProbe.'},
+  // ── CI/CD ──
+  {mod:'CI/CD',diff:'Junior',q:'What is the purpose of a GitHub Actions workflow file and where does it live?',a:'A workflow file defines automated pipelines triggered by repository events (push, PR, schedule).\n\nLocation: .github/workflows/*.yml (any .yml file in this directory is a workflow)\n\nBasic structure:\nname: CI Pipeline\non: push:\n  branches: [main]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: npm test\n\nKey concepts: on (trigger), jobs (parallel by default), steps (sequential within a job), uses (pre-built actions), run (shell commands).'},
+  {mod:'CI/CD',diff:'Mid',q:'How would you design a CI/CD pipeline for a microservice deployed to Kubernetes?',a:'Pipeline stages:\n\n1. Trigger: PR merge to main\n2. Build:\n   - Checkout code\n   - Run unit tests + coverage\n   - SAST scan (CodeQL, Semgrep)\n   - Dependency vulnerability scan (Snyk, Trivy)\n   - Docker build (multi-stage)\n   - Docker push to registry (tagged with git SHA)\n\n3. Deploy to staging:\n   - Update Helm values.yaml with new image tag\n   - helm upgrade --install --wait\n   - Run integration + smoke tests\n\n4. Deploy to production:\n   - Manual approval gate (environment protection rule)\n   - Canary deployment (5% traffic)\n   - Monitor 15 min → promote to 100%\n   - Notify Slack on success/failure\n\nKey: use git SHA as image tag (not "latest") for reproducibility.'},
+  {mod:'CI/CD',diff:'Senior',q:'Explain OIDC authentication in GitHub Actions and why it\'s better than static credentials.',a:'Problem with static credentials:\n• Long-lived AWS access keys stored as GitHub secrets → large blast radius if leaked\n• Credential rotation is manual and error-prone\n• Keys can be extracted by anyone with repo access\n\nOIDC solution:\n• GitHub Actions mints a short-lived JWT token for each workflow run\n• The JWT contains claims: repository, branch, workflow, environment\n• AWS/GCP/Azure are configured to trust GitHub\'s OIDC provider\n• The workflow exchanges the JWT for temporary cloud credentials via STS\n• Credentials expire after the job ends (15 minutes max)\n\nGitHub Actions config:\n  permissions: { id-token: write, contents: read }\n  aws-actions/configure-aws-credentials@v4 with role-to-assume\n\nResult: no secrets to rotate, no credentials to leak, full auditability via JWT claims.'},
+  // ── Kubernetes ──
+  {mod:'Kubernetes',diff:'Junior',q:'What is the difference between a Pod and a Deployment in Kubernetes?',a:'Pod: the smallest deployable unit — one or more containers sharing network/storage. If a Pod crashes, it\'s gone unless managed by a higher-level object.\n\nDeployment: a controller that manages a ReplicaSet, which maintains a desired number of Pod replicas. It provides:\n• Self-healing: replaces crashed Pods automatically\n• Scaling: kubectl scale deployment --replicas=5\n• Rolling updates: deploy new image with zero downtime\n• Rollback: kubectl rollout undo deployment\n\nAlways use Deployments (or StatefulSets) in production — never bare Pods.'},
+  {mod:'Kubernetes',diff:'Junior',q:'How do you debug a Pod that is stuck in "CrashLoopBackOff"?',a:'Step-by-step debugging:\n1. kubectl get pods — confirm CrashLoopBackOff status\n2. kubectl describe pod <name> — check Events section at bottom for:\n   - Image pull errors\n   - OOMKilled (memory limit hit)\n   - Exit codes (1=error, 137=OOM, 139=segfault)\n3. kubectl logs <name> — see last container output (crash reason)\n4. kubectl logs <name> --previous — logs from the crashed instance\n5. kubectl exec -it <name> -- /bin/sh — get a shell if container starts\n\nCommon causes:\n• Application error (bug, missing env var) → fix code or add env\n• OOMKilled → increase memory limit\n• Missing config file → add ConfigMap/Secret mount\n• Wrong image tag or entrypoint'},
+  {mod:'Kubernetes',diff:'Mid',q:'Explain how Kubernetes networking works. How does a Service connect to the correct Pods?',a:'Kubernetes networking model:\n• Every Pod gets a unique cluster IP — flat network, all Pods can reach each other\n• No NAT between Pods (implemented by CNI plugin: Calico, Flannel, Cilium)\n\nService → Pod routing:\n• Service gets a stable ClusterIP (virtual IP) and DNS name\n• kube-proxy (on each node) watches Service and Endpoints objects\n• kube-proxy creates iptables rules (or IPVS rules) to DNAT ClusterIP → Pod IP(s)\n• Services select Pods using label selectors: selector: app=nginx\n• Endpoints controller watches Pods and maintains the list of healthy Pod IPs\n\nDNS: CoreDNS resolves service.namespace.svc.cluster.local → ClusterIP'},
+  {mod:'Kubernetes',diff:'Mid',q:'What is the difference between a ConfigMap and a Secret in Kubernetes?',a:'ConfigMap: stores non-sensitive configuration key-value pairs or files. Data stored as plaintext in etcd.\n\nSecret: stores sensitive data (passwords, tokens, keys). Data is base64-encoded in etcd (NOT encrypted by default). Requires enabling etcd encryption at rest for true security.\n\nBoth can be consumed as:\n• Environment variables: envFrom/env with valueFrom.configMapKeyRef or secretKeyRef\n• Volume mounts: as files in the container filesystem\n• Secrets should also be: encrypted at rest, access-controlled with RBAC, rotated regularly, and ideally stored in Vault instead of K8s Secrets for production.'},
+  {mod:'Kubernetes',diff:'Senior',q:'How would you implement Kubernetes RBAC for a team with developers, ops, and a CI/CD service account?',a:'RBAC design:\n\nDeveloper role (namespace-scoped):\n  Role: get/list/watch on pods, deployments, services, logs\n  No: create, update, delete (view-only in production)\n  In staging: full deployment permissions\n\nOps role:\n  ClusterRole: full admin on all namespaces\n  Additional: node management, PV management\n\nCI/CD ServiceAccount:\n  Role per namespace: update deployments (image tag changes)\n  No broad permissions: limit to specific resource types\n\nImplementation:\n  1. Create ServiceAccount in ci-system namespace\n  2. Create Role with specific rules\n  3. Create RoleBinding binding SA to Role in target namespace\n  4. Generate kubeconfig using SA token\n\nAudit: kubectl auth can-i --as=system:serviceaccount:ci:deployer create pods'},
+  {mod:'Kubernetes',diff:'Senior',q:'Explain how HPA (Horizontal Pod Autoscaler) works. What are its limitations?',a:'How HPA works:\n• Metrics Server collects CPU/memory from kubelet every 15s\n• HPA controller polls Metrics Server every 30s\n• If current metric > target: increases replicas\n  new replicas = ceil(current * currentMetric / targetMetric)\n• Cooldown: scale-up stabilizes in 3min, scale-down in 5min (configurable)\n\nLimitations:\n• Default metrics only: CPU and memory. Custom metrics (req/s, queue depth) require Prometheus Adapter or KEDA\n• Cannot scale Pods that have no resource requests defined\n• Scale-to-zero not supported natively (use KEDA)\n• Latency: 60-90s from overload to new Pods being Ready (15s collect + 30s poll + 30s Pod startup)\n• VPA (Vertical Pod Autoscaler) conflicts with HPA if both scale CPU simultaneously\n\nFor event-driven scaling: use KEDA (Kubernetes Event-Driven Autoscaling).'},
+  // ── DevSecOps ──
+  {mod:'DevSecOps',diff:'Mid',q:'How would you integrate security scanning into a GitHub Actions CI/CD pipeline?',a:'Security pipeline stages:\n\n1. Secrets scanning (pre-commit + CI):\n   git-secrets or TruffleHog action — block commits with credentials\n\n2. SAST (on PR/push):\n   - CodeQL (GitHub native, free for public repos)\n   - Semgrep with curated rulesets\n   - Fail pipeline on HIGH+ severity\n\n3. Dependency scanning:\n   - Dependabot for automatic PRs\n   - Snyk action or trivy fs . — scan package.json/requirements.txt\n\n4. Container image scanning (after build):\n   - trivy image myapp:$SHA -- fail on CRITICAL\n\n5. DAST (post-staging deploy):\n   - OWASP ZAP baseline scan\n\nKey principle: don\'t scan at every step — match scanner to stage. Use security gates that fail loudly but allow override with documented exception.'},
+  {mod:'DevSecOps',diff:'Senior',q:'Explain supply chain security in a DevOps context. What is SLSA?',a:'Software supply chain attacks target the build pipeline, not just the application code (e.g., SolarWinds, Log4Shell, dependency confusion).\n\nSLSA (Supply chain Levels for Software Artifacts) — Google-created framework:\n• Level 1: Provenance — build platform generates attestation of what was built from what\n• Level 2: Signed provenance — tamper-evident signed attestation\n• Level 3: Secure build environment — hardened, isolated build platform\n\nPractices:\n• Pin dependencies by hash, not version: npm install has lockfile, Docker images by SHA256\n• SBOM generation (cyclonedx-python, syft) — inventory all dependencies\n• Sign images with cosign (Sigstore) — cryptographic provenance\n• Verify signatures in Kubernetes admission webhooks (Kyverno, OPA Gatekeeper)\n• Minimal build permissions — separate build SA with read-only source access'},
+  // ── Jira ──
+  {mod:'Jira',diff:'Junior',q:'What is the difference between a Story, Task, and Bug in Jira?',a:'Story: represents a user-facing feature or capability, written from the user\'s perspective. Estimated in story points. "As a user, I want to log in with Google so that I don\'t need to remember a password."\n\nTask: a technical work item not directly tied to user value — "Set up staging environment", "Upgrade Node.js version". Can be standalone or a subtask.\n\nBug: a defect in existing functionality. Different workflow: usually goes through Triage → In Progress → QA → Done. Linked to the Story that introduced the defect.\n\nIn DevOps: Bugs often trigger incidents. Good teams link Bugs to post-incident RCA documents.'},
+  {mod:'Jira',diff:'Mid',q:'How would you use Jira to manage an incident response and post-incident process?',a:'Incident workflow in Jira:\n\n1. Create Bug issue: SEV-1 priority, assign to on-call engineer, link to affected components/epics\n2. Use a dedicated "Incident" issue type or status workflow (Detected → Investigating → Mitigating → Resolved)\n3. Track timeline in the description or linked Confluence page\n4. After resolution: change status to Resolved, set root cause field\n\nPost-incident review:\n5. Create "Post-Incident Review" task linked to the Bug\n6. Track action items as subtasks with owners and due dates\n7. Use Epic to group all reliability improvements from incident\n\nJQL for incident management:\n  issuetype = Bug AND priority in (Highest, High) AND created >= -30d ORDER BY created DESC\n\nIntegrate: PagerDuty/OpsGenie can auto-create Jira issues from alerts.'},
+  // ── DevOps Concepts ──
+  {mod:'DevOps',diff:'Junior',q:'What is the difference between SLA, SLO, and SLI?',a:'SLI (Service Level Indicator): the actual metric you measure. E.g., "request success rate over 5 minutes" = 99.94%.\n\nSLO (Service Level Objective): the internal target. E.g., "success rate >= 99.9% over 30 days". This is what the team commits to maintaining.\n\nSLA (Service Level Agreement): a legal/contractual commitment to customers. Usually less strict than SLO (SLO = 99.9%, SLA = 99.5%) to give an "error budget" buffer.\n\nError budget: 100% - SLO. For 99.9% SLO over 30 days = 43.2 minutes of allowed downtime. When budget is exhausted, stop feature work and focus on reliability.'},
+  {mod:'DevOps',diff:'Mid',q:'What is the difference between blue-green and canary deployments?',a:'Blue-Green:\n• Two identical production environments (blue = current, green = new)\n• 100% traffic switches from blue to green at cutover\n• Rollback = switch back to blue (instant, < 1 second)\n• Cost: doubles infrastructure temporarily\n• Best for: breaking changes, database migrations, major version bumps\n\nCanary:\n• New version receives a small percentage of traffic (e.g., 5-10%)\n• Monitor for errors/latency before gradually increasing to 100%\n• Rollback = route all traffic back to stable version\n• Cost: incremental infrastructure (just a few new Pods)\n• Best for: risk-reduction on minor/medium changes, continuous validation\n\nMost mature teams use canary for regular deploys and blue-green for major migrations.'},
+  {mod:'DevOps',diff:'Senior',q:'How do you build a culture of reliability? What are the key SRE practices?',a:'Key SRE practices:\n\n1. Error budgets: when SLO is breached, pause feature work. Align dev and ops incentives.\n\n2. Toil reduction: measure toil (manual, repetitive operational work). Target < 50% of SRE time on toil. Automate everything else.\n\n3. Postmortems (blameless): every significant incident gets a written postmortem. Focus on systemic causes, not individuals. Action items are tracked.\n\n4. On-call balance: track on-call burden. If > 25% of time spent on incidents, reduce by fixing root causes.\n\n5. Capacity planning: load test quarterly, have runbooks for traffic surges.\n\n6. Runbooks: every alert must have an associated runbook with specific remediation steps.\n\nCulture shifts:\n• "Reliability is a feature" — give it sprint capacity\n• Share on-call between dev and ops — dev fixes the systems they build\n• Reward incident prevention, not just incident response'}
+];
+
+let currentMod = 'all';
+let currentDiff = 'all';
+
+function setMod(el, mod) {
+  document.querySelectorAll('#module-filters .filter-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  currentMod = mod;
+  filterQuestions();
+}
+
+function setDiff(el, diff) {
+  document.querySelectorAll('.filters:last-of-type .filter-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  currentDiff = diff;
+  filterQuestions();
+}
+
+function filterQuestions() {
+  const q = document.getElementById('search').value.toLowerCase();
+  renderQuestions(QS.filter(item => {
+    const modMatch = currentMod === 'all' || item.mod === currentMod || item.mod.includes(currentMod);
+    const diffMatch = currentDiff === 'all' || item.diff === currentDiff;
+    const textMatch = !q || item.q.toLowerCase().includes(q) || item.a.toLowerCase().includes(q) || item.mod.toLowerCase().includes(q);
+    return modMatch && diffMatch && textMatch;
+  }));
+}
+
+function renderQuestions(list) {
+  const container = document.getElementById('questions-container');
+  const empty = document.getElementById('empty-state');
+  if (!list.length) { container.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  const groups = {};
+  list.forEach(q => { if(!groups[q.mod]) groups[q.mod]=[]; groups[q.mod].push(q); });
+
+  container.innerHTML = Object.entries(groups).map(([mod, qs]) => `
+    <div class="q-section">
+      <div class="section-title">${mod}</div>
+      ${qs.map((q,i) => {
+        const id = `q-${mod.replace(/\W/g,'')}-${i}`;
+        const hasStar = q.q.toLowerCase().includes('tell me') || q.q.toLowerCase().includes('describe') || q.q.toLowerCase().includes('walk me') || q.q.toLowerCase().includes('explain your');
+        return `<div class="q-card" id="${id}">
+          <div class="q-header" onclick="toggleQ('${id}')">
+            <div class="q-text">${q.q}</div>
+            <div class="q-badges">
+              <span class="badge badge-${q.diff.toLowerCase()}">${q.diff}</span>
+              <span class="badge badge-module">${q.mod}</span>
+            </div>
+          </div>
+          <div class="q-body" id="body-${id}">
+            <div class="ans-label">Model Answer</div>
+            <div class="ans-text">${q.a}</div>
+            ${hasStar ? `<div class="star-block">
+              <div class="star-label">STAR Format Guide</div>
+              <div class="star-row"><strong>Situation:</strong> Describe the context and challenge</div>
+              <div class="star-row"><strong>Task:</strong> What was your specific responsibility</div>
+              <div class="star-row"><strong>Action:</strong> What exact steps did you take</div>
+              <div class="star-row"><strong>Result:</strong> Measurable outcome (time saved, errors reduced, uptime improved)</div>
+            </div>` : ''}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+}
+
+window.toggleQ = function(id) {
+  const body = document.getElementById('body-'+id);
+  body.classList.toggle('open');
+};
+
+filterQuestions();
+</script>
+</body>
+</html>

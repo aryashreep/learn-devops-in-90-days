@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Skill Diagnostic — Learn DevOps in 90 Days</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#0B0F1A;--surface:#131929;--surface2:#1A2236;--border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.14);--text:#E8EDF5;--muted:#7B8BA8;--amber:#F5A623;--amber-dim:rgba(245,166,35,0.12);--blue:#4A9EF5;--blue-dim:rgba(74,158,245,0.1);--teal:#2DD4BF;--teal-dim:rgba(45,212,191,0.1);--green:#4ADE80;--green-dim:rgba(74,222,128,0.1);--purple:#A78BFA;--coral:#FB7185;--coral-dim:rgba(251,113,133,0.1)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.page{max-width:720px;margin:0 auto;padding:24px 24px 80px}
+.back{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;margin-bottom:32px;transition:color .15s}
+.back:hover{color:var(--blue)}
+.hero{margin-bottom:40px}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.title{font-size:2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.subtitle{color:var(--muted);font-size:1rem;max-width:560px}
+.start-btn{margin-top:24px;background:var(--blue);color:var(--navy);border:none;border-radius:10px;padding:14px 28px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .15s}
+.start-btn:hover{transform:translateY(-2px)}
+.quiz-area{display:none}
+.prog-wrap{margin-bottom:28px}
+.prog-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+.prog-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--blue);border-radius:2px;transition:width .3s}
+.q-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:20px}
+.q-module{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.q-text{font-size:1rem;font-weight:500;line-height:1.6;margin-bottom:20px}
+.options{display:flex;flex-direction:column;gap:8px}
+.option{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;cursor:pointer;transition:all .15s;font-size:13px;display:flex;gap:10px;align-items:flex-start}
+.option:hover:not(.locked){border-color:var(--blue);background:var(--blue-dim)}
+.opt-l{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);min-width:16px;flex-shrink:0;margin-top:1px}
+.option.correct{border-color:var(--green);background:var(--green-dim)}
+.option.correct .opt-l{color:var(--green)}
+.option.wrong{border-color:var(--coral);background:var(--coral-dim)}
+.option.wrong .opt-l{color:var(--coral)}
+.option.locked{cursor:default}
+.next-btn{margin-top:16px;background:var(--blue);color:var(--navy);border:none;border-radius:8px;padding:10px 22px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;display:none;align-items:center;gap:6px;transition:transform .15s}
+.next-btn.show{display:inline-flex}
+.next-btn:hover{transform:translateY(-1px)}
+/* Results */
+.results{display:none}
+.results.show{display:block}
+.results-hero{text-align:center;padding:32px 0;margin-bottom:32px}
+.results-title{font-size:1.6rem;font-weight:700;margin-bottom:6px}
+.results-sub{color:var(--muted)}
+.map-section{margin-bottom:32px}
+.map-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.module-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.module-bar-name{font-size:12px;min-width:160px;color:var(--muted)}
+.bar-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.bar-pct{font-family:'JetBrains Mono',monospace;font-size:11px;min-width:32px;text-align:right}
+.rec-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:20px}
+.rec-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.rec-day{font-size:1.3rem;font-weight:700;margin-bottom:4px}
+.rec-desc{color:var(--muted);font-size:13px;line-height:1.6}
+.insights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.insight-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+.insight-label{font-size:11px;color:var(--muted);margin-bottom:6px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.insight-val{font-size:13px;font-weight:500}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;transition:all .15s;cursor:pointer;font-family:inherit;text-decoration:none}
+.btn-primary{background:var(--blue);color:var(--navy);border:none}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--muted);border-color:var(--border-strong)}
+.btn-outline:hover{color:var(--text);border-color:var(--text)}
+@media(max-width:600px){.insights{grid-template-columns:1fr}.module-bar-name{min-width:110px}.title{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="page">
+  <a href="./index.html" class="back">← Back to Course</a>
+  <div id="intro">
+    <div class="hero">
+      <div class="eyebrow">5-Minute Skill Diagnostic</div>
+      <h1 class="title">Where Are You Right Now?</h1>
+      <p class="subtitle">20 questions across all 10 DevOps domains. Takes about 5 minutes. Get a personalized readiness map and your recommended starting day.</p>
+      <button class="start-btn" onclick="startQuiz()">Start Diagnostic →</button>
+    </div>
+  </div>
+  <div class="quiz-area" id="quiz-area">
+    <div class="prog-wrap">
+      <div class="prog-label">
+        <span id="prog-label">Question 1 of 20</span>
+        <span id="prog-pct">0%</span>
+      </div>
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+    <div id="question-area"></div>
+  </div>
+  <div class="results" id="results"></div>
+</div>
+<script>
+const QUESTIONS = [
+  {module:'M01 DevOps Intro',q:'What does CI/CD stand for in a DevOps pipeline?',options:['Code Integration/Code Delivery','Continuous Integration/Continuous Delivery or Deployment','Complete Infrastructure/Cloud Deployment','Container Image/Container Delivery'],answer:1},
+  {module:'M01 DevOps Intro',q:'Which metric measures how long it takes to recover service after an incident?',options:['SLA','MTTD','MTTR','SLO'],answer:2},
+  {module:'M02 Linux',q:'Which command displays running processes with CPU and memory usage interactively?',options:['ps aux','top or htop','netstat','jobs'],answer:1},
+  {module:'M02 Linux',q:'What does chmod 644 set on a file?',options:['Owner rwx, Group rw, Others rw','Owner rw, Group r, Others r','Owner r, Group r, Others r','Owner rwx, Group ---, Others ---'],answer:1},
+  {module:'M03 Shell',q:'What does the line "#!/bin/bash" at the top of a script indicate?',options:['A comment about the script','The script requires bash as the interpreter (shebang)','The script\'s version number','An import statement'],answer:1},
+  {module:'M03 Shell',q:'Which redirection appends output to a file without overwriting it?',options:['>','>>', '|','<'],answer:1},
+  {module:'M04 Networking',q:'What does DNS primarily do?',options:['Encrypts traffic','Translates domain names to IP addresses','Assigns MAC addresses','Manages firewall rules'],answer:1},
+  {module:'M04 Networking',q:'Which port does HTTPS use by default?',options:['80','22','443','8080'],answer:2},
+  {module:'M05 Jira',q:'In Scrum, what is the purpose of a Sprint Retrospective?',options:['Plan the next sprint backlog','Review completed work with stakeholders','Reflect on process and identify team improvements','Estimate new stories'],answer:2},
+  {module:'M05 Jira',q:'In Jira\'s hierarchy, which issue type is the LARGEST container?',options:['Story','Task','Epic','Bug'],answer:2},
+  {module:'M06 Git',q:'What is the key difference between git merge and git rebase?',options:['They are identical','Merge creates a merge commit preserving history; rebase replays commits for a linear history','Rebase is faster; merge is safer','Merge only works for hotfixes'],answer:1},
+  {module:'M06 Git',q:'What does git stash do?',options:['Permanently deletes changes','Temporarily shelves uncommitted changes','Creates a new branch','Pushes to remote'],answer:1},
+  {module:'M07 Docker',q:'What is the difference between a Docker image and a container?',options:['They are the same thing','An image is a read-only template; a container is a running instance of an image','A container is stored on Docker Hub; an image runs locally','Images are for production; containers are for development'],answer:1},
+  {module:'M07 Docker',q:'Which Dockerfile instruction sets the base image?',options:['BASE','IMAGE','FROM','SOURCE'],answer:2},
+  {module:'M08 CI/CD',q:'In GitHub Actions, what is a "runner"?',options:['A script that tests code','A compute environment where workflow jobs execute','A Docker image registry','A deployment tool'],answer:1},
+  {module:'M08 CI/CD',q:'How do you access a GitHub Actions secret named DB_PASS in a workflow?',options:['$DB_PASS','${{ env.DB_PASS }}','${{ secrets.DB_PASS }}','process.env.DB_PASS'],answer:2},
+  {module:'M09 DevSecOps',q:'What does SAST stand for?',options:['Static Application Security Testing','System Architecture Security Tool','Software Automated Scanning Technique','Staged Application Security Testing'],answer:0},
+  {module:'M09 DevSecOps',q:'Which tool scans Docker images for known CVE vulnerabilities?',options:['Hadolint','Trivy','ESLint','SonarQube'],answer:1},
+  {module:'M10 Kubernetes',q:'What is a Kubernetes Pod?',options:['A cluster of nodes','The smallest deployable unit — one or more containers sharing network and storage','A load balancer','A storage volume'],answer:1},
+  {module:'M10 Kubernetes',q:'What does a Deployment provide over a bare Pod?',options:['Nothing extra','Automatic scaling, rollouts, rollbacks, and self-healing of replica sets','Network routing','Persistent storage'],answer:1}
+];
+
+const MODULE_NAMES = ['M01 DevOps Intro','M02 Linux','M03 Shell','M04 Networking','M05 Jira','M06 Git','M07 Docker','M08 CI/CD','M09 DevSecOps','M10 Kubernetes'];
+const MODULE_LABELS = ['DevOps Intro','Linux','Shell Scripting','Networking','Jira','Git & GitHub','Docker','CI/CD (Actions)','DevSecOps','Kubernetes'];
+const MODULE_DAYS = ['Day 01','Day 02','Day 14','Day 20','Day 22','Day 24','Day 31','Day 40','Day 52','Day 53'];
+
+let current = 0;
+let scores = {};
+MODULE_NAMES.forEach(m => scores[m] = {correct:0, total:0});
+
+function startQuiz() {
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('quiz-area').style.display = 'block';
+  showQ(0);
+}
+
+function showQ(idx) {
+  const q = QUESTIONS[idx];
+  document.getElementById('prog-label').textContent = `Question ${idx+1} of ${QUESTIONS.length}`;
+  const pct = (idx/QUESTIONS.length*100).toFixed(0);
+  document.getElementById('prog-fill').style.width = pct+'%';
+  document.getElementById('prog-pct').textContent = pct+'%';
+  scores[q.module].total++;
+  const letters = ['A','B','C','D'];
+  const optHTML = q.options.map((o,i)=>`
+    <div class="option" data-i="${i}" onclick="pick(this,${i},${q.answer},'${q.module}')">
+      <span class="opt-l">${letters[i]}</span><span>${o}</span>
+    </div>`).join('');
+  document.getElementById('question-area').innerHTML = `
+    <div class="q-card">
+      <div class="q-module">${q.module}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optHTML}</div>
+    </div>
+    <button class="next-btn" id="next-btn" onclick="advance()">${idx+1<QUESTIONS.length?'Next Question →':'See My Results'}</button>`;
+}
+
+window.pick = function(el, chosen, correct, mod) {
+  document.querySelectorAll('.option').forEach(o=>o.classList.add('locked'));
+  document.querySelectorAll('.option')[correct].classList.add('correct');
+  if(chosen!==correct) el.classList.add('wrong');
+  else scores[mod].correct++;
+  document.getElementById('next-btn').classList.add('show');
+};
+
+window.advance = function() {
+  current++;
+  if(current < QUESTIONS.length) showQ(current);
+  else showResults();
+};
+
+function showResults() {
+  document.getElementById('quiz-area').style.display = 'none';
+  const el = document.getElementById('results');
+  el.classList.add('show');
+
+  const total = QUESTIONS.length;
+  const totalCorrect = MODULE_NAMES.reduce((s,m)=>s+scores[m].correct,0);
+  const pct = Math.round(totalCorrect/total*100);
+
+  let weak = [], strong = [];
+  MODULE_NAMES.forEach((m,i)=>{
+    const s = scores[m];
+    const p = s.total > 0 ? s.correct/s.total*100 : 0;
+    if(p >= 80) strong.push(MODULE_LABELS[i]);
+    else if(p < 50) weak.push(MODULE_LABELS[i]);
+  });
+
+  let recDay, recDesc;
+  if(pct < 30){recDay='Start from Day 01';recDesc='Begin at the very beginning — the fundamentals will make everything else click.';}
+  else if(pct < 50){recDay='Start from Day 14';recDesc='You have DevOps awareness. Dive into Shell Scripting to build your automation foundation.';}
+  else if(pct < 70){recDay='Start from Day 31';recDesc='Good foundation! Jump into Docker & Containerization — the skill employers ask for most.';}
+  else{recDay='Start from Day 53';recDesc='Strong across the basics. Kubernetes and advanced topics are your next frontier.';}
+
+  const barRows = MODULE_NAMES.map((m,i)=>{
+    const s = scores[m];
+    const p = s.total > 0 ? Math.round(s.correct/s.total*100) : 0;
+    const color = p>=80?'var(--green)':p>=50?'var(--amber)':'var(--coral)';
+    return `<div class="module-bar-row">
+      <div class="module-bar-name">${MODULE_LABELS[i]}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${p}%;background:${color}"></div></div>
+      <div class="bar-pct" style="color:${color}">${p}%</div>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="results-hero">
+      <div class="eyebrow" style="margin-bottom:10px">Your DevOps Readiness Map</div>
+      <div class="results-title">${totalCorrect}/${total} correct (${pct}%)</div>
+      <div class="results-sub">${strong.length?'Strong in: '+strong.join(', ')+'.':''} ${weak.length?'Focus on: '+weak.join(', ')+'.':''}</div>
+    </div>
+    <div class="insights">
+      <div class="insight-card">
+        <div class="insight-label">Strongest Area</div>
+        <div class="insight-val">${strong.length?strong[0]:'Keep going!'}</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">Biggest Gap</div>
+        <div class="insight-val">${weak.length?weak[0]:'Looking strong!'}</div>
+      </div>
+    </div>
+    <div class="map-section">
+      <div class="map-label">Score By Module</div>
+      ${barRows}
+    </div>
+    <div class="rec-card">
+      <div class="rec-label">Recommended Starting Point</div>
+      <div class="rec-day">${recDay}</div>
+      <div class="rec-desc">${recDesc}</div>
+    </div>
+    <div class="actions">
+      <a href="./index.html" class="btn btn-primary">Start Learning →</a>
+      <button class="btn btn-outline" onclick="location.reload()">Retake Diagnostic</button>
+    </div>`;
+}
+</script>
+</body>
+</html>

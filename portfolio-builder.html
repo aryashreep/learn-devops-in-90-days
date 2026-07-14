@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio / README Builder — Learn DevOps in 90 Days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"/>
+<style>
+/* ═══════════════════════════════════════════════════════
+   CSS Variables — matching the platform design system
+═══════════════════════════════════════════════════════ */
+:root {
+  --navy:    #0B0F1A;
+  --surface: #131929;
+  --surface2:#1A2236;
+  --border:  rgba(255,255,255,0.07);
+  --border-strong: rgba(255,255,255,0.14);
+  --text:    #E8EDF5;
+  --muted:   #7B8BA8;
+  --amber:   #F5A623;
+  --amber-dim: rgba(245,166,35,0.1);
+  --blue:    #4A9EF5;
+  --blue-dim: rgba(74,158,245,0.1);
+  --teal:    #2DD4BF;
+  --teal-dim: rgba(45,212,191,0.1);
+  --green:   #4ADE80;
+  --green-dim: rgba(74,222,128,0.1);
+  --purple:  #A78BFA;
+  --coral:   #FB7185;
+  --coral-dim: rgba(251,113,133,0.1);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Page container ── */
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Top navigation bar ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+  text-decoration: none;
+}
+.back-link:hover { color: var(--blue); text-decoration: none; }
+.topbar-badge {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  background: var(--teal-dim);
+  border: 1px solid rgba(45,212,191,0.2);
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+/* ── Page hero ── */
+.hero {
+  margin-bottom: 48px;
+}
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+.hero-title {
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.hero-title em { font-style: normal; color: var(--teal); }
+.hero-sub {
+  color: var(--muted);
+  font-size: 0.97rem;
+  max-width: 540px;
+}
+
+/* ══════════════════════════════════════
+   STEP INDICATORS
+══════════════════════════════════════ */
+.steps-nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 36px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.step-indicator + .step-indicator::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--border-strong);
+  flex-shrink: 0;
+  margin: 0 2px;
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1.5px solid var(--border-strong);
+  color: var(--muted);
+  background: var(--surface);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.step-label {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.step-indicator.active .step-num {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #0B0F1A;
+  font-weight: 700;
+}
+.step-indicator.active .step-label { color: var(--text); }
+
+.step-indicator.done .step-num {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--green);
+}
+.step-indicator.done .step-label { color: var(--muted); }
+
+/* ══════════════════════════════════════
+   MAIN LAYOUT: FORM + PREVIEW SIDE BY SIDE
+══════════════════════════════════════ */
+.builder-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .builder-layout { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════
+   FORM PANEL
+══════════════════════════════════════ */
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Individual step cards */
+.step-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.step-card.active { border-color: rgba(45,212,191,0.3); }
+.step-card.done { border-color: rgba(74,222,128,0.2); }
+
+.step-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  background: var(--surface);
+  transition: background 0.15s;
+}
+.step-card-header:hover { background: var(--surface2); }
+
+.step-card-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  border: 1.5px solid var(--border-strong);
+  color: var(--muted);
+  background: var(--surface2);
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.step-card.active .step-card-num {
+  background: var(--teal-dim);
+  border-color: var(--teal);
+  color: var(--teal);
+}
+.step-card.done .step-card-num {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.step-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  flex: 1;
+}
+.step-card.done .step-card-title { color: var(--muted); }
+
+.step-card-chevron {
+  color: var(--muted);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.step-card.active .step-card-chevron,
+.step-card.open .step-card-chevron { transform: rotate(180deg); }
+
+.step-card-body {
+  padding: 0 20px 20px;
+  display: none;
+}
+.step-card.active .step-card-body,
+.step-card.open .step-card-body { display: block; }
+
+/* ── Form fields ── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.field:last-of-type { margin-bottom: 0; }
+
+.field label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.field input,
+.field textarea,
+.field select {
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 10px 13px;
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  resize: vertical;
+}
+.field input::placeholder,
+.field textarea::placeholder { color: var(--muted); }
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(45,212,191,0.1);
+}
+.field textarea { min-height: 72px; }
+
+/* Error state */
+.field input.error,
+.field textarea.error { border-color: var(--coral) !important; }
+
+/* ── Module checkboxes ── */
+.module-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.module-check {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--surface2);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+.module-check:hover { border-color: rgba(45,212,191,0.3); background: rgba(45,212,191,0.04); }
+.module-check input[type="checkbox"] { display: none; }
+
+.module-check-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid var(--border-strong);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.module-check-box svg { display: none; }
+
+.module-check input:checked ~ .module-check-box {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+.module-check input:checked ~ .module-check-box svg { display: block; }
+.module-check input:checked ~ .module-check-label { color: var(--text); }
+
+.module-check-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  transition: color 0.15s;
+  line-height: 1.3;
+}
+.module-check-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  display: block;
+  color: var(--teal);
+}
+
+/* ── Project sub-cards ── */
+.project-block {
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 14px 10px;
+  margin-bottom: 10px;
+}
+.project-block:last-child { margin-bottom: 0; }
+.project-block-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--purple);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.project-block .field { margin-bottom: 10px; }
+.project-block .field:last-of-type { margin-bottom: 0; }
+
+/* ── Navigation buttons ── */
+.step-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.btn-next {
+  padding: 10px 22px;
+  background: var(--teal);
+  color: #0B0F1A;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-next:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+.btn-next:active:not(:disabled) { transform: translateY(0); }
+.btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-prev {
+  padding: 10px 18px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.btn-prev:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+/* ── Generate button (step 4) ── */
+.btn-generate-readme {
+  width: 100%;
+  padding: 13px 24px;
+  background: linear-gradient(135deg, #2DD4BF, #4A9EF5);
+  color: #0B0F1A;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s, box-shadow 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  box-shadow: 0 4px 20px rgba(45,212,191,0.2);
+}
+.btn-generate-readme:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(45,212,191,0.3);
+}
+.btn-generate-readme:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+.btn-generate-readme:active:not(:disabled) { transform: translateY(0); }
+
+/* required note */
+.required-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 10px;
+  text-align: center;
+}
+.required-note span { color: var(--coral); }
+
+/* ══════════════════════════════════════
+   PREVIEW / OUTPUT PANEL
+══════════════════════════════════════ */
+.preview-panel {
+  position: sticky;
+  top: 24px;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.preview-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.btn-copy {
+  padding: 7px 16px;
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 7px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.btn-copy:hover { background: var(--surface); border-color: rgba(255,255,255,0.22); }
+.btn-copy.copied {
+  color: var(--green);
+  border-color: var(--green);
+  background: var(--green-dim);
+}
+.btn-copy svg { flex-shrink: 0; }
+
+.preview-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.preview-topbar {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+.preview-dot--red   { background: #FF5F57; }
+.preview-dot--amber { background: #FEBC2E; }
+.preview-dot--green { background: #28C840; }
+.preview-filename {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.preview-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 20px;
+  max-height: 540px;
+  overflow-y: auto;
+  display: block;
+}
+
+/* Scrollbar styling */
+.preview-code::-webkit-scrollbar { width: 6px; }
+.preview-code::-webkit-scrollbar-track { background: transparent; }
+.preview-code::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+.preview-code::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.18); }
+
+/* Empty state */
+.preview-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  gap: 12px;
+}
+.preview-empty-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+.preview-empty-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.preview-empty-sub {
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.6;
+  max-width: 200px;
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ── Top nav ── -->
+  <div class="topbar">
+    <a href="index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Home
+    </a>
+    <span class="topbar-badge">GitHub README Generator</span>
+  </div>
+
+  <!-- ── Hero ── -->
+  <div class="hero">
+    <div class="hero-eyebrow">Portfolio Builder</div>
+    <h1 class="hero-title">Build Your <em>GitHub Profile</em> README</h1>
+    <p class="hero-sub">Fill in the steps below to auto-generate a polished GitHub profile README showcasing your DevOps journey.</p>
+  </div>
+
+  <!-- ── Main layout ── -->
+  <div class="builder-layout">
+
+    <!-- ════════════════════════════════
+         FORM PANEL
+    ════════════════════════════════ -->
+    <div class="form-panel">
+
+      <!-- Step 1: Personal Info -->
+      <div class="step-card active" id="card-1">
+        <div class="step-card-header" onclick="toggleCard(1)">
+          <div class="step-card-num">1</div>
+          <span class="step-card-title">Personal Information</span>
+          <svg class="step-card-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-card-body">
+          <div class="field">
+            <label for="f-name">Full Name <span style="color:var(--coral)">*</span></label>
+            <input type="text" id="f-name" placeholder="e.g. Priya Sharma" autocomplete="name"/>
+          </div>
+          <div class="field">
+            <label for="f-github">GitHub Username <span style="color:var(--coral)">*</span></label>
+            <input type="text" id="f-github" placeholder="e.g. priya-sharma" autocomplete="off" spellcheck="false"/>
+          </div>
+          <div class="field">
+            <label for="f-linkedin">LinkedIn URL</label>
+            <input type="url" id="f-linkedin" placeholder="https://linkedin.com/in/yourname" autocomplete="off"/>
+          </div>
+          <div class="field">
+            <label for="f-current-role">Current Role</label>
+            <input type="text" id="f-current-role" placeholder="e.g. Software Engineer" autocomplete="off"/>
+          </div>
+          <div class="field">
+            <label for="f-target-role">Target Role <span style="color:var(--coral)">*</span></label>
+            <input type="text" id="f-target-role" placeholder="e.g. DevOps Engineer" autocomplete="off"/>
+          </div>
+          <div class="step-nav">
+            <button class="btn-next" id="btn-next-1" onclick="goStep(2)" disabled>
+              Next
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 2l4 5-4 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Completed Modules -->
+      <div class="step-card" id="card-2">
+        <div class="step-card-header" onclick="toggleCard(2)">
+          <div class="step-card-num">2</div>
+          <span class="step-card-title">Completed Modules</span>
+          <svg class="step-card-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-card-body">
+          <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Select all modules you have completed:</p>
+          <div class="module-grid" id="module-grid">
+            <!-- populated by JS -->
+          </div>
+          <div class="step-nav">
+            <button class="btn-prev" onclick="goStep(1)">Back</button>
+            <button class="btn-next" onclick="goStep(3)">
+              Next
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 2l4 5-4 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Projects -->
+      <div class="step-card" id="card-3">
+        <div class="step-card-header" onclick="toggleCard(3)">
+          <div class="step-card-num">3</div>
+          <span class="step-card-title">Projects (up to 3)</span>
+          <svg class="step-card-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-card-body">
+
+          <div class="project-block">
+            <div class="project-block-label">Project 1</div>
+            <div class="field">
+              <label for="p1-name">Project Name</label>
+              <input type="text" id="p1-name" placeholder="e.g. CI/CD Pipeline for Flask App"/>
+            </div>
+            <div class="field">
+              <label for="p1-desc">Description</label>
+              <textarea id="p1-desc" placeholder="Brief description of what it does and the tech used…"></textarea>
+            </div>
+            <div class="field">
+              <label for="p1-link">GitHub Link</label>
+              <input type="url" id="p1-link" placeholder="https://github.com/username/repo"/>
+            </div>
+          </div>
+
+          <div class="project-block">
+            <div class="project-block-label">Project 2</div>
+            <div class="field">
+              <label for="p2-name">Project Name</label>
+              <input type="text" id="p2-name" placeholder="Optional"/>
+            </div>
+            <div class="field">
+              <label for="p2-desc">Description</label>
+              <textarea id="p2-desc" placeholder="Optional"></textarea>
+            </div>
+            <div class="field">
+              <label for="p2-link">GitHub Link</label>
+              <input type="url" id="p2-link" placeholder="Optional"/>
+            </div>
+          </div>
+
+          <div class="project-block">
+            <div class="project-block-label">Project 3</div>
+            <div class="field">
+              <label for="p3-name">Project Name</label>
+              <input type="text" id="p3-name" placeholder="Optional"/>
+            </div>
+            <div class="field">
+              <label for="p3-desc">Description</label>
+              <textarea id="p3-desc" placeholder="Optional"></textarea>
+            </div>
+            <div class="field">
+              <label for="p3-link">GitHub Link</label>
+              <input type="url" id="p3-link" placeholder="Optional"/>
+            </div>
+          </div>
+
+          <div class="step-nav">
+            <button class="btn-prev" onclick="goStep(2)">Back</button>
+            <button class="btn-next" onclick="goStep(4)">
+              Next
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 2l4 5-4 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Step 4: Generate -->
+      <div class="step-card" id="card-4">
+        <div class="step-card-header" onclick="toggleCard(4)">
+          <div class="step-card-num">4</div>
+          <span class="step-card-title">Generate README</span>
+          <svg class="step-card-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-card-body">
+          <p style="font-size:12px;color:var(--muted);margin-bottom:20px;">
+            Review your details, then click Generate. The README will appear in the preview panel — copy it directly to your GitHub profile repository.
+          </p>
+          <button class="btn-generate-readme" id="btn-generate" onclick="generateReadme()" disabled>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 8h12M8 2l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Generate README
+          </button>
+          <p class="required-note">
+            <span>*</span> Name, GitHub username, and target role are required to generate.
+          </p>
+          <div class="step-nav" style="justify-content:flex-start;">
+            <button class="btn-prev" onclick="goStep(3)">Back</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.form-panel -->
+
+    <!-- ════════════════════════════════
+         PREVIEW PANEL
+    ════════════════════════════════ -->
+    <div class="preview-panel" id="preview-panel">
+
+      <div class="preview-header">
+        <span class="preview-label">README.md Preview</span>
+        <button class="btn-copy" id="btn-copy" onclick="copyReadme()" style="display:none;">
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <rect x="1" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+            <path d="M4 4V2.5A1.5 1.5 0 015.5 1h5A1.5 1.5 0 0112 2.5v5A1.5 1.5 0 0110.5 9H9" stroke="currentColor" stroke-width="1.3"/>
+          </svg>
+          <span id="copy-label">Copy to Clipboard</span>
+        </button>
+      </div>
+
+      <div class="preview-box">
+        <div class="preview-topbar">
+          <div class="preview-dot preview-dot--red"></div>
+          <div class="preview-dot preview-dot--amber"></div>
+          <div class="preview-dot preview-dot--green"></div>
+          <span class="preview-filename">README.md</span>
+        </div>
+
+        <div id="preview-empty" class="preview-empty">
+          <div class="preview-empty-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/>
+              <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="8" y1="13" x2="16" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="8" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="preview-empty-title">No README yet</div>
+          <div class="preview-empty-sub">Fill in the form and click Generate to preview your README here.</div>
+        </div>
+
+        <pre class="preview-code" id="preview-code" style="display:none;"></pre>
+
+      </div>
+    </div>
+    <!-- /.preview-panel -->
+
+  </div>
+  <!-- /.builder-layout -->
+
+</div>
+<!-- /.page -->
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════════ */
+var MODULES = [
+  { id: 'M01', label: 'Intro to DevOps & SRE',     skill: { cat: 'DevOps Concepts', tech: 'SRE, Cloud Fundamentals' } },
+  { id: 'M02', label: 'Linux Foundations',           skill: { cat: 'OS & Scripting',  tech: 'Linux, Bash' } },
+  { id: 'M03', label: 'Shell Scripting for DevOps',  skill: { cat: 'OS & Scripting',  tech: 'Bash, Shell Scripting, Cron' } },
+  { id: 'M04', label: 'Networking & System Design',  skill: { cat: 'Networking',       tech: 'TCP/IP, DNS, HTTP, Subnetting' } },
+  { id: 'M05', label: 'Jira for DevOps',             skill: { cat: 'Project Mgmt',    tech: 'Jira, Agile, Scrum' } },
+  { id: 'M06', label: 'Git, GitHub & GitLab',        skill: { cat: 'Version Control',  tech: 'Git, GitHub, GitLab' } },
+  { id: 'M07', label: 'Docker & Containerization',   skill: { cat: 'Containers',       tech: 'Docker, Docker Compose' } },
+  { id: 'M08', label: 'CI/CD with GitHub Actions',   skill: { cat: 'CI/CD',           tech: 'GitHub Actions, YAML, OIDC' } },
+  { id: 'M09', label: 'DevSecOps',                   skill: { cat: 'Security',         tech: 'SAST, DAST, Trivy, Snyk' } },
+  { id: 'M10', label: 'Kubernetes',                  skill: { cat: 'Orchestration',    tech: 'Kubernetes, Helm, kubectl' } },
+];
+
+/* ═══════════════════════════════════════════════════════
+   STEP STATE
+═══════════════════════════════════════════════════════ */
+var currentStep = 1;
+
+/* ── Build module checkboxes ── */
+(function buildModuleGrid() {
+  var grid = document.getElementById('module-grid');
+  MODULES.forEach(function (m) {
+    var label = document.createElement('label');
+    label.className = 'module-check';
+    label.innerHTML =
+      '<input type="checkbox" id="mod-' + m.id + '" value="' + m.id + '">' +
+      '<div class="module-check-box">' +
+        '<svg width="10" height="10" viewBox="0 0 10 10" fill="none">' +
+          '<path d="M2 5l2.5 2.5L8 2.5" stroke="#0B0F1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>' +
+      '</div>' +
+      '<span class="module-check-label">' +
+        '<span class="module-check-tag">' + m.id + '</span>' +
+        m.label +
+      '</span>';
+    grid.appendChild(label);
+  });
+})();
+
+/* ── Step navigation ── */
+function goStep(n) {
+  // validate step 1 before advancing beyond it
+  if (n > 1 && !step1Valid()) {
+    goStep(1);
+    highlightErrors();
+    return;
+  }
+
+  currentStep = n;
+
+  for (var i = 1; i <= 4; i++) {
+    var card = document.getElementById('card-' + i);
+    card.classList.remove('active', 'done', 'open');
+    if (i === n) {
+      card.classList.add('active');
+    } else if (i < n) {
+      card.classList.add('done');
+    }
+  }
+
+  // Scroll card into view on mobile
+  var activeCard = document.getElementById('card-' + n);
+  if (activeCard) {
+    setTimeout(function () {
+      activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 80);
+  }
+
+  updateGenerateBtn();
+}
+
+/* Allow clicking a card header to toggle it open/closed if not controlling via goStep */
+function toggleCard(n) {
+  var card = document.getElementById('card-' + n);
+  if (card.classList.contains('active')) {
+    // already open — do nothing special, user clicked the active header
+    return;
+  }
+  goStep(n);
+}
+
+/* ── Field validation ── */
+function val(id) { return document.getElementById(id).value.trim(); }
+
+function step1Valid() {
+  return val('f-name') !== '' && val('f-github') !== '' && val('f-target-role') !== '';
+}
+
+function highlightErrors() {
+  var fields = [
+    { id: 'f-name',        req: true },
+    { id: 'f-github',      req: true },
+    { id: 'f-target-role', req: true },
+  ];
+  fields.forEach(function (f) {
+    var el = document.getElementById(f.id);
+    if (f.req && !el.value.trim()) {
+      el.classList.add('error');
+    }
+  });
+}
+
+/* Clear error highlight on input */
+['f-name','f-github','f-target-role'].forEach(function (id) {
+  document.getElementById(id).addEventListener('input', function () {
+    this.classList.remove('error');
+    updateNextBtn1();
+    updateGenerateBtn();
+  });
+});
+
+function updateNextBtn1() {
+  document.getElementById('btn-next-1').disabled = !step1Valid();
+}
+
+function updateGenerateBtn() {
+  document.getElementById('btn-generate').disabled = !step1Valid();
+}
+
+/* Initial state check */
+updateNextBtn1();
+updateGenerateBtn();
+
+/* ═══════════════════════════════════════════════════════
+   README GENERATOR
+═══════════════════════════════════════════════════════ */
+var generatedReadme = '';
+
+function getCheckedModules() {
+  return MODULES.filter(function (m) {
+    var cb = document.getElementById('mod-' + m.id);
+    return cb && cb.checked;
+  });
+}
+
+function generateReadme() {
+  if (!step1Valid()) { highlightErrors(); goStep(1); return; }
+
+  var name       = val('f-name');
+  var github     = val('f-github');
+  var linkedin   = val('f-linkedin');
+  var curRole    = val('f-current-role');
+  var targetRole = val('f-target-role');
+
+  var checkedMods = getCheckedModules();
+
+  /* Projects */
+  var projects = [];
+  for (var i = 1; i <= 3; i++) {
+    var pName = val('p' + i + '-name');
+    var pDesc = val('p' + i + '-desc');
+    var pLink = val('p' + i + '-link');
+    if (pName) {
+      projects.push({ name: pName, desc: pDesc, link: pLink });
+    }
+  }
+
+  /* Build skills table */
+  var skillsTable = '';
+  /* Deduplicate by category */
+  var catMap = {};
+  checkedMods.forEach(function (m) {
+    var cat  = m.skill.cat;
+    var tech = m.skill.tech;
+    if (!catMap[cat]) {
+      catMap[cat] = [];
+    }
+    /* Merge tech strings, avoid exact duplicates */
+    tech.split(', ').forEach(function (t) {
+      if (catMap[cat].indexOf(t) === -1) { catMap[cat].push(t); }
+    });
+  });
+
+  if (Object.keys(catMap).length > 0) {
+    skillsTable += '## Skills\n\n';
+    skillsTable += '| Category | Technologies |\n';
+    skillsTable += '|---|---|\n';
+    Object.keys(catMap).forEach(function (cat) {
+      skillsTable += '| ' + cat + ' | ' + catMap[cat].join(', ') + ' |\n';
+    });
+    skillsTable += '\n';
+  }
+
+  /* Build projects section */
+  var projectsSection = '';
+  if (projects.length > 0) {
+    projectsSection += '## Projects\n\n';
+    projects.forEach(function (p) {
+      projectsSection += '### ' + p.name + '\n\n';
+      if (p.desc) {
+        projectsSection += p.desc;
+        if (p.link) {
+          projectsSection += ' | [GitHub](' + p.link + ')';
+        }
+      } else if (p.link) {
+        projectsSection += '[GitHub](' + p.link + ')';
+      }
+      projectsSection += '\n\n';
+    });
+  }
+
+  /* Certifications line */
+  var certSection = '## Certifications & Learning\n\n';
+  if (checkedMods.length > 0) {
+    var modList = checkedMods.map(function (m) { return m.id; }).join(', ');
+    certSection += '- Learn DevOps in 90 Days — Modules completed: ' + modList + '\n\n';
+  } else {
+    certSection += '- Learn DevOps in 90 Days — Currently in progress\n\n';
+  }
+
+  /* Intro line */
+  var introLine = '';
+  if (curRole) {
+    introLine = '> ' + curRole + ' → ' + targetRole + ' | DevOps Learner | #LearnDevOpsIn90Days\n';
+  } else {
+    introLine = '> ' + targetRole + ' | DevOps Learner | #LearnDevOpsIn90Days\n';
+  }
+
+  /* Connect section */
+  var connectSection = '## Connect\n\n';
+  if (linkedin) {
+    connectSection += '- LinkedIn: [' + name.split(' ')[0] + '](' + linkedin + ')\n';
+  }
+  connectSection += '- GitHub: [@' + github + '](https://github.com/' + github + ')\n';
+
+  /* Assemble full README */
+  var readme = '';
+  readme += '# Hi, I\'m ' + name + ' \uD83D\uDC4B\n\n';
+  readme += introLine + '\n';
+  readme += '---\n\n';
+  readme += skillsTable;
+  readme += projectsSection;
+  readme += certSection;
+  readme += connectSection;
+
+  generatedReadme = readme;
+
+  /* Show preview */
+  var previewEmpty = document.getElementById('preview-empty');
+  var previewCode  = document.getElementById('preview-code');
+  var btnCopy      = document.getElementById('btn-copy');
+
+  previewEmpty.style.display = 'none';
+  previewCode.style.display  = 'block';
+  previewCode.textContent    = readme;
+  btnCopy.style.display      = 'flex';
+
+  /* Scroll preview into view on mobile */
+  document.getElementById('preview-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ── Copy to clipboard ── */
+function copyReadme() {
+  if (!generatedReadme) return;
+
+  var btn       = document.getElementById('btn-copy');
+  var copyLabel = document.getElementById('copy-label');
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(generatedReadme).then(function () {
+      showCopied(btn, copyLabel);
+    }).catch(function () {
+      fallbackCopy(btn, copyLabel);
+    });
+  } else {
+    fallbackCopy(btn, copyLabel);
+  }
+}
+
+function fallbackCopy(btn, copyLabel) {
+  /* Fallback for browsers without clipboard API */
+  var ta = document.createElement('textarea');
+  ta.value = generatedReadme;
+  ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showCopied(btn, copyLabel);
+  } catch (e) { /* silent */ }
+  document.body.removeChild(ta);
+}
+
+function showCopied(btn, copyLabel) {
+  btn.classList.add('copied');
+  copyLabel.textContent = 'Copied!';
+  setTimeout(function () {
+    btn.classList.remove('copied');
+    copyLabel.textContent = 'Copy to Clipboard';
+  }, 2000);
+}
+</script>
+</body>
+</html>

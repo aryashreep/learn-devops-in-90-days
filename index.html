@@ -270,11 +270,115 @@ a { color: inherit; text-decoration: none; }
   .flow-grid { grid-template-columns: 1fr 1fr; }
   .bubble-left::after, .bubble-right::before { display: none; }
   .author-links { display: none; }
+  .path-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 8px; }
+  .resume-btn { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 12px; }
 }
+
+/* ── First-time banner ── */
+.ftb-banner {
+  background: var(--blue-dim); border: 1px solid rgba(74,158,245,0.25);
+  border-radius: 10px; padding: 12px 20px; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  font-size: 13px;
+}
+.ftb-banner.hidden { display: none; }
+.ftb-dismiss { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 20px; padding: 0 4px; line-height: 1; }
+.ftb-dismiss:hover { color: var(--text); }
+
+/* ── Hero stats ── */
+.hero-stats { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 16px; flex-wrap: wrap; }
+.hero-stat { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+.hero-stat strong { color: var(--text); }
+.streak-pill {
+  background: var(--amber-dim); border: 1px solid rgba(245,166,35,0.3);
+  border-radius: 20px; padding: 4px 12px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--amber); display: none; align-items: center; gap: 6px;
+}
+.streak-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+
+/* ── Before You Begin ── */
+.onboarding-details {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; margin-bottom: 32px; overflow: hidden;
+}
+.onboarding-details summary {
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 600; list-style: none;
+}
+.onboarding-details summary::-webkit-details-marker { display: none; }
+.onboarding-details summary::before { content: '▶'; font-size: 10px; color: var(--amber); transition: transform 0.2s; display: inline-block; }
+.onboarding-details[open] summary::before { transform: rotate(90deg); }
+.onboarding-details summary:hover { background: var(--surface2); }
+.onboarding-body { padding: 0 20px 20px; }
+.onboarding-section { margin-top: 20px; }
+.onboarding-section h4 { font-size: 11px; font-weight: 600; color: var(--amber); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; font-family: 'JetBrains Mono', monospace; }
+.prereq-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.prereq-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted); }
+.prereq-list li::before { content: ''; width: 14px; height: 14px; border: 1.5px solid var(--border-strong); border-radius: 3px; flex-shrink: 0; display: inline-block; margin-top: 2px; }
+.path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+.path-card { background: var(--navy); border: 1.5px solid var(--border); border-radius: 10px; padding: 14px; cursor: pointer; transition: border-color 0.15s; }
+.path-card input[type=radio] { display: none; }
+.path-card label { cursor: pointer; display: block; }
+.path-card.selected { border-color: var(--blue); background: var(--blue-dim); }
+.path-label { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.path-desc { font-size: 11px; color: var(--muted); }
+.path-advice { font-size: 12px; color: var(--text); line-height: 1.6; display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+.path-card.selected .path-advice { display: block; }
+.day00-card { background: var(--navy); border: 1px solid var(--border-strong); border-radius: 10px; padding: 14px; margin-top: 8px; }
+.day00-title { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.day00-steps { list-style: none; counter-reset: steps; display: flex; flex-direction: column; gap: 6px; }
+.day00-steps li { counter-increment: steps; display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+.day00-steps li::before { content: counter(steps); width: 20px; height: 20px; border-radius: 50%; background: var(--amber-dim); color: var(--amber); font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
+.onboarding-action-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+
+/* ── Day checkbox ── */
+.day-check {
+  width: 16px; height: 16px; border-radius: 4px;
+  border: 1.5px solid var(--border-strong);
+  appearance: none; -webkit-appearance: none;
+  cursor: pointer; flex-shrink: 0; transition: all 0.15s;
+  background: transparent; position: relative;
+}
+.day-check:checked { background: var(--green); border-color: var(--green); }
+.day-check:checked::after { content: '✓'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: var(--navy); font-size: 10px; font-weight: 700; }
+.day-check:hover { border-color: var(--green); }
+.day-row.done .day-topic { color: var(--muted); text-decoration: line-through; }
+
+/* ── Sticky resume button ── */
+.resume-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 100;
+  background: var(--blue); color: var(--navy);
+  border: none; border-radius: 10px;
+  padding: 12px 20px; font-size: 13px; font-weight: 600; font-family: inherit;
+  cursor: pointer; display: none; align-items: center; gap: 8px;
+  box-shadow: 0 4px 20px rgba(74,158,245,0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.resume-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(74,158,245,0.5); }
+.resume-btn.visible { display: flex; }
+
+/* ── Duration / outcome / cert pills ── */
+.module-pills { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px; }
+.pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 20px; }
+.pill-duration { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+.pill-cert { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,166,35,0.2); }
+.module-outcome { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 4px; line-height: 1.4; }
+
+/* ── Certificate button ── */
+.btn-cert { background: var(--purple-dim); color: var(--purple); border-color: rgba(167,139,250,0.2); }
+.btn-cert:hover { background: var(--purple); color: var(--navy); }
 </style>
 </head>
 <body>
 <div class="page">
+<!-- First-time banner -->
+<div class="ftb-banner" id="ftb-banner">
+  <span>First time here? Expand <strong>"Before You Begin"</strong> below to get your environment set up before Day 01.</span>
+  <button class="ftb-dismiss" onclick="dismissBanner()" aria-label="Dismiss">×</button>
+</div>
 <!-- Author Strip -->
 <div class="author-strip">
 <div>
@@ -298,11 +402,28 @@ a { color: inherit; text-decoration: none; }
 <div class="hero-eyebrow">90-day structured program</div>
 <h1>Learn DevOps<br/><span>Day by Day.</span></h1>
 <div class="hero-sub">From Linux to Agentic AI — one topic, one lab, every single day.</div>
+<div class="hero-stats">
+  <div class="hero-stat">Progress: <strong id="hero-progress">0 / 63 days complete</strong></div>
+  <span class="streak-pill" id="streak-pill">
+    <span class="streak-dot"></span>
+    <span class="streak-count">0</span>-day streak
+  </span>
+</div>
+<div style="max-width:360px;margin:10px auto 0;height:4px;background:var(--border);border-radius:2px;overflow:hidden">
+  <div id="hero-progress-bar" style="height:100%;background:var(--amber);border-radius:2px;width:0;transition:width 0.5s ease"></div>
+</div>
+</div>
+<!-- Quick tool links -->
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px;margin-bottom:4px">
+  <a href="./skill-check.html" class="btn btn-pro" style="font-size:12px">Skill Diagnostic</a>
+  <a href="./interview-prep.html" class="btn btn-exam" style="font-size:12px">Interview Prep</a>
+  <a href="./portfolio-builder.html" class="btn btn-lab" style="font-size:12px">Portfolio Builder</a>
+  <a href="./certificate.html" class="btn btn-cert" style="font-size:12px">Get Certificate</a>
 </div>
 <!-- 90-Day Mission Rail -->
 <div class="rail-section">
 <div class="rail-label">
-<span>90-day mission map</span>
+<span>90-day mission map <span style="font-size:10px;opacity:0.6">— click any segment to jump</span></span>
 <span style="color:var(--amber)">Day 01 → Day 93</span>
 </div>
 <div class="mission-rail" id="mission-rail">
@@ -374,6 +495,71 @@ a { color: inherit; text-decoration: none; }
 </div>
 </div>
 </div>
+<!-- Before You Begin -->
+<details class="onboarding-details">
+  <summary>Before You Begin — Setup &amp; Prerequisites</summary>
+  <div class="onboarding-body">
+    <div class="onboarding-section">
+      <h4>Prerequisites Checklist</h4>
+      <ul class="prereq-list">
+        <li>GitHub account (free) — for forking the repo and submitting daily solutions</li>
+        <li>WSL2 (Windows) or a Linux VM or macOS Terminal — required for all labs</li>
+        <li>VS Code with the Remote-WSL extension (or any terminal editor)</li>
+        <li>Free cloud tier: AWS Free Tier or GCP Free Tier (needed from Day 08)</li>
+        <li>Docker Desktop (free for personal use) — required from Day 31</li>
+      </ul>
+    </div>
+    <div class="onboarding-section">
+      <h4>Day 00 — Pre-Work (complete before Day 01)</h4>
+      <div class="day00-card">
+        <div class="day00-title">Get Your Environment Ready</div>
+        <ol class="day00-steps">
+          <li>Fork <a href="https://github.com/aryashreep/learn-devops-in-90-days" target="_blank" style="color:var(--blue)">this repo</a> to your GitHub account</li>
+          <li>Install VS Code + the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" target="_blank" style="color:var(--blue)">Remote-WSL extension</a></li>
+          <li>Enable WSL2 on Windows (or set up an Ubuntu VM) — follow the <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank" style="color:var(--blue)">Microsoft guide</a></li>
+          <li>Create a free <a href="https://aws.amazon.com/free/" target="_blank" style="color:var(--blue)">AWS Free Tier account</a></li>
+          <li>Post "Day 00 — Starting my DevOps journey!" on LinkedIn with <strong>#LearnDevOpsIn90Days</strong></li>
+        </ol>
+      </div>
+    </div>
+    <div class="onboarding-section">
+      <h4>Which background are you? (click to see your path)</h4>
+      <div class="path-grid">
+        <div class="path-card" id="bg-beginner-card" onclick="selectPath('beginner')">
+          <input type="radio" name="bg" id="bg-beginner">
+          <label for="bg-beginner">
+            <div class="path-label">Absolute Beginner</div>
+            <div class="path-desc">No Linux or coding background</div>
+            <div class="path-advice">Start from Day 01 and take your time with M02 Linux — it's the foundation everything else is built on. Spend extra time on each lab before moving on. The entire course is designed for you — do not skip anything.</div>
+          </label>
+        </div>
+        <div class="path-card" id="bg-sysadmin-card" onclick="selectPath('sysadmin')">
+          <input type="radio" name="bg" id="bg-sysadmin">
+          <label for="bg-sysadmin">
+            <div class="path-label">IT Sysadmin</div>
+            <div class="path-desc">Linux &amp; networking experience</div>
+            <div class="path-advice">Skim M02 Linux and M04 Networking in about 3 days total. Your biggest gaps will be M07 Docker and M08 CI/CD — invest full time here. Kubernetes (M10) will feel natural once Docker clicks.</div>
+          </label>
+        </div>
+        <div class="path-card" id="bg-dev-card" onclick="selectPath('dev')">
+          <input type="radio" name="bg" id="bg-dev">
+          <label for="bg-dev">
+            <div class="path-label">Developer Switching</div>
+            <div class="path-desc">Coding experience, new to ops</div>
+            <div class="path-advice">You'll move fast through M03 Shell and M06 Git. Slow down at M07 Docker networking and M10 K8s resource management. The ops mindset — monitoring, reliability, on-call thinking — is your key shift.</div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="onboarding-section">
+      <div class="onboarding-action-row">
+        <a href="./skill-check.html" class="btn btn-pro">Take 5-Min Skill Check →</a>
+        <a href="./interview-prep.html" class="btn btn-exam">Interview Prep</a>
+        <a href="./portfolio-builder.html" class="btn btn-lab">Portfolio Builder</a>
+      </div>
+    </div>
+  </div>
+</details>
 <!-- Search -->
 <div class="search-wrap">
 <span class="search-icon">⌕</span>
@@ -385,14 +571,22 @@ a { color: inherit; text-decoration: none; }
     No modules, days, or topics match your search query. Try searching for "Linux", "Docker", "Kubernetes", or a specific Day number.
   </div>
 </div>
+<!-- Sticky resume button -->
+<button class="resume-btn" id="resume-btn" aria-label="Resume learning">&#9654; Resume My Journey</button>
 <script>
+// ── Storage keys ──
+const STORAGE_KEY = 'devops90_progress';
+const STREAK_KEY  = 'devops90_streak';
+const BANNER_KEY  = 'devops90_ftb';
+
 const MODULES = [
   {
     id: 'module0', emoji: '📦', title: 'Introduction to DevOps, Cloud & SRE',
-    range: 'Day 01', accent: 'acc-amber', color: '#F5A623',
-    railColor: '#F5A623', days: 1,
+    range: 'Day 01', accent: 'acc-amber', color: '#F5A623', railColor: '#F5A623', days: 1,
+    duration: '1 day · ~2h',
+    outcome: 'After this: understand the DevOps landscape and your 90-day roadmap',
     cheatLink: './curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/DevOps_Cloud_CHEATSHEET.md',
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/mastery-exam/README.md',
+    examLink: './quiz.html?module=M01',
     entries: [
       { day: 'Day 01', topic: 'Breaking the Wall of Confusion',
         pro: './curriculum/Module%2001%20-%20Introduction%20To%20DevOps,%20Cloud%20&%20SRE/day-01/Day01_DevOps_Intro.html',
@@ -401,10 +595,12 @@ const MODULES = [
   },
   {
     id: 'module1', emoji: '🐧', title: 'Linux Foundations',
-    range: 'Days 02 – 13', accent: 'acc-teal', color: '#2DD4BF',
-    railColor: '#2DD4BF', days: 12,
+    range: 'Days 02 – 13', accent: 'acc-teal', color: '#2DD4BF', railColor: '#2DD4BF', days: 12,
+    duration: '12 days · ~2h/day',
+    outcome: 'After this: navigate, configure, and troubleshoot any Linux server',
+    cert: 'LFCS',
     cheatLink: './curriculum/Module%2002%20-%20Linux%20Foundations/Linux_CHEATSHEET.md',
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/mastery-exam/README.md',
+    examLink: './quiz.html?module=M02',
     entries: [
       { day: 'Day 02', topic: 'Linux Architecture & systemd', pro: './curriculum/Module%2002%20-%20Linux%20Foundations/day-02/Day02_Linux_Foundations.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-02/lab-session/task.md' },
       { day: 'Day 03', topic: 'Linux Command Toolkit', pro: './curriculum/Module%2002%20-%20Linux%20Foundations/day-03/Day03_Linux_Commands_Practice.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2002%20-%20Linux%20Foundations/day-03/lab-session/task.md' },
@@ -422,10 +618,11 @@ const MODULES = [
   },
   {
     id: 'module2', emoji: '🐚', title: 'Shell Scripting',
-    range: 'Days 14 – 19', accent: 'acc-green', color: '#4ADE80',
-    railColor: '#4ADE80', days: 6,
+    range: 'Days 14 – 19', accent: 'acc-green', color: '#4ADE80', railColor: '#4ADE80', days: 6,
+    duration: '6 days · ~2h/day',
+    outcome: 'After this: automate repetitive tasks with production-safe shell scripts',
     cheatLink: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/Shell_Scripting_CHEATSHEET.md',
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/mastery-exam/README.md',
+    examLink: './quiz.html?module=M03',
     entries: [
       { day: 'Day 14', topic: 'Shell Scripting Basics', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/Day14_Scripting_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-14/lab-session/task.md' },
       { day: 'Day 15', topic: 'Logic, Loops & Arguments', pro: './curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-15/Day15_Logic_and_Arguments.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2003%20-%20Shell%20Scripting%20For%20DevOps/day-15/lab-session/task.md' },
@@ -437,10 +634,11 @@ const MODULES = [
   },
   {
     id: 'module3', emoji: '🌐', title: 'Networking & System Design',
-    range: 'Days 20 – 21', accent: 'acc-blue', color: '#4A9EF5',
-    railColor: '#4A9EF5', days: 2,
+    range: 'Days 20 – 21', accent: 'acc-blue', color: '#4A9EF5', railColor: '#4A9EF5', days: 2,
+    duration: '2 days · ~2h/day',
+    outcome: 'After this: design and debug networked systems end-to-end',
     cheatLink: './curriculum/Module%2004%20-%20Networking%20&%20System%20Design/NETWORKING_CHEATSHEET.md',
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/mastery-exam/README.md',
+    examLink: './quiz.html?module=M04',
     entries: [
       { day: 'Day 20', topic: 'Networking Fundamentals', pro: './curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/Day20_Networking_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-20/lab-session/task.md' },
       { day: 'Day 21', topic: 'DNS, IP, Subnets & Ports', pro: './curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/Day21_Networking_Deep_Dive.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2004%20-%20Networking%20&%20System%20Design/day-21/lab-session/task.md' },
@@ -448,24 +646,24 @@ const MODULES = [
   },
   {
     id: 'module4', emoji: '🎫', title: 'Jira For DevOps',
-    range: 'Days 22 – 23', accent: 'acc-blue', color: '#0052CC',
-    railColor: '#0052CC', days: 2,
+    range: 'Days 22 – 23', accent: 'acc-blue', color: '#0052CC', railColor: '#0052CC', days: 2,
+    duration: '2 days · ~2h/day',
+    outcome: 'After this: manage Agile sprints and DevOps project boards in Jira',
     cheatLink: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/Jira_CHEATSHEET.md',
+    examLink: './quiz.html?module=M05',
     entries: [
-      { day: 'Day 22', topic: 'Introduction to Jira',
-        pro: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/Day22_Jira_Introduction.html',
-        lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/lab-session/task.md' },
-      { day: 'Day 23', topic: 'Issues & Hierarchy',
-        pro: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-23/Day23_Issues_Hierarchy.html',
-        lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-23/lab-session/task.md' },
+      { day: 'Day 22', topic: 'Introduction to Jira', pro: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/Day22_Jira_Introduction.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-22/lab-session/task.md' },
+      { day: 'Day 23', topic: 'Issues & Hierarchy', pro: './curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-23/Day23_Issues_Hierarchy.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2005%20-%20Jira%20For%20DevOps/day-23/lab-session/task.md' },
     ]
   },
   {
     id: 'module5', emoji: '🐙', title: 'Git & GitHub',
-    range: 'Days 24 – 30', accent: 'acc-coral', color: '#FB7185',
-    railColor: '#FB7185', days: 7,
+    range: 'Days 24 – 30', accent: 'acc-coral', color: '#FB7185', railColor: '#FB7185', days: 7,
+    duration: '7 days · ~2h/day',
+    outcome: 'After this: collaborate on any team codebase with Git and GitHub',
+    cert: 'GitHub Actions Cert',
     cheatLink: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/Git_CHEATSHEET.md',
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/mastery-exam/README.md',
+    examLink: './quiz.html?module=M06',
     entries: [
       { day: 'Day 24', topic: 'Git Foundations & Local Setup', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-24/Day24_Git_Introduction.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-24/lab-session/task.md' },
       { day: 'Day 25', topic: 'Branching & Workflows', pro: './curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-25/Day25_Git_Branching.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2006%20-%20Introduction%20to%20Git%20%5BGitHub%20&%20GitLab%5D/day-25/lab-session/task.md' },
@@ -478,10 +676,12 @@ const MODULES = [
   },
   {
     id: 'module6', emoji: '🐳', title: 'Docker & Containerization',
-    range: 'Days 31 – 39', accent: 'acc-blue', color: '#4A9EF5',
-    railColor: '#60B4FF', days: 9,
+    range: 'Days 31 – 39', accent: 'acc-blue', color: '#4A9EF5', railColor: '#60B4FF', days: 9,
+    duration: '9 days · ~2h/day',
+    outcome: 'After this: build, ship, and compose Dockerized applications',
+    cert: 'Docker Certified Associate',
     cheatLink: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/Docker_CHEATSHEET.md',
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/mastery-exam/README.md',
+    examLink: './quiz.html?module=M07',
     entries: [
       { day: 'Day 31', topic: 'Introduction to Docker', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-31/Day31_Introduction_to_Docker.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-31/lab-session/task.md' },
       { day: 'Day 32', topic: 'Docker Images & Lifecycle', pro: './curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-32/Day32_Docker_Images_And_Lifecycle.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-32/lab-session/task.md' },
@@ -496,10 +696,12 @@ const MODULES = [
   },
   {
     id: 'module7', emoji: '🤖', title: 'CI/CD with GitHub Actions',
-    range: 'Days 40 – 51', accent: 'acc-purple', color: '#A78BFA',
-    railColor: '#A78BFA', days: 12,
+    range: 'Days 40 – 51', accent: 'acc-purple', color: '#A78BFA', railColor: '#A78BFA', days: 12,
+    duration: '12 days · ~2h/day',
+    outcome: 'After this: build end-to-end CI/CD pipelines with GitHub Actions',
+    cert: 'GitHub Actions Cert',
     cheatLink: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/GitHub_Actions_CHEATSHEET.md',
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/mastery-exam/README.md',
+    examLink: './quiz.html?module=M08',
     entries: [
       { day: 'Day 40', topic: 'YAML Basics', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/Day40_YAML_Basics.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/lab-session/task.md' },
       { day: 'Day 41', topic: 'What is CI/CD?', pro: './curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/Day41_What_Is_CICD.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/lab-session/task.md' },
@@ -517,9 +719,11 @@ const MODULES = [
   },
   {
     id: 'module8', emoji: '🛡️', title: 'DevSecOps',
-    range: 'Day 52', accent: 'acc-green', color: '#4ADE80',
-    railColor: '#4ADE80', days: 1,
+    range: 'Day 52', accent: 'acc-green', color: '#4ADE80', railColor: '#4ADE80', days: 1,
+    duration: '1 day · ~2h',
+    outcome: 'After this: integrate security scanning into your CI/CD pipeline',
     cheatLink: './curriculum/Module%2009%20-%20DevSecOps/DevSecOps_CHEATSHEET.md',
+    examLink: './quiz.html?module=M09',
     entries: [
       { day: 'Day 52', topic: 'DevSecOps Pipeline Architecture',
         pro: './curriculum/Module%2009%20-%20DevSecOps/day-52/Day52_DevSecOps_Pipeline_Architecture.html',
@@ -529,8 +733,11 @@ const MODULES = [
   {
     id: 'module9', emoji: '☸️', title: 'Kubernetes',
     range: 'Days 53 – 63', accent: 'acc-teal', color: '#2DD4BF', railColor: '#00C9AF', days: 11,
+    duration: '11 days · ~2h/day',
+    outcome: 'After this: deploy and manage containerized apps on Kubernetes',
+    cert: 'CKA / CKAD',
     cheatLink: './curriculum/Module%2010%20-%20Kubernetes/Kubernetes_CHEATSHEET.md',
-    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2010%20-%20Kubernetes/mastery-exam/README.md',
+    examLink: './quiz.html?module=M10',
     entries: [
       { day: 'Day 53', topic: 'Kubernetes Architecture & Cluster Setup', pro: './curriculum/Module%2010%20-%20Kubernetes/day-53/Day53_Kubernetes_Architecture_Cluster_Setup.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2010%20-%20Kubernetes/day-53/lab-session/task.md' },
       { day: 'Day 54', topic: 'Kubernetes Manifests & Your First Pods', pro: './curriculum/Module%2010%20-%20Kubernetes/day-54/Day54_Kubernetes_Manifests_Your_First_Pods.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2010%20-%20Kubernetes/day-54/lab-session/task.md' },
@@ -559,15 +766,122 @@ const MODULES = [
   ] },
 ];
 
+// ── Progress helpers ──
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+}
+function setDayDone(key, done) {
+  const p = getProgress();
+  if (done) p[key] = true; else delete p[key];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+  if (done) updateStreakOnCheck();
+  updateHeroStats();
+  updateResumeButton();
+  // update module progress bar
+  const parts = key.split('_');
+  const mId = parts[0];
+  const m = MODULES.find(x => x.id === mId);
+  if (m) {
+    const newP = getProgress();
+    const total = m.entries.filter(e => !e.comingSoon && !e.proComingSoon).length;
+    const done2 = m.entries.filter(e => !e.comingSoon && !e.proComingSoon && newP[m.id+'_'+e.day]).length;
+    const bar = document.getElementById('mpbar-'+mId);
+    if (bar) bar.style.width = (total ? (done2/total*100) : 0) + '%';
+    // show/hide certificate button
+    refreshCertBtn(m, done2 === total && total > 0);
+  }
+}
+
+// ── Streak ──
+function getStreak() {
+  try { return JSON.parse(localStorage.getItem(STREAK_KEY) || '{"count":0,"lastDate":null}'); } catch { return {count:0,lastDate:null}; }
+}
+function updateStreakOnCheck() {
+  const today = new Date().toISOString().slice(0,10);
+  const s = getStreak();
+  if (s.lastDate === today) return;
+  const yest = new Date(Date.now()-86400000).toISOString().slice(0,10);
+  s.count = (s.lastDate === yest) ? s.count + 1 : 1;
+  s.lastDate = today;
+  localStorage.setItem(STREAK_KEY, JSON.stringify(s));
+  renderStreak();
+}
+function renderStreak() {
+  const s = getStreak();
+  const el = document.getElementById('streak-pill');
+  if (!el) return;
+  if (s.count > 0) { el.style.display='inline-flex'; el.querySelector('.streak-count').textContent = s.count; }
+  else { el.style.display='none'; }
+}
+
+// ── Hero stats ──
+function updateHeroStats() {
+  const p = getProgress();
+  const allDays = MODULES.flatMap(m => m.entries.filter(e => !e.comingSoon && !e.proComingSoon).map(e => m.id+'_'+e.day));
+  const done = allDays.filter(k => p[k]).length;
+  const total = allDays.length;
+  const el = document.getElementById('hero-progress');
+  if (el) el.textContent = `${done} / ${total} days complete`;
+  const bar = document.getElementById('hero-progress-bar');
+  if (bar) bar.style.width = (total ? (done/total*100) : 0) + '%';
+}
+
+// ── Resume button ──
+function updateResumeButton() {
+  const p = getProgress();
+  const btn = document.getElementById('resume-btn');
+  if (!btn) return;
+  const anyDone = Object.keys(p).length > 0;
+  let found = null;
+  for (const m of MODULES) {
+    for (const e of m.entries) {
+      if (e.comingSoon || e.proComingSoon) continue;
+      if (!p[m.id+'_'+e.day]) { found = m; break; }
+    }
+    if (found) break;
+  }
+  if (anyDone && found) { btn.classList.add('visible'); btn.onclick = () => scrollToModule(found.id); }
+  else { btn.classList.remove('visible'); }
+}
+
+// ── Certificate button refresh ──
+function refreshCertBtn(m, complete) {
+  const row = document.getElementById('cert-row-'+m.id);
+  if (!row) return;
+  if (complete) {
+    row.style.display = 'flex';
+  } else {
+    row.style.display = 'none';
+  }
+}
+
+// ── Banner ──
+function initBanner() {
+  if (localStorage.getItem(BANNER_KEY)) document.getElementById('ftb-banner').classList.add('hidden');
+}
+function dismissBanner() {
+  localStorage.setItem(BANNER_KEY, '1');
+  document.getElementById('ftb-banner').classList.add('hidden');
+}
+
+// ── Path selector ──
+function selectPath(id) {
+  ['beginner','sysadmin','dev'].forEach(p => {
+    const c = document.getElementById('bg-'+p+'-card');
+    if (c) c.classList.toggle('selected', p === id);
+  });
+}
+
+// ── Rail ──
 function buildRail() {
-  const total = MODULES.reduce((s, m) => s + m.days, 0);
+  const total = MODULES.reduce((s,m) => s+m.days, 0);
   const rail = document.getElementById('mission-rail');
   MODULES.forEach((m, i) => {
-    const pct = (m.days / total * 100).toFixed(2);
+    const pct = (m.days/total*100).toFixed(2);
     const seg = document.createElement('div');
     seg.className = 'rail-seg';
     seg.style.cssText = `flex: 0 0 ${pct}%; background: ${m.railColor}; opacity: 0.75;`;
-    seg.title = `${m.emoji} Module ${String(i+1).padStart(2,'0')} ${m.title} (${m.days}d)`;
+    seg.title = `${m.emoji} Module ${String(i+1).padStart(2,'0')}: ${m.title} (${m.days}d) — click to jump`;
     seg.onclick = () => scrollToModule(m.id);
     rail.appendChild(seg);
   });
@@ -576,25 +890,27 @@ function buildRail() {
 function scrollToModule(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  // expand it
+  el.scrollIntoView({behavior:'smooth', block:'start'});
   const body = el.querySelector('.module-body');
   const chev = el.querySelector('.module-chevron');
-  if (body.style.display !== 'block') {
-    body.style.display = 'block';
-    chev.classList.add('open');
-  }
+  if (body.style.display !== 'block') { body.style.display = 'block'; chev.classList.add('open'); }
 }
 
+// ── Modules ──
 function buildModules() {
   const main = document.getElementById('syllabus');
+  const p = getProgress();
+
   MODULES.forEach((m, idx) => {
     const card = document.createElement('div');
     card.className = `module-card ${m.accent}`;
     card.id = m.id;
 
-    const hasContent = m.entries.some(e => e.pro || e.lab || e.comingSoon || e.proComingSoon);
     const comingSoonAll = m.entries.every(e => e.comingSoon);
+    const totalDays = m.entries.filter(e => !e.comingSoon && !e.proComingSoon).length;
+    const doneDays = m.entries.filter(e => !e.comingSoon && !e.proComingSoon && p[m.id+'_'+e.day]).length;
+    const progressPct = totalDays > 0 ? (doneDays/totalDays*100).toFixed(0) : 0;
+    const moduleComplete = totalDays > 0 && doneDays === totalDays;
 
     let entriesHTML = m.entries.map(e => {
       if (e.comingSoon) {
@@ -603,19 +919,20 @@ function buildModules() {
             <span class="day-num">${e.day}</span>
             <span class="day-topic">${e.topic}</span>
           </div>
-          <div class="day-actions">
-            <span class="btn btn-coming">Coming soon</span>
-          </div>
+          <div class="day-actions"><span class="btn btn-coming">Coming soon</span></div>
         </div>`;
       }
+      const dayKey = m.id+'_'+e.day;
+      const isDone = !!p[dayKey];
       const proBtn = e.proComingSoon
         ? `<span class="btn btn-coming">Slides soon</span>`
         : `<a href="${e.pro}" class="btn btn-pro" target="_blank">🎓 Pro Module</a>`;
-      const labBtn = e.lab
-        ? `<a href="${e.lab}" class="btn btn-lab" target="_blank">🧪 Lab</a>`
-        : '';
-      return `<div class="day-row">
+      const labBtn = e.lab ? `<a href="${e.lab}" class="btn btn-lab" target="_blank">🧪 Lab</a>` : '';
+      return `<div class="day-row${isDone?' done':''}">
         <div class="day-info">
+          <input type="checkbox" class="day-check" ${isDone?'checked':''}
+            onchange="setDayDone('${dayKey}',this.checked);this.closest('.day-row').classList.toggle('done',this.checked)"
+            title="Mark as complete">
           <span class="day-num">${e.day}</span>
           <span class="day-topic">${e.topic}</span>
         </div>
@@ -624,15 +941,21 @@ function buildModules() {
     }).join('');
 
     const cheatHTML = m.cheatLink ? `<a href="${m.cheatLink}" class="btn btn-cheat" target="_blank">📖 Cheatsheet</a>` : '';
-    const examHTML = m.examLink && !comingSoonAll ? `<a href="${m.examLink}" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>` : '';
-    const extrasHTML = (cheatHTML || examHTML) ? `
+    const examHTML  = m.examLink && !comingSoonAll ? `<a href="${m.examLink}" class="btn btn-exam" target="_blank">📝 Take MCQ Exam</a>` : '';
+    const certDate  = new Date().toISOString().slice(0,10);
+    const certBtnHTML = `<a href="./certificate.html?module=${encodeURIComponent(m.title)}&date=${certDate}" target="_blank" class="btn btn-cert">🏆 Get Certificate</a>`;
+    const certRowHTML = !comingSoonAll ? `<div id="cert-row-${m.id}" style="display:${moduleComplete?'flex':'none'};gap:8px;flex-wrap:wrap">${certBtnHTML}</div>` : '';
+
+    const extrasHTML = (cheatHTML || examHTML || certRowHTML) ? `
       <div class="exam-row">
         <div class="exam-title">📚 Module ${String(idx+1).padStart(2,'0')} Resources</div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap">${cheatHTML}${examHTML}</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">${cheatHTML}${examHTML}${certRowHTML}</div>
       </div>` : '';
 
-    const completedDays = m.entries.filter(e => !e.comingSoon && !e.proComingSoon).length;
-    const progressPct = (completedDays / m.days * 100).toFixed(0);
+    const durationPill = m.duration ? `<span class="pill pill-duration">${m.duration}</span>` : '';
+    const certPill     = m.cert ? `<span class="pill pill-cert">${m.cert}</span>` : '';
+    const pillsHTML    = (durationPill||certPill) ? `<div class="module-pills">${durationPill}${certPill}</div>` : '';
+    const outcomeHTML  = m.outcome ? `<div class="module-outcome">${m.outcome}</div>` : '';
 
     card.innerHTML = `
       <div class="module-header" onclick="toggleModule('${m.id}')">
@@ -641,12 +964,14 @@ function buildModules() {
           <div class="module-meta">
             <div class="module-title">Module ${String(idx+1).padStart(2,'0')} — ${m.title}</div>
             <div class="module-range">${m.range}</div>
+            ${pillsHTML}
+            ${outcomeHTML}
           </div>
         </div>
         <span class="module-chevron" id="chev-${m.id}">▼</span>
       </div>
       <div class="module-progress-bar">
-        <div class="module-progress-fill" style="width: ${progressPct}%; background: ${m.color}"></div>
+        <div class="module-progress-fill" id="mpbar-${m.id}" style="width:${progressPct}%; background:${m.color}"></div>
       </div>
       <div class="module-body" id="body-${m.id}">
         ${entriesHTML}
@@ -654,14 +979,14 @@ function buildModules() {
       </div>`;
     main.appendChild(card);
   });
-  // open first
+
   document.getElementById('body-module0').style.display = 'block';
   document.getElementById('chev-module0').classList.add('open');
 }
 
 function toggleModule(id) {
-  const body = document.getElementById('body-' + id);
-  const chev = document.getElementById('chev-' + id);
+  const body = document.getElementById('body-'+id);
+  const chev = document.getElementById('chev-'+id);
   const open = body.style.display === 'block';
   body.style.display = open ? 'none' : 'block';
   chev.classList.toggle('open', !open);
@@ -675,32 +1000,31 @@ function filterSyllabus() {
     let anyMatch = false;
     const title = card.querySelector('.module-title').textContent.toLowerCase();
     const moduleMatch = !q || title.includes(q);
-    
     rows.forEach(row => {
       const text = row.textContent.toLowerCase();
       const match = moduleMatch || text.includes(q);
       row.style.display = match ? '' : 'none';
       if (match) anyMatch = true;
     });
-    
     const show = moduleMatch || anyMatch;
     card.style.display = show ? '' : 'none';
     if (show) totalVisible++;
-    
     if (q && show) {
-      document.getElementById('body-' + card.id).style.display = 'block';
-      document.getElementById('chev-' + card.id).classList.add('open');
+      document.getElementById('body-'+card.id).style.display = 'block';
+      document.getElementById('chev-'+card.id).classList.add('open');
     }
   });
-
   const emptyState = document.getElementById('empty-state');
-  if (emptyState) {
-    emptyState.style.display = totalVisible === 0 ? 'block' : 'none';
-  }
+  if (emptyState) emptyState.style.display = totalVisible === 0 ? 'block' : 'none';
 }
 
+// ── Init ──
 buildRail();
 buildModules();
+initBanner();
+renderStreak();
+updateHeroStats();
+updateResumeButton();
 </script>
 </body>
 </html>

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mastery Quiz — Learn DevOps in 90 Days</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy:#0B0F1A; --surface:#131929; --surface2:#1A2236;
+  --border:rgba(255,255,255,0.07); --border-strong:rgba(255,255,255,0.14);
+  --text:#E8EDF5; --muted:#7B8BA8;
+  --amber:#F5A623; --blue:#4A9EF5; --teal:#2DD4BF;
+  --green:#4ADE80; --purple:#A78BFA; --coral:#FB7185;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--navy);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.page{max-width:780px;margin:0 auto;padding:0 24px 80px}
+.quiz-header{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:40px;flex-wrap:wrap;gap:12px}
+.back-link{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;transition:color .15s}
+.back-link:hover{color:var(--blue)}
+.best-score-badge{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);border-radius:6px;padding:4px 10px;display:none}
+.best-score-badge.visible{display:block}
+.module-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.module-title{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
+.module-subtitle{color:var(--muted);font-size:.95rem;margin-bottom:32px}
+.progress-container{margin-bottom:28px}
+.progress-labels{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.progress-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.progress-fraction{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);font-weight:500}
+.progress-track{height:4px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:99px;transition:width .4s ease}
+.question-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px 28px 24px;margin-bottom:20px}
+.question-number{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+.question-text{font-size:1.05rem;font-weight:500;line-height:1.65;color:var(--text)}
+.options-list{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.option-btn{width:100%;text-align:left;background:var(--surface2);border:1px solid var(--border-strong);border-radius:10px;padding:13px 16px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.95rem;cursor:pointer;transition:border-color .15s,background .15s,transform .1s;display:flex;align-items:flex-start;gap:12px;line-height:1.5}
+.option-btn:hover:not(:disabled){border-color:var(--blue);background:rgba(74,158,245,.07);transform:translateX(2px)}
+.option-btn:disabled{cursor:default}
+.option-letter{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--muted);min-width:18px;padding-top:2px;flex-shrink:0}
+.option-btn.correct{background:rgba(74,222,128,.1);border-color:var(--green)}
+.option-btn.correct .option-letter{color:var(--green)}
+.option-btn.wrong{background:rgba(251,113,133,.1);border-color:var(--coral)}
+.option-btn.wrong .option-letter{color:var(--coral)}
+.explanation-box{background:var(--surface2);border:1px solid var(--border-strong);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:14px 16px;margin-top:18px;font-size:.9rem;color:var(--muted);line-height:1.6;display:none}
+.explanation-box.visible{display:block}
+.explanation-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px}
+.next-btn{display:none;margin-top:20px;width:100%;padding:14px 20px;background:linear-gradient(135deg,var(--blue),var(--teal));border:none;border-radius:10px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;transition:opacity .15s,transform .1s}
+.next-btn:hover{opacity:.9;transform:translateY(-1px)}
+.next-btn.visible{display:block}
+.score-screen{display:none;text-align:center;padding:40px 0}
+.score-screen.visible{display:block}
+.score-circle{width:120px;height:120px;border-radius:50%;background:conic-gradient(var(--green) calc(var(--pct) * 1%),var(--surface2) 0);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;position:relative}
+.score-circle::before{content:'';position:absolute;width:96px;height:96px;border-radius:50%;background:var(--navy)}
+.score-number{position:relative;z-index:1;font-size:1.4rem;font-weight:700;color:var(--green);font-family:'JetBrains Mono',monospace}
+.score-title{font-size:1.8rem;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+.score-subtitle{color:var(--muted);font-size:.95rem;margin-bottom:8px}
+.percentile-msg{font-size:1rem;color:var(--amber);font-weight:500;margin-bottom:32px;padding:10px 20px;background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);border-radius:8px;display:inline-block}
+.score-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.btn-retake{padding:12px 24px;background:var(--surface2);border:1px solid var(--border-strong);border-radius:10px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s}
+.btn-retake:hover{border-color:var(--blue);background:rgba(74,158,245,.07)}
+.btn-linkedin{padding:12px 24px;background:#0A66C2;border:none;border-radius:10px;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:opacity .15s}
+.btn-linkedin:hover{opacity:.88}
+.stat-row{display:flex;gap:16px;justify-content:center;margin-bottom:28px;flex-wrap:wrap}
+.stat-chip{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);text-align:center}
+.stat-chip strong{display:block;font-size:1.2rem;color:var(--text);margin-bottom:2px}
+.stat-chip.correct-stat strong{color:var(--green)}
+.stat-chip.wrong-stat strong{color:var(--coral)}
+.error-screen{text-align:center;padding:60px 0;display:none}
+.error-screen.visible{display:block}
+.error-screen h2{color:var(--coral);margin-bottom:12px}
+.error-screen p{color:var(--muted)}
+.quiz-area{display:none}
+.quiz-area.visible{display:block}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="quiz-header">
+    <a class="back-link" href="./index.html">&#8592; Back to Home</a>
+    <span class="best-score-badge" id="bestScoreBadge"></span>
+  </div>
+  <div class="error-screen" id="errorScreen">
+    <h2>Module Not Found</h2>
+    <p>No quiz data found for this module. Check the URL ?module=M01 through ?module=M10.</p>
+    <br><a class="back-link" href="./index.html" style="justify-content:center">&#8592; Back to Home</a>
+  </div>
+  <div class="quiz-area" id="quizArea">
+    <div class="module-eyebrow" id="moduleEyebrow"></div>
+    <h1 class="module-title" id="moduleTitle">Loading...</h1>
+    <p class="module-subtitle" id="moduleSubtitle"></p>
+    <div class="progress-container" id="progressContainer">
+      <div class="progress-labels">
+        <span class="progress-label">Progress</span>
+        <span class="progress-fraction" id="progressFraction">1 / 30</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+    <div class="question-card" id="questionCard">
+      <div class="question-number" id="questionNumber">Question 1</div>
+      <div class="question-text" id="questionText"></div>
+      <ul class="options-list" id="optionsList"></ul>
+      <div class="explanation-box" id="explanationBox">
+        <div class="explanation-label">Explanation</div>
+        <span id="explanationText"></span>
+      </div>
+    </div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next Question &#8594;</button>
+    <div class="score-screen" id="scoreScreen">
+      <div class="score-circle" id="scoreCircle"><div class="score-number" id="scoreNumber">0/30</div></div>
+      <h2 class="score-title" id="scoreTitle">Quiz Complete!</h2>
+      <p class="score-subtitle" id="scoreSubtitle"></p>
+      <div class="percentile-msg" id="percentileMsg"></div>
+      <div class="stat-row">
+        <div class="stat-chip correct-stat"><strong id="statCorrect">0</strong>Correct</div>
+        <div class="stat-chip wrong-stat"><strong id="statWrong">0</strong>Wrong</div>
+        <div class="stat-chip"><strong id="statPct">0%</strong>Score</div>
+      </div>
+      <div class="score-actions">
+        <button class="btn-retake" onclick="retakeQuiz()">Retake Quiz</button>
+        <a class="btn-linkedin" id="linkedinBtn" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Share on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const QUIZ_DATA = {
+  M01: {
+    title: "Introduction to DevOps",
+    questions: [
+      {q:"What is DevOps?",options:["A specific software tool for deployment","A culture and methodology that combines Development and Operations","A programming language for automation","A database management system"],answer:1,explanation:"DevOps is not a tool — it is a culture and set of practices that unifies Dev and Ops to deliver software faster."},
+      {q:"Which of the following best describes the primary goal of DevOps?",options:["Eliminate all manual testing","Increase the number of developers in a team","Deliver high-quality software faster by breaking silos between Dev and Ops teams","Replace Operations teams with automated scripts"],answer:2,explanation:"The core goal is faster delivery of high-quality software through collaboration and automation."},
+      {q:"The 'Wall of Confusion' in traditional IT refers to:",options:["A firewall between the database and the application","A communication barrier between Development and Operations teams","A network security protocol","The learning curve for new DevOps engineers"],answer:1,explanation:"Dev wants to ship change; Ops wants stability. The Wall of Confusion is this cultural conflict."},
+      {q:"In a traditional IT setup, what is the primary concern of the Operations team?",options:["Shipping new features as fast as possible","Code quality and syntax","Stability, uptime, and reliability of the production environment","Writing unit tests"],answer:2,explanation:"Ops prioritises stability and uptime — any change is a risk to their primary objective."},
+      {q:"In a traditional IT setup, what is the primary concern of the Development team?",options:["Server uptime and monitoring","Rapid feature delivery and code changes","Database administration","User support tickets"],answer:1,explanation:"Dev teams are incentivised to ship features fast — creating tension with Ops teams focused on stability."},
+      {q:"DevOps is often visualized as an infinite loop. How many stages does the standard DevOps lifecycle include?",options:["4 — Plan, Build, Test, Deploy","6 — Code, Build, Test, Release, Deploy, Monitor","8 — Plan, Code, Build, Test, Release, Deploy, Operate, Monitor","10 — Ideate, Plan, Code, Build, Test, Stage, Release, Deploy, Operate, Observe"],answer:2,explanation:"The 8-stage infinity loop: Plan, Code, Build, Test, Release, Deploy, Operate, Monitor — then back to Plan."},
+      {q:"The phrase 'You build it, you run it' is most closely associated with:",options:["Waterfall methodology","Traditional IT operations","DevOps culture","Agile software development only"],answer:2,explanation:"This phrase, popularized by Amazon's Werner Vogels, captures the DevOps principle that developers own their services in production."},
+      {q:"Which of the following is NOT a benefit typically attributed to adopting DevOps practices?",options:["Faster time to market","Improved collaboration between teams","Guaranteed zero production incidents","Increased deployment frequency"],answer:2,explanation:"DevOps reduces incidents but cannot guarantee zero. It improves recovery time (MTTR) rather than eliminating failures."},
+      {q:"DevOps is best described as:",options:["A single tool like Jenkins or Docker","A role limited to senior engineers only","A cultural movement emphasising automation, measurement, and sharing","A cloud service provider"],answer:2,explanation:"DevOps is a cultural shift — no single tool makes you 'DevOps'. It requires people, process, and then tools."},
+      {q:"Amazon is known to deploy code to production approximately every:",options:["11.7 hours","11.7 minutes","11.7 seconds","11.7 days"],answer:2,explanation:"Amazon deploys to production every 11.7 seconds on average — a benchmark example of mature DevOps culture."},
+      {q:"The acronym C.A.L.M.S. stands for:",options:["Culture, Automation, Lean, Measurement, Sharing","Code, Automation, Linux, Monitoring, Security","Cloud, API, Logging, Metrics, Scaling","Continuous, Agile, Lean, Managed, Secure"],answer:0,explanation:"C.A.L.M.S. is the DevOps framework: Culture, Automation, Lean, Measurement, Sharing."},
+      {q:"In the C.A.L.M.S. framework, what does the 'C' stand for?",options:["Code","Cloud","Culture","Container"],answer:2,explanation:"Culture is the foundation — without psychological safety and shared goals, no tool or process will succeed."},
+      {q:"The 'A' in C.A.L.M.S. emphasises:",options:["Architecture design","Automation of repetitive tasks","Application performance","Access control"],answer:1,explanation:"Automation eliminates toil — CI/CD, infrastructure-as-code, and auto-scaling are all expressions of this pillar."},
+      {q:"'Lean' in the C.A.L.M.S. framework focuses on:",options:["Reducing server costs","Small batches, fast feedback, and eliminating waste","Writing less code","Using fewer tools"],answer:1,explanation:"Lean thinking from manufacturing: work in small batches, get fast feedback, and remove anything that adds no value."},
+      {q:"The 'M' in C.A.L.M.S. stands for Measurement. Which metrics are most relevant in a DevOps context?",options:["Lines of code written per day","Number of meetings attended","MTTR (Mean Time to Recovery) and deployment frequency","Total hours spent in training"],answer:2,explanation:"DORA metrics (deployment frequency, lead time, MTTR, change failure rate) are the industry standard measures."},
+      {q:"'Sharing' in C.A.L.M.S. encourages teams to:",options:["Keep their knowledge private to maintain job security","Share only through formal documentation","Share knowledge, tools, and successes across teams","Share passwords and credentials openly"],answer:2,explanation:"Sharing knowledge, runbooks, and tooling across teams breaks silos and accelerates organisational learning."},
+      {q:"Which of the following is a key characteristic of Cloud Computing?",options:["Physical servers must be purchased upfront","On-demand self-service and pay-as-you-go pricing","Capacity is fixed and cannot be changed","Infrastructure must be managed manually at all times"],answer:1,explanation:"Cloud's key value: provision resources on demand, pay only for what you use, and scale elastically."},
+      {q:"Netflix runs its infrastructure entirely on which cloud platform?",options:["Google Cloud Platform (GCP)","Microsoft Azure","Amazon Web Services (AWS)","IBM Cloud"],answer:2,explanation:"Netflix is a flagship AWS customer and uses it for virtually all compute, storage, and streaming delivery."},
+      {q:"What does IaaS stand for in cloud computing?",options:["Infrastructure as a Service","Integration as a Service","Internet as a Service","Identity as a Service"],answer:0,explanation:"IaaS provides raw compute, storage, and networking — you manage the OS and above. Example: AWS EC2."},
+      {q:"Which cloud service model provides a platform to develop and deploy applications without managing underlying infrastructure?",options:["IaaS","PaaS (Platform as a Service)","SaaS (Software as a Service)","FaaS (Function as a Service)"],answer:1,explanation:"PaaS abstracts infrastructure management — you deploy code and the platform handles servers. Example: Heroku, GCP App Engine."},
+      {q:"Scalability in cloud computing refers to:",options:["The ability to manually upgrade physical hardware","The ability to automatically adjust resources based on demand","The ability to deploy code without testing","The ability to reduce the number of developers needed"],answer:1,explanation:"Cloud scalability means resources scale up (or down) automatically in response to traffic and demand."},
+      {q:"Which of the following is an example of SaaS?",options:["Amazon EC2","Google Compute Engine","Gmail","Kubernetes"],answer:2,explanation:"SaaS delivers complete applications over the internet — Gmail, Slack, Salesforce are all SaaS products."},
+      {q:"SRE stands for:",options:["System Reliability Engineering","Site Reliability Engineering","Service Recovery Engineering","Software Release Engineering"],answer:1,explanation:"Site Reliability Engineering (SRE) was created by Google to apply software engineering principles to operations."},
+      {q:"An SRE team's primary focus is to:",options:["Write all the application code for a product","Ensure systems are reliable, scalable, and have appropriate SLIs/SLOs","Manage the company's finances","Design the user interface of applications"],answer:1,explanation:"SREs define and maintain service reliability through SLIs, SLOs, error budgets, and automation."},
+      {q:"What is an SLO in the context of SRE?",options:["Service Level Objective — a target reliability level for a service","System Log Output — a debugging mechanism","Simple Load Optimizer — a performance tool","Service Licensing Order — a procurement process"],answer:0,explanation:"SLO (Service Level Objective) is the target: e.g. 99.9% uptime. Breaching it burns error budget."},
+      {q:"The 'First Step' recommended in the curriculum to begin a DevOps career is:",options:["Learning Kubernetes","Mastering Terraform","Linux and Scripting fundamentals","Jenkins and CI/CD pipelines"],answer:2,explanation:"Linux and scripting are the bedrock. Every DevOps tool runs on Linux — understanding it first is essential."},
+      {q:"Automation in DevOps primarily aims to:",options:["Replace all developers with scripts","Reduce manual, repetitive work and minimise human error","Increase the number of steps in a deployment process","Eliminate the need for monitoring"],answer:1,explanation:"Automation targets toil — anything manual, repetitive, and automatable should become a script or pipeline."},
+      {q:"Which of the following best describes the relationship between Agile and DevOps?",options:["Agile replaces DevOps entirely","DevOps extends Agile principles to operations, creating a seamless delivery pipeline","Agile is only for testing, DevOps is only for deployment","They are unrelated methodologies"],answer:1,explanation:"DevOps extends Agile beyond the dev team — applying iterative, collaborative principles all the way to production."},
+      {q:"What is the primary purpose of monitoring in a DevOps lifecycle?",options:["To track how many lines of code each developer writes","To collect feedback from production systems that feeds back into planning and improvement","To schedule team stand-up meetings","To restrict access to production systems"],answer:1,explanation:"Monitoring closes the feedback loop — production signals inform the next planning cycle in the infinity loop."},
+      {q:"Which company is credited with pioneering both SRE and large-scale DevOps practices?",options:["Microsoft","Google","Facebook","IBM"],answer:1,explanation:"Google invented Site Reliability Engineering and has shared its practices widely through the SRE book."}
+    ]
+  },
+  M02: {
+    title: "Linux Foundations",
+    questions: [
+      {q:"Which command displays the current working directory in Linux?",options:["`ls`","`pwd`","`cd`","`dir`"],answer:1,explanation:"pwd (print working directory) outputs the absolute path of your current location in the filesystem."},
+      {q:"What does the permission string `-rwxr-xr--` represent?",options:["Owner: read/write/execute; Group: read/execute; Others: read only","Owner: full; Group: full; Others: full","Owner: read only; Group: read/write; Others: execute","Owner: read/write; Group: execute; Others: none"],answer:0,explanation:"9 permission bits split into owner (rwx=7), group (r-x=5), others (r--=4)."},
+      {q:"What does `chmod 755 script.sh` set?",options:["Owner: rwx, Group: r-x, Others: r-x","Owner: rwx, Group: rwx, Others: rwx","Owner: rw-, Group: r--, Others: r--","Owner: r-x, Group: r-x, Others: r-x"],answer:0,explanation:"7=rwx, 5=r-x, 5=r-x. Owner has full permissions; group and others can read and execute."},
+      {q:"Which command changes the owner of a file?",options:["`chmod`","`chown`","`chgrp`","`usermod`"],answer:1,explanation:"chown changes file owner (and optionally group): `chown user:group filename`."},
+      {q:"What is the purpose of `systemctl enable` for a service?",options:["Starts the service immediately","Reloads the service configuration","Makes the service start automatically at boot","Disables the service permanently"],answer:2,explanation:"systemctl enable creates symlinks so systemd starts the service on every boot automatically."},
+      {q:"Which command shows all running processes with detailed information?",options:["`ps`","`ps aux`","`top --all`","`proc list`"],answer:1,explanation:"ps aux shows all processes for all users with PID, CPU, memory, and full command details."},
+      {q:"What does `kill -9 <PID>` do?",options:["Pauses the process","Gracefully asks the process to stop","Forces the process to terminate immediately (SIGKILL)","Restarts the process"],answer:2,explanation:"Signal 9 (SIGKILL) cannot be caught or ignored — it immediately and forcibly terminates the process."},
+      {q:"In Linux, what is the superuser account called?",options:["admin","sudo","root","superadmin"],answer:2,explanation:"The root user (UID 0) has unrestricted access to all files and commands on the system."},
+      {q:"What does the `df -h` command display?",options:["Directory file listing in human-readable format","Disk filesystem usage in human-readable format","Running processes sorted by disk I/O","File differences between two paths"],answer:1,explanation:"df (disk free) with -h shows mounted filesystems and their used/available space in human-readable units."},
+      {q:"Which file contains the list of all user accounts on a Linux system?",options:["/etc/shadow","/etc/users","/etc/passwd","/etc/accounts"],answer:2,explanation:"/etc/passwd stores user account info: username, UID, GID, home directory, and default shell."},
+      {q:"What does `grep -r 'error' /var/log/` do?",options:["Replaces 'error' in all log files","Recursively searches for the string 'error' in all files under /var/log/","Deletes lines containing 'error' from logs","Lists files named 'error' under /var/log/"],answer:1,explanation:"grep -r recurses through directories searching for the pattern in every file it finds."},
+      {q:"Which command shows the last lines of a log file in real-time as it grows?",options:["`cat -f logfile`","`tail -f logfile`","`head -f logfile`","`less logfile`"],answer:1,explanation:"tail -f follows the file as it grows, printing new lines — essential for monitoring live logs."},
+      {q:"What is a symlink (symbolic link)?",options:["A hard copy of a file","A pointer/shortcut that references another file or directory","A compressed archive of files","A read-only snapshot of a directory"],answer:1,explanation:"Symlinks are filesystem pointers. Created with `ln -s target linkname`. Deleting the link leaves the original intact."},
+      {q:"Which command displays active network connections and listening ports?",options:["`ifconfig`","`ping`","`ss -tulnp`","`route`"],answer:2,explanation:"ss (socket statistics) with -tulnp shows TCP/UDP listening ports and the processes behind them."},
+      {q:"What does `sudo` stand for?",options:["Super User Do","Switch User Domain","System User Daemon","Secure Unix Domain"],answer:0,explanation:"sudo (Super User Do) lets an authorised user run commands with elevated (root) privileges temporarily."},
+      {q:"Which systemd command shows the status and recent logs of a service?",options:["`systemctl logs nginx`","`journalctl nginx`","`systemctl status nginx`","`service nginx info`"],answer:2,explanation:"systemctl status shows active state, PID, recent journal entries, and whether the service is enabled."},
+      {q:"What is the octal permission value for read and write only (no execute)?",options:["7","5","6","4"],answer:2,explanation:"Read=4, Write=2, Execute=1. Read+Write = 4+2 = 6. Full permissions = 7."},
+      {q:"Which command creates a new directory including all necessary parent directories?",options:["`mkdir dir`","`mkdir -p /a/b/c`","`md /a/b/c`","`create -r /a/b/c`"],answer:1,explanation:"mkdir -p (parents) creates the full path without erroring if intermediate directories already exist."},
+      {q:"What is the purpose of the /etc/sudoers file?",options:["Store encrypted user passwords","Define which users can run commands as root using sudo","List all installed packages","Configure the default shell for root"],answer:1,explanation:"/etc/sudoers controls sudo access — which users/groups can run which commands as which user."},
+      {q:"Which command shows how long the system has been running?",options:["`runtime`","`uptime`","`sysinfo`","`lastboot`"],answer:1,explanation:"uptime shows current time, system run duration, number of logged-in users, and load averages."},
+      {q:"What does `|` (pipe) do in a Linux command?",options:["Runs two commands simultaneously in background","Redirects output to a file","Passes the stdout of one command as stdin to the next","Separates two independent commands"],answer:2,explanation:"The pipe operator chains commands: stdout of cmd1 becomes stdin of cmd2. e.g. `ps aux | grep nginx`."},
+      {q:"Which command finds files by name recursively from the current directory?",options:["`locate`","`search`","`find . -name 'file.txt'`","`grep -r file.txt`"],answer:2,explanation:"find traverses directory trees. -name matches filenames; `.` means start from current directory."},
+      {q:"What does `>` do in `echo 'hello' > file.txt`?",options:["Appends output to file.txt","Overwrites file.txt with the command output","Reads from file.txt","Compares two values"],answer:1,explanation:"> redirects stdout to a file, overwriting it. Use >> to append without overwriting."},
+      {q:"What is the role of the /var/log/ directory?",options:["Store user home directories","Store system and application log files","Store temporary files deleted on reboot","Store installed binary executables"],answer:1,explanation:"/var/log/ holds persistent log files written by the kernel, systemd, and applications like nginx and sshd."},
+      {q:"Which command installs packages on Ubuntu/Debian systems?",options:["`yum install`","`dnf install`","`apt install`","`pkg install`"],answer:2,explanation:"apt (Advanced Package Tool) is the package manager for Debian-based distros. yum/dnf are for RHEL/Fedora."},
+      {q:"What does the `cron` daemon do?",options:["Monitors system performance","Manages network interfaces","Executes scheduled tasks at specified times","Handles user authentication"],answer:2,explanation:"cron reads crontab files and runs scheduled commands at the defined times — e.g. backups at 2am daily."},
+      {q:"Which signal number gracefully asks a process to terminate?",options:["SIGKILL (9)","SIGSTOP (19)","SIGTERM (15)","SIGHUP (1)"],answer:2,explanation:"SIGTERM (15) is the default kill signal — it asks the process to clean up and exit gracefully."},
+      {q:"What does `chmod +x script.sh` do?",options:["Removes execute permission","Adds execute permission for owner, group, and others","Makes the file read-only","Encrypts the file"],answer:1,explanation:"+x adds the execute bit for all classes (owner, group, others) without changing other permission bits."},
+      {q:"In Linux, what is a process's PID?",options:["Process Interface Daemon","Process Identity Driver","A unique number the kernel assigns to each running process","Primary Instance Directory"],answer:2,explanation:"Every process gets a unique Process ID (PID). Used by kill, ps, top, and other tools to reference processes."},
+      {q:"Which command shows real-time CPU and memory usage for all processes?",options:["`ps aux`","`df -h`","`top`","`free`"],answer:2,explanation:"top shows a live, auto-refreshing view of system resource usage and processes sorted by CPU consumption."}
+    ]
+  },
+  M03: {
+    title: "Shell Scripting For DevOps",
+    questions: [
+      {q:"A script needs to check for the existence of a configuration directory before proceeding. Which conditional statement correctly performs this check?",options:["if [ -f /etc/config ]; then ..... fi","if [ -s /etc/config ]; then ..... fi","if [ dir /etc/config ]; then ..... fi","if [ -d /etc/config ]; then ..... fi"],answer:3,explanation:"-d checks if the path is a directory. -f checks for a regular file. -s checks if file is non-empty."},
+      {q:"Why is the Shebang line important in DevOps?",options:["It makes the script run faster","It grants root permissions","It ensures portability by telling the system which interpreter to use","It creates the documentation"],answer:2,explanation:"The shebang (#!/bin/bash) tells the OS which interpreter to use, ensuring the script runs correctly across systems."},
+      {q:"How do you limit the scope of a variable to exist only inside a function?",options:["private VAR","local VAR","static VAR","const VAR"],answer:1,explanation:"The 'local' keyword in Bash restricts a variable's scope to the function it is declared in."},
+      {q:"Which loop syntax is correct for iterating over a list?",options:["for (item in list) do ... done","for item in list; do ... done","foreach item in list do ... done","for item = list do ... done"],answer:1,explanation:"Bash for-loop: `for item in list; do ... done` — semicolons separate clauses. foreach does not exist in Bash."},
+      {q:"In a deployment script, which is the correct syntax for assigning the output of the 'date' command to a variable named 'TIMESTAMP'?",options:["TIMESTAMP = $(date)","let TIMESTAMP = *date","TIMESTAMP=$(date)","TIMESTAMP=date"],answer:2,explanation:"Command substitution: TIMESTAMP=$(date) — no spaces around = and $(...) captures the command's stdout."},
+      {q:"How do you access/print the value of the variable PORT?",options:["echo $PORT","print(PORT)","echo PORT","echo %PORT%"],answer:0,explanation:"In Bash, variable values are accessed with the $ prefix: `echo $PORT` or `echo ${PORT}`."},
+      {q:"How do you increment a counter variable in a while loop?",options:["COUNT + 1","increment COUNT","COUNT = COUNT + 1","((COUNT++))"],answer:3,explanation:"Arithmetic in Bash uses double parentheses: ((COUNT++)) is the standard increment syntax."},
+      {q:"What command displays the shell you are currently using?",options:["whoami","echo $SHELL","which bash","ls shell"],answer:1,explanation:"$SHELL is an environment variable that holds the path to the current user's default shell (e.g. /bin/bash)."},
+      {q:"What is the primary purpose of using 'set -u' at the beginning of a production script?",options:["Print each command to terminal before execution for debugging","Ensure errors within a pipeline are properly caught","Treat unset variables as an error and exit, preventing potentially dangerous operations","Cause the script to exit immediately if any command fails"],answer:2,explanation:"set -u (nounset) makes Bash exit with an error when any unset variable is referenced — prevents disasters like rm -rf $UNSET/*."},
+      {q:"What does the flag -d check for in a conditional statement?",options:["If a file exists","If the item is a directory","If the file is executable","If the file is empty"],answer:1,explanation:"[ -d path ] returns true if path exists AND is a directory."},
+      {q:"A junior engineer uses `grep 'ERROR' syslog > error_log.txt` in a daily script. Why does error_log.txt only contain errors from the most recent run?",options:["Redirection operator >> should have been used instead of >","Pipe | should have been used instead of >","Standard error (2>&1) was not redirected","grep does not support writing to files directly"],answer:0,explanation:"> overwrites the file on each run. >> appends to it, preserving content from previous executions."},
+      {q:"How do you explicitly stop a script and indicate failure?",options:["stop","return false","exit 1","break"],answer:2,explanation:"exit 1 terminates the script with a non-zero exit code, signalling failure to the caller or CI system."},
+      {q:"How do you write 'OR' logic in a Bash if statement?",options:["||","OR","&&","|"],answer:0,explanation:"|| is the logical OR operator: `if [[ $a ]] || [[ $b ]]; then` — true if either condition is true."},
+      {q:"A script named 'create_user.sh' is executed with `./create_user.sh admin dev`. What does '$#' contain inside the script?",options:["First argument, 'admin'","Total number of arguments passed, which is 2","Name of the script, 'create_user.sh'","All arguments as a single string, 'admin dev'"],answer:1,explanation:"$# holds the count of positional parameters passed to the script or function."},
+      {q:"How do you redirect Standard Error to the same destination as Standard Output?",options:["1>2","error >> output","|&","2>&1"],answer:3,explanation:"2>&1 redirects file descriptor 2 (stderr) to wherever fd 1 (stdout) is currently pointing."},
+      {q:"What is the correct way to write a numerical comparison in Bash to check if $count is greater than 5?",options:["if ($count > 5)","if [ $count -gt 5 ]","if [[ $count > 5 ]]","if test $count > 5"],answer:1,explanation:"Inside [ ], use -gt for greater-than. The > operator inside [ ] is interpreted as file redirection."},
+      {q:"Why are shell scripts often described as the 'glue' that connects different DevOps tools?",options:["Because Bash scripts compile into a universal format all tools understand","Because they automate the sequence of operations between tools like build, test, and deploy","Because they provide a GUI for managing servers","Because they are the only way to install software on a Linux server"],answer:1,explanation:"Shell scripts orchestrate tool chains — they call build tools, test frameworks, and deploy scripts in sequence."},
+      {q:"How do you declare an associative array in Bash?",options:["declare -A array","array=()","declare -a array","typeset -A array"],answer:0,explanation:"declare -A creates an associative array (key-value pairs). declare -a creates a regular indexed array."},
+      {q:"In production scripts, why is `set -u` critical when using `rm -rf $DIRECTORY/*`?",options:["Improves performance","Prevents deleting root directory if DIRECTORY is unset","Enables debugging","Makes script faster"],answer:1,explanation:"If $DIRECTORY is unset, the command becomes `rm -rf /*` — wiping the root filesystem. set -u exits immediately."},
+      {q:"What is the primary benefit of using functions in a complex shell script?",options:["Functions are the only way to accept arguments into a shell script","Functions run significantly faster than the same code outside a function","Functions automatically handle errors for the code they contain","Functions allow code reuse and improve readability and maintainability"],answer:3,explanation:"Functions encapsulate logic, enable code reuse, and make scripts modular and easier to read and test."},
+      {q:"In a function, what is the difference between $1 inside vs outside the function?",options:["No difference","Inside function: function's first argument; Outside: script's first argument","Inside function refers to script arguments","Functions cannot use $1"],answer:1,explanation:"Positional parameters are scoped — inside a function $1 is the function's first arg, not the script's."},
+      {q:"Why is it important to check if a directory exists before creating it in a script?",options:["To ensure Idempotency","To save battery life","To rename the directory","To delete the directory"],answer:0,explanation:"Idempotency means running the script multiple times produces the same result without unwanted side effects."},
+      {q:"What happens if you check $? two commands after the one you care about?",options:["Gets the original exit code","Gets the average of all exit codes","Only holds the exit code of the immediately preceding command","Always returns 0"],answer:2,explanation:"$? always reflects the exit code of the most recently executed command — it gets overwritten immediately."},
+      {q:"In `if [[ \"$STATUS\" == \"success\" ]]; then`, why quote \"$STATUS\"?",options:["Enables case-insensitive matching","Handles values with spaces or special characters","Makes the comparison faster","It is required syntax"],answer:1,explanation:"Quoting prevents word splitting and glob expansion — critical when variable values may contain spaces."},
+      {q:"What is the function of the `$(command)` command substitution syntax?",options:["Runs the command in the background","Captures the stdout of the command so it can be used inline or assigned to a variable","Verifies if the command exists","Redirects errors to a log file"],answer:1,explanation:"$(command) is command substitution — it runs the command and returns its output as a string."},
+      {q:"Why does the text recommend `[[ ... ]]` over the older `[ ... ]` syntax?",options:["It is the modern, powerful Bash version with regex support and safer word handling","It uses less memory","It allows you to skip the if keyword","It runs faster"],answer:0,explanation:"[[ ]] supports regex (=~), prevents word splitting, and has more intuitive comparison operators than [ ]."},
+      {q:"Which command makes a variable available to child scripts or processes?",options:["set","define","export","global"],answer:2,explanation:"export marks a variable for export to the environment of subsequently executed child processes."},
+      {q:"Why should you always quote variables in file operations (e.g., \"$VAR\")?",options:["To make them bold","To handle filenames containing spaces correctly","To convert them to strings","It is optional and makes no difference"],answer:1,explanation:"Unquoted variables with spaces split into multiple words, causing errors or unintended behaviour in file operations."},
+      {q:"Which external tool scans shell scripts for syntax errors and bad practices?",options:["LintBash","DebuggerPro","ShellCheck","BashDoctor"],answer:2,explanation:"ShellCheck is the industry-standard static analysis tool for shell scripts — it catches bugs, anti-patterns, and portability issues."},
+      {q:"Which command displays all current environment variables?",options:["showall","list-env","printenv","echo $ALL"],answer:2,explanation:"printenv (or env) prints all environment variables. `printenv VAR` prints a specific variable's value."}
+    ]
+  },
+  M04: {
+    title: "Networking & System Design",
+    questions: [
+      {q:"You can successfully ping the server, but the connection to port 80 is refused. Which layer is likely hosting the problem?",options:["Layer 1 (Physical cable issue)","Layer 3 (IP connectivity issue)","Layer 4 (Port/Application issue)","Layer 2 (Switch issue)"],answer:2,explanation:"Ping success proves L3 (IP) works. Port refusal means the service is not listening or is firewalled — a Layer 4 issue."},
+      {q:"Which topology is described as having a central switch that manages traffic flow between devices?",options:["Ring Topology","Bus Topology","Star Topology","Mesh Topology"],answer:2,explanation:"In Star topology all devices connect to a central hub/switch — the most common topology in modern LANs."},
+      {q:"Why should database servers typically be assigned Private IPs?",options:["Private IPs are faster than Public IPs","To prevent hackers from brute-forcing them from the public internet","Databases cannot function on Public IPs","Private IPs are free, Public IPs always cost money"],answer:1,explanation:"Placing databases on private networks limits exposure — they are only reachable within the trusted internal network."},
+      {q:"In CIDR notation, what does a /32 represent?",options:["A network with 254 hosts","A network with 65,000 hosts","Just 1 single IP address","The entire internet"],answer:2,explanation:"/32 means all 32 bits are fixed — only one IP address exists in this 'network'."},
+      {q:"What is the standard port for SSH (Secure Shell)?",options:["443","22","80","53"],answer:1,explanation:"SSH uses port 22 by default. Port 443=HTTPS, 80=HTTP, 53=DNS."},
+      {q:"Which statement about CIDR numbers is true?",options:["A lower CIDR number (e.g., /8) means more IPs","A higher CIDR number (e.g., /30) means more IPs","All CIDR numbers provide the same number of addresses","CIDR numbers only apply to IPv6"],answer:0,explanation:"A smaller prefix length means fewer network bits and more host bits — so more IP addresses in the range."},
+      {q:"Why are some users still accessing the old website after a DNS 'A' record was updated?",options:["The old server has not been turned off yet","The new server's firewall is blocking all traffic","Resolvers and local devices have cached the old DNS record due to its TTL","The CNAME record was not updated correctly"],answer:2,explanation:"DNS records are cached for their TTL duration. Until TTL expires, resolvers serve the old cached IP address."},
+      {q:"Why is UDP preferred for video streaming or DNS?",options:["It guarantees every packet arrives in order","It encrypts data better than TCP","It uses a 3-Way Handshake","Speed matters more than perfection; lost packets do not stop the stream"],answer:3,explanation:"UDP's lower overhead and no retransmission makes it ideal for real-time streaming where latency matters more than perfection."},
+      {q:"What is the common DevOps meme regarding troubleshooting network issues?",options:["It's always the Firewall","It's always DNS","Have you tried restarting?","It's always the Database"],answer:1,explanation:"'It's always DNS' is a running industry joke — DNS misconfigurations cause a disproportionate number of incidents."},
+      {q:"What does TTL (Time to Live) control in DNS?",options:["The speed of the internet connection","How long a device remembers (caches) a DNS record","The number of characters in a domain name","The security level of the domain"],answer:1,explanation:"TTL tells resolvers how many seconds to cache a DNS record before querying authoritative servers again."},
+      {q:"Which command is best suited for querying DNS to find an IP address?",options:["ping","netstat","nslookup","traceroute"],answer:2,explanation:"nslookup (and dig) query DNS servers directly to resolve names to IPs and retrieve DNS record details."},
+      {q:"What is a major security risk when configuring Security Groups?",options:["Opening 'All Traffic' (0.0.0.0/0) to fix a connection issue","Allowing traffic on Port 443","Using specific IPs for SSH access","Creating an Outbound rule"],answer:0,explanation:"0.0.0.0/0 opens to the entire internet — attackers can probe every port on your server."},
+      {q:"What is the difference between a Forward Proxy and a Reverse Proxy?",options:["Forward Proxy hides the Server; Reverse Proxy hides the Client","Forward Proxy hides the Client (like a VPN); Reverse Proxy hides the Server","They are exactly the same","Reverse Proxy is only used for emails"],answer:1,explanation:"Forward proxy sits in front of clients (VPNs). Reverse proxy sits in front of servers (load balancers, CDNs like Nginx/Cloudflare)."},
+      {q:"In a cloud environment, what is the DevOps engineer's primary networking responsibility?",options:["Define and manage network components like VPCs, subnets, and firewall rules via code","Physically plug in cables and configure hardware routers in the data center","Focus solely on app code as networking is automatically handled by the cloud","Submit tickets to a separate Network Team and wait"],answer:0,explanation:"Infrastructure as Code means DevOps engineers define VPCs, subnets, and security groups in Terraform or CloudFormation."},
+      {q:"Which command shows every 'hop' (router) a packet takes to reach a destination?",options:["ping","curl","ssh","traceroute"],answer:3,explanation:"traceroute (tracert on Windows) reveals the path packets take, showing each intermediate router and its latency."},
+      {q:"What does the OSI model stand for?",options:["Open Systems Interconnection","Operating System Interface","Open Source Infrastructure","Operational Security Interface"],answer:0,explanation:"The OSI (Open Systems Interconnection) model is a conceptual 7-layer framework for understanding network communication."},
+      {q:"Which OSI layer handles IP addressing and routing?",options:["Layer 2 — Data Link","Layer 3 — Network","Layer 4 — Transport","Layer 7 — Application"],answer:1,explanation:"Layer 3 (Network) handles logical addressing (IP addresses) and routing packets between different networks."},
+      {q:"What does DHCP do?",options:["Encrypts network traffic","Translates domain names to IP addresses","Automatically assigns IP addresses to devices on a network","Provides a secure tunnel for remote access"],answer:2,explanation:"DHCP (Dynamic Host Configuration Protocol) automatically assigns IPs, subnet masks, and gateways to clients."},
+      {q:"Which protocol is used for secure, encrypted web traffic?",options:["HTTP","FTP","HTTPS","SMTP"],answer:2,explanation:"HTTPS = HTTP over TLS. It encrypts traffic between browser and server using SSL/TLS certificates."},
+      {q:"What is a VPC in AWS?",options:["Virtual Private Computer","Virtual Processing Core","Virtual Private Cloud — your isolated network environment in AWS","Virtual Proxy Controller"],answer:2,explanation:"A VPC is a logically isolated section of the AWS cloud where you launch resources in a defined virtual network."},
+      {q:"What is the purpose of a Load Balancer?",options:["Store application data","Distribute incoming traffic across multiple servers so no single server is overwhelmed","Encrypt traffic between client and server","Monitor server CPU usage"],answer:1,explanation:"Load balancers distribute requests across multiple backend servers for high availability and horizontal scalability."},
+      {q:"What does NAT (Network Address Translation) do?",options:["Assigns domain names to servers","Translates private IPs to a public IP for internet communication","Encrypts packets in transit","Routes packets between VPCs"],answer:1,explanation:"NAT allows devices with private IPs to communicate with the internet through a shared public IP address."},
+      {q:"What is the key difference between TCP and UDP?",options:["TCP is faster; UDP is more reliable","TCP is connectionless; UDP is connection-oriented","TCP guarantees delivery with acknowledgements; UDP is connectionless with no delivery guarantee","There is no difference between them"],answer:2,explanation:"TCP uses a 3-way handshake and ACKs for reliable, ordered delivery. UDP is fire-and-forget with lower overhead."},
+      {q:"Which port does HTTPS use by default?",options:["80","22","443","8080"],answer:2,explanation:"Port 443 is the standard port for HTTPS. HTTP uses port 80. Both are assigned by IANA."},
+      {q:"In a 3-tier architecture, what is the role of the application tier?",options:["Store persistent data","Handle user interface and static content","Process business logic, connecting the presentation tier to the data tier","Manage DNS and load balancing"],answer:2,explanation:"The middle tier processes business logic — it receives requests from the web tier and queries the database tier."},
+      {q:"What does a firewall do at the network level?",options:["Speeds up network traffic","Stores network packets","Filters network traffic based on rules (allow/deny by IP, port, protocol)","Encrypts all outbound data automatically"],answer:2,explanation:"Firewalls inspect packets and apply ACL rules to allow or block traffic based on source, destination, and port."},
+      {q:"What is a subnet?",options:["A type of network cable","A logical subdivision of an IP network","A secondary DNS server","A backup router configuration"],answer:1,explanation:"Subnets divide a larger network into smaller, isolated segments for security and traffic management."},
+      {q:"What does the `ping` command test?",options:["DNS resolution speed","HTTP response time","ICMP reachability — whether a remote host responds to network packets","Open TCP ports on a server"],answer:2,explanation:"ping sends ICMP echo requests. A response confirms the host is reachable at Layer 3 (IP level)."},
+      {q:"What is a CDN (Content Delivery Network)?",options:["A private cloud database","A distributed network of servers that deliver content from locations close to users","A type of VPN tunnel","An API gateway for microservices"],answer:1,explanation:"CDNs cache static content (images, JS, CSS) at edge locations worldwide to reduce latency for end users."},
+      {q:"Which command shows network interface IP addresses on Linux?",options:["ip addr (or legacy ifconfig)","ping","netstat -r","route show"],answer:0,explanation:"ip addr (modern) or ifconfig (legacy) display network interface configuration including assigned IP addresses."}
+    ]
+  },
+  M05: {
+    title: "Jira For DevOps",
+    questions: [
+      {q:"What is Jira primarily used for in a DevOps context?",options:["Hosting container images","Writing Bash scripts","Project and issue tracking — managing tasks, bugs, and sprints","Monitoring server CPU usage"],answer:2,explanation:"Jira is Atlassian's issue and project tracking tool, widely used for sprint planning, backlog management, and bug tracking."},
+      {q:"What is a Jira 'Epic'?",options:["A single bug report","A large body of work broken down into smaller stories or tasks","A team dashboard","A deployment pipeline step"],answer:1,explanation:"An Epic represents a large feature or goal that spans multiple sprints and is broken down into Stories and Tasks."},
+      {q:"What is a Jira 'Story' (User Story)?",options:["A marketing document","A user-facing feature described from the end-user's perspective","A server configuration file","A CI/CD pipeline job"],answer:1,explanation:"User stories capture requirements from the user's point of view: 'As a user, I want to X so that Y.'"},
+      {q:"In Scrum, what is a Sprint?",options:["A code deployment process","A fixed-length iteration (typically 2 weeks) in which a team delivers a defined set of work","A daily stand-up meeting","A type of Jira ticket priority"],answer:1,explanation:"Sprints are time-boxed iterations. Teams commit to a sprint goal and deliver working software by the end."},
+      {q:"What is a Jira 'Backlog'?",options:["A list of failed deployments","A prioritised list of all outstanding work items for the team","A storage location for test results","A collection of merged pull requests"],answer:1,explanation:"The backlog is the ordered list of Epics, Stories, and bugs waiting to be worked on in future sprints."},
+      {q:"What does 'WIP limit' mean in a Kanban board?",options:["Work In Progress limit — a cap on how many tasks can be in a column at once","Work Integration Pipeline — the CI/CD flow","Weekly Iteration Planning — a sprint ceremony","Workflow Issue Priority — a ticket severity level"],answer:0,explanation:"WIP limits prevent bottlenecks by capping concurrent work, encouraging teams to finish tasks before starting new ones."},
+      {q:"What are the typical columns on a basic Jira Kanban board?",options:["Draft, Review, Archive","To Do, In Progress, Done","Open, Blocked, Merged","Planned, Building, Released"],answer:1,explanation:"The classic Kanban flow is To Do → In Progress → Done, though teams customise columns to match their workflow."},
+      {q:"What is a Jira 'Sub-task'?",options:["A smaller unit of work within a Story or Task, assignable to individual team members","A duplicate ticket","A comment thread","A linked external document"],answer:0,explanation:"Sub-tasks break down a Story into actionable work items that can be individually assigned and tracked."},
+      {q:"How does Jira integrate with DevOps pipelines?",options:["It replaces the CI/CD pipeline","It links issues to commits, branches, PRs, and deployments via GitHub/GitLab/Bitbucket integrations","It stores Docker images","It manages Kubernetes clusters"],answer:1,explanation:"Jira integrations connect tickets to code changes — smart commits automatically transition issues when code is merged."},
+      {q:"What is the purpose of a Sprint Retrospective?",options:["Demo new features to stakeholders","Plan the next sprint's backlog","Reflect on what went well, what did not, and identify improvements for the next sprint","Write release notes for the deployment"],answer:2,explanation:"Retrospectives are blameless reflection sessions — teams discuss process improvements to continuously get better."},
+      {q:"In Jira, what do 'Story Points' measure?",options:["Hours of work required","The relative complexity and effort of a user story","The number of lines of code","The number of team members needed"],answer:1,explanation:"Story points estimate relative effort/complexity using Fibonacci numbers — not actual hours. They help with capacity planning."},
+      {q:"What is a Jira 'Bug' issue type?",options:["A planned feature request","A documentation task","A defect or problem in the software that needs to be fixed","A sprint ceremony reminder"],answer:2,explanation:"Bugs represent defects — incorrect or unexpected behaviour in the software. They are tracked, prioritised, and assigned."},
+      {q:"What is the purpose of a Sprint Review (Demo)?",options:["Plan next sprint tasks","Inspect work completed in the sprint and gather stakeholder feedback","Debug production incidents","Merge pull requests"],answer:1,explanation:"Sprint Reviews are demos where the team shows completed work to stakeholders and collects feedback."},
+      {q:"In Jira, what does 'Priority' on a ticket indicate?",options:["The complexity of the task","The urgency and importance of addressing the issue (Critical, High, Medium, Low)","The sprint it belongs to","The team member assigned to it"],answer:1,explanation:"Priority helps teams decide what to work on first — Critical blocks production, Low can wait."},
+      {q:"What is the difference between Scrum and Kanban in Jira?",options:["Scrum uses time-boxed sprints; Kanban is a continuous flow with WIP limits","They are identical in Jira","Kanban uses sprints; Scrum uses WIP limits","Scrum is for hardware teams; Kanban is for software teams"],answer:0,explanation:"Scrum is sprint-based with ceremonies. Kanban is continuous flow with WIP limits — no fixed iteration length."},
+      {q:"What is a 'Roadmap' in Jira?",options:["A network diagram","A visual timeline showing Epics and their progress over time for stakeholder planning","A deployment checklist","A list of team members and their roles"],answer:1,explanation:"Jira Roadmaps give a high-level visual of Epics, timelines, and dependencies — useful for stakeholder communication."},
+      {q:"What does 'Definition of Done' mean in Jira/Scrum?",options:["The code has been written","A shared set of acceptance criteria that must all be met before a story is considered complete","The ticket has been deleted","The sprint has ended"],answer:1,explanation:"The DoD is a team agreement on what 'complete' means — typically: code written, reviewed, tested, and deployed."},
+      {q:"Which Jira view is best for seeing all work in a sprint with their current statuses?",options:["Roadmap","Backlog","Board (Kanban/Scrum)","Reports"],answer:2,explanation:"The Board view shows tickets in columns by status — the primary view for daily sprint work management."},
+      {q:"What is a 'Velocity' chart in Jira?",options:["A real-time server performance graph","A chart showing story points completed per sprint, used for capacity planning","A network latency monitor","A test coverage report"],answer:1,explanation:"Velocity tracks how many story points a team completes per sprint, helping predict future sprint capacity accurately."},
+      {q:"What are Jira Labels used for?",options:["Automatically closing tickets","Tagging tickets with keywords for easy filtering and searching","Assigning tickets to teams","Setting sprint durations"],answer:1,explanation:"Labels are free-form tags added to issues for cross-project categorisation and filtering beyond standard issue types."},
+      {q:"What is Sprint Planning in Scrum?",options:["A ceremony where the team selects items from the backlog to commit to for the upcoming sprint","A meeting to review completed work with stakeholders","A tool for monitoring production incidents","A document listing all project requirements"],answer:0,explanation:"Sprint Planning is where the team selects backlog items for the sprint, estimates effort, and defines a sprint goal."},
+      {q:"What is the purpose of the Jira Backlog Refinement session?",options:["Demo work to stakeholders","Review and estimate upcoming backlog items so they are ready for future sprints","Deploy code to production","Create new team members"],answer:1,explanation:"Refinement (grooming) ensures upcoming stories are estimated, understood, and have clear acceptance criteria before sprint planning."},
+      {q:"In Jira, what does 'Assignee' on a ticket mean?",options:["The person who filed the bug","The team member currently responsible for working on that issue","The manager who approved the feature","The QA engineer who will test it"],answer:1,explanation:"The Assignee is the team member owning the ticket and responsible for moving it to Done."},
+      {q:"What is the purpose of Jira's 'Linked Issues' feature?",options:["To automatically close related tickets","To show relationships between tickets such as blocks, is blocked by, or relates to","To merge two tickets into one","To assign multiple people to one ticket"],answer:1,explanation:"Linked issues map dependencies and relationships between tickets — e.g. 'Story A blocks Story B'."},
+      {q:"Which Jira report shows how much work remains in a sprint over time?",options:["Velocity Chart","Cumulative Flow Diagram","Burndown Chart","Control Chart"],answer:2,explanation:"A Burndown Chart shows remaining work (story points or issues) decreasing toward zero as the sprint progresses."}
+    ]
+  },
+  M06: {
+    title: "Introduction to Git",
+    questions: [
+      {q:"What is the main difference between Git and a Centralized VCS (like SVN)?",options:["Git is faster because it uses cloud storage","Git stores every version as a full file copy","In Git, every user has a full copy of the entire project history locally","Git only works on Linux"],answer:2,explanation:"Git is distributed — every clone is a full repository with complete history, enabling offline work and no single point of failure."},
+      {q:"Which command is used to set your identity in Git globally?",options:["git identity set","git config --global user.name 'Name'","git user set --name 'Name'","git init --user 'Name'"],answer:1,explanation:"git config --global sets values in ~/.gitconfig, applied to all repositories on the machine."},
+      {q:"If you have modified a file, what is the next step to include it in a commit?",options:["git push","git save","git add","git lock"],answer:2,explanation:"git add stages changes to the index (staging area) so they are included in the next commit."},
+      {q:"What does `git checkout -b feature-alpha` do?",options:["Deletes the branch feature-alpha","Merges feature-alpha into main","Creates a new branch named feature-alpha and switches to it","Checks if feature-alpha has any bugs"],answer:2,explanation:"git checkout -b is shorthand for git branch + git checkout — creates and immediately switches to the new branch."},
+      {q:"How do you permanently remove a file from both your disk and Git tracking?",options:["git rm <file>","git rm --cached <file>","rm <file>","git hide <file>"],answer:0,explanation:"git rm removes the file from the working tree AND stages the deletion for commit. --cached removes only from tracking."},
+      {q:"What is a 'Fork' in GitHub?",options:["A command to delete a repository","A personal copy of someone else's repository on your GitHub account","A way to merge code without review","A physical device to store Git data"],answer:1,explanation:"Forking creates a copy under your account, letting you contribute to projects without direct write access."},
+      {q:"Which command connects your local repository to a remote server on GitHub?",options:["git connect [URL]","git remote add origin [URL]","git push --init [URL]","git sync [URL]"],answer:1,explanation:"git remote add origin sets the 'origin' alias pointing to your remote repository URL."},
+      {q:"What is the main difference between `git merge` and `git rebase`?",options:["Merge is faster than Rebase","Rebase creates a merge commit, Merge does not","Merge preserves history as it happened; Rebase rewrites history to be linear","Rebase is for local files only"],answer:2,explanation:"Merge creates a merge commit preserving both branch histories. Rebase replays commits onto a new base for clean linear history."},
+      {q:"What does the `--force-with-lease` flag do during a push?",options:["Overwrites remote changes without checking","Only pushes if no one else has updated the remote branch since your last fetch","Merges the code automatically","Deletes the remote branch"],answer:1,explanation:"--force-with-lease is safer than --force — it refuses to overwrite if someone else pushed since your last fetch."},
+      {q:"How do you resolve a Merge Conflict?",options:["Delete the repository and clone again","Run `git solve --conflict`","Manually edit the file to remove conflict markers (<<< === >>>) and commit the result","Ask GitHub to fix it automatically"],answer:2,explanation:"Conflict markers show both versions. You manually choose or combine the changes, then `git add` and commit."},
+      {q:"You accidentally did a `git reset --hard` and lost commits. Which command can help find them?",options:["git history --all","git reflog","git find-lost","git undo"],answer:1,explanation:"git reflog records every HEAD movement including resets. Use it to find the SHA and restore with git reset or checkout."},
+      {q:"What is the purpose of `git stash`?",options:["To delete temporary files","To permanently archive the project","To temporarily 'shelve' uncommitted changes so you can switch to a clean working state","To speed up the internet connection"],answer:2,explanation:"git stash saves your changes to a stack so you can switch context; `git stash pop` restores them later."},
+      {q:"Which command applies a single specific commit from another branch?",options:["git merge --single","git cherry-pick [SHA]","git copy-commit","git rebase --pick"],answer:1,explanation:"git cherry-pick applies the changes from a specific commit onto your current branch without merging the whole branch."},
+      {q:"What is `git bisect` used for?",options:["Slicing a large file into two parts","Finding the exact commit that introduced a bug using binary search","Creating two branches at once","Merging two repositories"],answer:1,explanation:"git bisect performs a binary search through commit history to find exactly which commit introduced a regression."},
+      {q:"What are Git Hooks?",options:["Physical brackets to hold servers","Scripts that Git executes automatically before or after events like commit or push","Plugins for the browser","Short aliases for long commands"],answer:1,explanation:"Hooks are shell scripts in .git/hooks/ that run automatically at Git events — pre-commit, commit-msg, post-push, etc."},
+      {q:"What does `git log --oneline` display?",options:["Only the most recent commit","A condensed one-line-per-commit view of the full commit history","All uncommitted changes","The list of remote branches"],answer:1,explanation:"--oneline abbreviates each commit to its short SHA and subject line for a compact, scannable history view."},
+      {q:"What is the purpose of a `.gitignore` file?",options:["To store Git credentials","To list files and patterns that Git should not track or commit","To configure remote repositories","To define branch protection rules"],answer:1,explanation:".gitignore tells Git to ignore specified files/patterns — commonly used for build artifacts, secrets, and node_modules."},
+      {q:"What does `git pull` do?",options:["Pushes local commits to remote","Creates a new branch","Fetches changes from the remote and merges them into the current local branch","Stages all modified files"],answer:2,explanation:"git pull = git fetch + git merge. It downloads remote changes and integrates them into your current local branch."},
+      {q:"What is a Pull Request (PR)?",options:["A command to fetch remote code","A request to the repository maintainers to review and merge your branch into the target branch","An automated deployment trigger","A way to delete a branch after merging"],answer:1,explanation:"PRs are the collaboration mechanism for code review — team members review, comment, request changes, and approve before merge."},
+      {q:"What does `git diff` show?",options:["The list of branches","The commit history","Differences between the working directory and the staging area (unstaged changes)","Remote repository status"],answer:2,explanation:"git diff shows unstaged changes. git diff --staged shows staged-but-not-committed changes."},
+      {q:"Which Git workflow uses long-lived branches like `develop`, `release`, and `hotfix`?",options:["Trunk-Based Development","GitHub Flow","Git Flow","Forking Workflow"],answer:2,explanation:"Git Flow (by Vincent Driessen) uses feature, develop, release, hotfix, and main branches for structured releases."},
+      {q:"What command reverts a commit by creating a new commit that undoes its changes?",options:["git reset","git revert","git undo","git rollback"],answer:1,explanation:"git revert creates a new commit that inverts the changes of the specified commit — safe for shared/public branches."},
+      {q:"What does `git clone` do?",options:["Creates a new empty repository","Downloads and creates a local copy of an existing remote repository","Copies a file within the repository","Merges two repositories"],answer:1,explanation:"git clone downloads the full repository including all history and sets up remote tracking branches automatically."},
+      {q:"What is the 'staging area' (index) in Git?",options:["A remote backup of the repository","The production deployment server","An intermediate area where you prepare changes before committing them","A branch for testing changes"],answer:2,explanation:"The staging area lets you selectively prepare which changes to include in the next commit — a deliberate checkpoint."},
+      {q:"How do you list all local AND remote branches in Git?",options:["git branch","git branch -r","git branch -a","git remote --list"],answer:2,explanation:"git branch -a shows all branches: local branches and remote-tracking branches (origin/main, origin/develop, etc.)."},
+      {q:"What is a 'tag' in Git?",options:["A comment on a commit","A permanent pointer to a specific commit, typically marking release versions","A type of branch","A merge conflict marker"],answer:1,explanation:"Tags mark specific points in history (v1.0.0, v2.1.3) — commonly used for release management and version tracking."},
+      {q:"What does `git fetch` do differently from `git pull`?",options:["Downloads remote changes AND merges them automatically","Downloads remote changes to tracking branches but does NOT merge them into local branches","Pushes local commits to remote","Deletes remote branches"],answer:1,explanation:"git fetch downloads remote changes safely without touching your working branches — you review before merging."},
+      {q:"What does `git reset --soft HEAD~1` do?",options:["Permanently deletes the last commit and its changes","Unstages all files","Undoes the last commit but keeps the changes staged in the index","Reverts the last commit by creating a new commit"],answer:2,explanation:"--soft resets HEAD back one commit but leaves changes staged — useful for splitting or rewording a recent commit."},
+      {q:"What is the purpose of branch protection rules in GitHub?",options:["To make branches permanently read-only","To prevent direct pushes to protected branches and require PR reviews before merging","To delete branches automatically after merging","To encrypt the branch contents"],answer:1,explanation:"Branch protection rules enforce code review, CI checks passing, and prevent force-pushes to important branches like main."}
+    ]
+  },
+  M07: {
+    title: "Docker & Containerization",
+    questions: [
+      {q:"In the Docker architecture, where are Docker images stored and managed primarily?",options:["Docker Client","Docker Daemon","Docker Registry","Docker Network"],answer:2,explanation:"Docker Registry (like Docker Hub) is the storage and distribution system for Docker images."},
+      {q:"What is the key difference between a Virtual Machine (VM) and a Docker Container?",options:["VMs run natively on Linux, Containers run on hypervisors","Containers share the host OS kernel and are lightweight, while VMs need a full guest OS","VMs are faster to start up than containers","Docker containers cannot run on Linux"],answer:1,explanation:"Containers share the host kernel via namespaces/cgroups. VMs include a full guest OS, consuming far more resources."},
+      {q:"Which command downloads an image from Docker Hub without running it?",options:["docker run","docker load","docker fetch","docker pull"],answer:3,explanation:"docker pull downloads an image from a registry to local storage. docker run pulls AND starts a container."},
+      {q:"Which command removes a Docker image from the local system?",options:["docker rm","docker rmi","docker delete","docker prune"],answer:1,explanation:"docker rmi removes images. docker rm removes stopped containers. docker system prune removes all unused resources."},
+      {q:"What does the `docker exec` command do?",options:["Creates a new container from an image","Attaches your terminal to a stopped container","Runs a command inside an already running container","Executes the startup command defined in the Dockerfile"],answer:2,explanation:"docker exec spawns a new process inside a running container without stopping it — commonly used for debugging."},
+      {q:"What is the difference between ADD and COPY in a Dockerfile?",options:["COPY should generally be preferred for simple file copying","ADD can download files from a URL and extract archives; COPY only copies from local filesystem","COPY is deprecated; ADD is the modern instruction","There is no difference; they are aliases"],answer:1,explanation:"ADD has extra features (URL download, tar extraction). Best practice: use COPY for transparency and simplicity."},
+      {q:"What does the EXPOSE instruction in a Dockerfile do?",options:["Publishes the port to the host machine automatically","Serves as documentation indicating which ports the application listens on","Locks the container to the specified port","Redirects all traffic to port 80"],answer:1,explanation:"EXPOSE is documentation only — you still need the -p flag at runtime to actually publish the port to the host."},
+      {q:"What specific type of virtualization does Docker perform?",options:["Hardware-level virtualization","Hypervisor virtualization","CPU-level virtualization","OS-level virtualization"],answer:3,explanation:"Docker uses OS-level virtualization via Linux namespaces and cgroups — no hypervisor layer needed."},
+      {q:"Which command allows you to search for images available in Docker Hub?",options:["docker find","docker locate","docker search","docker get"],answer:2,explanation:"docker search <term> queries Docker Hub's index and returns matching public images with their pull counts."},
+      {q:"Which statement is true about Docker containers regarding resource allocation?",options:["They allocate a fixed amount of RAM upon startup","They run natively on macOS without a VM helper","They cannot be scaled dynamically","No pre-allocation of RAM is required; they consume resources dynamically"],answer:3,explanation:"Containers use only the resources they need at runtime. Hard limits can be set with --memory and --cpus flags."},
+      {q:"Which Docker command opens an interactive terminal session inside a running container?",options:["docker exec -it <container_name> bash","docker run -it <container_name> bash","docker logs -it <container_name>","docker ps -it <container_name>"],answer:0,explanation:"docker exec -it spawns an interactive bash shell inside a running container (-i=keep stdin open, -t=allocate TTY)."},
+      {q:"Which instruction sets the author/metadata of the generated image in older Dockerfiles?",options:["AUTHOR","OWNER","MAINTAINER","CREATOR"],answer:2,explanation:"MAINTAINER is a deprecated instruction. The modern approach uses: LABEL maintainer='name@email.com'."},
+      {q:"If you define both ENTRYPOINT and CMD in a Dockerfile, how do they interact?",options:["ENTRYPOINT runs first, and CMD is appended as default arguments to it","CMD takes absolute priority; ENTRYPOINT is ignored","They run in parallel","ENTRYPOINT is ignored if CMD contains arguments"],answer:0,explanation:"ENTRYPOINT defines the executable; CMD provides default arguments to it. CMD arguments can be overridden at runtime."},
+      {q:"What does `docker ps` (without any arguments) display?",options:["All images on the host","All containers (running and stopped)","Only currently running containers","Docker Engine memory metrics"],answer:2,explanation:"docker ps shows only running containers. docker ps -a shows all containers including stopped ones."},
+      {q:"What is a private container registry used for?",options:["Downloading official open-source base images","Sharing images securely within an enterprise/organisation","Storing local backups of containers","Running containers in host network mode"],answer:1,explanation:"Private registries (AWS ECR, GCR, Harbor) store proprietary images with access control and vulnerability scanning."},
+      {q:"What does `docker diff` show?",options:["Gaps between Client and Daemon versions","Changes (Additions, Deletions, Modifications) made to a container's filesystem since it started","Difference between CMD and ENTRYPOINT parameters","Network latency across container interfaces"],answer:1,explanation:"docker diff lists filesystem changes in a running container compared to its original image state."},
+      {q:"What is the key difference between `docker attach` and `docker exec`?",options:["attach creates a new process; exec connects to an existing one","attach is for stopped containers; exec is for running containers","attach connects stdin/stdout to the container's main process; exec creates a new process in the container","There is no difference; they are interchangeable"],answer:2,explanation:"docker attach connects to PID 1 (main process). docker exec creates a new independent process alongside it."},
+      {q:"Which Docker network driver is the default if none is specified?",options:["None","Host","Overlay","Bridge"],answer:3,explanation:"The bridge network is Docker's default. Containers get their own IP and communicate via container names within the bridge."},
+      {q:"What is the main purpose of Docker Compose?",options:["To build a single Docker image","To configure and run multi-container applications from a single YAML file","To configure cloud load balancers","To host images in a private registry"],answer:1,explanation:"Docker Compose defines multi-container apps in docker-compose.yml and starts all services with one command."},
+      {q:"Which single command starts the application stack defined in `docker-compose.yml` in the background?",options:["docker-compose start","docker compose up -d","docker compose run","docker-compose boot"],answer:1,explanation:"docker compose up -d starts all services defined in docker-compose.yml in detached (background) mode."},
+      {q:"What is the purpose of the healthcheck instruction in Docker Compose?",options:["To check server internet ping latency","To monitor host CPU thermal limits","To determine if the service inside the container is ready and functioning correctly","To scan package dependencies for vulnerabilities"],answer:2,explanation:"Healthchecks run commands periodically to verify service health — orchestrators use this to route traffic only to healthy containers."},
+      {q:"When using Docker Compose, are services on the same stack connected by default?",options:["No, they are placed on the 'None' isolated driver","They communicate using host network sharing","Yes, Compose automatically creates a single default bridge network for the entire stack","They cannot communicate unless --link is specified at runtime"],answer:2,explanation:"Compose creates a default bridge network for the stack — services reach each other by service name as DNS."},
+      {q:"What is the purpose of the `.dockerignore` file?",options:["To ignore script compiler warnings","To bypass execution runtime constraints","To prevent specific files and directories from being sent to the build daemon, reducing build context size","To ignore networking routing settings"],answer:2,explanation:".dockerignore works like .gitignore — excludes node_modules, .git, secrets, etc. from the build context."},
+      {q:"Which tool is used for finding vulnerabilities in a Docker image?",options:["Docker Scout","Docker Defender","Docker Sentinel","Docker Guard"],answer:0,explanation:"Docker Scout (formerly docker scan / Snyk integration) analyses images against CVE databases to find known vulnerabilities."},
+      {q:"What is the 'Overlay' network driver used for?",options:["Connecting containers on the same single host","Connecting containers across multiple Docker hosts (multi-host clustering)","Disabling container network connectivity","Mapping container ports to localhost interfaces"],answer:1,explanation:"Overlay networks span multiple Docker hosts, enabling container-to-container communication across nodes in Docker Swarm or Kubernetes."},
+      {q:"Which command is used to authenticate with a Docker registry?",options:["docker login","docker connect","docker auth","docker signin"],answer:0,explanation:"docker login authenticates to a registry. Credentials are stored in ~/.docker/config.json."},
+      {q:"To push to a third-party registry like AWS ECR, what is typically required?",options:["Upgrading the Docker daemon to enterprise version","Authentication and tagging the image with the full registry URL","Running containers in Host network mode","Disabling all internal container ports"],answer:1,explanation:"You must docker login to the registry and tag the image with the full registry URL prefix before pushing."},
+      {q:"What happens if you EXPOSE a port in a Dockerfile but do not publish it with `-p` at runtime?",options:["The container fails to start","The service is accessible only from inside the container or by containers on the same Docker network","The port is mapped to a random host port automatically","The container network blocks all outbound calls"],answer:1,explanation:"EXPOSE without -p means the port is available within Docker networks but is not mapped to the host machine."},
+      {q:"Which command cleans up unused local volumes?",options:["docker volume rmi","docker volume clean","docker volume prune","docker volume remove-all"],answer:2,explanation:"docker volume prune removes all volumes not referenced by any container — frees disk space safely."},
+      {q:"How do you limit CPU and memory usage for a running container?",options:["Using --memory and --cpus flags with docker run (Container Resource Management)","Container Networking flags","Docker Volume configuration","Registry Management settings"],answer:0,explanation:"Resource constraints are set at docker run with --memory=512m --cpus=1.0, or in Compose under deploy.resources.limits."}
+    ]
+  },
+  M08: {
+    title: "CI/CD with GitHub Actions",
+    questions: [
+      {q:"What are GitHub Actions primarily used for?",options:["To manage database architectures","To automate tasks, set up CI/CD, and deploy code directly from repositories","To act as a primary web hosting service","To manually review errors"],answer:1,explanation:"GitHub Actions is a platform for automating workflows — CI pipelines, deployments, and any event-driven automation."},
+      {q:"A job in GitHub Actions consists of:",options:["Only One Step","Multiple Jobs running in parallel","A series of individual Steps executed sequentially on the same runner","Only a single shell script"],answer:2,explanation:"A Job is made up of Steps that run sequentially on the same runner instance, sharing a workspace."},
+      {q:"Where are workflow files stored in a repository?",options:[".github/workflows/",".github/work","github/workflows/","workflows/"],answer:0,explanation:"Workflow YAML files must live in .github/workflows/ to be recognised and run by GitHub Actions."},
+      {q:"If a workflow runs a job on Ubuntu, Windows, and macOS simultaneously, how are they executed by default?",options:["Sequentially","In parallel","Alphabetically","Manually triggered one by one"],answer:1,explanation:"Jobs without `needs:` dependencies run in parallel across their respective runners simultaneously."},
+      {q:"What is a 'Runner' in GitHub Actions?",options:["A script that checks for syntax errors","A directory where workflows are stored","A set of pre-defined objects","A server (VM) that listens for jobs and executes workflow steps"],answer:3,explanation:"A Runner is a server that listens for jobs, executes workflow steps, and reports results back to GitHub."},
+      {q:"Which of the following is true of GitHub-hosted runners?",options:["You must manually manage each VM","They allow you to run multiple jobs on the same VM indefinitely","They provide a fresh, clean instance for every single job run","You can install permanent system-level changes to the base OS"],answer:2,explanation:"GitHub-hosted runners are ephemeral — each job gets a clean VM, ensuring reproducibility and isolation."},
+      {q:"When would you use the `workflow_dispatch` trigger event?",options:["When a pull request is created","When you want to manually trigger the workflow on demand","When an issue is updated","When code is merged to the main branch"],answer:1,explanation:"workflow_dispatch adds a 'Run workflow' button in the GitHub UI for manual, on-demand execution with optional inputs."},
+      {q:"Which event triggers a workflow on every commit push or tag?",options:["When a pull request is merged","When a commit or tag is pushed to the repository (`push`)","When an issue is created","When workflow_dispatch is clicked"],answer:1,explanation:"on: push triggers the workflow whenever commits or tags are pushed to the matching branches/patterns."},
+      {q:"In GitHub Actions, what does the `schedule` event with cron syntax control?",options:["It runs the workflow only on weekends","It triggers the workflow at specified recurring time intervals","It runs the workflow once every year","It triggers the workflow only once when first created"],answer:1,explanation:"on: schedule with cron expressions enables time-based triggers, e.g. '0 2 * * *' runs at 2am UTC daily."},
+      {q:"What typically happens when you push code to a repository with a workflow configured with `on: push`?",options:["The workflow is automatically triggered","GitHub deletes the repository","The repository is forked automatically","Nothing happens unless triggered manually"],answer:0,explanation:"Push events automatically trigger matching workflows — this is the foundation of Continuous Integration automation."},
+      {q:"What are 'Steps' in the context of a GitHub Actions job?",options:["They define the operating system for the job","They trigger the workflow","Individual tasks executed sequentially within a job — each step runs a command or a reusable Action","They define environment variables for the repository"],answer:2,explanation:"Steps are the atomic units of work in a job — shell commands (`run:`) or Actions (`uses:`)."},
+      {q:"Which statement correctly describes advantages of GitHub Actions?",options:["You must manually set up and scale servers for your workflows","GitHub Actions only works on local machines","You cannot get reports or job status from GitHub Actions","GitHub manages infrastructure, executes jobs, provides logs, artifacts, and reports"],answer:3,explanation:"GitHub Actions provides fully managed runners, logs, artifact storage, and status badges without any infrastructure management."},
+      {q:"What is the advantage of self-hosted runners?",options:["You don't have to manage any infrastructure","You can install any software and fully control the hardware and environment","You cannot run multiple jobs on the same runner","macOS runners are hosted on GitHub's servers"],answer:1,explanation:"Self-hosted runners give you custom hardware, GPU support, private network access, and pre-installed software control."},
+      {q:"Where are GitHub-hosted runners for Linux, Windows, and macOS hosted?",options:["Linux and Windows on Azure, macOS on GitHub macOS cloud","Linux and Windows on GitHub cloud, macOS on Azure","All runners on self-managed servers","All runners on AWS EC2"],answer:0,explanation:"GitHub uses Microsoft Azure for Linux/Windows runners and their own macOS cloud infrastructure for macOS runners."},
+      {q:"Which operation is NOT supported on GitHub-hosted runners?",options:["Running jobs automatically on push events","Using YAML-based workflow configuration","Installing system-level software permanently (OS changes persist after the job)","Receiving job logs and downloading artifacts"],answer:2,explanation:"Hosted runners are ephemeral — any OS changes are lost after the job. Use self-hosted runners for persistent tooling."},
+      {q:"In `workflow_dispatch`, why do we define `inputs`?",options:["To auto-detect the deployment environment","To allow users to select or type values when manually triggering the workflow","To permanently store sensitive keys","To restrict branch creation"],answer:1,explanation:"Inputs create form fields in the GitHub UI that users fill out when clicking 'Run workflow'."},
+      {q:"What is the purpose of using `actions/checkout@v4` as a step?",options:["Installs project dependencies","Creates a new branch before deployment","Checks out the repository under $GITHUB_WORKSPACE so subsequent steps can access the code","Deploys the application to the production server"],answer:2,explanation:"Without actions/checkout, the runner has no access to your repository code. This is almost always the very first step."},
+      {q:"What are artifacts in GitHub Actions?",options:["Permanently stored source code backups","Files (like build outputs or test reports) saved and shared between jobs in a workflow run","Triggers for another workflow","Automatic branch merge confirmations"],answer:1,explanation:"Artifacts (via actions/upload-artifact / actions/download-artifact) persist files between jobs and allow downloading build outputs."},
+      {q:"What is the primary benefit of GitHub Environments?",options:["To create new branches automatically","To execute workflows on local operating systems","To protect deployments with environment-specific secrets and manual approval gates","To share files between jobs"],answer:2,explanation:"Environments add protection rules — required reviewers must approve before a job targeting that environment can run."},
+      {q:"What is the main purpose of a lint job in a production pipeline?",options:["Run code quality and syntax checks before building or testing","Build the Docker image","Run unit tests","Deploy the application to production"],answer:0,explanation:"Linting catches syntax errors and style violations early — fast feedback before expensive build and test steps."},
+      {q:"Why are `if:` conditional expressions used on a job or step?",options:["To speed up workflow execution automatically","To define manual inputs","To run a step only on specific branches","To control whether a job or step runs based on evaluated conditions"],answer:3,explanation:"Conditions like `if: github.ref == 'refs/heads/main'` control exactly when jobs and steps execute."},
+      {q:"What is the role of Matrix Strategy in GitHub Actions?",options:["To run a single job across predefined combinations of variables (e.g. multiple OS and Node versions)","To create separate repos for each operating system","To limit the total number of workflow runs","To deploy applications to multiple servers sequentially"],answer:0,explanation:"Matrix strategy generates multiple parallel job runs from variable combinations — perfect for cross-platform and multi-version testing."},
+      {q:"What is the main advantage of using OIDC (OpenID Connect) with AWS in GitHub Actions?",options:["To permanently store AWS access keys in repository secrets","To authenticate securely with AWS without storing long-lived static credentials","To increase Docker build speed","To create IAM users automatically"],answer:1,explanation:"OIDC federation lets GitHub Actions assume an AWS IAM role using short-lived tokens — no static access keys needed."},
+      {q:"In GitHub Actions, why is the `needs` keyword used?",options:["To run workflows only on one branch","To define job dependencies and run jobs in sequence","To automatically merge pull requests","To store secrets"],answer:1,explanation:"needs: [job-a, job-b] makes a job wait until all listed jobs complete successfully before it starts."},
+      {q:"Which trigger/event makes a workflow callable from other workflows (reusable)?",options:["push","workflow_dispatch","workflow_call","pull_request"],answer:2,explanation:"on: workflow_call makes a workflow reusable — other workflows can call it with inputs and receive outputs."},
+      {q:"What is the purpose of the `concurrency` key in a workflow?",options:["To store workflow logs","To speed up Docker image builds","To run multiple jobs in parallel","To limit or cancel in-progress runs to prevent conflicts and overlapping deployments"],answer:3,explanation:"concurrency groups ensure only one run per group proceeds. cancel-in-progress: true cancels older in-flight runs."},
+      {q:"How do you target a self-hosted runner in a workflow?",options:["runs-on: ubuntu-latest","runs-on: github-hosted","runs-on: self-hosted (or with labels like [self-hosted, linux])","runs-on: ec2"],answer:2,explanation:"The self-hosted label routes the job to your own runner machines registered with the repository or organisation."},
+      {q:"What is the primary role of the `env` context in GitHub Actions?",options:["Store encrypted sensitive values","Store environment variables defined at the workflow, job, or step level","Automatically rotate access tokens","Store AWS secrets"],answer:1,explanation:"env: defines environment variables accessible via ${{ env.VAR_NAME }} at the workflow, job, or step scope."},
+      {q:"What is a common reason why jobs are not being picked up by a self-hosted runner?",options:["Git is not installed on the runner","Ubuntu is not fully updated","SSH keys are missing","Incorrect runs-on label — the job labels do not match the runner's registered labels"],answer:3,explanation:"If the runs-on labels do not match the runner's registered labels, the job will remain queued indefinitely."},
+      {q:"What is the primary aim of the `secrets` context?",options:["Store sensitive data like passwords, API keys, and tokens securely so they are never exposed in logs","Store public configuration values","Store temporary build variables","Store repository file paths"],answer:0,explanation:"${{ secrets.KEY }} provides access to encrypted repository or organisation secrets — they are masked in all log output."}
+    ]
+  },
+  M09: {
+    title: "DevSecOps",
+    questions: [
+      {q:"What is the primary principle behind 'Shift Left' security?",options:["Move security testing to the end of the pipeline","Move security testing earlier in the development lifecycle","Eliminate all security testing from the pipeline","Only test security in production"],answer:1,explanation:"Shifting left moves security to the start of the SDLC — catching vulnerabilities when they are cheapest to fix."},
+      {q:"How does a DevSecOps pipeline differ from a traditional DevOps pipeline?",options:["DevSecOps skips the build stage","Security is embedded at every stage rather than bolted on at the end","DevSecOps only runs on self-hosted runners","There is no difference — they are the same"],answer:1,explanation:"DevSecOps integrates security gates (SAST, DAST, SCA, secret scanning) throughout the pipeline, not as an afterthought."},
+      {q:"What is the primary advantage of catching a vulnerability during SAST vs. finding it in production?",options:["It costs approximately the same either way","It costs approximately 10x less to fix it early in the pipeline","Production fixes are always easier and faster","Early catches don't significantly matter"],answer:1,explanation:"The cost of fixing security vulnerabilities grows exponentially the later they are discovered in the SDLC."},
+      {q:"Which of the following best describes the DevSecOps formula?",options:["Speed + Automation","Speed + Automation + Security built-in at every stage","Security enforcement only at deployment","Manual security reviews only, no automation"],answer:1,explanation:"DevSecOps = Speed (DevOps velocity) + Automation + Security embedded and automated at every pipeline stage."},
+      {q:"In a DevSecOps pipeline, what is the role of the `needs:` keyword in the docker-push job?",options:["It runs docker-push in parallel with all security checks","It blocks docker-push until ALL listed security jobs pass — acting as the security gate","It pushes the image to multiple registries simultaneously","It skips all previous job results"],answer:1,explanation:"needs: acts as a dependency gate — docker-push only runs after SAST, SCA, and container scans all pass successfully."},
+      {q:"Which `on:` trigger makes a workflow reusable so it can be called from another workflow?",options:["on: push","on: workflow_dispatch","on: workflow_call","on: pull_request"],answer:2,explanation:"workflow_call enables other workflows to invoke this workflow as a reusable component, passing inputs and receiving outputs."},
+      {q:"What does `secrets: inherit` do when used in a job that calls a reusable workflow?",options:["It creates new empty secrets for the child workflow","It passes all secrets from the parent workflow down to the child workflow","It deletes secrets after the job completes","It logs all secret values to the job console for debugging"],answer:1,explanation:"secrets: inherit forwards the caller's secrets to the reusable workflow without explicitly listing each one."},
+      {q:"Which jobs should typically use `secrets: inherit`?",options:["Every job in the pipeline including simple linting","Only jobs that require authentication (e.g. Docker push, SonarQube scan)","No jobs — secrets: inherit is deprecated","Only the final deploy job"],answer:1,explanation:"Apply least privilege — only jobs that actually need credentials should inherit secrets to minimise exposure."},
+      {q:"Which security scanning type analyses source code WITHOUT executing it?",options:["DAST — Dynamic Application Security Testing","SAST — Static Application Security Testing","SCA — Software Composition Analysis","Container Scanning"],answer:1,explanation:"SAST analyses code statically — finding vulnerabilities in source code without running the application at all."},
+      {q:"Which of the following is a SAST tool specifically for Python code?",options:["Trivy","Bandit","GitLeaks","OWASP ZAP"],answer:1,explanation:"Bandit is a Python SAST tool that finds common security issues like hardcoded passwords, SQL injection, and insecure functions."},
+      {q:"In a `code-quality.yml` workflow, what does `go vet` do?",options:["It formats Go source code","It performs static analysis to detect suspicious constructs and bugs in Go code","It runs Go unit tests","It builds the Go binary"],answer:1,explanation:"go vet analyses Go source code for suspicious constructs that are likely bugs — it complements linters like golangci-lint."},
+      {q:"Which tool goes beyond basic linting and reports code smells, security hotspots, duplication percentage, and maintainability ratings?",options:["ESLint","flake8","SonarQube","hadolint"],answer:2,explanation:"SonarQube provides comprehensive code quality analysis — security, bugs, code smells, coverage, and duplication metrics."},
+      {q:"When does SAST typically run in a DevSecOps pipeline?",options:["After deployment to production","During runtime of the application","On every push or pull request, in parallel with other CI checks","Only once a week via a scheduled trigger"],answer:2,explanation:"SAST runs on every push/PR — fast static analysis provides immediate developer feedback without blocking other checks."},
+      {q:"What does SCA (Software Composition Analysis) scan for?",options:["Hardcoded passwords in the application's own source code","Known vulnerabilities (CVEs) in third-party libraries and open-source packages","Runtime behaviour of the application under load","Dockerfile syntax and best practices"],answer:1,explanation:"SCA scans dependency manifests (requirements.txt, go.mod, package.json) against CVE databases for vulnerable packages."},
+      {q:"Which Go tool is used for vulnerability scanning of Go module dependencies in the pipeline?",options:["go fmt","govulncheck","go build","go run"],answer:1,explanation:"govulncheck scans Go modules against the Go vulnerability database (vuln.go.dev) to find affected packages with usage analysis."},
+      {q:"In a `dependency-scan.yml` workflow, what is the purpose of `continue-on-error: true`?",options:["The job will fail silently without any notification","Even if vulnerabilities are found, the job reports them without failing the overall pipeline","The job skips the scan entirely if dependencies are missing","The job runs indefinitely in a retry loop"],answer:1,explanation:"continue-on-error: true lets the pipeline continue even if vulnerabilities are detected — useful for report-only audit mode."},
+      {q:"Why is the `if: always()` condition used on the artifact upload step in a dependency scan?",options:["To ensure the scan report is uploaded even if a prior step in the job failed","To make the upload run faster","To prevent the upload from running unless the job succeeds","To trigger the next dependent workflow"],answer:0,explanation:"always() ensures the step runs regardless of previous step outcomes — critical for uploading failure/vulnerability reports."},
+      {q:"What does hadolint check?",options:["Running containers for runtime vulnerabilities","Dockerfile syntax and best practices (like using COPY over ADD, adding USER, etc.)","Go source code for static bugs","Git commit history for leaked secrets"],answer:1,explanation:"hadolint lints Dockerfiles against Dockerfile best practices, integrating ShellCheck for RUN commands."},
+      {q:"What is the purpose of the matrix strategy (`matrix: folders: [backend, frontend]`) in a Docker scan workflow?",options:["To run the scan once combining both folders","To run the same scan job twice — once for backend and once for frontend — in parallel","To deploy both service folders simultaneously","To merge both folders into a single Docker image"],answer:1,explanation:"Matrix strategy fans out — each matrix value runs as a separate parallel job with the same workflow definition."},
+      {q:"In a Trivy scanner step, what does `severity: CRITICAL` specify?",options:["Only CRITICAL severity vulnerabilities will be reported and used for gating","All vulnerabilities will be re-classified as CRITICAL","CRITICAL vulnerabilities will be silently ignored","The scan only checks for CRITICAL-level malware"],answer:0,explanation:"The severity filter limits Trivy output to specified levels — CRITICAL (and HIGH) are typically the pipeline-blocking thresholds."},
+      {q:"What is the effect of `ignore-unfixed: true` in the Trivy configuration?",options:["Vulnerabilities without an available patch are ignored, reducing alert noise","All vulnerabilities are ignored regardless of severity","Only unfixed vulnerabilities are reported; fixed ones are ignored","The scan skips all checks and runs faster"],answer:0,explanation:"ignore-unfixed filters out CVEs with no available fix — focusing developer attention on actionable, patchable findings."},
+      {q:"What does `exit-code: 1` do in the Trivy action configuration?",options:["It always exits with code 1 regardless of findings","It tells Trivy to return a non-zero exit code when vulnerabilities matching the severity threshold are found, failing the CI step","It forces the runner VM to restart","It disables all scan output and logs"],answer:1,explanation:"exit-code: 1 makes the CI step fail when Trivy finds matching vulnerabilities — this enforces the security quality gate."},
+      {q:"What is the purpose of `fail-fast: false` in the Docker scan matrix strategy?",options:["If one folder scan fails, the other folder scan continues independently to completion","The entire workflow fails immediately on any matrix job error","No matrix jobs run in parallel; they run sequentially","The entire build is cancelled on first failure"],answer:0,explanation:"fail-fast: false lets all matrix jobs complete even if one fails — you get full scan results for all services."},
+      {q:"Why does the GitLeaks scan use `fetch-depth: 0` when checking out the repository?",options:["To speed up the checkout process by fetching fewer commits","To download the complete Git history, since a secret may have been committed then deleted","To only fetch the very latest commit","To disable all Git history operations"],answer:1,explanation:"GitLeaks scans the full git history — secrets removed in later commits are still detectable in earlier commits."},
+      {q:"How does GitLeaks detect secrets in source code?",options:["By running the application and monitoring all network traffic","By using regex pattern matching and entropy-based detection against known secret signatures","By asking developers to manually flag secrets in code comments","By checking only the Dockerfile and CI YAML files"],answer:1,explanation:"GitLeaks uses regex rules for known secret patterns (AWS keys, GitHub tokens, private keys) and entropy analysis for random strings."},
+      {q:"Which of the following would GitLeaks be able to detect?",options:["Python syntax errors","AWS access keys accidentally committed to a repository","Docker image layer sizes","Unit test coverage percentage"],answer:1,explanation:"GitLeaks detects accidentally committed credentials — AWS keys, GitHub tokens, private keys, Stripe keys, and API secrets."},
+      {q:"What does OWASP ZAP Baseline Scan test against?",options:["Source code without executing it","The running application against the OWASP Top 10 web security risks","Docker images for known CVEs in OS packages","Git commit history for leaked credentials"],answer:1,explanation:"OWASP ZAP performs DAST — it sends actual HTTP requests to a live application and tests for real-world web vulnerabilities."},
+      {q:"Why does the DAST scan run AFTER deployment, not before?",options:["Because DAST requires the application to be live and running to simulate real HTTP attacks","Because DAST only runs on weekends due to infrastructure costs","Because DAST is faster and more efficient when the app is fully deployed","Because DAST completely replaces all other security scanning types"],answer:0,explanation:"DAST (Dynamic testing) needs a running target — it cannot test an application that has not been deployed yet."},
+      {q:"In a production DevSecOps pipeline, which severity levels should BLOCK the build from proceeding?",options:["All severities including LOW and MEDIUM","CRITICAL and HIGH","Only CRITICAL — HIGH can be ignored and tracked","None — all findings should only be reported, never blocking"],answer:1,explanation:"CRITICAL and HIGH severity findings block the pipeline. MEDIUM/LOW are tracked in reports but are typically non-blocking."},
+      {q:"What is the correct order of stages in a DevSecOps pipeline dependency chain?",options:["deploy → docker-push → dast-scan → CI checks (parallel)","CI checks (parallel) → docker-push → deploy → dast-scan","dast-scan → CI checks → docker-push → deploy","docker-push → CI checks → deploy → dast-scan"],answer:1,explanation:"Security gates are ordered: all CI/security checks pass in parallel → docker-push → deploy → DAST tests the live application."}
+    ]
+  },
+  M10: {
+    title: "Kubernetes",
+    questions: [
+      {q:"Which component acts as the main entry point for the Kubernetes API?",options:["kubelet","kube-scheduler","etcd","kube-apiserver"],answer:3,explanation:"kube-apiserver is the front-end of the control plane — all kubectl commands and internal components communicate through it."},
+      {q:"Where is the state of the Kubernetes cluster persisted?",options:["kube-controller-manager","etcd","kube-proxy","containerd"],answer:1,explanation:"etcd is a distributed key-value store that holds the entire cluster state. It is the single source of truth."},
+      {q:"What is the primary role of the kube-scheduler?",options:["To monitor container CPU utilisation","To assign Pods to healthy Worker Nodes based on resource constraints and policies","To restart crashed containers","To configure iptables rules on nodes"],answer:1,explanation:"The scheduler watches for unscheduled Pods and assigns them to nodes based on resources, taints, tolerations, and affinity."},
+      {q:"Which agent runs on worker nodes to monitor container state and communicate with the API server?",options:["kube-proxy","etcd","kubelet","containerd"],answer:2,explanation:"kubelet runs on every node — it ensures containers described in PodSpecs are running and healthy, reporting back to the API server."},
+      {q:"What is the smallest deployable unit of execution in Kubernetes?",options:["Container","Service","Pod","Deployment"],answer:2,explanation:"A Pod wraps one or more tightly coupled containers that share a network namespace and storage volumes."},
+      {q:"How do multiple containers inside the same Pod share networking?",options:["They communicate over separate network interfaces","They communicate via localhost because they share the same network namespace","They must use external load balancers","They cannot share networking resources"],answer:1,explanation:"Containers in a Pod share the same network namespace — they see each other on localhost with different port numbers."},
+      {q:"What is the default namespace where K8s objects are created if none is specified?",options:["kube-system","kube-public","default","home"],answer:2,explanation:"Objects created without a namespace go to 'default'. kube-system is reserved for system components like CoreDNS."},
+      {q:"Which K8s resource manages ReplicaSets and automates rolling updates for stateless applications?",options:["DaemonSet","StatefulSet","Job","Deployment"],answer:3,explanation:"Deployments manage ReplicaSets and orchestrate rolling updates, rollbacks, and scaling of stateless application workloads."},
+      {q:"If a bare Pod (without a controller) crashes, what happens?",options:["Kubelet restarts it automatically on another node","The Deployment controller recreates it","The Pod is gone forever and is not rescheduled","kube-scheduler waits 5 minutes before rescheduling it"],answer:2,explanation:"Bare Pods have no controller watching them — if they crash or the node fails, they are not rescheduled anywhere."},
+      {q:"Which command rolls back a Deployment to its previous stable revision?",options:["kubectl rollback deployment","kubectl rollout undo deployment","kubectl delete deployment","kubectl apply deployment"],answer:1,explanation:"kubectl rollout undo deployment/<name> reverts to the previous ReplicaSet revision stored in the Deployment's rollout history."},
+      {q:"What is the default Service type in Kubernetes?",options:["NodePort","LoadBalancer","ClusterIP","ExternalName"],answer:2,explanation:"ClusterIP exposes the Service on a cluster-internal IP — accessible only within the cluster, not from outside."},
+      {q:"Which component provides internal DNS resolution inside a Kubernetes cluster?",options:["CoreDNS","kube-proxy","etcd","containerd"],answer:0,explanation:"CoreDNS runs as a Deployment in kube-system and resolves service names to ClusterIPs for all Pods in the cluster."},
+      {q:"How does the Gateway API differ from legacy Ingress?",options:["It is slower and less secure than Ingress","It splits routing and load balancing into separate role-oriented resources (Gateway, HTTPRoute, etc.)","It is hosted outside the cluster only","It only supports raw TCP traffic"],answer:1,explanation:"Gateway API is the next-generation replacement for Ingress with role-oriented resources and much richer routing capabilities."},
+      {q:"How are values stored inside a standard Kubernetes Secret manifest?",options:["Encrypted using AES-256 by default","Base64 encoded (not encrypted by default)","Rotated automatically by etcd","As clear-text plaintext"],answer:1,explanation:"Secrets store data as base64-encoded strings — NOT encrypted by default. Encryption at rest requires additional etcd configuration."},
+      {q:"What happens to env vars in a running Pod if you update the source ConfigMap?",options:["They update instantly and live inside the running container","They are deleted from the running container","They only update after a Pod restart or recreation","The Pod crashes immediately upon ConfigMap change"],answer:2,explanation:"Env vars from ConfigMaps are injected at Pod creation time. Changes to ConfigMaps require Pod restart to take effect."},
+      {q:"Which resource represents a developer's request for persistent storage in a cluster?",options:["PersistentVolume (PV)","StorageClass","PersistentVolumeClaim (PVC)","ConfigMap"],answer:2,explanation:"PVCs are requests for storage — the cluster binds them to matching PVs or dynamically provisions one via StorageClass."},
+      {q:"Which reclaim policy ensures the Persistent Volume remains after the PVC is deleted?",options:["Delete","Recycle","Retain","Archive"],answer:2,explanation:"Retain keeps the PV and its data after PVC deletion — an admin must manually decide what to do with the data."},
+      {q:"What is the advantage of using a StorageClass in Kubernetes?",options:["It encrypts all database configurations","It enables dynamic provisioning of storage on-demand when a PVC is created","It speeds up Pod scheduling decisions","It monitors application log directories"],answer:1,explanation:"StorageClass abstracts storage backends (EBS, GCS, NFS) and enables dynamic PV provisioning on PVC creation."},
+      {q:"Which controller is best suited for running stateful databases requiring stable, sticky identities?",options:["Deployment","DaemonSet","StatefulSet","Job"],answer:2,explanation:"StatefulSets provide stable network identities, ordered deployment, and persistent storage — designed for stateful workloads like databases."},
+      {q:"Which controller ensures exactly one copy of a specific Pod runs on every single worker node?",options:["ReplicaSet","StatefulSet","Job","DaemonSet"],answer:3,explanation:"DaemonSets run exactly one Pod per node — used for log collectors (Fluentd), monitoring agents (Node Exporter), and CNI plugins."},
+      {q:"When does a Job controller terminate after creating its Pods?",options:["When the schedule time is met","Once the task runs to the configured number of successful completions","It runs indefinitely until manually deleted","When the node running the Pod goes offline"],answer:1,explanation:"Jobs run to completion — they terminate when the specified number of successful Pod completions is reached."},
+      {q:"What probe does Kubelet use to detect a deadlocked container that needs to be restarted?",options:["Readiness Probe","Liveness Probe","Startup Probe","Healthy Probe"],answer:1,explanation:"Liveness probes detect stuck or deadlocked containers — kubelet restarts the container when the liveness probe fails."},
+      {q:"Which probe temporarily removes a Pod from Service endpoints when it fails?",options:["Liveness Probe","Startup Probe","Readiness Probe","Eviction Probe"],answer:2,explanation:"Readiness probes control traffic routing — a failing Pod is removed from Service endpoints until the probe recovers."},
+      {q:"A Pod is terminated with Exit Code 137. What does this mean?",options:["It was throttled due to CPU rate limiting","It was OOMKilled (Out Of Memory) for exceeding its configured memory limit","It exited successfully after completing its task","It had an unrecoverable network timeout"],answer:1,explanation:"Exit 137 = 128 + SIGKILL (9). The Linux OOM killer sent SIGKILL to the container for exceeding its memory limit."},
+      {q:"Which QoS class does a Pod receive if its container has requests.cpu=100m and limits.cpu=200m (not equal)?",options:["Guaranteed","Burstable","BestEffort","Priority"],answer:1,explanation:"Burstable: requests and limits are set but not equal. Guaranteed: requests exactly equal limits. BestEffort: neither set."},
+      {q:"What is required to make a Horizontal Pod Autoscaler (HPA) function?",options:["A legacy Ingress controller","Persistent Volume claims for each Pod","Metrics Server active in the cluster and resource requests defined on Pods","A service mesh like Istio"],answer:2,explanation:"HPA queries Metrics Server for CPU/memory metrics — without it, HPA cannot make any scaling decisions."},
+      {q:"What is applied to Nodes to repel Pods unless the Pod has a matching toleration?",options:["Labels","Taints","Tolerations","Selectors"],answer:1,explanation:"Taints mark nodes as unsuitable for general scheduling. Only Pods with matching Tolerations can be placed on them."},
+      {q:"How do you define a soft scheduling preference for Pods to land on nodes with SSDs?",options:["requiredDuringSchedulingIgnoredDuringExecution Node Affinity","Taints and Tolerations","preferredDuringSchedulingIgnoredDuringExecution Node Affinity","DaemonSet configuration"],answer:2,explanation:"preferredDuring... is a soft preference — the scheduler tries to honour it but will schedule elsewhere if no matching nodes exist."},
+      {q:"What is Helm in the context of Kubernetes?",options:["A container runtime engine","A package manager that bundles and configures Kubernetes YAML manifests as reusable Charts","A cluster monitoring dashboard","An internal network overlay CNI plugin"],answer:1,explanation:"Helm is the package manager for Kubernetes — Charts bundle all application manifests with configurable values.yaml defaults."},
+      {q:"Which Helm file contains the customisable input parameters that overwrite default values?",options:["Chart.yaml","templates/service.yaml","values.yaml","Release.json"],answer:2,explanation:"values.yaml holds default configuration values. Override with `-f custom.yaml` or `--set key=value` at install or upgrade time."}
+    ]
+  }
+};
+
+// ── State ────────────────────────────────────────────────────────────────────
+let currentModule = null;
+let moduleData    = null;
+let questions     = [];
+let currentIndex  = 0;
+let score         = 0;
+let answered      = false;
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+function init() {
+  const params = new URLSearchParams(window.location.search);
+  currentModule = (params.get('module') || '').toUpperCase();
+
+  if (!QUIZ_DATA[currentModule]) {
+    document.getElementById('errorScreen').classList.add('visible');
+    return;
+  }
+
+  moduleData = QUIZ_DATA[currentModule];
+  questions  = shuffle([...moduleData.questions]);
+
+  document.getElementById('quizArea').classList.add('visible');
+  document.getElementById('moduleEyebrow').textContent = currentModule + ' Mastery Exam';
+  document.getElementById('moduleTitle').textContent   = moduleData.title;
+  document.getElementById('moduleSubtitle').textContent =
+    questions.length + ' questions \u2022 Multiple choice \u2022 One at a time';
+
+  const best = localStorage.getItem('devops90_quiz_best_' + currentModule);
+  if (best !== null) {
+    const badge = document.getElementById('bestScoreBadge');
+    badge.textContent = 'Best: ' + best + '/' + questions.length;
+    badge.classList.add('visible');
+  }
+
+  renderQuestion();
+}
+
+// ── Shuffle ───────────────────────────────────────────────────────────────────
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// ── Render question ───────────────────────────────────────────────────────────
+function renderQuestion() {
+  answered = false;
+  const q     = questions[currentIndex];
+  const total = questions.length;
+
+  const pct = (currentIndex / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressFraction').textContent = (currentIndex + 1) + ' / ' + total;
+  document.getElementById('questionNumber').textContent = 'Question ' + (currentIndex + 1);
+  document.getElementById('questionText').textContent   = q.q;
+
+  const list    = document.getElementById('optionsList');
+  const letters = ['A','B','C','D'];
+  list.innerHTML = '';
+  q.options.forEach(function(opt, i) {
+    const li  = document.createElement('li');
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.setAttribute('data-index', i);
+    btn.innerHTML = '<span class="option-letter">' + letters[i] + '</span><span>' + opt + '</span>';
+    btn.addEventListener('click', function() { selectAnswer(i); });
+    li.appendChild(btn);
+    list.appendChild(li);
+  });
+
+  document.getElementById('explanationBox').classList.remove('visible');
+  document.getElementById('explanationText').textContent = '';
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.classList.remove('visible');
+  nextBtn.textContent = (currentIndex + 1 >= total) ? 'See Results \u2192' : 'Next Question \u2192';
+}
+
+// ── Handle answer ─────────────────────────────────────────────────────────────
+function selectAnswer(selectedIdx) {
+  if (answered) return;
+  answered = true;
+
+  const q       = questions[currentIndex];
+  const correct = q.answer;
+  const btns    = document.querySelectorAll('.option-btn');
+
+  btns.forEach(function(btn) {
+    btn.disabled = true;
+    const idx = parseInt(btn.getAttribute('data-index'));
+    if (idx === correct)      btn.classList.add('correct');
+    else if (idx === selectedIdx) btn.classList.add('wrong');
+  });
+
+  if (selectedIdx === correct) score++;
+
+  const expBox = document.getElementById('explanationBox');
+  const expTxt = document.getElementById('explanationText');
+  const letters = ['A','B','C','D'];
+  expTxt.textContent = q.explanation
+    ? q.explanation
+    : 'Correct answer: ' + letters[correct] + '. ' + q.options[correct];
+  expBox.classList.add('visible');
+  document.getElementById('nextBtn').classList.add('visible');
+}
+
+// ── Next question ─────────────────────────────────────────────────────────────
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex >= questions.length) showScore();
+  else renderQuestion();
+}
+
+// ── Score screen ──────────────────────────────────────────────────────────────
+function showScore() {
+  document.getElementById('questionCard').style.display    = 'none';
+  document.getElementById('nextBtn').style.display         = 'none';
+  document.getElementById('progressContainer').style.display = 'none';
+
+  const total = questions.length;
+  const pct   = Math.round((score / total) * 100);
+
+  const key  = 'devops90_quiz_best_' + currentModule;
+  const prev = parseInt(localStorage.getItem(key) || '0');
+  if (score > prev) {
+    localStorage.setItem(key, score);
+    const badge = document.getElementById('bestScoreBadge');
+    badge.textContent = 'Best: ' + score + '/' + total;
+    badge.classList.add('visible');
+  }
+
+  document.getElementById('scoreCircle').style.setProperty('--pct', pct);
+  document.getElementById('scoreNumber').textContent = score + '/' + total;
+
+  let title, sub;
+  if      (pct >= 90) { title = 'Outstanding!';   sub = 'You have mastered this module.'; }
+  else if (pct >= 75) { title = 'Great Work!';     sub = 'Strong understanding — almost perfect.'; }
+  else if (pct >= 60) { title = 'Good Effort!';    sub = 'Solid foundation — review and retry.'; }
+  else if (pct >= 40) { title = 'Keep Going!';     sub = 'Review the material and try again.'; }
+  else                { title = 'Keep Studying!';  sub = 'Revisit the module content and retry.'; }
+  document.getElementById('scoreTitle').textContent    = title;
+  document.getElementById('scoreSubtitle').textContent = sub;
+
+  let pMsg;
+  if      (pct >= 90) pMsg = 'Top 5% — You crushed it! Share your achievement.';
+  else if (pct >= 80) pMsg = 'Top 20% — Excellent performance!';
+  else if (pct >= 70) pMsg = 'Top 35% — Well above average!';
+  else if (pct >= 60) pMsg = 'Above average — keep pushing!';
+  else                pMsg = 'Keep studying — you\'ve got this!';
+  document.getElementById('percentileMsg').textContent = pMsg;
+
+  document.getElementById('statCorrect').textContent = score;
+  document.getElementById('statWrong').textContent   = total - score;
+  document.getElementById('statPct').textContent     = pct + '%';
+
+  const shareText =
+    'I just scored ' + score + '/' + total + ' (' + pct + '%) on the ' +
+    moduleData.title + ' mastery quiz in #LearnDevOpsIn90Days! ' +
+    'Building real DevOps skills one module at a time.' +
+    '\n\n#DevOps #DevOpsEngineer #100DaysOfCode';
+  const pageUrl = 'https://aryashreepritikrishna.github.io/learn-devops-in-90-days/quiz.html?module=' + currentModule;
+  const liUrl   = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(pageUrl) +
+                  '&summary=' + encodeURIComponent(shareText);
+  document.getElementById('linkedinBtn').href = liUrl;
+
+  document.getElementById('scoreScreen').classList.add('visible');
+}
+
+// ── Retake ─────────────────────────────────────────────────────────────────────
+function retakeQuiz() {
+  score        = 0;
+  currentIndex = 0;
+  answered     = false;
+  questions    = shuffle([...moduleData.questions]);
+
+  document.getElementById('questionCard').style.display    = '';
+  document.getElementById('progressContainer').style.display = '';
+  document.getElementById('scoreScreen').classList.remove('visible');
+
+  renderQuestion();
+}
+
+init();
+</script>
+</body>
+</html>
