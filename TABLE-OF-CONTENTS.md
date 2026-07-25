@@ -170,13 +170,14 @@
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 64 | Intro & First AWS Infra | 🚧 Pro Module Coming | 🧪 Lab 64 |
-| 🗓️ Day 65 | Providers & Dependencies | 🚧 Pro Module Coming | 🧪 Lab 65 |
-| 🗓️ Day 66 | Vars, Outputs & Expressions | 🚧 Pro Module Coming | 🧪 Lab 66 |
-| 🗓️ Day 67 | State & Remote Backends | 🚧 Pro Module Coming | 🧪 Lab 67 |
-| 🗓️ Day 68 | Reusable Modules | 🚧 Pro Module Coming | 🧪 Lab 68 |
-| 🗓️ Day 69 | Provisioning EKS Cluster | 🚧 Pro Module Coming | 🧪 Lab 69 |
-| 🗓️ Day 70 | **Capstone:** Multi-Env Workspaces | 🚧 Pro Module Coming | 🧪 Lab 70 |
+| 🗓️ Day 64 | Intro & First AWS Infra | [🎓 Day 64 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-64/Day64_Terraform_Intro.html) | [🧪 Lab 64](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-64/lab-session/task.md) |
+| 🗓️ Day 65 | Providers & Dependencies | [🎓 Day 65 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-65/Day65_Providers_Resources.html) | [🧪 Lab 65](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-65/lab-session/task.md) |
+| 🗓️ Day 66 | Vars, Outputs & Expressions | [🎓 Day 66 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-66/Day66_Variables_Outputs.html) | [🧪 Lab 66](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-66/lab-session/task.md) |
+| 🗓️ Day 67 | State & Remote Backends | [🎓 Day 67 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-67/Day67_State_Management.html) | [🧪 Lab 67](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-67/lab-session/task.md) |
+| 🗓️ Day 68 | Reusable Modules | [🎓 Day 68 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-68/Day68_Terraform_Modules.html) | [🧪 Lab 68](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-68/lab-session/task.md) |
+| 🗓️ Day 69 | Provisioning EKS Cluster | [🎓 Day 69 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-69/Day69_EKS_Provisioning.html) | [🧪 Lab 69](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-69/lab-session/task.md) |
+| 🗓️ Day 70 | **Capstone:** Multi-Env Workspaces | [🎓 Day 70 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-70/Day70_Workspaces_Capstone.html) | [🧪 Lab 70](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-70/lab-session/task.md) |
+| 🏆 **Exam** | **Module 11 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2011%20-%20Terraform%20[IaC]/mastery-exam/README.md) | -- |
 
 ---
 

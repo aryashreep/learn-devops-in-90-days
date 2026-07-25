@@ -137,13 +137,13 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 ## ☁️ Module 11 - Terraform [IaC] (Days 64-70)
 | Day | Topic |
 |---|---|
-| Day 64 | Introduction to Terraform and First AWS Infra |
-| Day 65 | Providers, Resources and Dependencies |
-| Day 66 | Variables, Outputs, Data Sources and Expressions |
-| Day 67 | Terraform State Management and Remote Backends |
-| Day 68 | Terraform Modules: Build Reusable Infrastructure |
-| Day 69 | Provision an EKS Cluster with Terraform Modules |
-| Day 70 | **Capstone:** Multi-Environment Infrastructure with Workspaces |
+| [Day 64](../Module%2011%20-%20Terraform%20[IaC]/day-64/README.md) | Introduction to Terraform and First AWS Infra |
+| [Day 65](../Module%2011%20-%20Terraform%20[IaC]/day-65/README.md) | Providers, Resources and Dependencies |
+| [Day 66](../Module%2011%20-%20Terraform%20[IaC]/day-66/README.md) | Variables, Outputs, Data Sources and Expressions |
+| [Day 67](../Module%2011%20-%20Terraform%20[IaC]/day-67/README.md) | Terraform State Management and Remote Backends |
+| [Day 68](../Module%2011%20-%20Terraform%20[IaC]/day-68/README.md) | Terraform Modules: Build Reusable Infrastructure |
+| [Day 69](../Module%2011%20-%20Terraform%20[IaC]/day-69/README.md) | Provision an EKS Cluster with Terraform Modules |
+| [Day 70](../Module%2011%20-%20Terraform%20[IaC]/day-70/README.md) | **Capstone:** Multi-Environment Infrastructure with Workspaces |
 
 ---
 

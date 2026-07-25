@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 66: Variables, Outputs, Data Sources and Expressions - Golu &amp; Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                background-color: var(--bg-blackboard) !important;
+                color: var(--chalk-white) !important;
+            }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-blue { border-color: var(--chalk-blue); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-blue::before { border-right-color: var(--chalk-blue); }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        
+        pre { background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        
+        /* Directory Doodle */
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        
+        /* 3 columns did you know */
+        .dyk-grid { grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .quiz-opt { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Variables, Outputs, Data Sources and Expressions</h1>
+        <p class="subtitle handwritten">Day 66: Input-Output & Live Search! 🎛️🔍</p>
+    </header>
+    
+    
+    <!-- INTRO DIALOGUE -->
+    <section id="intro">
+        <div class="doodle-container" style="margin: 0;">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu, I want to use different AMIs and instance types for Dev and Prod without copy-pasting the resource block! And how do I read the server's public IP?"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+            <div class="speech-bubble bubble-blue">
+                "Beep Boop! We use <span class="chalk-text">variables</span> to parameterize configurations, Golu! By using <span class="chalk-text">data sources</span>, we dynamically search AWS for AMIs, and with <span class="chalk-text">outputs</span> we output public IPs automatically."
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ① LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+            <ul>
+                <li><strong>Variables:</strong> Declare input variables with types (list, map, set) and validation.</li>
+                <li><strong>Sensitive Outputs:</strong> Protect secrets using the `sensitive` argument.</li>
+                <li><strong>Data Sources:</strong> Fetch real-time data from AWS (e.g. AMIs, VPCs).</li>
+                <li><strong>Built-in Functions:</strong> Transform code variables dynamically using `lookup` and `element`.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ② ANALOGY -->
+    <section>
+        <div class="topic-title">💡 ANALOGY: Form Fields &amp; Live Search</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
+            <p class="handwritten" style="font-size: 1.3rem;">
+                Think of HCL variables and data sources like this:
+                <br/><br/>
+                1. <span class="chalk-text">Input Variables:</span> An online contact form. Instead of hardcoding "Name = Golu", you leave a form field blank and supply it at execution time.
+                <br/>
+                2. <span class="chalk-text">Data Sources:</span> A Google Search API. Instead of typing the exact size of a storage volume, you search AWS live: "Find the ID of the latest official Ubuntu 22.04 AMI."
+            </p>
+        </div>
+    </section>
+
+    <!-- ③ DID YOU KNOW? -->
+    <section>
+        <div class="topic-title">❓ DID YOU KNOW?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">Sensitive</div><div class="handwritten" style="color:var(--chalk-blue);">Hides passwords from terraform apply output</div></div>
+            <div><div class="dyk-num">Lookup</div><div class="handwritten" style="color:var(--chalk-blue);">Can select variables based on environment map</div></div>
+            <div><div class="dyk-num">tfvars</div><div class="handwritten" style="color:var(--chalk-blue);">Variables can be fed via file arguments</div></div>
+        </div>
+    </section>
+
+    <!-- ⑤ Key Concepts -->
+    <section>
+        <div class="topic-title">📌 Key Concepts: Input, Outputs &amp; Data Sources</div>
+        <div class="content-box">
+            <h3 class="handwritten" style="color: var(--chalk-orange);">1. Input Variables in variables.tf</h3>
+            <pre><code>variable "instance_type" {
+  type        = string
+  default     = "t2.micro"
+  description = "Size of our AWS EC2 instance"
+}
+
+variable "env_tags" {
+  type    = map(string)
+  default = {
+    dev  = "development"
+    prod = "production"
+  }
+}</code></pre>
+
+            <h3 class="handwritten" style="color: var(--chalk-orange); margin-top:30px;">2. Output Variables and Sensitivity</h3>
+            <p>Use outputs to print key values or pass them to other modules. Mark sensitive variables to prevent console exposure:</p>
+            <pre><code>output "public_ip" {
+  value = aws_instance.my_server.public_ip
+}
+
+output "db_password" {
+  value     = aws_db_instance.db.password
+  sensitive = true  # State file still tracks it, but hides it on CLI
+}</code></pre>
+
+            <h3 class="handwritten" style="color: var(--chalk-orange); margin-top:30px;">3. Data Sources</h3>
+            <p>Read resources created outside of your current Terraform workspace:</p>
+            <pre><code>data "aws_ami" "ubuntu" {
+  most_recent = true
+  owners      = ["099720109477"] # Canonical
+  
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+}
+
+resource "aws_instance" "my_server" {
+  ami           = data.aws_ami.ubuntu.id  # Use fetched data
+  instance_type = var.instance_type
+}</code></pre>
+
+            <h3 class="handwritten" style="color: var(--chalk-orange); margin-top:30px;">4. HCL Built-in Functions</h3>
+            <ul>
+                <li><code class="code-chalk">lookup(map, key, default)</code>: Extracts a value from a map by key.</li>
+                <li><code class="code-chalk">element(list, index)</code>: Extracts a single item from a list at specified index.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑥ Compare -->
+    <section>
+        <div class="topic-title">🔄 Compare: Local vs Data Block</div>
+        <div class="vs-container">
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+                <h3 class="handwritten" style="color: var(--chalk-pink);">Local Values (locals)</h3>
+                <p class="handwritten">Local variables computed inside configuration itself. E.g., concatenating environment name and app name tags.</p>
+            </div>
+            <div class="vs-circle">VS</div>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+                <h3 class="handwritten" style="color: var(--chalk-green);">Data Sources</h3>
+                <p class="handwritten">Queries third-party cloud API live during <code>plan</code> stage to pull configuration details from existing infra.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ REAL-WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">📖 REAL-WORLD EXAMPLE: Environment Selector</div>
+        <div class="content-box">
+            <p><strong>Scenario:</strong> Select `t2.micro` for Dev, but `t2.medium` for Prod.</p>
+            <p><strong>Solution:</strong> Use a conditional variable evaluation:</p>
+            <pre><code>variable "env" {
+  type    = string
+  default = "dev"
+}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-08c40ec9ead489470"
+  instance_type = var.env == "prod" ? "t2.medium" : "t2.micro"
+  
+  tags = {
+    Name = "AppServer-${var.env}"
+  }
+}</code></pre>
+        </div>
+    </section>
+
+    <!-- ⑧ COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+            <ul>
+                <li><span style="color:var(--chalk-red);">Myth:</span> Marking an output `sensitive = true` encrypts the value in the state file.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> No! It ONLY hides the value in CLI output messages. The plaintext sensitive value is still stored in plaintext JSON inside the <code>terraform.tfstate</code> file. You must protect the state file directly.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑨ TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">▶ TRY IT YOURSELF</div>
+        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+            <p class="handwritten" style="font-size: 1.2rem;">
+                1. Declare a variable named <code>aws_region</code> in <code>variables.tf</code>.<br/>
+                2. Write a <code>terraform.tfvars</code> file containing <code>aws_region = "us-east-1"</code>.<br/>
+                3. Declare an output variable in <code>outputs.tf</code> mapping the subnet ID.<br/>
+                4. Run <code>terraform apply</code> and check how values get updated dynamically.
+            </p>
+        </div>
+    </section>
+
+    <!-- ⑪ MINI QUIZ -->
+    <section>
+        <div class="topic-title">❓ MINI QUIZ</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+            <div class="quiz-item">
+                <p class="quiz-question">1. Which command assigns values to variables from a file automatically?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) variable block in main.tf</span>
+                    <span class="quiz-opt">b) variables declared in terraform.tfvars</span>
+                    <span class="quiz-opt">c) config.json file</span>
+                    <span class="quiz-opt">d) aws credentials file</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">2. What happens if you mark an output as 'sensitive = true'?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) It encrypts the value in state file</span>
+                    <span class="quiz-opt">b) Hides the value in CLI console displays</span>
+                    <span class="quiz-opt">c) Disables outputting the variable completely</span>
+                    <span class="quiz-opt">d) Deletes it from AWS</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">3. How do you query the AWS API live for data in HCL?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) Use resource block</span>
+                    <span class="quiz-opt">b) Use data block</span>
+                    <span class="quiz-opt">c) Use local block</span>
+                    <span class="quiz-opt">d) Use import block</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">4. Which built-in function returns a value from a map given a key?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) element</span>
+                    <span class="quiz-opt">b) lookup</span>
+                    <span class="quiz-opt">c) values</span>
+                    <span class="quiz-opt">d) filter</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">5. What syntax represents a conditional expression in Terraform?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) if-then-else blocks</span>
+                    <span class="quiz-opt">b) switch-case blocks</span>
+                    <span class="quiz-opt">c) condition ? true_val : false_val</span>
+                    <span class="quiz-opt">d) loop index</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">6. If a variable list has three elements, how does the function 'element(list, 3)' behave?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) Fails with index out of bounds error</span>
+                    <span class="quiz-opt">b) Returns the second element</span>
+                    <span class="quiz-opt">c) Wraps around index modulo size (returns first element at index 0)</span>
+                    <span class="quiz-opt">d) Returns empty string</span>
+                </div>
+            </div>
+            <div class="quiz-item" style="border:none;">
+                <p class="quiz-question">7. What is the scope of a local value block?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) Accessible across different workspaces globally</span>
+                    <span class="quiz-opt">b) Local to the module in which it is defined</span>
+                    <span class="quiz-opt">c) Only inside provider block</span>
+                    <span class="quiz-opt">d) Read-only CLI input</span>
+                </div>
+            </div>
+            
+            <div class="answer-key">
+                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+                <p class="handwritten">1-b | 2-b | 3-b | 4-b | 5-c | 6-c | 7-b</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <div class="footer">
+        #LearnDevOpsIn90Days • Day 66 • Phase 11: Terraform [IaC] • By Aryashree Pritikrishna
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 65: Providers, Resources and Dependencies - Golu &amp; Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                background-color: var(--bg-blackboard) !important;
+                color: var(--chalk-white) !important;
+            }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-blue { border-color: var(--chalk-blue); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-blue::before { border-right-color: var(--chalk-blue); }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        
+        pre { background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        
+        /* Directory Doodle */
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        
+        /* 3 columns did you know */
+        .dyk-grid { grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .quiz-opt { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Providers, Resources and Dependencies</h1>
+        <p class="subtitle handwritten">Day 65: Adapters & LEGO blocks! 🔌🧱</p>
+    </header>
+    
+    
+    <!-- INTRO DIALOGUE -->
+    <section id="intro">
+        <div class="doodle-container" style="margin: 0;">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu, I created a local file and a Docker container, but the container crashed because the file was not written yet! How do I tell Terraform which one goes first?"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+            <div class="speech-bubble bubble-blue">
+                "Beep Boop! Terraform builds a dependency graph before it touches any resources, Golu. By using implicit and explicit variables like <span class="chalk-text">depends_on</span>, we control the exact birth order of infrastructure!"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ① LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+            <ul>
+                <li><strong>Write HCL:</strong> Master syntax concepts like Blocks, Arguments, and Identifiers.</li>
+                <li><strong>Configure Providers:</strong> Learn how to pin provider sources and versions.</li>
+                <li><strong>Manage Resources:</strong> Understand how resource blocks map to cloud components.</li>
+                <li><strong>Order Infrastructure:</strong> Control resource provisioning order using implicit and explicit dependencies.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ② ANALOGY -->
+    <section>
+        <div class="topic-title">💡 ANALOGY: Lego Bricks and Plugins</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
+            <p class="handwritten" style="font-size: 1.3rem;">
+                Think of Terraform as a Lego game:
+                <br/><br/>
+                1. <span class="chalk-text">Providers:</span> The connection adapter. It is the plug that lets your Lego board interface with AWS, Docker, or Google Cloud.
+                <br/>
+                2. <span class="chalk-text">Resources:</span> The Lego blocks themselves. Some blocks depend on other blocks. You can't put a roof block in the air without building the wall blocks first!
+            </p>
+        </div>
+    </section>
+
+    <!-- ③ DID YOU KNOW? -->
+    <section>
+        <div class="topic-title">❓ DID YOU KNOW?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">Registry</div><div class="handwritten" style="color:var(--chalk-blue);">Host of thousands of community providers</div></div>
+            <div><div class="dyk-num">Implicit</div><div class="handwritten" style="color:var(--chalk-blue);">Terraform auto-detects 90% of dependencies</div></div>
+            <div><div class="dyk-num">Graph</div><div class="handwritten" style="color:var(--chalk-blue);">Uses DAG algorithm to run parallel steps</div></div>
+        </div>
+    </section>
+
+    <!-- ④ Key Directories -->
+    <section>
+        <div class="topic-title">📂 Key Directories &amp; Files</div>
+        <div class="content-box">
+            <p>After running <code>terraform init</code>, notice these new locations in your folder:</p>
+            <div class="dir-tree">
+                my-project/<br/>
+                ├── <span>.terraform/</span> <span class="handwritten" style="color:var(--chalk-pink);">(Holds the downloaded provider plugins)</span><br/>
+                ├── <span>.terraform.lock.hcl</span> <span class="handwritten" style="color:var(--chalk-pink);">(Locks provider versions and checksums)</span><br/>
+                └── <span>main.tf</span> <span class="handwritten" style="color:var(--chalk-pink);">(Your primary configuration file)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑤ Key Concepts -->
+    <section>
+        <div class="topic-title">📌 Key Concepts: Syntax, Providers &amp; Dependencies</div>
+        <div class="content-box">
+            <h3 class="handwritten" style="color: var(--chalk-orange);">1. HCL Block Structure</h3>
+            <pre><code># <BLOCK TYPE> "<BLOCK LABEL 1>" "<BLOCK LABEL 2>" {
+#   <ARGUMENT NAME> = <EXPRESSION>
+# }
+
+resource "local_file" "pet" {
+  filename = "/root/pets.txt"
+  content  = "We love pets!"
+}</code></pre>
+
+            <h3 class="handwritten" style="color: var(--chalk-orange); margin-top:30px;">2. Provider Pinning</h3>
+            <p>Always tell Terraform the exact source and version of the plugin you want to use:</p>
+            <pre><code>terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "2.21.0"
+    }
+  }
+}
+
+provider "docker" {
+  # Configuration options
+}</code></pre>
+
+            <h3 class="handwritten" style="color: var(--chalk-orange); margin-top:30px;">3. Implicit vs Explicit Dependencies</h3>
+            <p><strong>Implicit:</strong> Terraform auto-detects dependency when a resource references an attribute of another resource.</p>
+            <pre><code>resource "aws_eip" "myeip" {
+  instance = aws_instance.web.id  # Implicit dependency on 'web'
+}</code></pre>
+            <p><strong>Explicit:</strong> When resources don't share data references but one must still build first, use `depends_on`:</p>
+            <pre><code>resource "aws_instance" "web" {
+  ami           = "ami-xyz"
+  instance_type = "t2.micro"
+  
+  depends_on = [aws_s3_bucket.data_bucket] # Explicit dependency
+}</code></pre>
+        </div>
+    </section>
+
+    <!-- ⑥ Compare -->
+    <section>
+        <div class="topic-title">🔄 Compare: Implicit vs Explicit</div>
+        <div class="vs-container">
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+                <h3 class="handwritten" style="color: var(--chalk-pink);">Implicit Dependency</h3>
+                <p class="handwritten">Uses variable references (e.g., <code>id = aws_vpc.main.id</code>). Clean, automatic, preferred.</p>
+            </div>
+            <div class="vs-circle">VS</div>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+                <h3 class="handwritten" style="color: var(--chalk-green);">Explicit Dependency</h3>
+                <p class="handwritten">Uses <code>depends_on = [...]</code> argument. Used when dependencies are logical/operational, not data-based.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑦ REAL-WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">📖 REAL-WORLD EXAMPLE: Docker Web Deployment</div>
+        <div class="content-box">
+            <p><strong>Scenario:</strong> You want to deploy an Nginx web server container via Docker.</p>
+            <p><strong>Solution:</strong> The docker container requires a docker image first. We build an implicit dependency cycle:</p>
+            <pre><code>resource "docker_image" "nginx_img" {
+  name         = "nginx:latest"
+  keep_locally = false
+}
+
+resource "docker_container" "nginx_web" {
+  image = docker_image.nginx_img.image_id # Implicitly depends on nginx_img
+  name  = "tutorial-web-server"
+  ports {
+    internal = 80
+    external = 8080
+  }
+}</code></pre>
+        </div>
+    </section>
+
+    <!-- ⑧ COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+            <ul>
+                <li><span style="color:var(--chalk-red);">Myth:</span> You can declare resource blocks in any order you want in HCL files.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> Yes, HCL is declarative, meaning the written order of blocks in files does NOT affect creation order. Terraform reads all blocks, draws a dependency graph, and creates them in the mathematically correct order.</li>
+                <li style="margin-top: 15px;"><span style="color:var(--chalk-red);">Myth:</span> `depends_on` makes Terraform apply faster.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> No, `depends_on` forces resources to run sequentially, which can actually slow down deployments if used excessively where parallel creation is possible.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑨ TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">▶ TRY IT YOURSELF</div>
+        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+            <p class="handwritten" style="font-size: 1.2rem;">
+                1. Install docker on your local system: <code>sudo apt-get install docker.io -y</code>.<br/>
+                2. Give current user permission to docker socket: <code>sudo chown $USER /var/run/docker.sock</code>.<br/>
+                3. Write the provider and docker container code in a file named <code>main.tf</code>.<br/>
+                4. Run <code>terraform init</code>, <code>terraform plan</code>, and <code>terraform apply</code>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ⑩ QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">📝 QUICK SUMMARY</div>
+        <div class="content-box">
+            <ul>
+                <li>Providers translate HCL calls to real API commands (AWS, Docker).</li>
+                <li>HCL identifiers consist of blocks, labels, and arguments.</li>
+                <li>Implicit dependencies occur automatically by referencing resource outputs.</li>
+                <li>Explicit dependencies must be declared with `depends_on = [resource.name]`.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑪ MINI QUIZ -->
+    <section>
+        <div class="topic-title">❓ MINI QUIZ</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+            <div class="quiz-item">
+                <p class="quiz-question">1. In HCL, what is the 'identifier' before the equals sign called?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) Block</span>
+                    <span class="quiz-opt">b) Label</span>
+                    <span class="quiz-opt">c) Argument Name</span>
+                    <span class="quiz-opt">d) Expression</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">2. Where does Terraform store downloaded provider plugins?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) ~/.aws/credentials</span>
+                    <span class="quiz-opt">b) In .terraform/ folder</span>
+                    <span class="quiz-opt">c) On the cloud providers console</span>
+                    <span class="quiz-opt">d) In the main.tf block</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">3. How are implicit dependencies determined in Terraform?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) By using depends_on arguments</span>
+                    <span class="quiz-opt">b) Automatically by referencing outputs of one resource in another</span>
+                    <span class="quiz-opt">c) By the order of resource declaration in the file</span>
+                    <span class="quiz-opt">d) By running terraform validate</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">4. Which of the following block types is used to define global provider requirements?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) provider</span>
+                    <span class="quiz-opt">b) resource</span>
+                    <span class="quiz-opt">c) terraform</span>
+                    <span class="quiz-opt">d) variable</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">5. If you change provider source or version requirements, which command must you re-run?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) terraform apply</span>
+                    <span class="quiz-opt">b) terraform plan</span>
+                    <span class="quiz-opt">c) terraform init</span>
+                    <span class="quiz-opt">d) terraform fmt</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">6. What is the format of a resource block label header?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) resource &lt;resource_name&gt;</span>
+                    <span class="quiz-opt">b) resource "&lt;resource_type&gt;" "&lt;resource_name&gt;"</span>
+                    <span class="quiz-opt">c) resource "&lt;resource_name&gt;" "&lt;resource_type&gt;"</span>
+                    <span class="quiz-opt">d) new_resource "&lt;resource_type&gt;"</span>
+                </div>
+            </div>
+            <div class="quiz-item" style="border:none;">
+                <p class="quiz-question">7. Which file locks specific provider versions and checksums for security?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) main.tf</span>
+                    <span class="quiz-opt">b) terraform.tfstate</span>
+                    <span class="quiz-opt">c) .terraform.lock.hcl</span>
+                    <span class="quiz-opt">d) variables.tf</span>
+                </div>
+            </div>
+            
+            <div class="answer-key">
+                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+                <p class="handwritten">1-c | 2-b | 3-b | 4-c | 5-c | 6-b | 7-c</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <div class="footer">
+        #LearnDevOpsIn90Days • Day 65 • Phase 11: Terraform [IaC] • By Aryashree Pritikrishna
+    </div>
+</div>
+</body>
+</html>

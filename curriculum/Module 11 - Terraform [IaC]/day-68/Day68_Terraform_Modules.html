@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 68: Terraform Modules: Build Reusable Infrastructure - Golu &amp; Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;family=Inter:wght@400;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+
+        @media print {
+            body { 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+                background-color: var(--bg-blackboard) !important;
+                color: var(--chalk-white) !important;
+            }
+            .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; }
+            section { page-break-inside: avoid; }
+            a { text-decoration: none !important; color: var(--chalk-blue) !important; }
+        }
+
+        body { background-color: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        
+        h1, h2, h3, .handwritten, .speech-bubble { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-blue); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-blue); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-blue); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-blue); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .robot-bag { width: 30px; height: 35px; border: 2px solid var(--chalk-green); border-radius: 5px; position: absolute; top: 75px; left: -15px; }
+        .robot-bag::before { content: ''; width: 20px; height: 15px; border: 2px solid var(--chalk-green); border-bottom: none; border-radius: 10px 10px 0 0; position: absolute; top: -15px; left: 3px; }
+
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-blue { border-color: var(--chalk-blue); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-blue::before { border-right-color: var(--chalk-blue); }
+        
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-blue); }
+
+        .vs-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .vs-circle { width: 60px; height: 60px; border: 3px solid var(--chalk-orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Architects Daughter'; font-size: 1.5rem; color: var(--chalk-orange); flex-shrink: 0; }
+        
+        pre { background: rgba(0, 0, 0, 0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29, 209, 161, 0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        
+        /* Directory Doodle */
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        
+        /* 3 columns did you know */
+        .dyk-grid { grid-template-columns: 1fr 1fr 1fr; display: grid; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .quiz-opt { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps &amp; Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Terraform Modules: Build Reusable Infrastructure</h1>
+        <p class="subtitle handwritten">Day 68: Building DRY Blueprints! 🍪📦</p>
+    </header>
+    
+    
+    <!-- INTRO DIALOGUE -->
+    <section id="intro">
+        <div class="doodle-container" style="margin: 0;">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu, I need to create three identical VPCs for Dev, Staging, and Prod. Copy-pasting HCL resource code is making my project files 1000 lines long! How do I clean this up?"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end; margin-top: 20px;">
+            <div class="speech-bubble bubble-blue">
+                "Beep Boop! Don't repeat yourself (DRY) in code, Golu. Today we will build custom <span class="chalk-text">Terraform Modules</span>. We write our VPC code once, parameterize it, and invoke it multiple times!"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div><div class="robot-bag"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ① LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 LEARNING OBJECTIVES</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-green);">
+            <ul>
+                <li><strong>Understand Modules:</strong> Learn root module vs child module roles.</li>
+                <li><strong>Build Modules:</strong> Write custom reusable modules locally.</li>
+                <li><strong>Input &amp; Outputs:</strong> Map calling variables to child arguments and return results.</li>
+                <li><strong>Version Pinning:</strong> Restrain external module versions from registry sources.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ② ANALOGY -->
+    <section>
+        <div class="topic-title">💡 ANALOGY: Cookie Cutters</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-white);">
+            <p class="handwritten" style="font-size: 1.3rem;">
+                Think of custom modules like baking cookies:
+                <br/><br/>
+                1. <span class="chalk-text">Copy-Paste (Without Modules):</span> You shape every single cookie by hand. It takes hours, and none of them look exactly the same size.
+                <br/>
+                2. <span class="chalk-text">Using Modules:</span> You carve a plastic cookie-cutter (Module). To make a cookie, you stamp the board. To make 10, you stamp 10 times. Every cookie is perfectly identical!
+            </p>
+        </div>
+    </section>
+
+    <!-- ③ DID YOU KNOW? -->
+    <section>
+        <div class="topic-title">❓ DID YOU KNOW?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">DRY</div><div class="handwritten" style="color:var(--chalk-blue);">Don't Repeat Yourself code design</div></div>
+            <div><div class="dyk-num">Registry</div><div class="handwritten" style="color:var(--chalk-blue);">HashiCorp hosts public modules for common systems</div></div>
+            <div><div class="dyk-num">Pin</div><div class="handwritten" style="color:var(--chalk-blue);">Pinning version stops updates from breaking code</div></div>
+        </div>
+    </section>
+
+    <!-- ④ Key Directories -->
+    <section>
+        <div class="topic-title">📂 Key Directories &amp; Files</div>
+        <div class="content-box">
+            <p>Standard folder structure for modular infrastructure projects:</p>
+            <div class="dir-tree">
+                project-root/<br/>
+                ├── <span>main.tf</span> <span class="handwritten" style="color:var(--chalk-pink);">(Invokes modules)</span><br/>
+                ├── <span>variables.tf</span><br/>
+                ├── <span>outputs.tf</span><br/>
+                └── <span>modules/</span><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span>web_server/</span> <span class="handwritten" style="color:var(--chalk-pink);">(Child module)</span><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span>main.tf</span> <span class="handwritten" style="color:var(--chalk-pink);">(Child resource declarations)</span><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span>variables.tf</span> <span class="handwritten" style="color:var(--chalk-pink);">(Defines child input variables)</span><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span>outputs.tf</span> <span class="handwritten" style="color:var(--chalk-pink);">(Exposes child properties to root)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑤ Key Concepts -->
+    <section>
+        <div class="topic-title">📌 Key Concepts: Child Modules &amp; Interfaces</div>
+        <div class="content-box">
+            <h3 class="handwritten" style="color: var(--chalk-orange);">1. The Child Module (modules/web_server/main.tf)</h3>
+            <pre><code>variable "instance_type" { type = string }
+variable "server_name"   { type = string }
+
+resource "aws_instance" "server" {
+  ami           = "ami-08c40ec9ead489470"
+  instance_type = var.instance_type
+  
+  tags = {
+    Name = var.server_name
+  }
+}
+
+output "instance_id" {
+  value = aws_instance.server.id
+}</code></pre>
+
+            <h3 class="handwritten" style="color: var(--chalk-orange); margin-top:30px;">2. Invoking the Module from Root (main.tf)</h3>
+            <pre><code>module "dev_server" {
+  source        = "./modules/web_server" # Local source path
+  instance_type = "t2.micro"
+  server_name   = "Dev-Server"
+}
+
+module "prod_server" {
+  source        = "./modules/web_server"
+  instance_type = "t2.medium"
+  server_name   = "Prod-Server"
+}
+
+output "dev_id" {
+  value = module.dev_server.instance_id # Access child output
+}</code></pre>
+
+            <h3 class="handwritten" style="color: var(--chalk-orange); margin-top:30px;">3. Module Version Pinning</h3>
+            <p>When downloading modules from registries, always specify version restrictions to avoid unwanted updates:</p>
+            <pre><code>module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "3.14.0" # Version Pinning
+
+  name = "my-vpc"
+  cidr = "10.0.0.0/16"
+}</code></pre>
+        </div>
+    </section>
+
+    <!-- ⑥ Compare -->
+    <section>
+        <div class="topic-title">🔄 Compare: local source vs registry source</div>
+        <div class="vs-container">
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-pink);">
+                <h3 class="handwritten" style="color: var(--chalk-pink);">Local Modules</h3>
+                <p class="handwritten">Relative folder paths (e.g., <code>./modules/web</code>). Used for custom configurations developed internally.</p>
+            </div>
+            <div class="vs-circle">VS</div>
+            <div class="content-box" style="flex: 1; border-color: var(--chalk-green);">
+                <h3 class="handwritten" style="color: var(--chalk-green);">Registry Modules</h3>
+                <p class="handwritten">Hosted online (e.g., Terraform Registry). Verified solutions provided by vendors (AWS, HashiCorp).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑧ COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">⚠ COMMON MISCONCEPTIONS</div>
+        <div class="content-box" style="border-left: 5px solid var(--chalk-orange);">
+            <ul>
+                <li><span style="color:var(--chalk-red);">Myth:</span> You can directly access child module resource properties from the root configuration.</li>
+                <li><span style="color:var(--chalk-green);">Reality:</span> No! Modules act as black boxes. The only way to access a resource property inside a child module is by explicitly declaring it in the child module's <code>outputs.tf</code>, and then calling it using <code>module.name.output_name</code> in the root.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ⑨ TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">▶ TRY IT YOURSELF</div>
+        <div class="content-box" style="background: rgba(29, 209, 161, 0.05); border-color: var(--chalk-green);">
+            <p class="handwritten" style="font-size: 1.2rem;">
+                1. Create a subfolder structure: <code>modules/local_file_generator</code>.<br/>
+                2. Inside the module, write a file generator with input path and content variables.<br/>
+                3. Invoke this module from your root <code>main.tf</code> twice.<br/>
+                4. Run <code>terraform init</code> (required to scan new module references) and <code>terraform apply</code>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ⑪ MINI QUIZ -->
+    <section>
+        <div class="topic-title">❓ MINI QUIZ</div>
+        <div class="content-box" style="border: 2px dashed var(--chalk-blue);">
+            <div class="quiz-item">
+                <p class="quiz-question">1. What design principle do modules help enforce in Terraform?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) KISS (Keep It Simple Stupid)</span>
+                    <span class="quiz-opt">b) DRY (Don't Repeat Yourself)</span>
+                    <span class="quiz-opt">c) YAGNI (You Aren't Gonna Need It)</span>
+                    <span class="quiz-opt">d) SOLID</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">2. If you write a new child module local block reference, which command must you run first?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) terraform apply</span>
+                    <span class="quiz-opt">b) terraform plan</span>
+                    <span class="quiz-opt">c) terraform init</span>
+                    <span class="quiz-opt">d) terraform validate</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">3. How does a root module access an attribute of a resource inside a child module?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) It queries AWS APIs directly</span>
+                    <span class="quiz-opt">b) The child module must declare the attribute in an outputs.tf block</span>
+                    <span class="quiz-opt">c) It reads the local state file directly</span>
+                    <span class="quiz-opt">d) Using locals block</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">4. Which argument specifies the file path or URL location of a module?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) path</span>
+                    <span class="quiz-opt">b) source</span>
+                    <span class="quiz-opt">c) version</span>
+                    <span class="quiz-opt">d) location</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">5. Where is version pinning supported for module dependencies?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) On local relative path modules only</span>
+                    <span class="quiz-opt">b) On registry or remote repository sources</span>
+                    <span class="quiz-opt">c) Inside variables file</span>
+                    <span class="quiz-opt">d) In the credential file</span>
+                </div>
+            </div>
+            <div class="quiz-item">
+                <p class="quiz-question">6. What represents the module that you invoke from your command line terminal directly?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) Child module</span>
+                    <span class="quiz-opt">b) Root module</span>
+                    <span class="quiz-opt">c) Local workspace</span>
+                    <span class="quiz-opt">d) Provider block</span>
+                </div>
+            </div>
+            <div class="quiz-item" style="border:none;">
+                <p class="quiz-question">7. What happens if you run terraform apply without pinning registry module versions?</p>
+                <div class="quiz-options">
+                    <span class="quiz-opt">a) Fails immediately on validation error</span>
+                    <span class="quiz-opt">b) Downloads the latest version, which could introduce breaking API changes</span>
+                    <span class="quiz-opt">c) Uses cache and never checks updates</span>
+                    <span class="quiz-opt">d) Deletes your state file</span>
+                </div>
+            </div>
+            
+            <div class="answer-key">
+                <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
+                <p class="handwritten">1-b | 2-c | 3-b | 4-b | 5-b | 6-b | 7-b</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <div class="footer">
+        #LearnDevOpsIn90Days • Day 68 • Phase 11: Terraform [IaC] • By Aryashree Pritikrishna
+    </div>
+</div>
+</body>
+</html>
