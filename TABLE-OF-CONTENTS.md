@@ -103,12 +103,12 @@
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
 | 🗓️ Day 31 | Introduction to Docker | [🎓 Day 31 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-31/Day31_Introduction_to_Docker.html) | [🧪 Lab 31](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-31/lab-session/task.md) |
-| 🗓️ Day 32 | Docker Images & Lifecycle | [🎓 Day 32 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-32/Day32_Docker_Images_And_Lifecycle.html) | [🧪 Lab 32](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-32/lab-session/task.md) |
+| 🗓️ Day 32 | Docker Images & Lifecycle | [🎓 Day 32 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-32/Day32_Docker_Images_And_Container_Lifecycle.html) | [🧪 Lab 32](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-32/lab-session/task.md) |
 | 🗓️ Day 33 | Dockerfile Basics | [🎓 Day 33 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-33/Day33_Dockerfile_Build_Your_Own_Images.html) | [🧪 Lab 33](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-33/lab-session/task.md) |
 | 🗓️ Day 34 | Volumes & Networking | [🎓 Day 34 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-34/Day34_Docker_Volumes_and_Networking.html) | [🧪 Lab 34](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-34/lab-session/task.md) |
 | 🗓️ Day 35 | Docker Compose Basics | [🎓 Day 35 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-35/Day35_Docker_Compose_Basics.html) | [🧪 Lab 35](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-35/lab-session/task.md) |
-| 🗓️ Day 36 | Compose in Real-World | [🎓 Day 36 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-36/Day36_Compose_in_Real-World.html) | [🧪 Lab 36](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-36/lab-session/task.md) |
-| 🗓️ Day 37 | Multi-Stage Builds & Hub | [🎓 Day 37 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-37/Day37_Multi-Stage_Builds_And_Docker_Hub.html) | [🧪 Lab 37](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-37/lab-session/task.md) |
+| 🗓️ Day 36 | Compose in Real-World | [🎓 Day 36 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-36/Day36_Compose_in_Real_World.html) | [🧪 Lab 36](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-36/lab-session/task.md) |
+| 🗓️ Day 37 | Multi-Stage Builds & Hub | [🎓 Day 37 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-37/Day37_Multi_Stage_Builds_And_Docker_Hub.html) | [🧪 Lab 37](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-37/lab-session/task.md) |
 | 🗓️ Day 38 | Dockerizing a Full App | [🎓 Day 38 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-38/Day38_Docker_Project_Dockerize_a_Full_Application.html) | [🧪 Lab 38](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-38/lab-session/task.md) |
 | 🗓️ Day 39 | Revision & Cheat Sheet | [🎓 Day 39 Pro](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-39/Day39_Docker_Revision_and_Cheat_Sheet.html) | [🧪 Lab 39](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/day-39/lab-session/task.md) |
 | 🏆 **Exam** | **Module 07 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2007%20-%20Docker%20&%20Containerization/mastery-exam/README.md) | -- |
@@ -120,8 +120,8 @@
 | Day | Topic | Lecture | Lab |
 |---|---|---|---|
 | 🗓️ Day 40 | YAML Basics | [🎓 Day 40 Pro](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/Day40_YAML_Basics.html) | [🧪 Lab 40](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-40/lab-session/task.md) |
-| 🗓️ Day 41 | What is CI/CD? | [🎓 Day 41 Pro](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/Day41_What_Is_CICD.html) | [🧪 Lab 41](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/lab-session/task.md) |
-| 🗓️ Day 42 | Your First GitHub Actions Workflow | [🎓 Day 42 Pro](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-42/Day42_Your_First_Workflow.html) | [🧪 Lab 42](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-42/lab-session/task.md) |
+| 🗓️ Day 41 | What is CI/CD? | [🎓 Day 41 Pro](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/Day41_What_is_CI-CD.html) | [🧪 Lab 41](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-41/lab-session/task.md) |
+| 🗓️ Day 42 | Your First GitHub Actions Workflow | [🎓 Day 42 Pro](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-42/Day42_Your_First_GitHub_Actions_Workflow.html) | [🧪 Lab 42](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-42/lab-session/task.md) |
 | 🗓️ Day 43 | Triggers and Matrix Builds | [🎓 Day 43 Pro](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-43/Day43_Triggers_and_Matrix_Builds.html) | [🧪 Lab 43](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-43/lab-session/task.md) |
 | 🗓️ Day 44 | Runners: Hosted vs Self-Hosted | [🎓 Day 44 Pro](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-44/Day44_Runners_Hosted_vs_Self.html) | [🧪 Lab 44](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-44/lab-session/task.md) |
 | 🗓️ Day 45 | Jobs, Steps, Env Vars and Conditionals | [🎓 Day 45 Pro](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-45/Day45_Jobs_Steps_EnvVars_Conditionals.html) | [🧪 Lab 45](./curriculum/Module%2008%20-%20CI-CD%20with%20GitHub%20Actions/day-45/lab-session/task.md) |
@@ -186,11 +186,12 @@
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 71 | Intro & Inventory Setup | 🚧 Pro Module Coming | 🧪 Lab 71 |
-| 🗓️ Day 72 | Playbooks & Modules | 🚧 Pro Module Coming | 🧪 Lab 72 |
-| 🗓️ Day 73 | Vars, Facts & Conditionals | 🚧 Pro Module Coming | 🧪 Lab 73 |
-| 🗓️ Day 74 | Roles, Templates & Vault | 🚧 Pro Module Coming | 🧪 Lab 74 |
-| 🗓️ Day 75 | **Project:** Docker & Nginx | 🚧 Pro Module Coming | 🧪 Lab 75 |
+| 🗓️ Day 71 | Intro & Inventory Setup | [🎓 Day 71 Pro](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-71/Day71_Ansible_Intro.html) | [🧪 Lab 71](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-71/lab-session/task.md) |
+| 🗓️ Day 72 | Playbooks & Modules | [🎓 Day 72 Pro](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-72/Day72_Playbooks_Modules.html) | [🧪 Lab 72](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-72/lab-session/task.md) |
+| 🗓️ Day 73 | Vars, Facts & Conditionals | [🎓 Day 73 Pro](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-73/Day73_Vars_Facts_Conditionals.html) | [🧪 Lab 73](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-73/lab-session/task.md) |
+| 🗓️ Day 74 | Roles, Templates & Vault | [🎓 Day 74 Pro](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-74/Day74_Roles_Galaxy_Vault.html) | [🧪 Lab 74](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-74/lab-session/task.md) |
+| 🗓️ Day 75 | **Project:** Docker & Nginx | [🎓 Day 75 Pro](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-75/Day75_Docker_Nginx_Project.html) | [🧪 Lab 75](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-75/lab-session/task.md) |
+| 🏆 **Exam** | **Module 12 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/mastery-exam/README.md) | -- | -- |
 
 ---
 

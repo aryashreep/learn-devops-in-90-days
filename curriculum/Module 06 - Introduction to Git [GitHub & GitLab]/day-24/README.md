@@ -12,7 +12,7 @@ Understand what Version Control is and set up your very first Git repository to 
 - **Commands:** `git init`, `git status`, `git add`, `git commit`.
 
 ## 🧠 Pro Module
-[🎓 Day 24 Pro Module: Git Foundations](./Day22_Git_Introduction.html)
+[🎓 Day 24 Pro Module: Git Foundations](./Day24_Git_Introduction.html)
 
 ## 🧪 Hands-on Lab
 👉 [Lab Session: My First Save Point](./lab-session/task.md)

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 73: Variables, Facts, Conditionals and Loops - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-orange); }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29,209,161,0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .precedence-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .precedence-table th, .precedence-table td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left; }
+        .precedence-table th { color: var(--chalk-yellow); font-family: 'Architects Daughter'; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Variables, Facts, Conditionals &amp; Loops</h1>
+        <p class="subtitle handwritten">Day 73: Make your playbooks smart! 🧠</p>
+    </header>
+
+    <section>
+        <div class="topic-title">🎯 Learning Objectives</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li>Understand <strong>variable precedence</strong> and how to override values.</li>
+                <li>Gather and use <strong>Ansible facts</strong> from managed nodes.</li>
+                <li>Control execution flow with <strong>conditionals (when)</strong>.</li>
+                <li>Iterate over lists with <strong>loops (loop)</strong>.</li>
+                <li>Trigger actions on changes with <strong>handlers and notify</strong>.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">📊 Variable Precedence</div>
+        <div class="content-box accent-yellow">
+            <table class="precedence-table">
+                <tr><th>Priority</th><th>Source</th><th>Notes</th></tr>
+                <tr><td>1 (Lowest)</td><td>Role defaults</td><td>Easy to override</td></tr>
+                <tr><td>2</td><td>Inventory vars</td><td>group_vars / host_vars</td></tr>
+                <tr><td>3</td><td>Play vars</td><td>vars: block in play</td></tr>
+                <tr><td>4</td><td>vars_files</td><td>External variable files</td></tr>
+                <tr><td>5</td><td>Role vars</td><td>Inside role directory</td></tr>
+                <tr><td>6</td><td>Block vars</td><td>Scoped to block</td></tr>
+                <tr><td>7</td><td>Task vars</td><td>Specific to one task</td></tr>
+                <tr><td>8 (Highest)</td><td>Extra vars</td><td>--extra-vars flag</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">🖥️ System Facts</div>
+        <div class="content-box accent-blue">
+            <p>Ansible automatically gathers facts about each managed node:</p>
+            <pre><code># View all facts
+ansible all -m setup
+
+# Filter specific facts
+ansible all -m setup -a "filter=ansible_distribution*"
+
+# Use facts in playbooks
+- name: Print system info
+  ansible.builtin.debug:
+    msg: >
+      OS: {{ ansible_distribution }} {{ ansible_distribution_version }}
+      Architecture: {{ ansible_architecture }}
+      Memory: {{ ansible_memtotal_mb }} MB
+      CPUs: {{ ansible_processor_cores }}</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">🔀 Conditionals & Loops</div>
+        <div class="content-box accent-red">
+            <pre><code># Conditional execution
+- name: Install Apache on Debian only
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+  when: ansible_os_family == "Debian"
+
+# Loop over packages
+- name: Install common tools
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - htop
+    - git
+    - curl
+    - vim
+
+# Loop with loop_control
+- name: Create users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - alice
+    - bob
+  loop_control:
+    pause: 2  # wait 2 seconds between iterations</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">🔔 Handlers</div>
+        <div class="content-box accent-green">
+            <pre><code>tasks:
+  - name: Update Nginx config
+    ansible.builtin.template:
+      src: nginx.conf.j2
+      dest: /etc/nginx/nginx.conf
+    notify: restart nginx
+
+  - name: Deploy new site
+    ansible.builtin.copy:
+      src: index.html
+      dest: /var/www/html/index.html
+    notify: reload nginx
+
+handlers:
+  - name: restart nginx
+    ansible.builtin.service:
+      name: nginx
+      state: restarted
+
+  - name: reload nginx
+    ansible.builtin.service:
+      name: nginx
+      state: reloaded</code></pre>
+            <p class="handwritten" style="color:var(--chalk-yellow);">Jagu's Tip: Handlers run ONCE at the end of the play, even if notified multiple times!</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">❓ Quiz</div>
+        <div class="content-box" style="border:2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. What has the highest variable precedence?</p><div class="quiz-options"><span>a) Role defaults</span><span>b) Extra vars</span><span>c) Inventory vars</span><span>d) vars_files</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. Which module gathers system facts?</p><div class="quiz-options"><span>a) gather</span><span>b) setup</span><span>c) facts</span><span>d) system_info</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">3. When do handlers run?</p><div class="quiz-options"><span>a) Immediately when notified</span><span>b) At the end of the play</span><span>c) At the beginning of the play</span><span>d) In parallel with tasks</span></div></div>
+            <div class="answer-key"><h3 class="handwritten" style="color:var(--chalk-green);">✅ Answer Key</h3><p>1-b | 2-b | 3-b</p></div>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 73 • Phase 12: Ansible [Config Mgmt] • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

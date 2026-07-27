@@ -12,7 +12,7 @@ Understand what Jira is, why DevOps teams use it, and how to navigate the Jira i
 - **The Dashboard:** Your personal view of the project's health.
 
 ## 🧠 Pro Module
-[🎓 Day 22 Pro Module: Intro to Jira](./Day29_Jira_Introduction.html)
+[🎓 Day 22 Pro Module: Intro to Jira](./Day22_Jira_Introduction.html)
 
 ## 🧪 Hands-on Lab
 👉 [Lab Session: My First Jira Project](./lab-session/task.md)

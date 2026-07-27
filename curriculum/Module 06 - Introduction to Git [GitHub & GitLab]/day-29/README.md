@@ -3,7 +3,7 @@
 Welcome to **Day 29**! Today we learn how to work effectively in professional teams.
 
 ## 🧠 Pro Module
-[🎓 Day 29 Pro Module](./Day27_Collaboration_Safety.html)
+[🎓 Day 29 Pro Module](./Day29_Collaboration_Safety.html)
 
 ## 🎯 Today's Goal
 Master the Pull Request workflow and the skills needed to resolve merge conflicts without panic.

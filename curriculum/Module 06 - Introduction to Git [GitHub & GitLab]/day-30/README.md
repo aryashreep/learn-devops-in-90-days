@@ -3,7 +3,7 @@
 Welcome to **Day 30**! Today we unlock the hidden superpowers of Git.
 
 ## 🧠 Pro Module
-[🎓 Day 30 Pro Module](./Day28_Git_Mastery.html)
+[🎓 Day 30 Pro Module](./Day30_Git_Mastery.html)
 
 ## 🎯 Today's Goal
 Become a Git "Ninja" by learning advanced tools for debugging, release management, and multitasking.

@@ -150,11 +150,11 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 ## ⚙️ Module 12 - Ansible [Config Mgmt] (Days 71-75)
 | Day | Topic |
 |---|---|
-| Day 71 | Introduction to Ansible and Inventory Setup |
-| Day 72 | Ansible Playbooks and Modules |
-| Day 73 | Variables, Facts, Conditionals and Loops |
-| Day 74 | Roles, Galaxy, Templates and Vault |
-| Day 75 | **Project:** Automate Docker and Nginx Deployment |
+| [Day 71](../Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-71/README.md) | Introduction to Ansible and Inventory Setup |
+| [Day 72](../Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-72/README.md) | Ansible Playbooks and Modules |
+| [Day 73](../Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-73/README.md) | Variables, Facts, Conditionals and Loops |
+| [Day 74](../Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-74/README.md) | Roles, Galaxy, Templates and Vault |
+| [Day 75](../Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-75/README.md) | **Project:** Automate Docker and Nginx Deployment |
 
 ---
 

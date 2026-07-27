@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 75: Automate Docker & Nginx Deployment - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; color: var(--chalk-green); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); line-height: 1.8; }
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist li::before { content: '☐ '; color: var(--chalk-yellow); }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Capstone: Automate Docker &amp; Nginx Deployment</h1>
+        <p class="subtitle handwritten">Day 75: Your complete Ansible automation project! 🏆</p>
+    </header>
+
+    <section>
+        <div class="doodle-container" style="justify-content:center;">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div style="font-size:2rem;color:var(--chalk-pink);">+</div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle" style="position:relative; width:70px; height:110px;">
+                    <div style="width:45px;height:35px;border:2.5px solid var(--chalk-blue);border-radius:8px;position:absolute;left:12px;top:15px;">
+                        <div style="width:6px;height:6px;background:var(--chalk-yellow);border-radius:50%;position:absolute;top:10px;left:8px;box-shadow:0 0 10px var(--chalk-yellow);"></div>
+                        <div style="width:6px;height:6px;background:var(--chalk-yellow);border-radius:50%;position:absolute;top:10px;right:8px;box-shadow:0 0 10px var(--chalk-yellow);"></div>
+                    </div>
+                    <div style="width:55px;height:50px;border:2.5px solid var(--chalk-blue);border-radius:10px;position:absolute;top:52px;left:7px;"></div>
+                    <div style="width:2px;height:12px;background:var(--chalk-blue);position:absolute;top:3px;left:34px;"></div>
+                    <div style="width:6px;height:6px;border:2px solid var(--chalk-blue);border-radius:50%;position:absolute;top:-3px;left:30px;"></div>
+                </div>
+                <span class="char-name">Jagu</span>
+            </div>
+            <div style="font-size:3rem;color:var(--chalk-yellow);">= 🏆</div>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">🎯 Project Goal</div>
+        <div class="content-box accent-green">
+            <p>Automate the complete deployment of Docker + Nginx on target servers using Ansible roles, templates, and best practices.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">📁 Project Structure</div>
+        <div class="content-box accent-blue">
+            <div class="dir-tree">
+                ansible-docker-nginx/<br/>
+                ├── <span style="color:var(--chalk-yellow);">inventory/</span><br/>
+                │&nbsp;&nbsp;&nbsp;└── hosts.ini<br/>
+                ├── <span style="color:var(--chalk-yellow);">roles/</span><br/>
+                │&nbsp;&nbsp;&nbsp;├── <span style="color:var(--chalk-blue);">docker/</span><br/>
+                │&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── tasks/main.yml<br/>
+                │&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── handlers/main.yml<br/>
+                │&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── defaults/main.yml<br/>
+                │&nbsp;&nbsp;&nbsp;└── <span style="color:var(--chalk-blue);">nginx-app/</span><br/>
+                │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── tasks/main.yml<br/>
+                │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── templates/index.html.j2<br/>
+                │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── handlers/main.yml<br/>
+                │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── defaults/main.yml<br/>
+                ├── <span style="color:var(--chalk-yellow);">site.yml</span><br/>
+                └── ansible.cfg
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">🐳 Docker Role</div>
+        <div class="content-box accent-yellow">
+            <pre><code># roles/docker/tasks/main.yml
+---
+- name: Install required system packages
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+
+- name: Add Docker GPG key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install Docker Engine
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+
+- name: Start and enable Docker
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">🌐 Nginx App Role</div>
+        <div class="content-box accent-green">
+            <pre><code># roles/nginx-app/tasks/main.yml
+---
+- name: Create app directory
+  ansible.builtin.file:
+    path: /opt/nginx-app
+    state: directory
+    mode: '0755'
+
+- name: Deploy index page
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /opt/nginx-app/index.html
+  notify: restart nginx container
+
+- name: Run Nginx container
+  community.docker.docker_container:
+    name: nginx-app
+    image: nginx:alpine
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ nginx_host_port }}:80"
+    volumes:
+      - /opt/nginx-app/index.html:/usr/share/nginx/html/index.html:ro</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">✅ Deployment Checklist</div>
+        <div class="content-box accent-red">
+            <ul class="checklist">
+                <li> Run <code>ansible all -i inventory/hosts.ini -m ping</code></li>
+                <li> Run <code>ansible-playbook --syntax-check site.yml</code></li>
+                <li> Run <code>ansible-playbook -C --diff site.yml</code></li>
+                <li> Run <code>ansible-playbook site.yml</code></li>
+                <li> Verify: <code>curl http://&lt;server-ip&gt;:{{ nginx_host_port }}</code></li>
+                <li> Verify: <code>docker ps</code> shows nginx-app running</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <div class="topic-title">🏁 Module Complete!</div>
+        <div class="content-box" style="border:3px solid var(--chalk-yellow); text-align:center;">
+            <p class="handwritten" style="font-size:2rem; color:var(--chalk-yellow);">🎉 Congratulations! 🎉</p>
+            <p class="handwritten" style="font-size:1.3rem;">You have completed Module 12: Ansible [Configuration Management]!</p>
+            <p>Next up: <span class="chalk-text">Module 13 — SRE & Observability (Days 76-80)</span></p>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 75 • Phase 12: Ansible [Config Mgmt] • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

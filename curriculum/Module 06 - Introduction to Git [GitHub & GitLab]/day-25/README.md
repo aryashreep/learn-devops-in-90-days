@@ -12,7 +12,7 @@ Master Git Branching and connect your local work to the cloud (GitHub). Learn ho
 - **The Cloud Push:** Moving local history to the remote server with `git push`.
 
 ## 🧠 Pro Module
-[🎓 Day 25 Pro Module: Git Multiverse](./Day23_Git_Branching.html)
+[🎓 Day 25 Pro Module: Git Multiverse](./Day25_Git_Branching.html)
 
 ## 🧪 Hands-on Lab
 👉 [Lab Session: Creating Parallel Realities](./lab-session/task.md)

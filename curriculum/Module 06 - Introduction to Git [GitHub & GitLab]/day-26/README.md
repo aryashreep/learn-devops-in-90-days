@@ -3,7 +3,7 @@
 Welcome to **Day 26**! Today we take our local code to the cloud.
 
 ## 🧠 Pro Module
-[🎓 Day 26 Pro Module](./Day24_GitHub_Collaboration.html)
+[🎓 Day 26 Pro Module](./Day26_GitHub_Collaboration.html)
 
 ## 🎯 Today's Goal
 Learn how to collaborate with others using GitHub, manage remote repositories, and use the GitHub CLI.

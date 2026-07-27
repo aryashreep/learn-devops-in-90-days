@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 71: Introduction to Ansible and Inventory Setup - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--bg-blackboard) !important; color: var(--chalk-white) !important; } .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; } section { page-break-inside: avoid; } a { text-decoration: none !important; color: var(--chalk-blue) !important; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-green); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-green); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-green); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-green); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-green { border-color: var(--chalk-green); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-green::before { border-right-color: var(--chalk-green); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-green); }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29,209,161,0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        .dyk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Introduction to Ansible &amp; Inventory Setup</h1>
+        <p class="subtitle handwritten">Day 71: Automate everything, agentlessly! ⚙️</p>
+    </header>
+
+    <!-- INTRO DIALOGUE -->
+    <section>
+        <div class="doodle-container">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu! I have 50 servers to configure and I'm SSHing into each one manually! It takes forever and I keep missing steps!"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end;">
+            <div class="speech-bubble bubble-green">
+                "Beep Boop! Golu, you are doing it all wrong! Meet <span class="chalk-text">Ansible</span> — the agentless automation superhero. Write once, run on all 50 servers in seconds! Let me show you how!"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 Learning Objectives</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li>Understand Ansible's <strong>agentless push architecture</strong> and how it differs from Chef/Puppet.</li>
+                <li>Install Ansible on the <strong>control node</strong> and configure <code>ansible.cfg</code>.</li>
+                <li>Create <strong>static inventory</strong> files in INI and YAML formats with host groups.</li>
+                <li>Run <strong>ad-hoc commands</strong> using modules like <code>ping</code>, <code>command</code>, <code>shell</code>, and <code>setup</code>.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- DID YOU KNOW -->
+    <section>
+        <div class="topic-title">❓ Did You Know?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">Agentless</div><div class="handwritten" style="color:var(--chalk-blue);">No agents needed — just SSH and Python</div></div>
+            <div><div class="dyk-num">2012</div><div class="handwritten" style="color:var(--chalk-blue);">Year Ansible was created by Michael DeHaan</div></div>
+            <div><div class="dyk-num">Red Hat</div><div class="handwritten" style="color:var(--chalk-blue);">Ansible was acquired by Red Hat in 2015</div></div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section>
+        <div class="topic-title">🏗️ Ansible Architecture</div>
+        <div class="content-box">
+            <p>Ansible follows a <strong>push-based, agentless</strong> architecture. Unlike Chef or Puppet which require agents on every node, Ansible connects via SSH and pushes instructions temporarily.</p>
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+Control Node                    Managed Nodes
+┌──────────────┐               ┌──────────────┐
+│  Ansible     │  ─── SSH ──→  │  Node 1       │
+│  Inventory   │               │  (Python)     │
+│  Playbooks   │  ─── SSH ──→  ├──────────────┤
+│  Modules     │               │  Node 2       │
+│  ansible.cfg │  ─── SSH ──→  │  (Python)     │
+└──────────────┘               └──────────────┘
+                </pre>
+            </div>
+            <p><span class="chalk-text">Key Point:</span> Managed nodes only need Python installed. No agent, no daemon, no extra configuration!</p>
+        </div>
+    </section>
+
+    <!-- INVENTORY -->
+    <section>
+        <div class="topic-title">📋 Inventory Management</div>
+        <div class="content-box accent-yellow">
+            <p>The inventory file defines which hosts Ansible manages. Two formats are supported:</p>
+            
+            <h3 class="handwritten" style="color:var(--chalk-orange);">INI Format (hosts.ini)</h3>
+            <pre><code>[webservers]
+web1.example.com
+web2.example.com ansible_user=ubuntu
+
+[databases]
+db1.example.com
+db2.example.com
+
+[all:vars]
+ansible_user=admin
+ansible_ssh_private_key_file=~/.ssh/id_rsa</code></pre>
+
+            <h3 class="handwritten" style="color:var(--chalk-orange);">YAML Format (hosts.yml)</h3>
+            <pre><code>all:
+  children:
+    webservers:
+      hosts:
+        web1.example.com:
+          ansible_user: ubuntu
+        web2.example.com:
+    databases:
+      hosts:
+        db1.example.com:
+        db2.example.com:</code></pre>
+        </div>
+    </section>
+
+    <!-- AD-HOC COMMANDS -->
+    <section>
+        <div class="topic-title">⚡ Ad-Hoc Commands</div>
+        <div class="content-box accent-blue">
+            <p>Ad-hoc commands let you execute quick tasks without writing playbooks:</p>
+            <pre><code># Ping all hosts (test connectivity)
+ansible all -m ping
+
+# Run command on webservers group
+ansible webservers -m command -a "uptime"
+
+# Install package on all Ubuntu hosts
+ansible all -m apt -a "name=nginx state=present" --become
+
+# Gather system facts (filtered)
+ansible all -m setup -a "filter=ansible_distribution*"
+
+# Copy a file to managed nodes
+ansible all -m copy -a "src=/tmp/file.txt dest=/tmp/file.txt"</code></pre>
+        </div>
+    </section>
+
+    <!-- INSTALLATION -->
+    <section>
+        <div class="topic-title">💿 Installing Ansible</div>
+        <div class="content-box accent-green">
+            <pre><code># Ubuntu/Debian
+sudo apt update && sudo apt install -y ansible
+
+# Verify
+ansible --version
+
+# Check configuration
+ansible-config list | grep CONFIG_FILE
+
+# Ansible config file location: /etc/ansible/ansible.cfg</code></pre>
+            <p class="handwritten" style="color:var(--chalk-yellow);margin-top:15px;">Jagu's Tip: Create a project-level <code>ansible.cfg</code> to keep configurations organized per project!</p>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+        <div class="topic-title">❓ Mini Quiz</div>
+        <div class="content-box" style="border:2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. What protocol does Ansible use by default for Linux nodes?</p><div class="quiz-options"><span>a) HTTPS</span><span>b) SSH</span><span>c) Telnet</span><span>d) RDP</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. Which file defines the list of managed nodes?</p><div class="quiz-options"><span>a) ansible.cfg</span><span>b) playbook.yml</span><span>c) inventory file</span><span>d) vault.yml</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">3. What command tests connectivity to all managed nodes?</p><div class="quiz-options"><span>a) ansible all -m command -a "uptime"</span><span>b) ansible all -m ping</span><span>c) ansible all -m shell -a "echo test"</span><span>d) ansible all -m setup</span></div></div>
+            <div class="answer-key"><h3 class="handwritten" style="color:var(--chalk-green);">✅ Answer Key</h3><p>1-b | 2-c | 3-b</p></div>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 71 • Phase 12: Ansible [Config Mgmt] • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

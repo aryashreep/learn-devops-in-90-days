@@ -3,7 +3,7 @@
 Welcome to **Day 27**! Today we learn how to bring parallel branches together.
 
 ## 🧠 Pro Module
-[🎓 Day 27 Pro Module](./Day25_Integrating_Work.html)
+[🎓 Day 27 Pro Module](./Day27_Integrating_Work.html)
 
 ## 🎯 Today's Goal
 Master the two main ways of integrating code changes and understand when to use each.

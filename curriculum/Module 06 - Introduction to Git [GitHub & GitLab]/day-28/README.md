@@ -3,7 +3,7 @@
 Welcome to **Day 28**! Today we learn how to fix mistakes and recover lost work.
 
 ## 🧠 Pro Module
-[🎓 Day 28 Pro Module](./Day26_Git_Recovery.html)
+[🎓 Day 28 Pro Module](./Day28_Git_Recovery.html)
 
 ## 🎯 Today's Goal
 Master the art of Git "Surgery"—undoing changes safely and using the reflog to rescue deleted commits.

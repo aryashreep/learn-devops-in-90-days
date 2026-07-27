@@ -12,7 +12,7 @@ Understand the different types of Jira issues and how they fit into a hierarchy.
 - **Bugs:** When things go wrong.
 
 ## 🧠 Pro Module
-[🎓 Day 23 Pro Module: Issues & Hierarchy](./Day30_Issues_Hierarchy.html)
+[🎓 Day 23 Pro Module: Issues & Hierarchy](./Day23_Issues_Hierarchy.html)
 
 ## 🧪 Hands-on Lab
 👉 [Lab Session: Creating Your First Epic](./lab-session/task.md)
