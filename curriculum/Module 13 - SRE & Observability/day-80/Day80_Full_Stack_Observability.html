@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 80: Full Stack Observability Project - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--bg-blackboard) !important; color: var(--chalk-white) !important; } .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; } section { page-break-inside: avoid; } a { text-decoration: none !important; color: var(--chalk-blue) !important; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-green); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-green); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-green); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-green); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-green { border-color: var(--chalk-green); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-green::before { border-right-color: var(--chalk-green); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-green); }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29,209,161,0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        .dyk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 800px) { .vs-grid { grid-template-columns: 1fr; } .dyk-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Full Stack Observability Project</h1>
+        <p class="subtitle handwritten">Day 80: The complete LGTM stack — one command, total visibility! 🚀</p>
+    </header>
+
+    <!-- INTRO DIALOGUE -->
+    <section>
+        <div class="doodle-container">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu, I've learned Prometheus, Grafana, Loki, and Alertmanager separately. But in the real world they all work TOGETHER. How do I run them as one system?"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end;">
+            <div class="speech-bubble bubble-green">
+                "Beep Boop! Perfect question for the capstone, Golu! Today we build the <span class="chalk-text">Full Stack Observability Platform</span> — metrics + logs + alerts in one docker-compose file. One command and your whole system is watching itself. This is what real SRE teams run! 🏆"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 Learning Objectives</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li>Deploy the complete observability stack with <strong>one docker-compose file</strong>.</li>
+                <li>Wire exporters → Prometheus → Grafana and Promtail → Loki → Grafana.</li>
+                <li>Connect <strong>Alertmanager</strong> to Prometheus and test an end-to-end alert.</li>
+                <li>Build a dashboard that <strong>correlates metrics with logs</strong>.</li>
+                <li>Troubleshoot the stack using its own telemetry (dogfooding!).</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- DID YOU KNOW -->
+    <section>
+        <div class="topic-title">❓ Did You Know?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">7</div><div class="handwritten" style="color:var(--chalk-blue);">Services in today's stack — all open source</div></div>
+            <div><div class="dyk-num">LGTM</div><div class="handwritten" style="color:var(--chalk-blue);">Loki • Grafana • Tempo • Mimir = Grafana's full stack</div></div>
+            <div><div class="dyk-num">FREE</div><div class="handwritten" style="color:var(--chalk-blue);">Everything runs on your laptop — zero cloud cost</div></div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section>
+        <div class="topic-title">🏗️ The Complete Architecture</div>
+        <div class="content-box accent-blue">
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+┌───────────────── Observability Platform ─────────────────┐
+│                                                          │
+│  Node Exporter :9100 ─┐                                  │
+│  cAdvisor      :8080 ─┼─→ Prometheus :9090 ─→ Grafana    │
+│  Promtail      :9080 ─┘       │              :3000       │
+│                              │ alert rules               │
+│                              ▼                           │
+│                       Alertmanager :9093                 │
+│                                                          │
+│  Loki :3100 ←──── Promtail pushes logs                   │
+│      ▲                                                   │
+│      └──────── Grafana Explore queries                   │
+└──────────────────────────────────────────────────────────┘
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPOSE -->
+    <section>
+        <div class="topic-title">🐳 docker-compose.yml — The Heart</div>
+        <div class="content-box accent-yellow">
+            <pre><code>services:
+  node-exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    command: --path.rootfs=/host
+    ports:
+      - "9100:9100"
+    volumes:
+      - /:/host:ro,rslave
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    ports: ["8080:8080"]
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+  prometheus:
+    image: prom/prometheus
+    ports: ["9090:9090"]
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./rules.yml:/etc/prometheus/rules.yml
+    command: --config.file=/etc/prometheus/prometheus.yml
+
+  alertmanager:
+    image: prom/alertmanager
+    ports: ["9093:9093"]
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+
+  grafana:
+    image: grafana/grafana
+    ports: ["3000:3000"]
+
+  loki:
+    image: grafana/loki:3.0.0
+    ports: ["3100:3100"]
+    command: -config.file=/etc/loki/local-config.yaml
+
+  promtail:
+    image: grafana/promtail:3.0.0
+    volumes:
+      - ./promtail-config.yml:/etc/promtail/config.yml
+      - /var/log:/var/log
+    command: -config.file=/etc/promtail/config.yml</code></pre>
+            <p class="handwritten" style="color:var(--chalk-yellow);">Jagu's Tip: One file, one command — <code>docker compose up -d</code>. That's the SRE way.</p>
+        </div>
+    </section>
+
+    <!-- SCAFFOLD -->
+    <section>
+        <div class="topic-title">📁 Project Scaffold</div>
+        <div class="content-box">
+            <pre class="dir-tree"><code>~/observability-lab/
+├── <span>docker-compose.yml</span>      # The 7-service stack
+├── <span>prometheus.yml</span>          # Scrape configs + rule_files + alertmanager
+├── <span>rules.yml</span>              # HighCPUUsage, InstanceDown alerts
+├── <span>alertmanager.yml</span>        # Route + webhook receiver
+├── <span>promtail-config.yml</span>     # Log shipping to Loki
+└── <span>grafana/</span>                # (optional) provisioned dashboards</code></pre>
+        </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section>
+        <div class="topic-title">📊 The Unified Dashboard</div>
+        <div class="content-box accent-green">
+            <p>One Grafana dashboard with <strong>three rows</strong>:</p>
+            <ul>
+                <li><span class="chalk-text">Row 1 — Host (USE):</span> CPU %, Memory used, Disk I/O, Network.</li>
+                <li><span class="chalk-text">Row 2 — Containers:</span> per-container CPU and memory via cAdvisor.</li>
+                <li><span class="chalk-text">Row 3 — Logs:</span> a Loki log panel showing <code>{job="varlogs"}</code> in real time.</li>
+            </ul>
+            <pre><code># Container CPU panel
+sum(rate(container_cpu_usage_seconds_total{name!=""}[5m])) by (name) * 100
+
+# Memory used panel
+node_memory_MemTotal_bytes - node_memory_MemFree_bytes \
+  - node_memory_Buffers_bytes - node_memory_Cached_bytes</code></pre>
+            <p><span class="chalk-text">Correlation superpower:</span> When CPU spikes, open Loki Explore for the same time window and query <code>{job="varlogs"} |= "ERROR"</code>. The metric says <em>when</em>, the log says <em>why</em>.</p>
+        </div>
+    </section>
+
+    <!-- COMPARE VS -->
+    <section>
+        <div class="topic-title">⚖️ Compare: Before vs After Observability</div>
+        <div class="vs-grid">
+            <div class="content-box accent-red">
+                <h3 class="handwritten" style="color:var(--chalk-red);">Before (Blind)</h3>
+                <ul>
+                    <li>Users report the outage first.</li>
+                    <li>SSH into each server to grep logs.</li>
+                    <li>Dashboards per team, no shared truth.</li>
+                    <li>On-call is a guessing game.</li>
+                </ul>
+            </div>
+            <div class="content-box accent-green">
+                <h3 class="handwritten" style="color:var(--chalk-green);">After (Visible)</h3>
+                <ul>
+                    <li>Alert fires before users notice.</li>
+                    <li>One Grafana view for metrics + logs.</li>
+                    <li>Runbook linked in every alert.</li>
+                    <li>MTTR measured in minutes, not hours.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- REAL WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">🌍 Real-World Example</div>
+        <div class="content-box accent-green">
+            <p><strong>Booking.com:</strong> Their SRE team runs thousands of services on a unified observability platform. When a flash-sale page starts failing, three things happen in parallel: a p99 latency alert fires to the on-call, the logs show a specific dependency timing out, and the trace shows exactly which request path hit it. This "metrics → logs → traces" flow turns a potential 45-minute incident into a 7-minute resolution.</p>
+            <p><span class="handwritten" style="color:var(--chalk-yellow);">That exact workflow is what your Day 80 project practices — at laptop scale! 🏆</span></p>
+        </div>
+    </section>
+
+    <!-- COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">🚫 Common Misconceptions</div>
+        <div class="content-box accent-red">
+            <ul>
+                <li><strong>"Observability is too heavy for one machine."</strong> This entire stack runs on a laptop — that's the point of the lab.</li>
+                <li><strong>"One tool can do it all."</strong> Even the LGTM stack uses 3+ tools; pick the right tool per pillar.</li>
+                <li><strong>"If I build it, the team will use it."</strong> Dashboards die without runbooks and alert ownership. Culture matters.</li>
+                <li><strong>"Alerting = dashboards."</strong> Dashboards show state; alerts change behaviour. You need both.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">🛠️ Try It Yourself</div>
+        <div class="content-box accent-blue">
+            <pre><code># 1. mkdir ~/observability-lab && cd ~/observability-lab
+# 2. Write all 5 config files (compose + prometheus + rules + alertmanager + promtail)
+# 3. docker compose up -d
+# 4. Verify: all targets UP at http://localhost:9090/targets
+# 5. Add data sources in Grafana: Prometheus :9090 + Loki :3100
+# 6. Import dashboard 1860, add a Loki log panel
+# 7. Stress the CPU → watch alert go Pending → Firing → Alertmanager
+# 8. Write a short incident report (what happened, how you found it)</code></pre>
+        </div>
+    </section>
+
+    <!-- QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">⚡ Quick Summary</div>
+        <div class="content-box">
+            <ul>
+                <li>One compose file runs the full observability platform (7 services).</li>
+                <li>Metrics: Node Exporter + cAdvisor → Prometheus → Grafana.</li>
+                <li>Logs: Promtail → Loki → Grafana Explore.</li>
+                <li>Alerts: rules.yml → Prometheus → Alertmanager → webhook.</li>
+                <li>Correlate: metric says <em>when</em>, log says <em>why</em>, trace says <em>where</em>.</li>
+                <li>Document runbooks — an unowned alert is just noise.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+        <div class="topic-title">❓ Mini Quiz</div>
+        <div class="content-box" style="border:2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. How many services are in today's full stack?</p><div class="quiz-options"><span>a) 3</span><span>b) 7</span><span>c) 10</span><span>d) 5</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. Which service provides container metrics to Prometheus?</p><div class="quiz-options"><span>a) Node Exporter</span><span>b) cAdvisor</span><span>c) Promtail</span><span>d) Loki</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">3. Where does Promtail push log lines?</p><div class="quiz-options"><span>a) Prometheus</span><span>b) Loki</span><span>c) Grafana</span><span>d) Alertmanager</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">4. Which Grafana data sources does the dashboard need?</p><div class="quiz-options"><span>a) Prometheus + Loki</span><span>b) Prometheus only</span><span>c) MySQL + Loki</span><span>d) CloudWatch only</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">5. What is the recommended alert flow order?</p><div class="quiz-options"><span>a) Loki → Grafana → Slack</span><span>b) rules.yml → Prometheus → Alertmanager → receiver</span><span>c) cAdvisor → Alertmanager → Prometheus</span><span>d) Promtail → rules.yml → Grafana</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">6. In an incident, the METRIC tells you:</p><div class="quiz-options"><span>a) exactly why it broke</span><span>b) when something started going wrong</span><span>c) which code line failed</span><span>d) the customer's complaint</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">7. Which best practice keeps alerts actionable?</p><div class="quiz-options"><span>a) More dashboards</span><span>b) A runbook linked in every alert</span><span>c) Alerting on every restart</span><span>d) No alert deduplication</span></div></div>
+            <div class="answer-key"><h3 class="handwritten" style="color:var(--chalk-green);">✅ Answer Key</h3><p>1-b | 2-b | 3-b | 4-a | 5-b | 6-b | 7-b</p></div>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 80 • Phase 13: SRE & Observability • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

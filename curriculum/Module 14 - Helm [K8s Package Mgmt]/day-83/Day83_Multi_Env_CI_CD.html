@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 83: Multi-Env CI/CD with Helm - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--bg-blackboard) !important; color: var(--chalk-white) !important; } .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; } section { page-break-inside: avoid; } a { text-decoration: none !important; color: var(--chalk-blue) !important; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-green); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-green); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-green); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-green); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-green { border-color: var(--chalk-green); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-green::before { border-right-color: var(--chalk-green); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-green); }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29,209,161,0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        .dyk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 800px) { .vs-grid { grid-template-columns: 1fr; } .dyk-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Multi-Env CI/CD with Helm</h1>
+        <p class="subtitle handwritten">Day 83: One chart, every environment — fully automated! 🚀</p>
+    </header>
+
+    <!-- INTRO DIALOGUE -->
+    <section>
+        <div class="doodle-container">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu, I have a great chart now! But dev, staging, and prod need DIFFERENT values — and I don't want to deploy by hand every time!"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end;">
+            <div class="speech-bubble bubble-green">
+                "Beep Boop! That's the final piece, Golu! <span class="chalk-text">values-dev.yaml</span>, <span class="chalk-text">values-prod.yaml</span> — and a GitHub Actions pipeline that lints, packages, and deploys on every push. One chart, three environments, ZERO manual deploys! Let's automate everything! 🤖"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 Learning Objectives</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li>Layer <strong>environment values files</strong> (dev/staging/prod).</li>
+                <li>Master <strong>values precedence</strong>: file order and <code>--set</code>.</li>
+                <li>Deploy idempotently with <code>helm upgrade --install --atomic</code>.</li>
+                <li>Isolate environments with <strong>namespaces</strong>.</li>
+                <li>Automate the whole flow in <strong>GitHub Actions</strong>.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- DID YOU KNOW -->
+    <section>
+        <div class="topic-title">❓ Did You Know?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">3</div><div class="handwritten" style="color:var(--chalk-blue);">Layers of values: defaults → files → --set</div></div>
+            <div><div class="dyk-num">OCI</div><div class="handwritten" style="color:var(--chalk-blue);">Helm charts push to OCI registries like Docker images</div></div>
+            <div><div class="dyk-num">--atomic</div><div class="handwritten" style="color:var(--chalk-blue);">Auto-rollback on failed upgrades = safer deploys</div></div>
+        </div>
+    </section>
+
+    <!-- ENV VALUES -->
+    <section>
+        <div class="topic-title">🌍 Values per Environment</div>
+        <div class="content-box accent-yellow">
+            <pre class="dir-tree"><code>ai-bankapp/
+├── <span>values.yaml</span>           # chart defaults (shared base)
+├── <span>values-dev.yaml</span>       # dev overrides
+├── <span>values-staging.yaml</span>   # staging overrides
+└── <span>values-prod.yaml</span>      # prod overrides (bigger, safer)</code></pre>
+            <pre><code># values-prod.yaml — production overrides
+replicaCount: 6
+image:
+  tag: "1.2.0"
+  pullPolicy: Always
+ingress:
+  enabled: true
+  host: bank.aryashree.in
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 15
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi</code></pre>
+        </div>
+    </section>
+
+    <!-- PRECEDENCE -->
+    <section>
+        <div class="topic-title">📊 Values Precedence</div>
+        <div class="content-box accent-blue">
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+   LOWEST  ┌─────────────────────────┐
+           │  1. values.yaml         │  chart defaults
+           ├─────────────────────────┤
+           │  2. -f values-prod.yaml │  user files (in order)
+           ├─────────────────────────┤
+   HIGHEST │  3. --set image.tag=x   │  inline flags
+           └─────────────────────────┘
+                </pre>
+            </div>
+            <pre><code># What actually wins for prod?
+helm upgrade --install ai-bankapp ./ai-bankapp \
+  -f values-prod.yaml --set image.tag=1.3.0
+# → image.tag = 1.3.0 (--set beats the file)</code></pre>
+        </div>
+    </section>
+
+    <!-- DEPLOY PER ENV -->
+    <section>
+        <div class="topic-title">🔄 Deploy per Environment</div>
+        <div class="content-box accent-green">
+            <pre><code># Dev
+helm upgrade --install ai-bankapp ./ai-bankapp \
+  -f values-dev.yaml -n dev --create-namespace
+
+# Staging
+helm upgrade --install ai-bankapp ./ai-bankapp \
+  -f values-staging.yaml -n staging --create-namespace
+
+# Prod (with auto-rollback)
+helm upgrade --install ai-bankapp ./ai-bankapp \
+  -f values-prod.yaml -n prod --create-namespace --atomic
+
+# Verify releases
+helm list -A
+helm history ai-bankapp -n prod</code></pre>
+            <p class="handwritten" style="color:var(--chalk-yellow);">Jagu's Tip: <code>--atomic</code> = if the release fails, Helm rolls it back automatically. Mandatory for prod!</p>
+        </div>
+    </section>
+
+    <!-- CI/CD -->
+    <section>
+        <div class="topic-title">🤖 CI/CD with GitHub Actions</div>
+        <div class="content-box accent-blue">
+            <pre><code># .github/workflows/helm-deploy.yml
+name: Deploy AI-BankApp
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-helm@v4
+        with:
+          version: v3.15.0
+      - name: Lint
+        run: helm lint ./ai-bankapp
+      - name: Render (syntax + values check)
+        run: helm template ai-bankapp ./ai-bankapp -f values-prod.yaml
+      - name: Package
+        run: helm package ./ai-bankapp -d ./dist
+      - name: Push to OCI registry
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          helm registry login ghcr.io -u $GITHUB_ACTOR -p $TOKEN
+          helm push ./dist/ai-bankapp-*.tgz oci://ghcr.io/aryashreep
+      - name: Configure kubeconfig (cluster auth)
+        env:
+          KUBECONFIG_B64: ${{ secrets.KUBECONFIG_B64 }}
+        run: |
+          mkdir -p $HOME/.kube
+          echo "$KUBECONFIG_B64" | base64 -d > $HOME/.kube/config
+      - name: Deploy to prod
+        run: helm upgrade --install ai-bankapp ./ai-bankapp \
+               -f values-prod.yaml -n prod --create-namespace --atomic</code></pre>
+            <p><span class="chalk-text">Why this matters:</span> every push = tested chart + versioned artifact + safe deploy. No more "works on my machine".</p>
+        </div>
+    </section>
+
+    <!-- COMPARE VS -->
+    <section>
+        <div class="topic-title">⚖️ Compare: Manual vs CI/CD Deploys</div>
+        <div class="vs-grid">
+            <div class="content-box accent-red">
+                <h3 class="handwritten" style="color:var(--chalk-red);">Manual Deploys</h3>
+                <ul>
+                    <li>"I deployed from my laptop." — and nobody knows what's live.</li>
+                    <li>Untested chart changes go straight to prod.</li>
+                    <li>No audit trail, no versioned artifacts.</li>
+                    <li>Rollbacks need heroics.</li>
+                </ul>
+            </div>
+            <div class="content-box accent-green">
+                <h3 class="handwritten" style="color:var(--chalk-green);">Pipeline Deploys</h3>
+                <ul>
+                    <li>Every change: lint → template → package → deploy.</li>
+                    <li>Chart is validated BEFORE it touches the cluster.</li>
+                    <li>Artifacts versioned and pushed to a registry.</li>
+                    <li><code>--atomic</code> + <code>helm rollback</code> = boring recoveries.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- REAL WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">🌍 Real-World Example</div>
+        <div class="content-box accent-green">
+            <p><strong>AI-BankApp Friday release:</strong> The team merges a fix to <code>main</code>. GitHub Actions fires: lint passes, <code>helm template</code> renders prod values correctly, the chart is packaged as <code>ai-bankapp-0.2.0.tgz</code> and pushed to <code>ghcr.io</code>, then <code>helm upgrade --install</code> rolls the release to revision 42 in the <code>prod</code> namespace.</p>
+            <p>Two minutes later the release is live and <code>helm history ai-bankapp -n prod</code> shows the whole story. If anything breaks — one command, one revision back. <span class="handwritten" style="color:var(--chalk-yellow);">That's the final piece of your Helm mastery! 🏆</span></p>
+        </div>
+    </section>
+
+    <!-- COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">🚫 Common Misconceptions</div>
+        <div class="content-box accent-red">
+            <ul>
+                <li><strong>"helm install works every time."</strong> Use <code>helm upgrade --install</code> — install fails on the 2nd run; upgrade --install is idempotent.</li>
+                <li><strong>"Secrets are fine in values files."</strong> Values files get committed to Git! Use <code>--set</code> from CI secrets or external secrets.</li>
+                <li><strong>"One values.yaml is enough."</strong> Environments differ (replicas, ingress, resources) — that's what override files are for.</li>
+                <li><strong>"Charts must be pushed to a repo to be deployed."</strong> Local chart paths work great for CI; registries are for sharing.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">🛠️ Try It Yourself</div>
+        <div class="content-box accent-blue">
+            <pre><code># 1. Create values-dev.yaml + values-prod.yaml (from values.yaml)
+# 2. Render each environment and compare
+helm template ai-bankapp ./ai-bankapp -f values-dev.yaml  | grep replicas:
+helm template ai-bankapp ./ai-bankapp -f values-prod.yaml | grep replicas:
+
+# 3. Deploy to two namespaces (with a cluster)
+helm upgrade --install ai-bankapp ./ai-bankapp -f values-dev.yaml -n dev --create-namespace
+helm upgrade --install ai-bankapp ./ai-bankapp -f values-prod.yaml -n prod --create-namespace
+helm list -A
+
+# 4. Test --set precedence
+helm template ai-bankapp ./ai-bankapp -f values-prod.yaml --set replicaCount=10 | grep replicas:
+
+# 5. Push a release and roll back
+helm history ai-bankapp -n dev
+helm rollback ai-bankapp 1 -n dev</code></pre>
+        </div>
+    </section>
+
+    <!-- QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">⚡ Quick Summary</div>
+        <div class="content-box">
+            <ul>
+                <li>One chart + per-env values files = full environment control.</li>
+                <li>Precedence: <code>values.yaml</code> &lt; <code>-f file</code> &lt; <code>--set</code>.</li>
+                <li><code>helm upgrade --install</code> + <code>--atomic</code> = safe, idempotent deploys.</li>
+                <li>Namespaces isolate environments; <code>helm list -A</code> sees all.</li>
+                <li>CI/CD: lint → template → package → push → deploy, every push.</li>
+                <li>Versioned artifacts + <code>helm rollback</code> = boring, reliable releases.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+        <div class="topic-title">❓ Mini Quiz</div>
+        <div class="content-box" style="border:2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. Which has the HIGHEST values precedence?</p><div class="quiz-options"><span>a) values.yaml</span><span>b) -f values-prod.yaml</span><span>c) --set image.tag=1.3.0</span><span>d) Chart.yaml</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. Which command deploys idempotently (install OR upgrade)?</p><div class="quiz-options"><span>a) helm install</span><span>b) helm upgrade --install</span><span>c) helm apply</span><span>d) helm deploy</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">3. What does `--atomic` do on an upgrade?</p><div class="quiz-options"><span>a) Speeds up the install</span><span>b) Rolls back automatically if the install fails</span><span>c) Skips linting</span><span>d) Deletes the release after install</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">4. How do you isolate dev vs prod releases?</p><div class="quiz-options"><span>a) Different chart names</span><span>b) Different clusters only</span><span>c) Different namespaces</span><span>d) Different Helm versions</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">5. In a pipeline, which step catches rendering errors BEFORE deploy?</p><div class="quiz-options"><span>a) helm push</span><span>b) helm template</span><span>c) helm uninstall</span><span>d) helm search</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">6. Which command shows all releases across namespaces?</p><div class="quiz-options"><span>a) helm list -A</span><span>b) helm get releases</span><span>c) kubectl get releases</span><span>d) helm show list</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">7. Where should production secrets live in a Helm + CI setup?</p><div class="quiz-options"><span>a) Committed in values-prod.yaml</span><span>b) In Chart.yaml</span><span>c) In CI secrets / external secrets, injected via --set</span><span>d) In NOTES.txt</span></div></div>
+            <div class="answer-key"><h3 class="handwritten" style="color:var(--chalk-green);">✅ Answer Key</h3><p>1-c | 2-b | 3-b | 4-c | 5-b | 6-a | 7-c</p></div>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 83 • Phase 14: Helm [K8s Package Mgmt] • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

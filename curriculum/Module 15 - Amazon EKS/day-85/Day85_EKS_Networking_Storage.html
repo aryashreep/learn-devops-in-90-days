@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 85: EKS Networking & Persistent Storage - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--bg-blackboard) !important; color: var(--chalk-white) !important; } .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; } section { page-break-inside: avoid; } a { text-decoration: none !important; color: var(--chalk-blue) !important; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-green); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-green); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-green); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-green); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-green { border-color: var(--chalk-green); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-green::before { border-right-color: var(--chalk-green); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-green); }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29,209,161,0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        .dyk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 800px) { .vs-grid { grid-template-columns: 1fr; } .dyk-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>EKS Networking &amp; Storage</h1>
+        <p class="subtitle handwritten">Day 85: Connect it and never lose data again! 🌐</p>
+    </header>
+
+    <!-- INTRO DIALOGUE -->
+    <section>
+        <div class="doodle-container">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu, my pods are Running... but users can't reach them, and my data vanishes on every restart! What's missing?"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end;">
+            <div class="speech-bubble bubble-green">
+                "Beep Boop! Two pieces, Golu: <span class="chalk-text">networking</span> — Services and ALB Ingress so traffic flows in — and <span class="chalk-text">storage</span> — EBS for databases and EFS for shared files, so data survives restarts. Both are first-class citizens on EKS. Let's wire it up! 🌐"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 Learning Objectives</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li>Explain how the <strong>VPC CNI</strong> gives every pod a real VPC IP.</li>
+                <li>Use Service types: <strong>ClusterIP, NodePort, LoadBalancer</strong>.</li>
+                <li>Install the <strong>AWS Load Balancer Controller</strong> and expose apps via ALB Ingress.</li>
+                <li>Provision storage with the <strong>EBS CSI</strong> and <strong>EFS CSI</strong> drivers.</li>
+                <li>Use <strong>StorageClasses, PVs and PVCs</strong> the EKS way.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- DID YOU KNOW -->
+    <section>
+        <div class="topic-title">❓ Did You Know?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">CNI</div><div class="handwritten" style="color:var(--chalk-blue);">EKS uses the AWS VPC CNI — pods get REAL VPC IPs (no NAT/overlay)</div></div>
+            <div><div class="dyk-num">gp3</div><div class="handwritten" style="color:var(--chalk-blue);">EBS gp3 is the default StorageClass — 3000 IOPS baseline</div></div>
+            <div><div class="dyk-num">L4/L7</div><div class="handwritten" style="color:var(--chalk-blue);">NLB = Layer 4 TCP/UDP, ALB = Layer 7 HTTP/HTTPS routing</div></div>
+        </div>
+    </section>
+
+    <!-- POD NETWORKING -->
+    <section>
+        <div class="topic-title">🌐 Pod Networking — the VPC CNI</div>
+        <div class="content-box accent-blue">
+            <p>EKS uses the <strong>AWS VPC CNI</strong>: every pod gets an IP straight from your VPC subnet. No overlay, no double-NAT — pod-to-pod traffic uses the VPC's routing and security groups natively.</p>
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+Node (t3.medium, 10.0.1.12)
+├── eth0  → 10.0.1.12      (node's ENI)
+├── eth1  → 10.0.1.20      (pod A)
+│            pod: ai-bankapp-abc12
+└── eth2  → 10.0.1.21      (pod B)
+             pod: ai-bank-redis-xyz98
+
+Pods talk to each other using plain VPC IPs — same routing,
+same security groups, sub-ms latency. No overlay tunnels!
+                </pre>
+            </div>
+            <ul>
+                <li>Fast: traffic stays on the VPC network.</li>
+                <li>Secure: <strong>security groups</strong> can target pods directly (Security Groups for Pods).</li>
+                <li>Watch out: each node needs enough <strong>ENI/IP quota</strong> for its pods.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SERVICE TYPES -->
+    <section>
+        <div class="topic-title">🔌 Service Types</div>
+        <div class="content-box accent-yellow">
+            <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+                <tr style="color:var(--chalk-yellow);"><th style="border:1px solid #555; padding:10px;">Type</th><th style="border:1px solid #555; padding:10px;">Reachable from</th><th style="border:1px solid #555; padding:10px;">Use case</th></tr>
+                <tr><td style="border:1px solid #555; padding:10px;"><code>ClusterIP</code></td><td style="border:1px solid #555; padding:10px;">Inside cluster only</td><td style="border:1px solid #555; padding:10px;">Default — service-to-service</td></tr>
+                <tr><td style="border:1px solid #555; padding:10px;"><code>NodePort</code></td><td style="border:1px solid #555; padding:10px;">nodeIP:port</td><td style="border:1px solid #555; padding:10px;">Dev access, no cloud LB needed</td></tr>
+                <tr><td style="border:1px solid #555; padding:10px;"><code>LoadBalancer</code></td><td style="border:1px solid #555; padding:10px;">Internet (via NLB/CLB)</td><td style="border:1px solid #555; padding:10px;">Single-service exposure</td></tr>
+                <tr><td style="border:1px solid #555; padding:10px;"><code>ExternalName</code></td><td style="border:1px solid #555; padding:10px;">CNAME mapping</td><td style="border:1px solid #555; padding:10px;">Point at external services</td></tr>
+            </table>
+            <pre style="margin-top:20px;"><code>kubectl expose deploy ai-bankapp --port 80 --type=LoadBalancer
+kubectl get svc ai-bankapp -w   # shows EXTERNAL-IP once ready</code></pre>
+        </div>
+    </section>
+
+    <!-- ALB INGRESS -->
+    <section>
+        <div class="topic-title">🚦 Ingress + AWS Load Balancer Controller</div>
+        <div class="content-box accent-green">
+            <p>The <strong>AWS Load Balancer Controller</strong> turns an Ingress into a real <strong>ALB</strong> (Layer 7 — path &amp; host routing, TLS, sticky sessions):</p>
+            <pre><code># 1. Give the controller its IAM role first (IRSA from Day 84)
+curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/main/docs/install/iam_policy.json
+aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy \
+  --policy-document file://iam_policy.json
+
+eksctl create iamserviceaccount \
+  --cluster ai-bank-cluster --namespace kube-system \
+  --name aws-load-balancer-controller \
+  --attach-policy-arn arn:aws:iam::&lt;ACCOUNT&gt;:policy/AWSLoadBalancerControllerIAMPolicy \
+  --approve
+
+# 2. Install the controller with that service account
+helm repo add eks https://aws.github.io/eks-charts
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+  -n kube-system \
+  --set clusterName=ai-bank-cluster \
+  --set serviceAccount.name=aws-load-balancer-controller
+
+# 2. Create the Ingress
+kubectl apply -f - &lt;&lt;'EOF'
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ai-bankapp
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+spec:
+  rules:
+    - host: app.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ai-bankapp
+                port: { number: 80 }
+EOF
+
+# 3. Find the ALB DNS
+kubectl get ingress ai-bankapp</code></pre>
+            <p><span class="chalk-text">Rule of thumb:</span> <code>Service type=LoadBalancer</code> → NLB (L4). <code>Ingress</code> + ALB controller → ALB (L7).</p>
+        </div>
+    </section>
+
+    <!-- EBS vs EFS -->
+    <section>
+        <div class="topic-title">💾 Storage: EBS vs EFS</div>
+        <div class="vs-grid">
+            <div class="content-box accent-red">
+                <h3 class="handwritten" style="color:var(--chalk-red);">EBS (block)</h3>
+                <ul>
+                    <li>Attached to ONE node (single-AZ).</li>
+                    <li>Fast, low latency — perfect for databases (mongo, postgres).</li>
+                    <li>Use the <strong>EBS CSI driver</strong> (gp3 default).</li>
+                    <li>PV bound to a node; reattach after failover.</li>
+                </ul>
+            </div>
+            <div class="content-box accent-green">
+                <h3 class="handwritten" style="color:var(--chalk-green);">EFS (shared file)</h3>
+                <ul>
+                    <li>Mountable from MANY pods/nodes across AZs.</li>
+                    <li>NFS-style — perfect for shared configs, media, uploads.</li>
+                    <li>Use the <strong>EFS CSI driver</strong>.</li>
+                    <li>Slower per-I/O, but elastic &amp; multi-AZ.</li>
+                </ul>
+            </div>
+        </div>
+        <p class="handwritten" style="color:var(--chalk-yellow);">Jagu's Rule: Database → EBS. Shared files → EFS. Both through PVCs!</p>
+    </section>
+
+    <!-- PVC EXAMPLE -->
+    <section>
+        <div class="topic-title">🧱 PVC Example (EBS)</div>
+        <div class="content-box accent-blue">
+            <pre><code># pvc.yaml — request storage by SIZE, not by hardware
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ai-bank-mongo
+spec:
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: gp2          # from the EBS CSI driver
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: ai-bank-mongo }
+spec:
+  selector: { matchLabels: { app: ai-bank-mongo } }
+  template:
+    metadata: { labels: { app: ai-bank-mongo } }
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:7
+          volumeMounts: [ { name: data, mountPath: /data/db } ]
+      volumes:
+        - name: data
+          persistentVolumeClaim: { claimName: ai-bank-mongo }</code></pre>
+            <pre><code>kubectl apply -f pvc.yaml
+kubectl get pvc           # Bound
+kubectl get pv            # AWS created the EBS volume for you!</code></pre>
+        </div>
+    </section>
+
+    <!-- REAL WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">🌍 Real-World Example</div>
+        <div class="content-box accent-green">
+            <p><strong>E-commerce → the Black-Friday scale story:</strong> A retailer's EKS platform routed ALL traffic through a single nginx Ingress — on peak day it became the bottleneck. They moved to the AWS Load Balancer Controller: the ALB handled TLS termination, path routing (<code>/api</code> → backend, <code>/</code> → web), and scaled its targets automatically. Databases moved to EBS-backed StatefulSets with the CSI driver, and shared product images moved to EFS. The platform absorbed 10× traffic with zero ingress changes.</p>
+        </div>
+    </section>
+
+    <!-- COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">🚫 Common Misconceptions</div>
+        <div class="content-box accent-red">
+            <ul>
+                <li><strong>"Pods use NAT to talk to each other."</strong> No — the VPC CNI gives real VPC IPs; no overlay needed.</li>
+                <li><strong>"LoadBalancer = ALB."</strong> The default Service LoadBalancer is an NLB (L4). ALB comes from Ingress + the ALB controller.</li>
+                <li><strong>"EBS volumes follow pods anywhere."</strong> EBS is single-AZ — a pod must land on a node in that AZ to attach it.</li>
+                <li><strong>"Storage is free in Kubernetes."</strong> EBS/EFS are real AWS services — they cost money and need cleanup.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">🛠️ Try It Yourself</div>
+        <div class="content-box accent-blue">
+            <pre><code># On your Day 84 cluster (or any EKS cluster):
+kubectl create deploy nginx --image nginx
+
+# 1. ClusterIP → NodePort → LoadBalancer
+kubectl expose deploy nginx --port 80
+kubectl get svc nginx
+kubectl delete svc nginx
+kubectl expose deploy nginx --port 80 --type=NodePort
+kubectl expose deploy nginx --port 80 --type=LoadBalancer   # NLB
+kubectl get svc nginx -w
+
+# 2. EBS storage via PVC
+kubectl apply -f - &lt;&lt;'EOF'
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: { name: test-ebs }
+spec:
+  accessModes: [ "ReadWriteOnce" ]
+  resources: { requests: { storage: 1Gi } }
+EOF
+kubectl get pvc test-ebs   # Bound → EBS volume created
+
+# 3. (Bonus) install the ALB controller + an Ingress
+kubectl get ingress -A</code></pre>
+            <p class="handwritten" style="color:var(--chalk-yellow);">Jagu's Tip: Every AWS resource you create (ALB, EBS) costs money — delete after the lab! 🌐</p>
+        </div>
+    </section>
+
+    <!-- QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">⚡ Quick Summary</div>
+        <div class="content-box">
+            <ul>
+                <li>VPC CNI = real VPC IPs for every pod — fast, secure, no overlay.</li>
+                <li>Services: ClusterIP (internal), NodePort (nodeIP:port), LoadBalancer (NLB, L4).</li>
+                <li>ALB Ingress = Layer 7 routing via the AWS Load Balancer Controller.</li>
+                <li>EBS = block storage, single-AZ, for databases (gp3 by default).</li>
+                <li>EFS = shared file storage, multi-AZ, for shared volumes.</li>
+                <li>Request storage with PVCs — the cloud provider creates the real volume.</li>
+                <li>Tomorrow: the AI-BankApp project — the full production stack!</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+        <div class="topic-title">❓ Mini Quiz</div>
+        <div class="content-box" style="border:2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. What gives every pod a real IP inside the VPC?</p><div class="quiz-options"><span>a) Calico</span><span>b) VPC CNI</span><span>c) Flannel</span><span>d) Weave</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. Which Service type exposes pods on every node's IP:port?</p><div class="quiz-options"><span>a) ClusterIP</span><span>b) LoadBalancer</span><span>c) NodePort</span><span>d) ExternalName</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">3. Which controller provisions ALBs for Ingress on EKS?</p><div class="quiz-options"><span>a) AWS Load Balancer Controller</span><span>b) nginx-ingress</span><span>c) Traefik</span><span>d) HAProxy</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">4. Which storage is block-level and attached to ONE node (best for databases)?</p><div class="quiz-options"><span>a) S3</span><span>b) EFS</span><span>c) Glacier</span><span>d) EBS</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">5. Which storage is shared file storage that many pods can mount across AZs?</p><div class="quiz-options"><span>a) EFS</span><span>b) EBS</span><span>c) Instance Store</span><span>d) Snapshots</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">6. Which object lets you request storage by SIZE instead of a specific volume?</p><div class="quiz-options"><span>a) PV</span><span>b) PVC</span><span>c) Node</span><span>d) Namespace</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">7. Which Service type provisions a load balancer with an AWS DNS name?</p><div class="quiz-options"><span>a) ClusterIP</span><span>b) NodePort</span><span>c) LoadBalancer</span><span>d) ExternalName</span></div></div>
+            <div class="answer-key"><h3 class="handwritten" style="color:var(--chalk-green);">✅ Answer Key</h3><p>1-b | 2-c | 3-a | 4-d | 5-a | 6-b | 7-c</p></div>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 85 • Phase 15: Amazon EKS • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

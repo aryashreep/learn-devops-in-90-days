@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 76: Introduction to Observability & Prometheus Setup - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--bg-blackboard) !important; color: var(--chalk-white) !important; } .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; } section { page-break-inside: avoid; } a { text-decoration: none !important; color: var(--chalk-blue) !important; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-green); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-green); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-green); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-green); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-green { border-color: var(--chalk-green); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-green::before { border-right-color: var(--chalk-green); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-green); }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29,209,161,0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        .dyk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 800px) { .vs-grid { grid-template-columns: 1fr; } .dyk-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Observability &amp; Prometheus Setup</h1>
+        <p class="subtitle handwritten">Day 76: See everything, know everything! 📊</p>
+    </header>
+
+    <!-- INTRO DIALOGUE -->
+    <section>
+        <div class="doodle-container">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu! Users say the app is slow, but my monitoring dashboard says everything is green! I have no idea what's actually happening!"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end;">
+            <div class="speech-bubble bubble-green">
+                "Beep Boop! Golu, that's the difference between <span class="chalk-text">monitoring</span> and <span class="chalk-text">observability</span>! Monitoring tells you it's broken. Observability lets you ask WHY. Today we install Prometheus — the engine that powers SRE visibility. Let's make your system talk! 🔭"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 Learning Objectives</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li>Define the <strong>three pillars of observability</strong>: metrics, logs, and traces.</li>
+                <li>Explain the <strong>pull-based architecture</strong> of Prometheus and why it scrapes targets.</li>
+                <li>Install Prometheus (Docker or binary) and write a <code>prometheus.yml</code> scrape config.</li>
+                <li>Understand the four <strong>metric types</strong>: Counter, Gauge, Histogram, Summary.</li>
+                <li>Run your first <strong>PromQL</strong> queries against live targets.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- DID YOU KNOW -->
+    <section>
+        <div class="topic-title">❓ Did You Know?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">CNCF</div><div class="handwritten" style="color:var(--chalk-blue);">Prometheus is a CNCF-graduated project (2018)</div></div>
+            <div><div class="dyk-num">2009</div><div class="handwritten" style="color:var(--chalk-blue);">Born at SoundCloud to monitor microservices at scale</div></div>
+            <div><div class="dyk-num">2nd</div><div class="handwritten" style="color:var(--chalk-blue);">Second most-watched CNCF project after Kubernetes</div></div>
+        </div>
+    </section>
+
+    <!-- THREE PILLARS -->
+    <section>
+        <div class="topic-title">🧠 The Three Pillars of Observability</div>
+        <div class="content-box">
+            <p>Observability = the ability to ask <strong>any new question</strong> about your system without shipping new code. It rests on three pillars:</p>
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+┌────────────────────────────────────────────────┐
+│           OBSERVABILITY (LGTM Stack)           │
+├───────────────┬───────────────┬────────────────┤
+│  METRICS      │  LOGS         │  TRACES        │
+│  "Is it       │  "What        │  "Which        │
+│   slow/down?" │  happened?"   │   path?"       │
+│  Prometheus   │  Loki         │  OTel/Tempo    │
+└───────────────┴───────────────┴────────────────┘
+                </pre>
+            </div>
+            <p><span class="chalk-text">Golu's Rule:</span> Metrics alert you, logs explain you, traces connect the dots across services.</p>
+        </div>
+    </section>
+
+    <!-- PULL ARCHITECTURE -->
+    <section>
+        <div class="topic-title">🏗️ Why Prometheus PULLs</div>
+        <div class="content-box accent-blue">
+            <p>Unlike old-style agents that push data, Prometheus <strong>scrapes</strong> HTTP endpoints on a schedule. Every exporter exposes <code class="code-chalk">/metrics</code>:</p>
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+Prometheus                 Targets (exporters)
+┌──────────────┐  scrape   ┌──────────────┐
+│  TSDB        │ ────────→ │ App   :8080  │
+│  Rules       │  HTTP     │ Node  :9100  │
+│  Alertmanager│ ────────→ │ cAdvisor:8080│
+│  PromQL UI   │           └──────────────┘
+└──────────────┘  "pull" = YOU control timing
+                </pre>
+            </div>
+            <p><span class="chalk-text">Why pull wins:</span> health of the target is instantly visible (<code>up</code> metric), no daemon to install, and you never get flooded by 10,000 agents pushing at once.</p>
+        </div>
+    </section>
+
+    <!-- METRIC TYPES -->
+    <section>
+        <div class="topic-title">🔢 Metric Types</div>
+        <div class="content-box accent-yellow">
+            <ul>
+                <li><span class="chalk-text">Counter</span> — only goes up, resets on restart. Perfect for <em>total requests</em>. Query with <code>rate()</code>.</li>
+                <li><span class="chalk-text">Gauge</span> — goes up and down. Perfect for <em>temperature, memory, connections</em>.</li>
+                <li><span class="chalk-text">Histogram</span> — counts observations in buckets + sum + count. Perfect for <em>latency</em>.</li>
+                <li><span class="chalk-text">Summary</span> — client-side quantiles (p50, p99). <em>Use sparingly</em> — expensive.</li>
+            </ul>
+            <pre><code># A counter example from node_exporter
+node_network_receive_bytes_total{device="eth0"}   # counter → use rate()
+node_memory_MemFree_bytes                         # gauge → use directly
+http_request_duration_seconds_bucket{le="0.5"}    # histogram bucket</code></pre>
+        </div>
+    </section>
+
+    <!-- COMPARE VS -->
+    <section>
+        <div class="topic-title">⚖️ Compare: Monitoring vs Observability</div>
+        <div class="vs-grid">
+            <div class="content-box accent-red">
+                <h3 class="handwritten" style="color:var(--chalk-red);">Monitoring (Reactive)</h3>
+                <ul>
+                    <li>Pre-built dashboards for known problems.</li>
+                    <li>"Is the server down?" — yes/no alerts.</li>
+                    <li>You know what to look for.</li>
+                    <li>Blind to the unexpected.</li>
+                </ul>
+            </div>
+            <div class="content-box accent-green">
+                <h3 class="handwritten" style="color:var(--chalk-green);">Observability (Exploratory)</h3>
+                <ul>
+                    <li>Rich telemetry to answer NEW questions.</li>
+                    <li>"Why is p99 latency spiking at 3 AM?"</li>
+                    <li>You can explore metrics, logs &amp; traces.</li>
+                    <li>Catches the unexpected outage.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY DIRECTORIES -->
+    <section>
+        <div class="topic-title">📁 Key Directories — What Lives Where</div>
+        <div class="content-box">
+            <pre class="dir-tree"><code>/etc/prometheus/
+├── <span>prometheus.yml</span>        # Main scrape configuration
+├── <span>rules/</span>               # Alert &amp; recording rules (YAML)
+│   └── <span>alerts.yml</span>
+└── <span>console_libraries/</span>  # Template libraries (advanced)
+
+/var/lib/prometheus/
+└── <span>metrics2/</span>             # Time-Series Database (TSDB) storage
+
+~/prom/                    # Your local lab project (this module)
+├── <span>prometheus.yml</span>
+└── <span>promtool</span>              # Validator binary (check config)</code></pre>
+        </div>
+    </section>
+
+    <!-- TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">🛠️ Try It Yourself</div>
+        <div class="content-box accent-blue">
+            <pre><code># 1. Start Prometheus (Docker)
+docker run -d --name prometheus -p 9090:9090 \
+  -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml \
+  prom/prometheus
+
+# 2. Validate your config first
+promtool check config prometheus.yml
+
+# 3. Open the UI and run PromQL
+#    http://localhost:9090  →  "Execute"
+up                          # 1 = target healthy
+prometheus_tsdb_head_series  # how many time series we store</code></pre>
+            <p class="handwritten" style="color:var(--chalk-yellow);margin-top:15px;">Jagu's Tip: Always run <code>promtool check config</code> before restarting Prometheus — a typo in YAML = silent outage!</p>
+        </div>
+    </section>
+
+    <!-- REAL WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">🌍 Real-World Example</div>
+        <div class="content-box accent-green">
+            <p><strong>SoundCloud 2012:</strong> Prometheus was born because SoundCloud's Nagios couldn't keep up with thousands of microservices. Their SRE team needed instant answers like <em>"which of my 3,000 services has error rates above 1%?"</em> — an impossible question with classic monitoring. Prometheus's pull model + PromQL made it a one-line query:</p>
+            <pre><code>sum(rate(http_requests_total{status=~"5.."}[5m])) by (service) > 0.01</code></pre>
+            <p>Today, companies like <strong>DigitalOcean, GitLab, and Grafana Labs</strong> run Prometheus as their core metrics backbone.</p>
+        </div>
+    </section>
+
+    <!-- COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">🚫 Common Misconceptions</div>
+        <div class="content-box accent-red">
+            <ul>
+                <li><strong>"Prometheus can't scale."</strong> False — it scales with federation, sharding, and Thanos/Mimir for long-term storage.</li>
+                <li><strong>"Metrics alone = observability."</strong> No — you need logs and traces too for full answers.</li>
+                <li><strong>"Push is better than pull."</strong> For batch jobs push works, but pull gives free health checks and easier debugging.</li>
+                <li><strong>"More dashboards = more observability."</strong> No — dashboards without runbooks are just pretty wallpapers.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">⚡ Quick Summary</div>
+        <div class="content-box">
+            <ul>
+                <li>Observability = metrics + logs + traces working together.</li>
+                <li>Prometheus <strong>pulls</strong> metrics over HTTP from exporters.</li>
+                <li>Four metric types: Counter, Gauge, Histogram, Summary.</li>
+                <li><code>prometheus.yml</code> defines global settings and scrape jobs.</li>
+                <li>PromQL queries like <code>up</code> and <code>rate()</code> answer "is it healthy?" and "how fast is it changing?".</li>
+                <li>Validate everything with <code>promtool check config</code>.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+        <div class="topic-title">❓ Mini Quiz</div>
+        <div class="content-box" style="border:2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. Which is NOT one of the three pillars of observability?</p><div class="quiz-options"><span>a) Metrics</span><span>b) Logs</span><span>c) Traces</span><span>d) Backups</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. How does Prometheus collect metrics from exporters?</p><div class="quiz-options"><span>a) Agents push via UDP</span><span>b) It scrapes HTTP /metrics endpoints</span><span>c) It reads /var/log</span><span>d) It uses database replication</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">3. Which metric type is best for tracking total HTTP requests?</p><div class="quiz-options"><span>a) Counter</span><span>b) Gauge</span><span>c) Histogram</span><span>d) Summary</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">4. What does the PromQL query <code>up</code> return?</p><div class="quiz-options"><span>a) Number of targets</span><span>b) Uptime in seconds</span><span>c) 1 if target is healthy, 0 if down</span><span>d) Version string</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">5. Which file defines scrape targets in Prometheus?</p><div class="quiz-options"><span>a) targets.yaml</span><span>b) scrape.conf</span><span>c) tsdb.json</span><span>d) prometheus.yml</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">6. Which function converts a counter into a per-second rate?</p><div class="quiz-options"><span>a) delta()</span><span>b) sum()</span><span>c) rate()</span><span>d) avg()</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">7. Which company created Prometheus?</p><div class="quiz-options"><span>a) SoundCloud</span><span>b) Google</span><span>c) Netflix</span><span>d) Red Hat</span></div></div>
+            <div class="answer-key"><h3 class="handwritten" style="color:var(--chalk-green);">✅ Answer Key</h3><p>1-d | 2-b | 3-a | 4-c | 5-d | 6-c | 7-a</p></div>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 76 • Phase 13: SRE & Observability • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

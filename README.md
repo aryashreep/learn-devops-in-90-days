@@ -52,7 +52,7 @@ Foundations (M1-M4)  →  Jira & Git (M5-M6)  →  Containers (M7)
 12. **Module 12:** Ansible [Config Mgmt] (Days 71–75)
 13. **Module 13:** SRE & Observability (Days 76–80)
 14. **Module 14:** Helm [K8s Package Mgmt] (Days 81–83)
-15. **Module 15:** Amazon EKS [Cloud Ops] (Days 84–86)
+15. **Module 15:** Amazon EKS (Days 84–86)
 16. **Module 16:** GitOps & ArgoCD (Days 87–89)
 17. **Module 17:** Agentic AI for DevOps (Days 90–93)
 
@@ -79,8 +79,11 @@ Trigger the generation by providing a natural command along with your source mat
 |---|---|---|---|
 | 🟢 Phase 1 | M01–M04 | Intro, Linux, Scripting, Networking | 🟢 Done |
 | 🟡 Phase 2 | M05–M07 | Jira, Git, Docker | 🟢 Done |
-| 🔵 Phase 3 | M08–M10 | CI/CD, DevSecOps, Kubernetes | 🚀 In Progress |
-| 🟣 Phase 4 | M11–M17 | IaC, SRE, Helm, EKS, GitOps, AI | 📅 Planned |
+| 🔵 Phase 3 | M08–M10 | CI/CD, DevSecOps, Kubernetes | 🟢 Done |
+| 🟣 Phase 4 | M11–M13 | Terraform, Ansible, SRE & Observability | 🟢 Done |
+| 🟣 Phase 4 | M14 | Helm [K8s Package Mgmt] | 🟢 Done |
+| 🟣 Phase 4 | M15 | Amazon EKS | 🟢 Done |
+| 🟣 Phase 4 | M16–M17 | GitOps/ArgoCD, Agentic AI | 📅 Planned |
 
 ---
 

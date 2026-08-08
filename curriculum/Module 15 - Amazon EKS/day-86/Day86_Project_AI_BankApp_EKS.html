@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 86: Project: Deploying AI-BankApp on EKS - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--bg-blackboard) !important; color: var(--chalk-white) !important; } .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; } section { page-break-inside: avoid; } a { text-decoration: none !important; color: var(--chalk-blue) !important; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-green); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-green); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-green); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-green); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-green { border-color: var(--chalk-green); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-green::before { border-right-color: var(--chalk-green); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-green); }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29,209,161,0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        .dyk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 800px) { .vs-grid { grid-template-columns: 1fr; } .dyk-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>Project: Deploying AI-BankApp</h1>
+        <p class="subtitle handwritten">Day 86: The full production stack on EKS! 🏦</p>
+    </header>
+
+    <!-- INTRO DIALOGUE -->
+    <section>
+        <div class="doodle-container">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu, the academy's AI-BankApp needs to go LIVE! Where do we even start — namespace? Ingress? Secrets?!"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end;">
+            <div class="speech-bubble bubble-green">
+                "Beep Boop! One layer at a time, Golu: <span class="chalk-text">Namespace</span> → Deployment + Service → HPA (pods) + Cluster Autoscaler (nodes) → secrets from <span class="chalk-text">AWS Secrets Manager</span> → <span class="chalk-text">ALB with TLS</span> → monitoring. That's the production recipe — let's cook! 🏦"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 Learning Objectives</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li>Design a <strong>production EKS architecture</strong> for AI-BankApp.</li>
+                <li>Deploy with <strong>Deployment, Service and HPA</strong> manifests.</li>
+                <li>Scale with <strong>HPA</strong> (pods) + <strong>Cluster Autoscaler</strong> (nodes).</li>
+                <li>Inject secrets from <strong>AWS Secrets Manager</strong> via IRSA.</li>
+                <li>Expose via <strong>ALB Ingress with TLS</strong> (ACM certificate).</li>
+                <li>Add <strong>observability</strong> and do a <strong>zero-downtime rollout</strong>.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- DID YOU KNOW -->
+    <section>
+        <div class="topic-title">❓ Did You Know?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">HPA</div><div class="handwritten" style="color:var(--chalk-blue);">HPA scales PODS; Cluster Autoscaler scales NODES — use both</div></div>
+            <div><div class="dyk-num">ACM</div><div class="handwritten" style="color:var(--chalk-blue);">ALB terminates TLS for free with an AWS Certificate Manager cert</div></div>
+            <div><div class="dyk-num">0</div><div class="handwritten" style="color:var(--chalk-blue);">Downtime during deploys when readiness probes + rolling updates are set</div></div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section>
+        <div class="topic-title">🏗️ Production Architecture</div>
+        <div class="content-box accent-blue">
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+User ──→ Route53 (app.example.com)
+              │
+              ▼
+         ┌─────────┐  TLS (ACM cert)   ┌──────────────────┐
+         │   ALB   │ ────────────────→ │ Ingress (L7)     │
+         └─────────┘                   │ / → ai-bankapp   │
+                                      │ /api → ai-bankapi │
+                                      └────────┬─────────┘
+                                               ▼
+                       ┌─────────────────────────────────┐
+                       │ Namespace: ai-bank               │
+                       │  Service (ClusterIP)             │
+                       │  Deployment ── HPA (2–10 pods)   │
+                       │    ├─ app pod ── EBS (PVC) mongo │
+                       │    └─ app pod                    │
+                       └─────────────────────────────────┘
+                        Nodes: Cluster Autoscaler (1–5)
+                        Secrets: AWS Secrets Manager (IRSA)
+                        Logs/Metrics: CloudWatch Container Insights
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPLOYMENT MANIFEST -->
+    <section>
+        <div class="topic-title">📜 The Core Manifest</div>
+        <div class="content-box accent-green">
+            <pre><code># namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata: { name: ai-bank }
+---
+# deployment.yaml — with readiness probe for zero-downtime
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: ai-bankapp, namespace: ai-bank }
+spec:
+  replicas: 2
+  selector: { matchLabels: { app: ai-bankapp } }
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: { maxUnavailable: 0, maxSurge: 1 }
+  template:
+    metadata: { labels: { app: ai-bankapp } }
+    spec:
+      serviceAccountName: ai-bankapp-sa      # IRSA for Secrets Manager
+      containers:
+        - name: app
+          image: aryashreep/ai-bankapp:1.4.0
+          ports: [ { containerPort: 80 } ]
+          readinessProbe:
+            httpGet: { path: /health, port: 80 }
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /health, port: 80 }
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          envFrom:
+            - secretRef: { name: ai-bank-db-secret }
+          resources:
+            requests: { cpu: 250m, memory: 256Mi }
+            limits:   { cpu: 500m, memory: 512Mi }
+---
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata: { name: ai-bankapp, namespace: ai-bank }
+spec:
+  selector: { app: ai-bankapp }
+  ports: [ { port: 80, targetPort: 80 } ]</code></pre>
+            <p><span class="chalk-text">Pro pattern:</span> <code>maxUnavailable: 0, maxSurge: 1</code> + readiness probe = old pod stays serving until the new one is Ready. Zero downtime!</p>
+        </div>
+    </section>
+
+    <!-- SCALING -->
+    <section>
+        <div class="topic-title">📈 Scaling: Pods AND Nodes</div>
+        <div class="content-box accent-yellow">
+            <pre><code># hpa.yaml — scale PODS on CPU
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: { name: ai-bankapp-hpa, namespace: ai-bank }
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: ai-bankapp }
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: { type: Utilization, averageUtilization: 60 }
+
+# Cluster Autoscaler — scale NODES (Helm)
+helm repo add autoscaler https://kubernetes.github.io/autoscaler
+helm install cluster-autoscaler autoscaler/cluster-autoscaler \
+  --namespace kube-system \
+  --set autoDiscovery.clusterName=ai-bank-cluster \
+  --set awsRegion=us-east-1</code></pre>
+            <ul>
+                <li><span class="chalk-text">HPA:</span> more pods when CPU &gt; 60%.</li>
+                <li><span class="chalk-text">Cluster Autoscaler:</span> more EC2 nodes when pods can't fit.</li>
+                <li>Both together = true elastic capacity.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SECRETS -->
+    <section>
+        <div class="topic-title">🔐 Secrets: AWS Secrets Manager + IRSA</div>
+        <div class="content-box accent-red">
+            <p>Never put DB passwords in Git. Store them in <strong>AWS Secrets Manager</strong> and let the pod read them with its own IAM identity (IRSA from Day 84):</p>
+            <pre><code># 1. Create the secret (one-time)
+aws secretsmanager create-secret \
+  --name ai-bank/db \
+  --secret-string '{"DB_PASSWORD":"SuperSecret123!"}'
+
+# 2. Grant the app's ServiceAccount read access (IRSA)
+eksctl create iamserviceaccount \
+  --cluster ai-bank-cluster --namespace ai-bank \
+  --name ai-bankapp-sa \
+  --attach-policy-arn arn:aws:iam::aws:policy/SecretsManagerReadWrite \
+  --approve
+
+# 3. External Secrets Operator syncs it to a K8s Secret
+kubectl apply -f - &lt;&lt;'EOF'
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata: { name: ai-bank-db, namespace: ai-bank }
+spec:
+  secretStoreRef: { name: aws-secretsmanager, kind: SecretStore }
+  target: { name: ai-bank-db-secret }
+  data:
+    - secretKey: DB_PASSWORD
+      remoteRef: { key: ai-bank/db, property: DB_PASSWORD }
+EOF</code></pre>
+        </div>
+    </section>
+
+    <!-- INGRESS TLS -->
+    <section>
+        <div class="topic-title">🌍 Ingress with TLS</div>
+        <div class="content-box accent-blue">
+            <pre><code># Request an ACM certificate in the console (us-east-1) for app.example.com,
+# then attach it to the ALB Ingress:
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ai-bankapp
+  namespace: ai-bank
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:ACCOUNT:certificate/xxxx
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+spec:
+  rules:
+    - host: app.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ai-bankapp
+                port: { number: 80 }</code></pre>
+            <p><span class="chalk-text">Result:</span> HTTPS on the ALB, HTTP auto-redirected to 443, cert managed by ACM (auto-renewed).</p>
+        </div>
+    </section>
+
+    <!-- OBSERVABILITY -->
+    <section>
+        <div class="topic-title">📊 Observability</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li><strong>CloudWatch Container Insights:</strong> enable once per cluster — pod/node metrics + logs in CloudWatch.</li>
+                <li><strong>Prometheus + Grafana:</strong> the SRE way (Module 13!) — deploy via Helm, scrape with the Prometheus add-on.</li>
+                <li><strong>Alerting:</strong> alarms on CPU, 5xx from the ALB, and failed pods (SNS → Slack).</li>
+            </ul>
+            <pre><code># One command to enable Container Insights
+eksctl utils update-cluster-logging \
+  --enable-types=all --cluster ai-bank-cluster --region us-east-1</code></pre>
+        </div>
+    </section>
+
+    <!-- REAL WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">🌍 Real-World Example</div>
+        <div class="content-box accent-green">
+            <p><strong>SaaS → the "auto-scaling win":</strong> A B2B SaaS ran a Kubernetes cluster with fixed nodes and manual deploys — a marketing spike melted the nodes and deploys took an hour of careful YAML surgery. They rebuilt on EKS exactly like this lesson: HPA for pods, Cluster Autoscaler for nodes, Secrets Manager for credentials, ALB + ACM for TLS, and rolling updates. Spike traffic now scales up and down automatically; deploys are `kubectl rollout restart` — zero downtime, every time.</p>
+        </div>
+    </section>
+
+    <!-- COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">🚫 Common Misconceptions</div>
+        <div class="content-box accent-red">
+            <ul>
+                <li><strong>"One big cluster for everything, one namespace for prod."</strong> Use separate namespaces (and ideally clusters) per environment.</li>
+                <li><strong>"HPA is enough."</strong> HPA scales pods, not the underlying nodes — pair it with Cluster Autoscaler.</li>
+                <li><strong>"Secrets in ConfigMaps are fine."</strong> ConfigMaps are NOT encrypted — use Secrets Manager/External Secrets.</li>
+                <li><strong>"TLS is an app problem."</strong> The ALB terminates TLS — your pods can stay plain HTTP internally.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">🛠️ Try It Yourself</div>
+        <div class="content-box accent-blue">
+            <pre><code># On your Day 84/85 cluster:
+kubectl create ns ai-bank
+kubectl apply -f namespace.yaml -f deployment.yaml -f service.yaml
+kubectl get deploy,svc -n ai-bank
+
+# Autoscaling
+kubectl apply -f hpa.yaml
+kubectl get hpa -n ai-bank
+# Load test (in another terminal):
+kubectl run loadgen --image=busybox --rm -it -- sh -c \
+  "while true; do wget -q -O- http://ai-bankapp.ai-bank.svc; done"
+
+# Watch it scale
+kubectl get hpa -n ai-bank -w
+
+# Zero-downtime deploy
+kubectl set image deploy/ai-bankapp app=aryashreep/ai-bankapp:1.5.0 -n ai-bank
+kubectl rollout status deploy/ai-bankapp -n ai-bank
+kubectl rollout history deploy/ai-bankapp -n ai-bank
+
+# Cleanup
+kubectl delete ns ai-bank</code></pre>
+            <p class="handwritten" style="color:var(--chalk-yellow);">Jagu's Tip: Run the load test long enough to SEE the HPA move 2 → 4 → 6 replicas. That's the magic moment! 🏦</p>
+        </div>
+    </section>
+
+    <!-- QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">⚡ Quick Summary</div>
+        <div class="content-box">
+            <ul>
+                <li>Production EKS = Namespace + Deployment + Service + HPA + Cluster Autoscaler + Secrets + ALB/TLS + monitoring.</li>
+                <li>HPA scales pods; Cluster Autoscaler scales nodes; both = elasticity.</li>
+                <li>Secrets live in AWS Secrets Manager, injected via IRSA / External Secrets.</li>
+                <li>ALB + ACM = free TLS termination and HTTP→HTTPS redirect.</li>
+                <li>Readiness probes + rolling updates = zero-downtime deploys.</li>
+                <li>Module 15 complete — you just ran a production Kubernetes platform! 🏆</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+        <div class="topic-title">❓ Mini Quiz</div>
+        <div class="content-box" style="border:2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. What scales the number of POD replicas automatically?</p><div class="quiz-options"><span>a) HPA</span><span>b) Cluster Autoscaler</span><span>c) EBS</span><span>d) Ingress</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. What scales the number of NODES automatically?</p><div class="quiz-options"><span>a) HPA</span><span>b) VPC CNI</span><span>c) Cluster Autoscaler</span><span>d) ALB</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">3. Which probe makes Kubernetes only send traffic to a ready pod?</p><div class="quiz-options"><span>a) livenessProbe</span><span>b) readinessProbe</span><span>c) startupProbe</span><span>d) execProbe</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">4. Where should database credentials live on a production EKS platform?</p><div class="quiz-options"><span>a) In the Git repo</span><span>b) In a ConfigMap</span><span>c) In the container image</span><span>d) AWS Secrets Manager + IRSA/External Secrets</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">5. Which object isolates environments (dev/stage/prod) on one cluster?</p><div class="quiz-options"><span>a) Service</span><span>b) Node</span><span>c) Namespace</span><span>d) StorageClass</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">6. Which AWS service provides metrics/logs for EKS clusters out of the box?</p><div class="quiz-options"><span>a) CloudWatch Container Insights</span><span>b) GitHub Actions</span><span>c) Docker Hub</span><span>d) npm</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">7. What does a RollingUpdate with maxUnavailable: 0 ensure during a deploy?</p><div class="quiz-options"><span>a) All pods restart at the same time</span><span>b) Zero-downtime, gradual replacement</span><span>c) Traffic is cut during deploy</span><span>d) The cluster is deleted</span></div></div>
+            <div class="answer-key"><h3 class="handwritten" style="color:var(--chalk-green);">✅ Answer Key</h3><p>1-a | 2-c | 3-b | 4-d | 5-c | 6-a | 7-b</p></div>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 86 • Phase 15: Amazon EKS • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

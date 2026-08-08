@@ -752,11 +752,79 @@ const MODULES = [
       { day: 'Day 63', topic: 'Capstone: WordPress + MySQL on K8s', pro: './curriculum/Module%2010%20-%20Kubernetes/day-63/Day63_Capstone_WordPress_MySQL_on_K8s.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2010%20-%20Kubernetes/day-63/lab-session/task.md' }
     ]
   },
-  { id: 'module10', emoji: '☁️', title: 'Terraform', range: 'Days 64 – 70', accent: 'acc-coral', color: '#FB7185', railColor: '#E8607A', days: 7, entries: [{ day: 'Day 64–70', topic: 'TerraWeek Capstone', comingSoon: true }] },
-  { id: 'module11', emoji: '⚙️', title: 'Ansible', range: 'Days 71 – 75', accent: 'acc-amber', color: '#F5A623', railColor: '#D4901A', days: 5, entries: [{ day: 'Day 71–75', topic: 'Automation Project', comingSoon: true }] },
-  { id: 'module12', emoji: '📊', title: 'Observability', range: 'Days 76 – 80', accent: 'acc-purple', color: '#A78BFA', railColor: '#9370F0', days: 5, entries: [{ day: 'Day 76–80', topic: 'Monitoring Project', comingSoon: true }] },
-  { id: 'module13', emoji: '🏷️', title: 'Helm', range: 'Days 81 – 83', accent: 'acc-blue', color: '#4A9EF5', railColor: '#3A8EE5', days: 3, entries: [{ day: 'Day 81–83', topic: 'Helm Project', comingSoon: true }] },
-  { id: 'module14', emoji: '🏗️', title: 'Amazon EKS', range: 'Days 84 – 86', accent: 'acc-amber', color: '#F5A623', railColor: '#C48218', days: 3, entries: [{ day: 'Day 84–86', topic: 'EKS Project', comingSoon: true }] },
+  {
+    id: 'module10', emoji: '☁️', title: 'Terraform',
+    range: 'Days 64 – 70', accent: 'acc-coral', color: '#FB7185', railColor: '#E8607A', days: 7,
+    duration: '7 days · ~2h/day',
+    outcome: 'After this: provision your whole cloud in version-controlled code — plan it, apply it, and tear it down safely',
+    cheatLink: './curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/Terraform_CHEATSHEET.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/mastery-exam/README.md',
+    entries: [
+      { day: 'Day 64', topic: 'Intro & First AWS Infra', pro: './curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-64/Day64_Terraform_Intro.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-64/lab-session/task.md' },
+      { day: 'Day 65', topic: 'Providers & Dependencies', pro: './curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-65/Day65_Providers_Resources.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-65/lab-session/task.md' },
+      { day: 'Day 66', topic: 'Vars, Outputs & Expressions', pro: './curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-66/Day66_Variables_Outputs.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-66/lab-session/task.md' },
+      { day: 'Day 67', topic: 'State & Remote Backends', pro: './curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-67/Day67_State_Management.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-67/lab-session/task.md' },
+      { day: 'Day 68', topic: 'Reusable Modules', pro: './curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-68/Day68_Terraform_Modules.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-68/lab-session/task.md' },
+      { day: 'Day 69', topic: 'Provisioning EKS Cluster', pro: './curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-69/Day69_EKS_Provisioning.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-69/lab-session/task.md' },
+      { day: 'Day 70', topic: 'Project: Multi-Env Workspaces', pro: './curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-70/Day70_Workspaces_Capstone.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2011%20-%20Terraform%20%5BIaC%5D/day-70/lab-session/task.md' }
+    ]
+  },
+  {
+    id: 'module11', emoji: '⚙️', title: 'Ansible',
+    range: 'Days 71 – 75', accent: 'acc-amber', color: '#F5A623', railColor: '#D4901A', days: 5,
+    duration: '5 days · ~2h/day',
+    outcome: 'After this: automate servers, configs and deploys with idempotent, human-readable playbooks',
+    cheatLink: './curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/Ansible_CHEATSHEET.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/mastery-exam/README.md',
+    entries: [
+      { day: 'Day 71', topic: 'Intro & Inventory Setup', pro: './curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-71/Day71_Ansible_Intro.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-71/lab-session/task.md' },
+      { day: 'Day 72', topic: 'Playbooks & Modules', pro: './curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-72/Day72_Playbooks_Modules.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-72/lab-session/task.md' },
+      { day: 'Day 73', topic: 'Vars, Facts & Conditionals', pro: './curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-73/Day73_Vars_Facts_Conditionals.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-73/lab-session/task.md' },
+      { day: 'Day 74', topic: 'Roles, Templates & Vault', pro: './curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-74/Day74_Roles_Galaxy_Vault.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-74/lab-session/task.md' },
+      { day: 'Day 75', topic: 'Project: Docker & Nginx', pro: './curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-75/Day75_Docker_Nginx_Project.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2012%20-%20Ansible%20%5BConfig%20Mgmt%5D/day-75/lab-session/task.md' }
+    ]
+  },
+  {
+    id: 'module12', emoji: '📊', title: 'SRE & Observability',
+    range: 'Days 76 – 80', accent: 'acc-purple', color: '#A78BFA', railColor: '#9370F0', days: 5,
+    duration: '5 days · ~2h/day',
+    outcome: 'After this: see every metric, log, and trace — and get alerted before users notice',
+    cheatLink: './curriculum/Module%2013%20-%20SRE%20&%20Observability/SRE_Observability_CHEATSHEET.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2013%20-%20SRE%20&%20Observability/mastery-exam/README.md',
+    entries: [
+      { day: 'Day 76', topic: 'Intro & Prometheus Setup', pro: './curriculum/Module%2013%20-%20SRE%20&%20Observability/day-76/Day76_Prometheus_Setup.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2013%20-%20SRE%20&%20Observability/day-76/lab-session/task.md' },
+      { day: 'Day 77', topic: 'Exporters & Grafana Dashboards', pro: './curriculum/Module%2013%20-%20SRE%20&%20Observability/day-77/Day77_Exporters_Grafana.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2013%20-%20SRE%20&%20Observability/day-77/lab-session/task.md' },
+      { day: 'Day 78', topic: 'Loki & Promtail Log Management', pro: './curriculum/Module%2013%20-%20SRE%20&%20Observability/day-78/Day78_Loki_Promtail.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2013%20-%20SRE%20&%20Observability/day-78/lab-session/task.md' },
+      { day: 'Day 79', topic: 'OpenTelemetry & Alerting', pro: './curriculum/Module%2013%20-%20SRE%20&%20Observability/day-79/Day79_OpenTelemetry_Alerting.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2013%20-%20SRE%20&%20Observability/day-79/lab-session/task.md' },
+      { day: 'Day 80', topic: 'Project: Full Stack Observability', pro: './curriculum/Module%2013%20-%20SRE%20&%20Observability/day-80/Day80_Full_Stack_Observability.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2013%20-%20SRE%20&%20Observability/day-80/lab-session/task.md' }
+    ]
+  },
+  {
+    id: 'module13', emoji: '🏷️', title: 'Helm',
+    range: 'Days 81 – 83', accent: 'acc-blue', color: '#4A9EF5', railColor: '#3A8EE5', days: 3,
+    duration: '3 days · ~2h/day',
+    outcome: 'After this: package and deploy any Kubernetes app with versioned, rollback-ready Helm releases',
+    cheatLink: './curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/Helm_CHEATSHEET.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/mastery-exam/README.md',
+    entries: [
+      { day: 'Day 81', topic: 'Intro & Helm Chart Basics', pro: './curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-81/Day81_Helm_Intro.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-81/lab-session/task.md' },
+      { day: 'Day 82', topic: 'Custom Chart for AI-BankApp', pro: './curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-82/Day82_Custom_Helm_Chart.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-82/lab-session/task.md' },
+      { day: 'Day 83', topic: 'Project: Multi-Env CI/CD', pro: './curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-83/Day83_Multi_Env_CI_CD.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-83/lab-session/task.md' }
+    ]
+  },
+  {
+    id: 'module14', emoji: '🏗️', title: 'Amazon EKS',
+    range: 'Days 84 – 86', accent: 'acc-amber', color: '#F5A623', railColor: '#C48218', days: 3,
+    duration: '3 days · ~2h/day',
+    outcome: 'After this: run a production-grade Kubernetes platform on AWS — Terraform-provisioned, auto-scaling, and monitored',
+    cheatLink: './curriculum/Module%2015%20-%20Amazon%20EKS/EKS_CHEATSHEET.md',
+    examLink: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2015%20-%20Amazon%20EKS/mastery-exam/README.md',
+    entries: [
+      { day: 'Day 84', topic: 'EKS Setup with Terraform', pro: './curriculum/Module%2015%20-%20Amazon%20EKS/day-84/Day84_EKS_Setup_Terraform.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2015%20-%20Amazon%20EKS/day-84/lab-session/task.md' },
+      { day: 'Day 85', topic: 'EKS Networking & Storage', pro: './curriculum/Module%2015%20-%20Amazon%20EKS/day-85/Day85_EKS_Networking_Storage.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2015%20-%20Amazon%20EKS/day-85/lab-session/task.md' },
+      { day: 'Day 86', topic: 'Project: Deploying AI-BankApp', pro: './curriculum/Module%2015%20-%20Amazon%20EKS/day-86/Day86_Project_AI_BankApp_EKS.html', lab: 'https://github.com/aryashreep/learn-devops-in-90-days/blob/main/curriculum/Module%2015%20-%20Amazon%20EKS/day-86/lab-session/task.md' }
+    ]
+  },
   { id: 'module15', emoji: '🚀', title: 'GitOps & ArgoCD', range: 'Days 87 – 89', accent: 'acc-purple', color: '#A78BFA', railColor: '#8B6EE8', days: 3, entries: [{ day: 'Day 87–89', topic: 'GitOps Capstone', comingSoon: true }] },
   { id: 'module16', emoji: '🤖', title: 'Agentic AI', range: 'Days 90 – 93', accent: 'acc-coral', color: '#FB7185', railColor: '#F05070', days: 4, entries: [
     { day: 'Day 90', topic: 'Introduction to Agentic AI for DevOps', comingSoon: true },

@@ -314,69 +314,69 @@ resource "aws_instance" "app_server" {
                 <p class="quiz-question">1. Which command assigns values to variables from a file automatically?</p>
                 <div class="quiz-options">
                     <span class="quiz-opt">a) variable block in main.tf</span>
-                    <span class="quiz-opt">b) variables declared in terraform.tfvars</span>
-                    <span class="quiz-opt">c) config.json file</span>
+                    <span class="quiz-opt">b) config.json file</span>
+                    <span class="quiz-opt">c) variables declared in terraform.tfvars</span>
                     <span class="quiz-opt">d) aws credentials file</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">2. What happens if you mark an output as 'sensitive = true'?</p>
                 <div class="quiz-options">
-                    <span class="quiz-opt">a) It encrypts the value in state file</span>
-                    <span class="quiz-opt">b) Hides the value in CLI console displays</span>
+                    <span class="quiz-opt">a) Hides the value in CLI console displays</span>
+                    <span class="quiz-opt">b) It encrypts the value in state file</span>
                     <span class="quiz-opt">c) Disables outputting the variable completely</span>
                     <span class="quiz-opt">d) Deletes it from AWS</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">3. How do you query the AWS API live for data in HCL?</p>
                 <div class="quiz-options">
                     <span class="quiz-opt">a) Use resource block</span>
-                    <span class="quiz-opt">b) Use data block</span>
-                    <span class="quiz-opt">c) Use local block</span>
+                    <span class="quiz-opt">b) Use local block</span>
+                    <span class="quiz-opt">c) Use data block</span>
                     <span class="quiz-opt">d) Use import block</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">4. Which built-in function returns a value from a map given a key?</p>
                 <div class="quiz-options">
                     <span class="quiz-opt">a) element</span>
-                    <span class="quiz-opt">b) lookup</span>
-                    <span class="quiz-opt">c) values</span>
-                    <span class="quiz-opt">d) filter</span>
-                </div>
+                    <span class="quiz-opt">b) values</span>
+                    <span class="quiz-opt">c) filter</span>
+                    <span class="quiz-opt">d) lookup</span>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">5. What syntax represents a conditional expression in Terraform?</p>
                 <div class="quiz-options">
-                    <span class="quiz-opt">a) if-then-else blocks</span>
-                    <span class="quiz-opt">b) switch-case blocks</span>
-                    <span class="quiz-opt">c) condition ? true_val : false_val</span>
+                    <span class="quiz-opt">a) condition ? true_val : false_val</span>
+                    <span class="quiz-opt">b) if-then-else blocks</span>
+                    <span class="quiz-opt">c) switch-case blocks</span>
                     <span class="quiz-opt">d) loop index</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">6. If a variable list has three elements, how does the function 'element(list, 3)' behave?</p>
                 <div class="quiz-options">
                     <span class="quiz-opt">a) Fails with index out of bounds error</span>
-                    <span class="quiz-opt">b) Returns the second element</span>
-                    <span class="quiz-opt">c) Wraps around index modulo size (returns first element at index 0)</span>
+                    <span class="quiz-opt">b) Wraps around index modulo size (returns first element at index 0)</span>
+                    <span class="quiz-opt">c) Returns the second element</span>
                     <span class="quiz-opt">d) Returns empty string</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item" style="border:none;">
                 <p class="quiz-question">7. What is the scope of a local value block?</p>
                 <div class="quiz-options">
                     <span class="quiz-opt">a) Accessible across different workspaces globally</span>
-                    <span class="quiz-opt">b) Local to the module in which it is defined</span>
-                    <span class="quiz-opt">c) Only inside provider block</span>
+                    <span class="quiz-opt">b) Only inside provider block</span>
+                    <span class="quiz-opt">c) Local to the module in which it is defined</span>
                     <span class="quiz-opt">d) Read-only CLI input</span>
-                </div>
+                    </div>
             </div>
             
             <div class="answer-key">
                 <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="handwritten">1-b | 2-b | 3-b | 4-b | 5-c | 6-c | 7-b</p>
+                <p class="handwritten">1-c | 2-a | 3-c | 4-d | 5-a | 6-b | 7-c</p>
             </div>
         </div>
     </section>

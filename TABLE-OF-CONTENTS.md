@@ -176,7 +176,7 @@
 | 🗓️ Day 67 | State & Remote Backends | [🎓 Day 67 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-67/Day67_State_Management.html) | [🧪 Lab 67](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-67/lab-session/task.md) |
 | 🗓️ Day 68 | Reusable Modules | [🎓 Day 68 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-68/Day68_Terraform_Modules.html) | [🧪 Lab 68](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-68/lab-session/task.md) |
 | 🗓️ Day 69 | Provisioning EKS Cluster | [🎓 Day 69 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-69/Day69_EKS_Provisioning.html) | [🧪 Lab 69](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-69/lab-session/task.md) |
-| 🗓️ Day 70 | **Capstone:** Multi-Env Workspaces | [🎓 Day 70 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-70/Day70_Workspaces_Capstone.html) | [🧪 Lab 70](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-70/lab-session/task.md) |
+| 🗓️ Day 70 | **Project:** Multi-Env Workspaces | [🎓 Day 70 Pro](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-70/Day70_Workspaces_Capstone.html) | [🧪 Lab 70](./curriculum/Module%2011%20-%20Terraform%20[IaC]/day-70/lab-session/task.md) |
 | 🏆 **Exam** | **Module 11 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2011%20-%20Terraform%20[IaC]/mastery-exam/README.md) | -- |
 
 ---
@@ -200,11 +200,12 @@
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 76 | Intro & Prometheus Setup | 🚧 Pro Module Coming | 🧪 Lab 76 |
-| 🗓️ Day 77 | Exporters & Grafana Dashboards | 🚧 Pro Module Coming | 🧪 Lab 77 |
-| 🗓️ Day 78 | Loki & Promtail Log Management | 🚧 Pro Module Coming | 🧪 Lab 78 |
-| 🗓️ Day 79 | OpenTelemetry & Alerting | 🚧 Pro Module Coming | 🧪 Lab 79 |
-| 🗓️ Day 80 | **Project:** Full Stack Observability | 🚧 Pro Module Coming | 🧪 Lab 80 |
+| 🗓️ Day 76 | Intro & Prometheus Setup | [🎓 Day 76 Pro](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-76/Day76_Prometheus_Setup.html) | [🧪 Lab 76](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-76/lab-session/task.md) |
+| 🗓️ Day 77 | Exporters & Grafana Dashboards | [🎓 Day 77 Pro](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-77/Day77_Exporters_Grafana.html) | [🧪 Lab 77](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-77/lab-session/task.md) |
+| 🗓️ Day 78 | Loki & Promtail Log Management | [🎓 Day 78 Pro](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-78/Day78_Loki_Promtail.html) | [🧪 Lab 78](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-78/lab-session/task.md) |
+| 🗓️ Day 79 | OpenTelemetry & Alerting | [🎓 Day 79 Pro](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-79/Day79_OpenTelemetry_Alerting.html) | [🧪 Lab 79](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-79/lab-session/task.md) |
+| 🗓️ Day 80 | **Project:** Full Stack Observability | [🎓 Day 80 Pro](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-80/Day80_Full_Stack_Observability.html) | [🧪 Lab 80](./curriculum/Module%2013%20-%20SRE%20&%20Observability/day-80/lab-session/task.md) |
+| 🏆 **Exam** | **Module 13 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2013%20-%20SRE%20&%20Observability/mastery-exam/README.md) | -- |
 
 ---
 
@@ -213,20 +214,22 @@
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 81 | Intro & Helm Chart Basics | 🚧 Pro Module Coming | 🧪 Lab 81 |
-| 🗓️ Day 82 | Custom Chart for AI-BankApp | 🚧 Pro Module Coming | 🧪 Lab 82 |
-| 🗓️ Day 83 | **Project:** Multi-Env CI/CD | 🚧 Pro Module Coming | 🧪 Lab 83 |
+| 🗓️ Day 81 | Intro & Helm Chart Basics | [🎓 Day 81 Pro](./curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-81/Day81_Helm_Intro.html) | [🧪 Lab 81](./curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-81/lab-session/task.md) |
+| 🗓️ Day 82 | Custom Chart for AI-BankApp | [🎓 Day 82 Pro](./curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-82/Day82_Custom_Helm_Chart.html) | [🧪 Lab 82](./curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-82/lab-session/task.md) |
+| 🗓️ Day 83 | **Project:** Multi-Env CI/CD | [🎓 Day 83 Pro](./curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-83/Day83_Multi_Env_CI_CD.html) | [🧪 Lab 83](./curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-83/lab-session/task.md) |
+| 🏆 **Exam** | **Module 14 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/mastery-exam/README.md) | -- |
 
 ---
 
-## 🏗️ Module 15 - Amazon EKS [Cloud Ops] (Days 84-86)
+## 🏗️ Module 15 - Amazon EKS (Days 84-86)
 > *Run production-grade Kubernetes workloads in the AWS Cloud.*
 
 | Day | Topic | Pro Module (Blackboard) | Task / Lab |
 |---|---|---|---|
-| 🗓️ Day 84 | EKS Setup with Terraform | 🚧 Pro Module Coming | 🧪 Lab 84 |
-| 🗓️ Day 85 | EKS Networking & Storage | 🚧 Pro Module Coming | 🧪 Lab 85 |
-| 🗓️ Day 86 | **Project:** Deploying AI-BankApp | 🚧 Pro Module Coming | 🧪 Lab 86 |
+| 🗓️ Day 84 | EKS Setup with Terraform | [🎓 Day 84 Pro](./curriculum/Module%2015%20-%20Amazon%20EKS/day-84/Day84_EKS_Setup_Terraform.html) | [🧪 Lab 84](./curriculum/Module%2015%20-%20Amazon%20EKS/day-84/lab-session/task.md) |
+| 🗓️ Day 85 | EKS Networking & Storage | [🎓 Day 85 Pro](./curriculum/Module%2015%20-%20Amazon%20EKS/day-85/Day85_EKS_Networking_Storage.html) | [🧪 Lab 85](./curriculum/Module%2015%20-%20Amazon%20EKS/day-85/lab-session/task.md) |
+| 🗓️ Day 86 | **Project:** Deploying AI-BankApp | [🎓 Day 86 Pro](./curriculum/Module%2015%20-%20Amazon%20EKS/day-86/Day86_Project_AI_BankApp_EKS.html) | [🧪 Lab 86](./curriculum/Module%2015%20-%20Amazon%20EKS/day-86/lab-session/task.md) |
+| 🏆 **Exam** | **Module 15 Mastery Exam** | [📝 30 MCQs](./curriculum/Module%2015%20-%20Amazon%20EKS/mastery-exam/README.md) | -- |
 
 ---
 

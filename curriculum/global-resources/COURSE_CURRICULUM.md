@@ -161,29 +161,29 @@ This is the definitive roadmap for your 90-day DevOps journey. Follow this seque
 ## 📊 Module 13 - SRE & Observability (Days 76-80)
 | Day | Topic |
 |---|---|
-| Day 76 | Introduction to Observability and Prometheus |
-| Day 77 | Node Exporter, cAdvisor, and Grafana Dashboards |
-| Day 78 | Log Management with Loki and Promtail |
-| Day 79 | OpenTelemetry and Alerting |
-| Day 80 | **Project:** Full Stack with Docker Compose |
+| [Day 76](../Module%2013%20-%20SRE%20&%20Observability/day-76/README.md) | Introduction to Observability and Prometheus |
+| [Day 77](../Module%2013%20-%20SRE%20&%20Observability/day-77/README.md) | Node Exporter, cAdvisor, and Grafana Dashboards |
+| [Day 78](../Module%2013%20-%20SRE%20&%20Observability/day-78/README.md) | Log Management with Loki and Promtail |
+| [Day 79](../Module%2013%20-%20SRE%20&%20Observability/day-79/README.md) | OpenTelemetry and Alerting |
+| [Day 80](../Module%2013%20-%20SRE%20&%20Observability/day-80/README.md) | **Project:** Full Stack Observability |
 
 ---
 
 ## 🏷️ Module 14 - Helm [K8s Package Mgmt] (Days 81-83)
 | Day | Topic |
 |---|---|
-| Day 81 | Introduction to Helm and Chart Basics |
-| Day 82 | Creating a Custom Helm Chart for AI-BankApp |
-| Day 83 | **Project:** Multi-Environment Deployment and CI/CD |
+| [Day 81](../Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-81/README.md) | Introduction to Helm and Chart Basics |
+| [Day 82](../Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-82/README.md) | Creating a Custom Helm Chart for AI-BankApp |
+| [Day 83](../Module%2014%20-%20Helm%20%5BK8s%20Package%20Mgmt%5D/day-83/README.md) | **Project:** Multi-Environment Deployment and CI/CD |
 
 ---
 
-## 🏗️ Module 15 - Amazon EKS [Cloud Ops] (Days 84-86)
+## 🏗️ Module 15 - Amazon EKS (Days 84-86)
 | Day | Topic |
 |---|---|
-| Day 84 | Introduction to Amazon EKS with Terraform |
-| Day 85 | EKS Networking and Persistent Storage |
-| Day 86 | **Project:** Production Deployment of AI-BankApp |
+| [Day 84](./Module%2015%20-%20Amazon%20EKS/day-84/README.md) | EKS Setup with Terraform |
+| [Day 85](./Module%2015%20-%20Amazon%20EKS/day-85/README.md) | EKS Networking & Storage |
+| [Day 86](./Module%2015%20-%20Amazon%20EKS/day-86/README.md) | **Project:** Deploying AI-BankApp |
 
 ---
 

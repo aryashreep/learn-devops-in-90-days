@@ -305,11 +305,11 @@ output "dev_id" {
             <div class="quiz-item">
                 <p class="quiz-question">1. What design principle do modules help enforce in Terraform?</p>
                 <div class="quiz-options">
-                    <span class="quiz-opt">a) KISS (Keep It Simple Stupid)</span>
-                    <span class="quiz-opt">b) DRY (Don't Repeat Yourself)</span>
+                    <span class="quiz-opt">a) DRY (Don't Repeat Yourself)</span>
+                    <span class="quiz-opt">b) KISS (Keep It Simple Stupid)</span>
                     <span class="quiz-opt">c) YAGNI (You Aren't Gonna Need It)</span>
                     <span class="quiz-opt">d) SOLID</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">2. If you write a new child module local block reference, which command must you run first?</p>
@@ -318,16 +318,16 @@ output "dev_id" {
                     <span class="quiz-opt">b) terraform plan</span>
                     <span class="quiz-opt">c) terraform init</span>
                     <span class="quiz-opt">d) terraform validate</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">3. How does a root module access an attribute of a resource inside a child module?</p>
                 <div class="quiz-options">
                     <span class="quiz-opt">a) It queries AWS APIs directly</span>
-                    <span class="quiz-opt">b) The child module must declare the attribute in an outputs.tf block</span>
-                    <span class="quiz-opt">c) It reads the local state file directly</span>
-                    <span class="quiz-opt">d) Using locals block</span>
-                </div>
+                    <span class="quiz-opt">b) It reads the local state file directly</span>
+                    <span class="quiz-opt">c) Using locals block</span>
+                    <span class="quiz-opt">d) The child module must declare the attribute in an outputs.tf block</span>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">4. Which argument specifies the file path or URL location of a module?</p>
@@ -336,39 +336,39 @@ output "dev_id" {
                     <span class="quiz-opt">b) source</span>
                     <span class="quiz-opt">c) version</span>
                     <span class="quiz-opt">d) location</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">5. Where is version pinning supported for module dependencies?</p>
                 <div class="quiz-options">
                     <span class="quiz-opt">a) On local relative path modules only</span>
-                    <span class="quiz-opt">b) On registry or remote repository sources</span>
-                    <span class="quiz-opt">c) Inside variables file</span>
+                    <span class="quiz-opt">b) Inside variables file</span>
+                    <span class="quiz-opt">c) On registry or remote repository sources</span>
                     <span class="quiz-opt">d) In the credential file</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item">
                 <p class="quiz-question">6. What represents the module that you invoke from your command line terminal directly?</p>
                 <div class="quiz-options">
-                    <span class="quiz-opt">a) Child module</span>
-                    <span class="quiz-opt">b) Root module</span>
+                    <span class="quiz-opt">a) Root module</span>
+                    <span class="quiz-opt">b) Child module</span>
                     <span class="quiz-opt">c) Local workspace</span>
                     <span class="quiz-opt">d) Provider block</span>
-                </div>
+                    </div>
             </div>
             <div class="quiz-item" style="border:none;">
                 <p class="quiz-question">7. What happens if you run terraform apply without pinning registry module versions?</p>
                 <div class="quiz-options">
                     <span class="quiz-opt">a) Fails immediately on validation error</span>
-                    <span class="quiz-opt">b) Downloads the latest version, which could introduce breaking API changes</span>
-                    <span class="quiz-opt">c) Uses cache and never checks updates</span>
-                    <span class="quiz-opt">d) Deletes your state file</span>
-                </div>
+                    <span class="quiz-opt">b) Uses cache and never checks updates</span>
+                    <span class="quiz-opt">c) Deletes your state file</span>
+                    <span class="quiz-opt">d) Downloads the latest version, which could introduce breaking API changes</span>
+                    </div>
             </div>
             
             <div class="answer-key">
                 <h3 class="handwritten" style="color: var(--chalk-green); margin-bottom: 10px;">✅ ANSWER KEY</h3>
-                <p class="handwritten">1-b | 2-c | 3-b | 4-b | 5-b | 6-b | 7-b</p>
+                <p class="handwritten">1-a | 2-c | 3-d | 4-b | 5-c | 6-a | 7-d</p>
             </div>
         </div>
     </section>

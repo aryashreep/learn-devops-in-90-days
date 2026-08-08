@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Day 79: OpenTelemetry & Alerting - Golu & Jagu Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --bg-blackboard: #0a0e14;
+            --chalk-white: #f1f2f6;
+            --chalk-yellow: #feca57;
+            --chalk-blue: #48dbfb;
+            --chalk-green: #1dd1a1;
+            --chalk-pink: #ff9ff3;
+            --chalk-orange: #ff9f43;
+            --chalk-red: #ff6b6b;
+            --wood-frame: #2f3542;
+        }
+        @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--bg-blackboard) !important; color: var(--chalk-white) !important; } .blackboard { border: none !important; box-shadow: none !important; width: 100% !important; margin: 0 !important; padding: 10px !important; } section { page-break-inside: avoid; } a { text-decoration: none !important; color: var(--chalk-blue) !important; } }
+        body { background: var(--bg-blackboard); color: var(--chalk-white); font-family: 'Inter', sans-serif; margin: 0; padding: 20px; }
+        .blackboard { max-width: 1000px; margin: 0 auto; border: 12px solid var(--wood-frame); padding: 50px; box-shadow: 0 30px 60px rgba(0,0,0,0.8); background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 30px 30px; position: relative; }
+        .author-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid var(--chalk-yellow); padding-bottom: 20px; margin-bottom: 40px; }
+        .author-info h2 { font-family: 'Architects Daughter'; color: var(--chalk-yellow); margin: 0; font-size: 1.8rem; }
+        .author-info p { font-family: 'Architects Daughter'; color: var(--chalk-white); margin: 5px 0 0 0; font-size: 1.1rem; }
+        .author-contact { text-align: right; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--chalk-blue); }
+        .author-contact a { color: var(--chalk-blue); text-decoration: none; display: block; margin-bottom: 2px; }
+        h1, h2, h3, .handwritten { font-family: 'Architects Daughter', cursive; }
+        h1 { font-size: 3.5rem; text-align: center; color: var(--chalk-yellow); text-transform: uppercase; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--chalk-blue); font-size: 1.4rem; margin-bottom: 50px; }
+        section { margin-bottom: 80px; padding-bottom: 40px; border-bottom: 2px dashed rgba(255,255,255,0.1); }
+        .topic-title { color: var(--chalk-pink); font-size: 2.2rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 1px solid var(--chalk-pink); display: inline-block; }
+        .content-box { background: rgba(255,255,255,0.04); padding: 25px; border-radius: 15px; border: 2px solid transparent; margin-bottom: 25px; }
+        .content-box.accent-yellow { border-color: var(--chalk-yellow); }
+        .content-box.accent-green { border-color: var(--chalk-green); }
+        .content-box.accent-red { border-color: var(--chalk-red); }
+        .content-box.accent-blue { border-color: var(--chalk-blue); }
+        .doodle-container { display: flex; align-items: center; gap: 30px; margin: 40px 0; }
+        .doodle-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .char-name { font-family: 'Architects Daughter'; color: var(--chalk-yellow); font-size: 0.9rem; }
+        .malik-doodle { width: 60px; height: 100px; position: relative; flex-shrink: 0; }
+        .malik-head { width: 35px; height: 35px; border: 2px solid var(--chalk-white); border-radius: 50%; position: absolute; left: 12px; }
+        .malik-smile { width: 15px; height: 8px; border-bottom: 2px solid var(--chalk-white); border-radius: 0 0 10px 10px; position: absolute; top: 15px; left: 10px; }
+        .malik-body { width: 2px; height: 45px; background: var(--chalk-white); position: absolute; top: 35px; left: 29px; }
+        .malik-arm-l, .malik-arm-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 45px; }
+        .malik-arm-l { left: 5px; transform: rotate(-30deg); } .malik-arm-r { left: 30px; transform: rotate(30deg); }
+        .malik-leg-l, .malik-leg-r { width: 25px; height: 2px; background: var(--chalk-white); position: absolute; top: 80px; }
+        .malik-leg-l { left: 10px; transform: rotate(-60deg); } .malik-leg-r { left: 25px; transform: rotate(60deg); }
+        .robot-doodle { width: 70px; height: 110px; position: relative; flex-shrink: 0; }
+        .robot-head { width: 45px; height: 35px; border: 2.5px solid var(--chalk-green); border-radius: 8px; position: absolute; left: 12px; top: 15px; }
+        .robot-eye-l, .robot-eye-r { width: 6px; height: 6px; background: var(--chalk-yellow); border-radius: 50%; position: absolute; top: 10px; box-shadow: 0 0 10px var(--chalk-yellow); }
+        .robot-eye-l { left: 8px; } .robot-eye-r { right: 8px; }
+        .robot-body { width: 55px; height: 50px; border: 2.5px solid var(--chalk-green); border-radius: 10px; position: absolute; top: 52px; left: 7px; }
+        .robot-antenna { width: 2px; height: 12px; background: var(--chalk-green); position: absolute; top: 3px; left: 34px; }
+        .robot-antenna::after { content: ''; width: 6px; height: 6px; border: 2px solid var(--chalk-green); border-radius: 50%; position: absolute; top: -6px; left: -4px; }
+        .speech-bubble { border: 2px solid var(--chalk-white); border-radius: 25px; padding: 20px 30px; position: relative; max-width: 70%; font-size: 1.2rem; line-height: 1.4; }
+        .speech-bubble.bubble-green { border-color: var(--chalk-green); }
+        .speech-bubble::before { content: ''; position: absolute; left: -15px; top: 30px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: 15px solid var(--chalk-white); }
+        .speech-bubble.bubble-green::before { border-right-color: var(--chalk-green); }
+        .chalk-text { color: var(--chalk-yellow); font-weight: bold; }
+        .code-chalk { color: var(--chalk-blue); font-family: 'Fira Code', monospace; }
+        .diagram-container { border: 3px solid var(--chalk-white); border-radius: 25px; padding: 40px; text-align: center; background: rgba(0,0,0,0.5); margin: 40px 0; }
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; }
+        li::before { content: '→'; position: absolute; left: 0; color: var(--chalk-green); }
+        pre { background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow-x: auto; }
+        code { font-family: 'Fira Code', monospace; font-size: 0.95rem; }
+        .answer-key { border: 2px dashed var(--chalk-green); padding: 20px; border-radius: 15px; margin-top: 40px; background: rgba(29,209,161,0.05); }
+        .footer { text-align: center; color: #666; margin-top: 80px; font-family: 'Architects Daughter'; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .dir-tree { font-family: 'Fira Code', monospace; color: var(--chalk-green); }
+        .dir-tree span { color: var(--chalk-yellow); }
+        .dyk-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+        .dyk-num { font-size: 3rem; color: var(--chalk-yellow); font-family: 'Architects Daughter'; }
+        .quiz-item { margin-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); padding-bottom: 15px; }
+        .quiz-question { font-size: 1.15rem; font-weight: bold; margin-bottom: 10px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-left: 15px; }
+        .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 800px) { .vs-grid { grid-template-columns: 1fr; } .dyk-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="blackboard">
+    <header class="author-header">
+        <div class="author-info">
+            <h2>Aryashree Pritikrishna</h2>
+            <p>DevOps & Cloud Training Series • 2026 Edition</p>
+        </div>
+        <div class="author-contact">
+            <div class="contact-item">🔗 <a href="https://github.com/aryashreep/learn-devops-in-90-days">github.com/aryashreep/...</a></div>
+            <div class="contact-item">💼 <a href="https://www.linkedin.com/in/aryashreepritikrishna/">linkedin.com/in/aryashreep...</a></div>
+            <div class="contact-item">📺 <a href="https://www.youtube.com/@aryashreepritikrishna">youtube.com/@aryashree...</a></div>
+            <div class="contact-item">📧 <a href="mailto:aryashreep@gmail.com">aryashreep@gmail.com</a></div>
+            <div class="contact-item">📞 +91 8147450705</div>
+        </div>
+    </header>
+    <header>
+        <h1>OpenTelemetry &amp; Alerting</h1>
+        <p class="subtitle handwritten">Day 79: See every request — and get paged before users complain! 🚨</p>
+    </header>
+
+    <!-- INTRO DIALOGUE -->
+    <section>
+        <div class="doodle-container">
+            <div class="doodle-wrapper">
+                <div class="malik-doodle"><div class="malik-head"><div class="malik-smile"></div></div><div class="malik-body"></div><div class="malik-arm-l"></div><div class="malik-arm-r"></div><div class="malik-leg-l"></div><div class="malik-leg-r"></div></div>
+                <span class="char-name">Golu</span>
+            </div>
+            <div class="speech-bubble" style="border-color: var(--chalk-yellow);">
+                "Jagu! A payment took 2 seconds instead of 50ms. The metrics all look fine, and I can't find the bottleneck anywhere!"
+            </div>
+        </div>
+        <div class="doodle-container" style="justify-content: flex-end;">
+            <div class="speech-bubble bubble-green">
+                "That's the missing pillar, Golu — <span class="chalk-text">traces</span>! OpenTelemetry follows ONE request through every service so you can SEE the 1.9-second gap. And after that? We'll set up <span class="chalk-text">alerts</span> so Prometheus pages you the moment things slow down. No more finding out from users! 🚨"
+            </div>
+            <div class="doodle-wrapper">
+                <div class="robot-doodle"><div class="robot-antenna"></div><div class="robot-head"><div class="robot-eye-l"></div><div class="robot-eye-r"></div></div><div class="robot-body"></div></div>
+                <span class="char-name">Jagu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING OBJECTIVES -->
+    <section>
+        <div class="topic-title">🎯 Learning Objectives</div>
+        <div class="content-box accent-green">
+            <ul>
+                <li>Explain <strong>traces and spans</strong> and why metrics can't show request paths.</li>
+                <li>Understand <strong>OpenTelemetry</strong>: one SDK for traces, metrics &amp; logs, exported via OTLP.</li>
+                <li>Write Prometheus <strong>alert rules</strong> with <code>expr</code>, <code>for</code>, labels &amp; annotations.</li>
+                <li>Configure <strong>Alertmanager</strong> routes and receivers (webhook/email/Slack).</li>
+                <li>Silence and acknowledge alerts like a real on-call engineer.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- DID YOU KNOW -->
+    <section>
+        <div class="topic-title">❓ Did You Know?</div>
+        <div class="dyk-grid">
+            <div><div class="dyk-num">2nd</div><div class="handwritten" style="color:var(--chalk-blue);">OTel is the 2nd most active CNCF project after K8s</div></div>
+            <div><div class="dyk-num">50+</div><div class="handwritten" style="color:var(--chalk-blue);">Backends that accept OTLP — one SDK, any vendor</div></div>
+            <div><div class="dyk-num">Google</div><div class="handwritten" style="color:var(--chalk-blue);">Dapper paper (2010) inspired modern tracing</div></div>
+        </div>
+    </section>
+
+    <!-- TRACING -->
+    <section>
+        <div class="topic-title">🧬 Distributed Tracing</div>
+        <div class="content-box accent-blue">
+            <p>A <strong>trace</strong> is one request's journey. Each step is a <strong>span</strong> with a name, duration, and parent:</p>
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+Trace: POST /checkout
+├── span: api-gateway        (total 2100ms)
+│   ├── span: auth-service   (150ms)
+│   └── span: payment-svc    (1900ms)  ← BOTTLENECK!
+│       └── span: db-query   (1750ms)  ← slow index?
+                </pre>
+            </div>
+            <p><span class="chalk-text">Key insight:</span> metrics say "server is fine", logs say "one line each". Only a trace connects the dots across services.</p>
+        </div>
+    </section>
+
+    <!-- OTLP -->
+    <section>
+        <div class="topic-title">📡 OpenTelemetry &amp; OTLP</div>
+        <div class="content-box accent-yellow">
+            <ul>
+                <li><strong>OpenTelemetry</strong> = vendor-neutral standard for emitting telemetry.</li>
+                <li>One SDK per language instruments <em>traces + metrics + logs</em> together.</li>
+                <li>Data is exported via <strong>OTLP</strong> (OpenTelemetry Protocol) over gRPC/HTTP.</li>
+                <li>Optional <strong>Collector</strong> receives, processes, and routes telemetry anywhere.</li>
+            </ul>
+            <pre><code># Export a span from the CLI (just to feel it)
+otel-cli span --name "my first span" --kind client \
+  --attributes "env=dev,team=platform"
+
+# Typical pipeline
+App (OTel SDK) --OTLP--> Collector --OTLP--> Tempo/Jaeger/Datadog</code></pre>
+            <p class="handwritten" style="color:var(--chalk-yellow);">Jagu's Tip: Instrument once with OTel — switch backends later without touching code.</p>
+        </div>
+    </section>
+
+    <!-- ALERT RULES -->
+    <section>
+        <div class="topic-title">🚨 Prometheus Alert Rules</div>
+        <div class="content-box accent-red">
+            <pre><code>groups:
+  - name: node-alerts
+    rules:
+      - alert: HighCPUUsage
+        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 5m                 # must hold 5 min → no flapping
+        labels:
+          severity: critical
+        annotations:
+          summary: "High CPU on {{ $labels.instance }}"
+          runbook: "https://wiki.example.com/runbooks/cpu"
+
+# Validate
+promtool check rules rules.yml</code></pre>
+            <p><span class="chalk-text">Anatomy:</span> <code>expr</code> (when to fire) + <code>for</code> (how long to sustain) + <code>labels</code> (who/severity) + <code>annotations</code> (what to say).</p>
+        </div>
+    </section>
+
+    <!-- ALERT FLOW -->
+    <section>
+        <div class="topic-title">⚙️ Alert Flow</div>
+        <div class="content-box accent-green">
+            <div class="diagram-container">
+                <pre style="text-align:left;background:transparent;border:none;">
+ Prometheus               Alertmanager :9093
+ ┌─────────────┐  firing   ┌───────────────────┐
+ │ rules.yml   │ ────────→ │  group (related)  │
+ │ evaluate 15s│  alerts   │  route (who gets  │
+ └─────────────┘           │        what)      │
+                           │  receivers:       │
+                           │   webhook / email │
+                           │   slack / pagerduty│
+                           └─────────┬─────────┘
+                                     ▼
+                             Team notified!
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALERTMANAGER CONFIG -->
+    <section>
+        <div class="topic-title">📮 Alertmanager Config</div>
+        <div class="content-box accent-blue">
+            <pre><code>route:
+  group_by: ['alertname']      # bundle related alerts
+  group_wait: 30s              # wait before first notify
+  receiver: 'webhook'
+
+receivers:
+  - name: 'webhook'
+    webhook_configs:
+      - url: 'http://localhost:5000/alert'
+        send_resolved: true
+
+# Run it
+docker run -d --name alertmanager -p 9093:9093 \
+  -v $PWD/alertmanager.yml:/etc/alertmanager/alertmanager.yml \
+  prom/alertmanager</code></pre>
+            <p>Also point Prometheus at it: add <code>alerting: alertmanagers: - static_configs: - targets: ['localhost:9093']</code> to <code>prometheus.yml</code>.</p>
+        </div>
+    </section>
+
+    <!-- COMPARE VS -->
+    <section>
+        <div class="topic-title">⚖️ Compare: Alert on Symptoms vs Causes</div>
+        <div class="vs-grid">
+            <div class="content-box accent-red">
+                <h3 class="handwritten" style="color:var(--chalk-red);">Alert on Causes ❌</h3>
+                <ul>
+                    <li>"nginx restarted" — so what? Users don't care.</li>
+                    <li>High alert noise → engineers ignore alerts.</li>
+                    <li>No link to user impact.</li>
+                </ul>
+            </div>
+            <div class="content-box accent-green">
+                <h3 class="handwritten" style="color:var(--chalk-green);">Alert on Symptoms ✅</h3>
+                <ul>
+                    <li>"5xx error rate &gt; 1% for 5m" — users are affected.</li>
+                    <li>Fewer, meaningful pages.</li>
+                    <li>Every alert has a runbook &amp; severity.</li>
+                    <li>Tie each symptom to an <strong>SLO / error budget</strong> — page when the burn rate threatens it.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- REAL WORLD EXAMPLE -->
+    <section>
+        <div class="topic-title">🌍 Real-World Example</div>
+        <div class="content-box accent-green">
+            <p><strong>Uber:</strong> With millions of ride requests, a 100ms slowdown anywhere cascades. Uber uses OpenTelemetry-compatible tracing across 2,000+ microservices. When a dispatch latency spike happens, an alert fires <em>before</em> riders notice, and the on-call engineer opens the trace to see exactly which service (and even which database query) caused the delay — typically a 5-minute fix instead of a 3-hour outage.</p>
+            <pre><code># The alert that would page Uber's dispatch team
+expr: histogram_quantile(0.99, rate(dispatch_latency_seconds_bucket[5m])) > 2
+for: 10m</code></pre>
+        </div>
+    </section>
+
+    <!-- COMMON MISCONCEPTIONS -->
+    <section>
+        <div class="topic-title">🚫 Common Misconceptions</div>
+        <div class="content-box accent-red">
+            <ul>
+                <li><strong>"OTel is a tracing tool."</strong> It's a full telemetry standard — traces, metrics, and logs with one SDK.</li>
+                <li><strong>"More alerts = safer system."</strong> False — alert fatigue causes real incidents to be ignored.</li>
+                <li><strong>"Alertmanager = Prometheus."</strong> They're separate components; Prometheus evaluates, Alertmanager notifies.</li>
+                <li><strong>"Tracing needs special infrastructure."</strong> The OTel collector + a trace backend (Tempo/Jaeger) run fine on one box.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- TRY IT YOURSELF -->
+    <section>
+        <div class="topic-title">🛠️ Try It Yourself</div>
+        <div class="content-box accent-blue">
+            <pre><code># 1. Write rules.yml (HighCPUUsage above) → promtool check rules rules.yml
+# 2. Start Alertmanager with your config
+# 3. Add the alertmanager target to prometheus.yml → SIGHUP reload
+# 4. Create CPU load:  yes > /dev/null & (or: stress --cpu 4)
+# 5. Watch the alert move: Inactive → Pending → Firing (Alerts page)
+# 6. Send a manual test alert:
+curl -X POST -d '[{"labels":{"alertname":"Test"}}]' \
+  http://localhost:9093/api/v1/alerts
+# 7. Silence it in the Alertmanager UI</code></pre>
+        </div>
+    </section>
+
+    <!-- QUICK SUMMARY -->
+    <section>
+        <div class="topic-title">⚡ Quick Summary</div>
+        <div class="content-box">
+            <ul>
+                <li>Traces = one request through many services; spans = each step.</li>
+                <li>OpenTelemetry = one SDK for metrics + logs + traces, exported via OTLP.</li>
+                <li>Alert rules: <code>expr</code> + <code>for</code> + labels + annotations.</li>
+                <li>Alertmanager groups, routes, and delivers alerts (webhook/email/Slack).</li>
+                <li>Alert on <strong>symptoms</strong>, keep <code>for</code> durations, and always link a runbook.</li>
+                <li>Silences stop noisy alerts during maintenance windows.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+        <div class="topic-title">❓ Mini Quiz</div>
+        <div class="content-box" style="border:2px dashed var(--chalk-blue);">
+            <div class="quiz-item"><p class="quiz-question">1. What is a span in distributed tracing?</p><div class="quiz-options"><span>a) One unit of work inside a trace</span><span>b) A log line</span><span>c) A metric type</span><span>d) A dashboard row</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">2. Which protocol does OpenTelemetry use to export data?</p><div class="quiz-options"><span>a) SNMP</span><span>b) HTTPS only</span><span>c) OTLP</span><span>d) gRPC only</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">3. Which alert rule field prevents flapping?</p><div class="quiz-options"><span>a) expr</span><span>b) labels</span><span>c) annotations</span><span>d) for</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">4. Which component delivers alerts to Slack/email?</p><div class="quiz-options"><span>a) Prometheus</span><span>b) Alertmanager</span><span>c) Grafana</span><span>d) Loki</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">5. How do you validate alert rules?</p><div class="quiz-options"><span>a) promtool check config</span><span>b) amtool check rules</span><span>c) grafana-cli validate</span><span>d) promtool check rules</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">6. Which is the BEST alert to create?</p><div class="quiz-options"><span>a) "nginx restarted"</span><span>b) "5xx error rate > 1% for 5m"</span><span>c) "CPU above 50% once"</span><span>d) "disk changed"</span></div></div>
+            <div class="quiz-item"><p class="quiz-question">7. In tracing, what does a trace represent?</p><div class="quiz-options"><span>a) A server's uptime</span><span>b) A PromQL query result</span><span>c) One request's journey across services</span><span>d) A batch of log lines</span></div></div>
+            <div class="answer-key"><h3 class="handwritten" style="color:var(--chalk-green);">✅ Answer Key</h3><p>1-a | 2-c | 3-d | 4-b | 5-d | 6-b | 7-c</p></div>
+        </div>
+    </section>
+
+    <div class="footer">#LearnDevOpsIn90Days • Day 79 • Phase 13: SRE & Observability • By Aryashree Pritikrishna</div>
+</div>
+</body>
+</html>

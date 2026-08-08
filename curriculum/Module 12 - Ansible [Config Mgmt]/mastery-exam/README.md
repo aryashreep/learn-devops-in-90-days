@@ -8,73 +8,73 @@ Welcome to the **Ansible Mastery Exam**! This assessment tests your knowledge of
 
 **1. What architecture does Ansible use?**
 - A) Agent-based with daemon on each node
-- B) Agentless push model over SSH
-- C) Pull-based model with periodic checks
+- B) Pull-based model with periodic checks
+- C) Agentless push model over SSH
 - D) API-gateway model
-- **Ans: B**
+- **Ans: C**
 
 **2. Which of the following is NOT required on an Ansible managed node?**
-- A) Python
-- B) SSH server
-- C) Ansible agent
+- A) Ansible agent
+- B) Python
+- C) SSH server
 - D) Network connectivity
-- **Ans: C**
+- **Ans: A**
 
 **3. Who developed Ansible?**
 - A) Red Hat
 - B) HashiCorp
-- C) Michael DeHaan
-- D) Docker Inc
-- **Ans: C**
+- C) Docker Inc
+- D) Michael DeHaan
+- **Ans: D**
 
 **4. In which year was Ansible acquired by Red Hat?**
 - A) 2012
-- B) 2013
-- C) 2015
+- B) 2015
+- C) 2013
 - D) 2018
-- **Ans: C**
+- **Ans: B**
 
 **5. Which protocol does Ansible use by default to connect to Linux managed nodes?**
-- A) HTTPS
-- B) SSH
+- A) SSH
+- B) HTTPS
 - C) Telnet
 - D) SNMP
-- **Ans: B**
+- **Ans: A**
 
 **6. What is the default location of the Ansible configuration file?**
 - A) `~/.ansible.cfg`
-- B) `/etc/ansible/ansible.cfg`
-- C) `/etc/ansible.cfg`
-- D) `/opt/ansible/ansible.cfg`
-- **Ans: B**
+- B) `/etc/ansible.cfg`
+- C) `/opt/ansible/ansible.cfg`
+- D) `/etc/ansible/ansible.cfg`
+- **Ans: D**
 
 **7. Which command displays the Ansible version and configuration?**
-- A) `ansible info`
-- B) `ansible version`
-- C) `ansible --version`
+- A) `ansible --version`
+- B) `ansible info`
+- C) `ansible version`
 - D) `ansible config`
-- **Ans: C**
+- **Ans: A**
 
 **8. What format does Ansible use for playbooks?**
 - A) JSON
 - B) XML
-- C) YAML
-- D) TOML
-- **Ans: C**
+- C) TOML
+- D) YAML
+- **Ans: D**
 
 **9. What is an Ansible "Play"?**
 - A) A single installed module
-- B) A mapping between a group of hosts and the tasks to run on them
-- C) A Python script for automation
+- B) A Python script for automation
+- C) A mapping between a group of hosts and the tasks to run on them
 - D) A configuration file for managed nodes
-- **Ans: B**
+- **Ans: C**
 
 **10. What is the purpose of `gather_facts: yes` in a playbook?**
-- A) Installs additional Python packages on managed nodes
-- B) Collects system information about managed nodes
+- A) Collects system information about managed nodes
+- B) Installs additional Python packages on managed nodes
 - C) Downloads the latest modules from Galaxy
 - D) Creates a backup of configuration files
-- **Ans: B**
+- **Ans: A**
 
 ---
 
@@ -82,38 +82,38 @@ Welcome to the **Ansible Mastery Exam**! This assessment tests your knowledge of
 
 **11. Which file type is NOT valid for Ansible inventory?**
 - A) INI format
-- B) YAML format
-- C) JSON format
-- D) XML format
-- **Ans: D**
+- B) XML format
+- C) YAML format
+- D) JSON format
+- **Ans: B**
 
 **12. What is a dynamic inventory?**
 - A) An inventory that changes during playbook execution
-- B) A script or plugin that fetches host lists from cloud APIs
-- C) An inventory with rotating host names
+- B) An inventory with rotating host names
+- C) A script or plugin that fetches host lists from cloud APIs
 - D) An inventory stored in a database
-- **Ans: B**
+- **Ans: C**
 
 **13. Which ad-hoc module tests connectivity to managed nodes?**
-- A) `command`
-- B) `shell`
-- C) `ping`
+- A) `ping`
+- B) `command`
+- C) `shell`
 - D) `test`
-- **Ans: C**
+- **Ans: A**
 
 **14. Which ad-hoc module gathers system facts?**
 - A) `facts`
-- B) `setup`
-- C) `info`
-- D) `system`
-- **Ans: B**
+- B) `info`
+- C) `system`
+- D) `setup`
+- **Ans: D**
 
 **15. How do you run an ad-hoc command on all hosts in the webservers group?**
 - A) `ansible-playbook webservers -m command`
-- B) `ansible webservers -m command -a "uptime"`
-- C) `ansible all -m webservers -a "uptime"`
+- B) `ansible all -m webservers -a "uptime"`
+- C) `ansible webservers -m command -a "uptime"`
 - D) `ansible-playbook webservers.yml`
-- **Ans: B**
+- **Ans: C**
 
 ---
 
@@ -121,77 +121,77 @@ Welcome to the **Ansible Mastery Exam**! This assessment tests your knowledge of
 
 **16. What does `become: yes` do in a playbook?**
 - A) Creates a background process
-- B) Allows the playbook to continue on error
-- C) Elevates privileges to run tasks as root (sudo)
+- B) Elevates privileges to run tasks as root (sudo)
+- C) Allows the playbook to continue on error
 - D) Makes the playbook executable
-- **Ans: C**
+- **Ans: B**
 
 **17. Which module is used to manage files and directories?**
 - A) `copy`
-- B) `file`
-- C) `template`
-- D) `manage`
-- **Ans: B**
+- B) `template`
+- C) `manage`
+- D) `file`
+- **Ans: D**
 
 **18. What is the purpose of idempotency in Ansible?**
-- A) Running tasks in parallel for speed
-- B) Ensuring the same result regardless of how many times the playbook runs
+- A) Ensuring the same result regardless of how many times the playbook runs
+- B) Running tasks in parallel for speed
 - C) Encrypting sensitive data during transfer
 - D) Automatically recovering from failures
-- **Ans: B**
+- **Ans: A**
 
 **19. Which flag runs a playbook in check (dry-run) mode?**
-- A) `--check`
-- B) `--dry-run`
-- C) `--test`
+- A) `--dry-run`
+- B) `--test`
+- C) `--check`
 - D) `--preview`
-- **Ans: A**
+- **Ans: C**
 
 **20. How do you pass extra variables to a playbook?**
 - A) Using `--vars` flag
-- B) Using `--extra-vars` flag
-- C) Using `--params` flag
-- D) Using `--set-vars` flag
-- **Ans: B**
+- B) Using `--params` flag
+- C) Using `--set-vars` flag
+- D) Using `--extra-vars` flag
+- **Ans: D**
 
 ---
 
 ## 📝 Part 4: Variables, Conditionals, Loops & Handlers
 
 **21. Which variable type has the HIGHEST precedence?**
-- A) Role defaults
-- B) Extra vars (`--extra-vars`)
+- A) Extra vars (`--extra-vars`)
+- B) Role defaults
 - C) Inventory variables
 - D) Play vars
-- **Ans: B**
+- **Ans: A**
 
 **22. Which keyword is used for conditional execution?**
 - A) `if`
-- B) `when`
-- C) `condition`
+- B) `condition`
+- C) `when`
 - D) `unless`
-- **Ans: B**
+- **Ans: C**
 
 **23. How do you iterate over a list in an Ansible task?**
 - A) `for_each`
-- B) `loop`
-- C) `iterate`
-- D) `each`
-- **Ans: B**
+- B) `iterate`
+- C) `each`
+- D) `loop`
+- **Ans: D**
 
 **24. When do handlers run in a playbook?**
-- A) Immediately when notified
-- B) At the end of the play, after all tasks
+- A) At the end of the play, after all tasks
+- B) Immediately when notified
 - C) At the beginning of the play
 - D) In random order
-- **Ans: B**
+- **Ans: A**
 
 **25. What triggers a handler?**
 - A) The `trigger` keyword
-- B) The `notify` keyword
-- C) The `call` keyword
+- B) The `call` keyword
+- C) The `notify` keyword
 - D) The `run` keyword
-- **Ans: B**
+- **Ans: C**
 
 ---
 
@@ -199,17 +199,17 @@ Welcome to the **Ansible Mastery Exam**! This assessment tests your knowledge of
 
 **26. What command creates a new role skeleton?**
 - A) `ansible-role init <name>`
-- B) `ansible-galaxy init <name>`
-- C) `ansible-create role <name>`
-- D) `ansible new role <name>`
-- **Ans: B**
+- B) `ansible-create role <name>`
+- C) `ansible new role <name>`
+- D) `ansible-galaxy init <name>`
+- **Ans: D**
 
 **27. What file extension do Jinja2 templates use?**
-- A) `.tmpl`
-- B) `.j2`
+- A) `.j2`
+- B) `.tmpl`
 - C) `.template`
 - D) `.ans`
-- **Ans: B**
+- **Ans: A**
 
 **28. Which directory in a role stores low-priority default variables?**
 - A) `vars/`
@@ -219,18 +219,18 @@ Welcome to the **Ansible Mastery Exam**! This assessment tests your knowledge of
 - **Ans: B**
 
 **29. What command encrypts a file with Ansible Vault?**
-- A) `ansible-vault encrypt <file>`
-- B) `ansible-vault lock <file>`
+- A) `ansible-vault lock <file>`
+- B) `ansible-vault encrypt <file>`
 - C) `ansible encrypt <file>`
 - D) `ansible-vault create <file>`
-- **Ans: A**
+- **Ans: B**
 
 **30. How do you supply the Vault password when running a playbook?**
 - A) Using `--vault-password` flag
-- B) Using `--ask-vault-pass` or `--vault-password-file`
-- C) Using `--vault-key` flag
-- D) Using `--password-file` flag
-- **Ans: B**
+- B) Using `--vault-key` flag
+- C) Using `--password-file` flag
+- D) Using `--ask-vault-pass` or `--vault-password-file`
+- **Ans: D**
 
 ---
 
